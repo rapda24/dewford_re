@@ -1,5 +1,37 @@
 /* Standalone navigation: no dependency on the source site's WordPress plugins. */
 (() => {
+  document.querySelectorAll('.services-section-seven .tab-content').forEach(content => {
+    const panes = [...content.querySelectorAll('.tab-pane')];
+    let cleanup;
+    panes.forEach(pane => pane.classList.remove('fade'));
+    content.classList.add('dewford-crossfade-tabs');
+    const nav = content.closest('.row').querySelector('.service-nav-tab');
+    nav.addEventListener('show.bs.tab', () => {
+      clearTimeout(cleanup);
+      panes.forEach(pane => {
+        pane.classList.remove('is-outgoing');
+        pane.inert = !pane.classList.contains('active');
+      });
+      const previous = content.querySelector('.tab-pane.active');
+      if (previous) {
+        previous.classList.add('is-outgoing');
+        previous.inert = true;
+      }
+    });
+    nav.addEventListener('shown.bs.tab', () => {
+      content.querySelector('.tab-pane.active').inert = false;
+      cleanup = setTimeout(() => {
+        panes.forEach(pane => pane.classList.remove('is-outgoing'));
+      }, 300);
+    });
+  });
+  document.querySelectorAll('.services-section-seven .service-nav-tab [data-bs-toggle="pill"]').forEach(tab => {
+    tab.addEventListener('pointerenter', event => {
+      if (event.pointerType === 'mouse' && window.bootstrap?.Tab) {
+        bootstrap.Tab.getOrCreateInstance(tab).show();
+      }
+    });
+  });
   const header = document.querySelector('.dewford-header');
   const drawer = document.querySelector('#dewford-drawer');
   const toggle = document.querySelector('.dewford-menu-toggle');

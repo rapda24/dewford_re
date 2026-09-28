@@ -705,7 +705,7 @@ Scroll To Top style
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 20px;
   font-weight: 600;
   overflow: hidden;
@@ -750,7 +750,7 @@ Scroll To Top style
 }
 .list-style-one li {
   position: relative;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 24px;
   font-weight: 400;
   color: var(--theme-color-dark);
@@ -1505,7 +1505,7 @@ Scroll To Top style
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   color: #7c858c;
 }
 
@@ -1648,7 +1648,7 @@ Scroll To Top style
 .custom-navs-two .owl-nav .owl-next {
   background-color: #F9F6F1;
   color: var(--theme-color-dark);
-  font-size: 8px;
+  font-size: 14px;
   position: relative;
   line-height: 16px;
   height: 16px;
@@ -3488,7 +3488,7 @@ Main Header
 .header-top .useful-links li {
   position: relative;
   margin-right: 30px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: #bdbdbd;
   line-height: 20px;
@@ -3630,7 +3630,7 @@ Main Header
   content: "\f107";
   display: none;
   font-family: "Font Awesome 6 Pro";
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 900;
   height: 20px;
   line-height: 24px;
@@ -3698,7 +3698,7 @@ Main Header
   background-color: #336AEA;
   border-radius: 3px;
   color: #fff;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
   padding: 3.5px 5px 4.5px;
@@ -3729,7 +3729,7 @@ Main Header
   top: 11px;
   display: block;
   line-height: 24px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 900;
   z-index: 5;
 }
@@ -3839,7 +3839,7 @@ Main Header
 }
 .main-header .info-btn small {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1em;
   font-weight: 400;
   color: #868686;
@@ -3952,7 +3952,7 @@ Main Header
   height: 22px;
   width: 22px;
   line-height: 22px;
-  font-size: 10px;
+  font-size: 14px;
   border-radius: 50%;
   color: var(--theme-color-dark);
   background-color: var(--theme-color-white);
@@ -3979,7 +3979,7 @@ Main Header
   height: 22px;
   width: 22px;
   line-height: 22px;
-  font-size: 10px;
+  font-size: 14px;
   border-radius: 50%;
   color: var(--theme-color-white);
   background-color: var(--theme-color-dark);
@@ -4623,7 +4623,7 @@ Main Header
   background-color: #336AEA;
   border-radius: 3px;
   color: #fff;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1;
   padding: 3.5px 5px 4.5px;
@@ -4715,7 +4715,7 @@ Main Header
 }
 .contact-list-one li .title {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   color: #b2c1c0;
   font-weight: 400;
   text-transform: uppercase;
@@ -4916,7 +4916,7 @@ Main Header
 }
 .contact-list-two li .contact-info-box .title {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--theme-color-light);
   font-weight: 700;
   text-transform: uppercase;
@@ -8073,7 +8073,7 @@ sec-title-style-three
   height: 100%;
 }
 .about-section-three .image-column .text-circle-box text {
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 6px;
   fill: black;
 }
@@ -12095,7 +12095,7 @@ faq-section-home-two
   }
   .testimonial-section-two .arrow-box .slider-next i,
   .testimonial-section-two .arrow-box .slider-prev i {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 .testimonial-section-two .arrow-box .slider-next:hover,
@@ -13275,7 +13275,7 @@ faq-section-home-two
 }
 @media (max-width: 767.98px) {
   .countdown-block-outer .countdown-block .inner-box .content-box .countdown-title {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 .countdown-block-outer .countdown-block .inner-box:hover .content-box {
@@ -17855,7 +17855,7 @@ style home-2
   height: 29px;
   background-color: transparent;
   color: #fff;
-  font-size: 8px;
+  font-size: 14px;
   position: absolute;
   top: 1px;
   right: 1px;
@@ -18001,7 +18001,7 @@ style home-2
 .product-discription .single-comment-box .inner-box .rating li {
   position: relative;
   display: inline-block;
-  font-size: 12px;
+  font-size: 14px;
   float: left;
   margin-right: 4px;
   color: #fdc009;
@@ -20607,7 +20607,7 @@ Page Title
 .blog-details__date .month {
   position: relative;
   display: block;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: var(--body-font-weight-bold);
   color: #fff;
   line-height: 12px;
@@ -20688,7 +20688,7 @@ Page Title
 }
 .blog-details__tags a {
   position: relative;
-  font-size: 12px;
+  font-size: 14px;
   background-color: var(--theme-color-dark);
   color: #fff;
   display: inline-block;

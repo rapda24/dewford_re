@@ -65,7 +65,11 @@
       const overlay = element('div', home ? 'overlay-content' : '');
       if (home) overlay.append(heading());
       overlay.append(element('p', 'text', post.excerpt || ''));
-      const more = element('a', 'dewford-text-link', '자세히 보기 ↗'); more.href = href; overlay.append(more);
+      const more = element('a', 'theme-btn btn-style-two dewford-event-button');
+      more.append(element('span', 'btn-title', '자세히 보기'));
+      const arrow = element('i', 'icon fa-light fa-arrow-right');
+      arrow.setAttribute('aria-hidden', 'true');
+      more.append(arrow); more.href = href; overlay.append(more);
       inner.append(overlay); card.append(inner);
       if (home) {
         const slide = element('div', 'swiper-slide'); slide.append(card); list.append(slide);
@@ -75,6 +79,11 @@
       new Swiper('.service-two-slider', {
         speed: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1500,
         loop: posts.length > 4, slidesPerView: 1, spaceBetween: 0,
+        autoplay: matchMedia('(prefers-reduced-motion: reduce)').matches ? false : {
+          delay: 4000,
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true
+        },
         breakpoints: {768:{slidesPerView:2},992:{slidesPerView:3},1400:{slidesPerView:4}},
         keyboard: {enabled:true,onlyInViewport:true}
       });
