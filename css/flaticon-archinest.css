@@ -1,0 +1,87 @@
+@font-face {
+    font-family: "flaticon";
+    src: url("../fonts/flaticon_digiteck.woff2?4a75faa427b7d322b64f9d7de9c0c705") format("woff2"),
+url("../fonts/flaticon_digiteck.woff?4a75faa427b7d322b64f9d7de9c0c705") format("woff"),
+url("../fonts/flaticon_digiteck.eot?4a75faa427b7d322b64f9d7de9c0c705#iefix") format("embedded-opentype"),
+url("../fonts/flaticon_digiteck.ttf?4a75faa427b7d322b64f9d7de9c0c705") format("truetype"),
+url("../fonts/flaticon_digiteck.svg?4a75faa427b7d322b64f9d7de9c0c705#flaticon_digiteck") format("svg")
+}
+
+i[class^="flaticon-"]:before, i[class*=" flaticon-"]:before {
+    font-family: flaticon !important;
+    font-style: normal;
+    font-weight: normal !important;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.flaticon-next:before {
+    content: "\f101";
+}
+.flaticon-check:before {
+    content: "\f102";
+}
+.flaticon-success-story:before {
+    content: "\f103";
+}
+.flaticon-link:before {
+    content: "\f104";
+}
+.flaticon-user-experience:before {
+    content: "\f105";
+}
+.flaticon-award:before {
+    content: "\f106";
+}
+.flaticon-right-down:before {
+    content: "\f107";
+}
+.flaticon-paint-roller:before {
+    content: "\f108";
+}
+.flaticon-mobile-development:before {
+    content: "\f109";
+}
+.flaticon-seo:before {
+    content: "\f10a";
+}
+.flaticon-plus:before {
+    content: "\f10b";
+}
+.flaticon-curve:before {
+    content: "\f10c";
+}
+.flaticon-code:before {
+    content: "\f10d";
+}
+.flaticon-logo:before {
+    content: "\f10e";
+}
+.flaticon-search:before {
+    content: "\f10f";
+}
+.flaticon-design-thinking:before {
+    content: "\f110";
+}
+.flaticon-test-tube:before {
+    content: "\f111";
+}
+.flaticon-genius:before {
+    content: "\f112";
+}
+.flaticon-low-price:before {
+    content: "\f113";
+}
+.flaticon-top-right:before {
+    content: "\f114";
+}
+.flaticon-minus:before {
+    content: "\f115";
+}
+.flaticon-globe:before {
+    content: "\f116";
+}
+

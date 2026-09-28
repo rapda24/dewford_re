@@ -1,0 +1,225 @@
+/***
+
+====================================================================
+    Clients Section
+====================================================================
+
+***/
+
+.clients-section {
+  position: relative;
+  padding: 120px 0;
+  .sec-title-style-three {
+    margin-bottom: 70px;
+    @include media-breakpoint-down(lg){
+      margin-bottom: 40px;
+    }
+  }
+  .inner-container {
+    position: relative;
+    padding: 280px 24px 24px 24px;
+    @include media-breakpoint-down(xl){
+      padding-top: 120px;
+    }
+    @include media-breakpoint-down(lg){
+      padding-top: 80px;
+    }
+    @include media-breakpoint-down(md){
+      padding: 80px 15px 15px 15px;
+    }
+    &:before {
+      position: absolute;
+      content: '';
+      top: 0;
+      left: 0;
+      background-color: rgba(var(--theme-color-black-rgb), 0.7);
+      width: 100%;
+      height: 100%;
+    }
+    .outer-box {
+      background-color: var(--theme-color-dark);
+      position: relative;
+      padding: 60px 15px;
+      z-index: 1;
+    }
+    .claint-outer {
+      max-width: 1230px;
+      padding: 0 15px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+    }
+  }
+}
+
+// Client Block
+.client-block {
+  .inner-box {
+    border: 1px solid #232323;
+    width: 291px;
+    height: 108px;
+    line-height: 108px;
+    text-align: center;
+    @include transition(all 300ms ease);
+    @include media-breakpoint-down(md){
+      width: 220px;
+    }
+    &:hover {
+      background-color: #1B1B1B;
+    }
+  }
+}
+
+/***
+
+====================================================================
+    Clients Section Two
+====================================================================
+
+***/
+
+.clients-section-two {
+  position: relative;
+  padding: 50px 0 96px;
+  .outer-box {
+    border-top: 1px solid var(--theme-color4);
+    border-left: 1px solid var(--theme-color4);
+  }
+  .sec-title {
+    margin-bottom: 50px;
+    .text {
+      color: var(--theme-color-white);
+      font-size: 20px;
+      font-weight: 700;
+    }
+  }
+}
+
+// Client Block
+.client-block-two {
+  border-right: 1px solid var(--theme-color4);
+  border-bottom: 1px solid var(--theme-color4);
+  .inner-box {
+    padding: 10px;
+    min-height: 174px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      .image-box {
+        .image {
+          img {
+            opacity: .6;
+          }
+        }
+      }
+    }
+    .image-box {
+      .image {
+        text-align: center;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        img {
+          opacity: 1;
+          width: auto;
+          @include transition(all 300ms ease);
+        }
+      }
+    }
+  }
+}
+
+
+/***
+
+====================================================================
+claint-section-home-two
+====================================================================
+
+***/
+.claint-section-home-two {
+  position: relative;
+  padding: 24px 0 0;
+  overflow: hidden;
+  background-color: var(--theme-color-white);
+  .marquee {
+    position: relative;
+    --duration: 30s;
+    --gap: 0px;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 0;
+    margin-bottom: 0;
+    .marquee-group {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: auto;
+      animation: scroll var(--duration) linear infinite;
+      justify-content: center;
+      margin-right: 12px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-group {
+        animation-play-state: play;
+      }
+    }
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-100% - var(--gap)));
+      }
+    }
+
+    &.slide-right {
+      transform: scaleX(-1);
+      .text {
+        transform: scaleX(-1);
+      }
+    }
+  }
+  .text {
+    background-color: rgb(var(--theme-color1-rgb), .8);
+    width: 291px;
+    height: 108px;
+    line-height: 101px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    @include transition(all 300ms ease);
+    color: var(--theme-color-black);
+    &:hover {
+      background-color: var(--theme-color-black);
+      color: var(--theme-color1);
+      
+      svg {
+        fill: #fff;
+
+      }
+      path {
+        fill: #fff;
+      }
+    }
+    img {
+      @include transition(all 300ms ease);
+    }
+    &:after {
+      display: none;
+    }
+    svg {
+      @include transition(all 300ms ease);
+
+    }
+    path {
+      @include transition(all 300ms ease);
+    }
+}
+}

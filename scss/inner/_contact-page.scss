@@ -1,0 +1,103 @@
+/***
+
+====================================================================
+        Contact
+====================================================================
+
+***/
+.contact-details__info {
+  display: block;
+  margin-top: 41px;
+  position: relative;
+  li {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    .icon {
+      flex-shrink: 0;
+      height: 80px;
+      width: 80px;
+      background-color: var(--theme-color-dark);
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-transition: all 500ms ease;
+      transition: all 500ms ease;
+      span {
+        color: var(--theme-color-white);
+        font-size: 25px;
+        -webkit-transition: all 500ms ease;
+        transition: all 500ms ease;
+      }
+    }
+    &:hover {
+      .icon {
+        background-color: var(--theme-color2);
+        color: var(--theme-color-dark);
+        span {
+          color: var(--theme-color-dark);
+        }
+      }
+      .text {
+        a {
+          color: var(--notech-base);
+          span {
+            color: var(--notech-gray);
+          }
+        }
+      }
+    }
+    .text {
+      margin-left: 30px;
+      @media (max-width: 575.98px){
+        margin-left: 15px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 24px;
+      }
+      a {
+        font-size: 18px;
+        color: var(--notech-black);
+        -webkit-transition: all 500ms ease;
+        transition: all 500ms ease;
+      }
+      span {
+        font-size: 20px;
+        color: var(--notech-black);
+      }
+    }
+  }
+  li+li {
+    margin-top: 19px;
+  }
+}
+.map{
+  height: 550px;
+}
+.contact-details {
+  .form-control{
+    &::placeholder{
+      color: var(--text-color);
+    }
+    &:focus{
+      box-shadow: none;
+      outline: none;
+    }
+  }
+  .theme-btn {
+    background-color: var(--theme-color-black);
+    color: var(--theme-color-white);
+    padding: 16px 30px;
+  }
+}

@@ -1,0 +1,162 @@
+@function hexToRGB($color) {
+  @return red($color), green($color), blue($color);
+}
+
+//main theme colors
+$theme-color1: #F1F2EB;
+$theme-color2: #D7D9CF;
+$theme-color3: #E3E5DD;
+
+//text colors when theme color bg
+$theme-color1-text-color: #fff;
+$theme-color2-text-color: #fff;
+$theme-color3-text-color: #fff;
+
+//Root 
+:root {
+  //main theme colors
+  --theme-color1: #{$theme-color1};
+  --theme-color2: #{$theme-color2};
+  --theme-color3: #{$theme-color3};
+
+  //rgb version of those theme colors
+  --theme-color1-rgb: #{hexToRGB($theme-color1)};
+  --theme-color2-rgb: #{hexToRGB($theme-color2)};
+  --theme-color3-rgb: #{hexToRGB($theme-color3)};
+
+  //text colors when theme color bg
+  --theme-color1-text-color: #{$theme-color1-text-color};
+  --theme-color2-text-color: #{$theme-color2-text-color};
+  --theme-color3-text-color: #{$theme-color3-text-color};
+
+  //other colors
+  --body-bg: #fff;
+  --theme-color-white: #ffffff;
+  --theme-color-white-rgb: 255, 255, 255;
+  --theme-color-light: #f2f8f9;
+  --theme-color-gray: #f6f6f6;
+  --theme-color-silver: #eee;
+  --theme-color-black: #000000;
+  --theme-color-black-rgb: 0, 0, 0;
+  --theme-color-dark: #111111;
+
+  //Gradients
+  --gradient-1: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgb(217, 244, 95) 100%);
+
+  //text heading color
+  --text-color:         #525252;
+  --text-color-rgb:     82, 82, 82;
+  --headings-color:     #111111;
+  --link-color:         var(--theme-color1);
+  --link-hover-color:   var(--theme-color1);
+  --review-color: #FF901B;
+
+  //font family
+  --body-font-family: "GT Walsheim Pro", sans-serif;
+  --heading-font-family: "GT Walsheim Pro", sans-serif;
+  --style-font-family: "Kdam Thmor Pro", sans-serif;
+
+  //body
+  --body-font-size: 16px;
+  --body-line-height: 1.75;
+  --body-font-weight: 400;
+
+  //heading font size + weight
+  --line-height-heading-h1: 1.2625em;
+  --line-height-heading-h2: 1.2em;
+  --line-height-heading-h3: 1.2778em;
+  --line-height-heading: 1.384615em;
+  --line-height-heading-small: 1.4em;
+
+  --h1-font-size: 60px;
+  --h2-font-size: 40px;
+  --h3-font-size: 32px;
+  --h4-font-size: 24px;
+  --h5-font-size: 20px;
+  --h6-font-size: 16px;
+
+  --h1-font-weight: 600;
+  --h2-font-weight: 600;
+  --h3-font-weight: 500;
+  --h4-font-weight: 500;
+  --h5-font-weight: 500;
+  --h6-font-weight: 500;
+
+  //section sub title
+  --sec-title-subtitle-color: var(--headings-color);
+  --sec-title-subtitle-font-size: 16px;
+  --sec-title-subtitle-font-family: var(--heading-font-family);
+  --sec-title-subtitle-font-weight: 700;
+  --sec-title-subtitle-line-height: 23px;  
+
+  //section title
+  --sec-title-color:                 var(--headings-color);
+  --sec-title-font-size:             50px;
+  --sec-title-font-family:           var(--heading-font-family);
+  --sec-title-font-weight:           600;
+  --sec-title-title-line-height:     var(--line-height-heading-h2);
+
+  //news details page
+  --theme-light-background: #f8f6f1;
+  --theme-light-background-text-color: var(--headings-color);
+  --theme-black:        #000000;
+
+  //container
+  --container-width: 1384px;
+  --small-container-width: 1000px;
+  --large-container-width: 1790px;
+  --container-pt: 0px;
+  --container-pb: 0px;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Light.eot');
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Light.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Light.woff2') format('woff2'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Light.woff') format('woff'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Light.ttf') format('truetype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Light.svg#GTWalsheimPro-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Regular.eot');
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Regular.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Regular.woff2') format('woff2'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Regular.woff') format('woff'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Regular.ttf') format('truetype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Regular.svg#GTWalsheimPro-Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Medium.eot');
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Medium.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Medium.woff2') format('woff2'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Medium.woff') format('woff'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Medium.ttf') format('truetype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Medium.svg#GTWalsheimPro-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Bold.eot');
+    src: url('../fonts/gt-walsheim-pro/GTWalsheimPro-Bold.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Bold.woff2') format('woff2'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Bold.woff') format('woff'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Bold.ttf') format('truetype'),
+        url('../fonts/gt-walsheim-pro/GTWalsheimPro-Bold.svg#GTWalsheimPro-Bold') format('svg');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}

@@ -1,0 +1,159 @@
+/*** 
+
+====================================================================
+  Main Slider
+====================================================================
+
+***/
+
+.main-slider {
+  position: relative;
+  .sub-title {
+    color: var(--headings-color);
+    font-size: 20px;
+    font-weight: 400;
+    position: relative;
+    display: inline-block;
+    line-height: var(--sec-title-subtitle-line-height);
+    font-family: var(--sec-title-subtitle-font-family);
+    margin-top: 0;
+  }
+  .title {
+    text-transform: uppercase;
+    position: relative;
+    font-size: var(--h1-font-size);
+    font-weight: 700;
+    line-height: 1.211em;
+    margin-bottom: 0;
+    @media (max-width: 801.98px) {
+      font-size: 50px;
+    }
+    @media (max-width: 424.98px) {
+      font-size: 48px;
+    }
+  }
+  .style-title {
+    color: var(--theme-color-light);
+    font-family: var(--heading-font-family);
+    font-size: 216px;
+    font-weight: 700;
+    line-height: 115px;
+    letter-spacing: 47.5px;
+    text-transform: uppercase;
+    opacity: 0.5;
+    @media (max-width: 1445.98px) {
+      font-size: 130px;
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+    }
+    @media (max-width: 1199.98px) {
+      letter-spacing: 27px;
+      font-size: 100px;
+    }
+    @media (max-width: 801.98px) {
+      letter-spacing: 16px;
+      font-size: 52px;
+    }
+    @media (max-width: 479.98px) {
+      letter-spacing: 21px;
+      font-size: 52px;
+    }
+  }
+  .image-curve {
+    background-image: url(../images/main-slider/slide-shape-bottom.png);
+    position: absolute;
+    width: 100%;
+    height: 69px;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    @media (max-width: 1199.98px) {
+      display: none;
+    }
+  }
+  .tparrows {
+    background-color: rgba(28,26,29,.5);
+    border-radius: 50%;
+    height: 80px;
+    line-height: 80px;
+    text-align: center;
+    width: 80px;
+    display: none;
+    @include transition(all 300ms ease);
+    &.tp-leftarrow {
+      &:before {
+        font-family: "Font Awesome 6 Pro";
+        content: "\f177";
+        color: var(--theme-color-light);
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 80px;
+      }
+      &:hover {
+        background-color: rgba(194, 167, 78, .5);
+      }
+    }
+    &.tp-rightarrow {
+      &:before {
+        font-family: "Font Awesome 6 Pro";
+        content: "\f178";
+        color: var(--theme-color-light);
+        font-size: 30px;
+        font-weight: 300;
+        line-height: 80px;
+      }
+      &:hover {
+        background-color: rgba(194, 167, 78, .4);
+      }
+    }
+  }
+  .image-style-one {
+    @media (max-width: 1199.98px) {
+      display: none;
+    }
+  }
+}
+
+.slider-style-two {
+  .tparrows {
+    display: block;
+    @media (max-width: 1199.98px) {}
+  }
+}
+
+.slider-style-three {
+  .image-curve-two {
+    background-image: url(../images/main-slider/slide-shape-bottom2.png);
+    position: absolute;
+    width: 100%;
+    height: 153px;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    @media (max-width: 1199.98px) {
+      display: none;
+    }
+  }
+}
+
+.bounce-z {
+  animation: fa-spin 70s infinite;
+}
+@media (max-width: 1199.98px) {
+  .rev_slider .tp-mask-wrap .text{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+  }  
+}
+
+/*** 
+
+====================================================================
+  Main Slider Two
+====================================================================
+
+***/

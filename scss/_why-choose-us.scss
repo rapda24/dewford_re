@@ -1,0 +1,385 @@
+/*** 
+
+====================================================================
+    Why Choose Us
+====================================================================
+
+***/
+
+.why-choose-us {
+  position: relative;
+  padding: 0 0 54px;
+  z-index: 1;
+  @include media-breakpoint-down(xl){
+    padding: 0;
+  }
+  .bg {
+    background-size: auto;
+    background-position: right bottom;
+    bottom: -222px;
+    pointer-events: none;
+    top: auto;
+    z-index: -1;
+  }
+  .icon-sailboat-line-1 {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    bottom: 24px;
+    z-index: -1;
+  }
+  .icon-wheel-compass-1 {
+    position: absolute;
+    top: -50px;
+    right: 155px;
+    animation: fa-spin 70s infinite;
+    z-index: -1;
+    @include media-breakpoint-down(xxl){
+      opacity: .1;
+    }
+  }
+  .sec-title-two {
+    text-align: center;
+    h2 {
+      opacity: 0.2 !important;
+      color: var(--text-color);
+      font-family: var(--body-font-family);
+      font-size: 120px;
+      font-weight: 400;
+      line-height: 1.3em;
+      margin-bottom: 0;
+      -webkit-text-fill-color: white;
+      -webkit-text-stroke: 1px var(--text-color);
+      @include media-breakpoint-down(lg){
+        font-size: 80px;
+      }
+      @include media-breakpoint-down(md){
+        font-size: 60px;
+      }
+      @include media-breakpoint-down(sm){
+        font-size: 50px;
+      }
+    }
+  }
+  
+  .content-column {
+    position: relative;
+    margin-bottom: 50px;
+    @include media-breakpoint-down(xl){
+      margin-bottom: 0;
+    }
+    .inner-column {
+      position: relative;
+    }
+  }
+
+  .image-column {
+    position: relative;
+    margin-bottom: 50px;
+    .inner-column{
+      position: relative;
+      @include media-breakpoint-down(xl){
+        padding-right: 0;
+      }
+      .image-box {
+        position: relative;
+        .image{
+          position: relative;
+          margin-bottom: 0;
+          margin-top: -202px;
+          z-index: -1;
+          img {
+            @include media-breakpoint-down(lg){
+              display: none;
+            }
+          }
+        }
+        .image-2{
+          position: absolute;
+          top: 17px;
+          left: 100px;
+          margin-bottom: 0;
+          @include media-breakpoint-down(lg){
+            display: none;
+          }
+        }
+        .image-3{
+          position: absolute;
+          bottom: 104px;
+          right: 3px;
+          margin-bottom: 0;
+          @include media-breakpoint-down(lg){
+            display: none;
+          }
+          img {
+            outline: 10px solid var(--theme-color-light);
+            outline-offset: -10px;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+/*** 
+
+====================================================================
+    Why Choose Us Two
+====================================================================
+
+***/
+
+.why-choose-us-two {
+  background-color: #fff;
+  padding: 150px 0;
+  position: relative;
+  z-index: 2;
+  @include media-breakpoint-down(xl){
+    padding: 100px 0;
+  }
+  @include media-breakpoint-down(lg){
+    padding: 100px 0 80px;
+  }
+  .sec-title {
+    .text {
+      margin-top: 16px;
+    }
+  }
+  .bg-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: auto;
+    height: 100%;
+    width: 56%;
+    z-index: -1;
+  }
+  .content-column {
+    position: relative;
+    &:before {
+      content: "";
+      position: absolute;
+      max-height: 621px;
+      width: 100px;
+      background-color: #bfa888;
+      left: -28px;
+      top: -45px;
+      height: 116.7%;
+      @include media-breakpoint-down(xl){
+        max-height: 690px;
+      }
+    }
+    .inner-column {
+      background-color: #fff;
+      padding: 64px 133px 80px 61px;
+      position: relative;
+      z-index: 1;
+      @include media-breakpoint-down(xl){
+        padding: 60px 60px 60px 50px;
+      }
+      @include media-breakpoint-down(sm){
+        padding: 60px 30px 60px 30px;
+      }
+    }
+  }
+  .inner-column {
+    .text-box {
+      text {
+        font-size: 200px;
+        font-family: Allison;
+      }
+    }
+  }
+  .icon-big-boat-2 {
+    position: absolute;
+    left: -45px;
+    bottom: 3px;
+    z-index: -1;
+    @include media-breakpoint-down(xl){
+      display: none;
+    }
+  }
+  .content-column-two {
+    align-items: center;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    @include media-breakpoint-down(lg){
+      display: none;
+    }
+    .text {
+      color: white;
+      font-size: 250px;
+      font-family: Allison;
+      text-align: end;
+      letter-spacing: 10px;
+      position: relative;
+      left: 100px;
+      top: -100px;
+      opacity: 0.5;
+      @include media-breakpoint-down(xl){
+        font-size: 150px;
+        left: -70px;
+      }
+    }
+  }
+}
+
+/*** 
+
+====================================================================
+    Why Choose Us Three
+====================================================================
+
+***/
+
+.why-choose-us-three {
+  position: relative;
+  padding: 100px 0;
+  z-index: 1;
+  .icon-big-boat-5 {
+    position: absolute;
+    right: 80px;
+    bottom: 105px;
+    pointer-events: none;
+    z-index: -1;
+    @include media-breakpoint-down(xxl){
+      display: none;
+    }
+  }
+  .bg {
+    background-size: auto;
+    background-position: left bottom;
+    bottom: 0;
+    pointer-events: none;
+    top: auto;
+    z-index: -1;
+    @include media-breakpoint-down(xl){
+      background-size: cover;
+    }
+  }
+  .icon-sailboat-line-1 {
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    bottom: 24px;
+    z-index: -1;
+  }
+  .icon-wheel-compass-1 {
+    position: absolute;
+    top: -50px;
+    right: 155px;
+    animation: fa-spin 70s infinite;
+    z-index: -1;
+  }
+  .sec-title-two {
+    text-align: center;
+    h2 {
+      opacity: 0.2 !important;
+      color: var(--text-color);
+      font-family: var(--body-font-family);
+      font-size: 120px;
+      font-weight: 400;
+      line-height: 1.3em;
+      margin-bottom: 0;
+      -webkit-text-fill-color: white;
+      -webkit-text-stroke: 1px var(--text-color);
+    }
+  }
+  
+  .content-column {
+    position: relative;
+    .inner-column {
+      position: relative;
+      background-color: #f4efec;
+      padding: 81px 98px 92px 98px;
+      @include media-breakpoint-down(md){
+        padding: 60px 35px 55px 39px;
+      }
+      &:before {
+        border: 1px solid var(--theme-color1);
+        content: "";
+        position: absolute;
+        left: 18px;
+        top: 18px;
+        right: 18px;
+        bottom: 18px;
+      }
+
+      .bg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+.why-choose-us-four {
+  padding: 120px 0;
+  position: relative;
+  @include media-breakpoint-down(lg){
+    padding: 80px 0 55px;
+  }
+  .feature-block {
+    @include media-breakpoint-down(lg){
+      margin-bottom: 0;
+    }
+    .inner-block {
+      @include media-breakpoint-down(lg){
+        padding: 25px 15px;
+      }
+    }
+  }
+  .inner-container {
+    position: relative;
+    .image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      z-index: -1;
+      @include media-breakpoint-down(xl){
+        display: none;
+      }
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .content-box {
+    margin-top: 30px;
+    margin-left: 70px;
+    margin-bottom: 60px;
+    @include media-breakpoint-down(xl){
+      margin-top: 0;
+      margin-left: 0;
+    }
+  }
+  .sec-title-style-three {
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--theme-color1);
+    margin-bottom: 48px;
+    .text {
+      margin-bottom: 0;
+    }
+    &:before {
+      position: absolute;
+      content: "";
+      background-color: var(--theme-color-dark);
+      width: 102px;
+      height: 3px;
+      left: 0;
+      bottom: 1.5px;
+    }
+  }
+}
