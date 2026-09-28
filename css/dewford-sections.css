@@ -131,6 +131,10 @@
 .dewford-home .dewford-events .dewford-event-button {border:1px solid var(--id-color);color:var(--id-color);padding:14px 22px;gap:20px;flex-shrink:0;text-decoration:none;}
 .dewford-home .dewford-events .dewford-event-button .icon {color:inherit;}
 .dewford-home .dewford-events .dewford-event-button:hover {text-decoration:none;}
+.dewford-home .dewford-events .dewford-event-button,
+.dewford-home .dewford-visit .dewford-map-link.theme-btn {display:inline-flex;width:fit-content;max-width:100%;align-self:flex-start;justify-content:center;gap:14px;padding:14px 20px;white-space:nowrap;text-decoration:none;}
+.dewford-home .dewford-visit .dewford-map-link.theme-btn {border:1px solid var(--id-color);background:var(--id-color);color:#fff;}
+.dewford-home .dewford-visit .dewford-map-link.theme-btn :is(.btn-title,.icon) {color:inherit;}
 /* Keep the desktop tab menu and active content aligned to the same height. */
 @media(min-width:1200px){
  .dewford-home .services-section-seven .service-nav-tab,
@@ -262,3 +266,6 @@
 }
 .dewford-home .dewford-visit .dewford-visit-contact-label svg.dewford-contact-icon {flex:0 0 14px;width:14px!important;height:14px!important;min-width:14px;max-width:14px;min-height:14px;max-height:14px;transform:none;}
 .dewford-home .dewford-visit .dewford-visit-contact-value {margin-left:24px;}
+.dewford-home #dewford-visit-title .dewford-visit-logo {display:flex;align-items:center;gap:12px;margin-top:16px;width:fit-content;max-width:100%;}
+.dewford-home .dewford-visit-logo-symbol {width:54px;height:54px;object-fit:contain;flex-shrink:0;}
+.dewford-home .dewford-visit-logo-text {width:200px;max-width:calc(100% - 66px);height:auto;object-fit:contain;}

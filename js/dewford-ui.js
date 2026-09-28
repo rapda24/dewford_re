@@ -56,18 +56,47 @@
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('pageshow', update);
   update();
+  const dialogPhoto = drawer.querySelector('.dewford-dialog-photo');
+  const dialogNavigation = drawer.querySelector('.dewford-dialog-navigation');
+  const alignDialogBaseline = () => {
+    if (!drawer.open || !matchMedia('(min-width:768px)').matches) return;
+    const expandedHeight = [...drawer.querySelectorAll('.dewford-dialog-submenu:not([hidden])')]
+      .reduce((height, submenu) => height + submenu.getBoundingClientRect().height, 0);
+    const collapsedHeight = dialogNavigation.getBoundingClientRect().height - expandedHeight;
+    const difference = dialogPhoto.getBoundingClientRect().height - collapsedHeight;
+    drawer.style.setProperty('--dewford-dialog-nav-offset', `${Math.max(0, difference)}px`);
+    drawer.style.setProperty('--dewford-dialog-photo-offset', `${Math.max(0, -difference)}px`);
+  };
+  if ('ResizeObserver' in window) {
+    const dialogResize = new ResizeObserver(alignDialogBaseline);
+    dialogResize.observe(dialogPhoto);
+    dialogResize.observe(dialogNavigation);
+  }
+  window.addEventListener('resize', alignDialogBaseline);
   toggle.addEventListener('click', () => {
     drawer.showModal();
+    alignDialogBaseline();
     toggle.setAttribute('aria-expanded', 'true');
     document.documentElement.classList.add('dewford-menu-open');
   });
   drawer.querySelectorAll('.dewford-submenu-toggle').forEach(button => {
-    button.addEventListener('click', () => {
+    const parent = button.closest('.dewford-dialog-row').querySelector('.dewford-dialog-parent');
+    const toggleSubmenu = () => {
       const expanded = button.getAttribute('aria-expanded') === 'true';
+      drawer.querySelectorAll('.dewford-submenu-toggle').forEach(other => {
+        if (other === button) return;
+        other.setAttribute('aria-expanded', 'false');
+        other.closest('.dewford-dialog-row').querySelector('.dewford-dialog-parent')?.setAttribute('aria-expanded', 'false');
+        document.getElementById(other.getAttribute('aria-controls')).hidden = true;
+        other.querySelector('span').textContent = '+';
+      });
       button.setAttribute('aria-expanded', String(!expanded));
+      parent?.setAttribute('aria-expanded', String(!expanded));
       document.getElementById(button.getAttribute('aria-controls')).hidden = expanded;
       button.querySelector('span').textContent = expanded ? '+' : '−';
-    });
+    };
+    button.addEventListener('click', toggleSubmenu);
+    parent?.addEventListener('click', toggleSubmenu);
   });
   drawer.querySelector('.dewford-menu-close').addEventListener('click', () => drawer.close());
   drawer.addEventListener('click', event => { if (event.target === drawer && event.clientX < drawer.getBoundingClientRect().left) drawer.close(); });

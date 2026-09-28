@@ -20,7 +20,14 @@
 .dewford-drawer[open] {animation:dewford-dialog-enter .25s ease-out;}
 .dewford-drawer .dewford-menu-close {position:absolute;top:32px;right:40px;display:flex;align-items:center;gap:12px;padding:8px 0;font:500 16px Arial,sans-serif;}
 .dewford-menu-close:hover {color:var(--dewford-orange);}
-.dewford-dialog-layout {display:grid;grid-template-columns:650fr 420fr;column-gap:200px;max-width:1300px;margin:0 auto;align-items:center;}
+.dewford-dialog-layout {display:grid;grid-template-columns:650fr 420fr;column-gap:200px;max-width:1300px;margin:0 auto;align-items:start;}
+.dewford-dialog-navigation {align-self:start;overflow-anchor:none;}
+@media(min-width:768px){
+ .dewford-dialog-story {display:contents;}
+ .dewford-dialog-story h2 {grid-column:1;grid-row:1;}
+ .dewford-dialog-photo {grid-column:1;grid-row:2;align-self:start;margin-top:var(--dewford-dialog-photo-offset,0px);}
+ .dewford-dialog-navigation {grid-column:2;grid-row:2;align-self:start;margin-top:var(--dewford-dialog-nav-offset,0px);}
+}
 .dewford-dialog-story h2 {margin:0 0 80px;color:#fff;font-family:'Pretendard Korean',Arial,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:48px;line-height:1.4;font-weight:700;letter-spacing:-.025em;word-break:keep-all;}
 .dewford-dialog-photo {display:block;width:100%;height:auto;}
 .dewford-dialog-crest {position:relative;width:150px;height:150px;margin:0 0 32px;}
@@ -30,7 +37,8 @@
 .dewford-dialog-links,.dewford-dialog-submenu {list-style:none;padding:0;margin:0;}
 .dewford-dialog-links > li {border-bottom:1px solid rgb(255 255 255 / 16%);}
 .dewford-dialog-row {display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;}
-.dewford-dialog-row > a {display:block;padding:14px 0;color:#fff;font-family:'Pretendard Korean',Arial,sans-serif;font-size:18px;font-weight:500;line-height:1.4;letter-spacing:.02em;}
+.dewford-dialog-row > :is(a,.dewford-dialog-parent) {display:block;padding:14px 0;color:#fff;font-family:'Pretendard Korean',Arial,sans-serif;font-size:18px;font-weight:500;line-height:1.4;letter-spacing:.02em;}
+.dewford-dialog-parent {flex:1;text-align:left;border:0;background:transparent;cursor:pointer;}
 .dewford-submenu-toggle {display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;padding:0;background:none;color:#fff;border:0;font:600 24px Arial,sans-serif;cursor:pointer;}
 .dewford-dialog-submenu[hidden] {display:none;}
 .dewford-dialog-submenu {padding:0 20px 14px 0;}

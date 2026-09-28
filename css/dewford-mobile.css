@@ -1,0 +1,52 @@
+/* Mobile-only layout refinements shared by Dewford pages. */
+@media(max-width:767.98px){
+ :is(.dewford-home,.dewford-subpage) .auto-container,
+ .dewford-home main > section > .container {padding-left:20px;padding-right:20px;}
+ .dewford-home .dewford-scroll-title,
+ .dewford-home .sec-title-style-three h2,
+ .dewford-home .dewford-section-heading h2,
+ :is(.dewford-home,.dewford-subpage) .dewford-footer .footer-title {font-size:clamp(28px,7.5vw,36px)!important;line-height:1.3!important;overflow-wrap:anywhere;word-break:keep-all;}
+ .dewford-scroll-title .word {max-width:100%;white-space:normal;}
+ .dewford-home .dewford-hero {padding:128px 20px 64px;}
+ .dewford-home #dewford-hero-title {font-size:clamp(30px,8vw,40px)!important;}
+ .dewford-home .sec-title-style-three {margin-bottom:32px;}
+ .dewford-home .sec-title-style-three .text {font-size:16px;}
+ .dewford-home :is(.service-block,.service-block-three,.service-block-seven) .inner-box {padding:28px 24px;}
+ .dewford-home :is(.service-block,.service-block-three,.service-block-seven) .content-box {margin-left:0;margin-right:0;}
+ .dewford-home :is(.service-block,.service-block-three,.service-block-seven) .btn-box {margin:24px 0 0;}
+ :is(.dewford-home,.dewford-subpage) .theme-btn {max-width:100%;min-width:0;gap:12px;white-space:normal;}
+ .dewford-home :is(.service-block,.service-block-three,.service-block-seven) .theme-btn {width:fit-content;padding:14px 18px;}
+ .theme-btn .btn-title {min-width:0;overflow-wrap:anywhere;}
+ .theme-btn > .icon {flex-shrink:0;}
+ .dewford-home .about-section .content-column .inner-column {padding:0;}
+ .dewford-home .about-section .image-column .inner-column {position:static;margin-top:32px;padding:0;}
+ .dewford-home .services-section-seven .service-nav-tab .nav-link {padding:16px;gap:12px;font-size:16px;min-height:56px;}
+ .dewford-home .services-section-seven .tab-content {margin-top:16px;min-width:0;}
+ .dewford-home .services-section-seven .service-block-seven .inner-box {margin-bottom:0;}
+ .dewford-home .services-section-seven .image-box .image {height:auto;aspect-ratio:4/3;}
+ .dewford-home .services-section-seven .image-box .image img {height:100%;object-fit:cover;}
+ .dewford-home .dewford-section-heading > .theme-btn {margin-top:24px;}
+ .dewford-home .dewford-events .dewford-section-heading {padding-bottom:32px;}
+ .dewford-home .dewford-inquiry-sticky {position:static;}
+ .dewford-home .dewford-consultation-form {padding:24px 20px;}
+ .dewford-home .dewford-form-grid {gap:18px;}
+ .dewford-home .dewford-visit .overlay-content {padding:28px 20px;}
+ .dewford-home #dewford-visit-title {font-size:clamp(20px,5.3vw,30px)!important;}
+ .dewford-home .dewford-visit-logo-symbol {width:44px;height:44px;}
+ .dewford-home .dewford-visit-logo-text {width:180px;max-width:calc(100% - 56px);}
+ .dewford-footer.footer-style-home-two .upper-box {gap:24px;padding-bottom:32px;}
+ .dewford-footer.footer-style-home-two .upper-box .footer-logo {max-width:240px;}
+ .dewford-footer.footer-style-home-two .upper-box .text {flex-basis:100%;}
+ .dewford-footer.footer-style-home-two .footer-column {margin-bottom:28px;}
+ .dewford-footer.footer-style-home-two .dewford-footer-contact-row {padding-top:28px;}
+ .dewford-footer .footer-text,.dewford-footer .info-box {overflow-wrap:anywhere;}
+ .dewford-drawer {padding:88px 20px 40px;}
+ .dewford-dialog-layout {gap:28px;grid-template-columns:minmax(0,1fr);}
+ .dewford-dialog-story h2 {font-size:26px;overflow-wrap:anywhere;}
+ .dewford-dialog-navigation {min-width:0;}
+ .dewford-dialog-row {gap:8px;}
+ .dewford-dialog-row > :is(a,.dewford-dialog-parent) {font-size:16px;min-width:0;}
+ .dewford-dialog-submenu a {font-size:14px;overflow-wrap:anywhere;}
+ .dewford-dialog-submenu {padding-right:0;}
+ .dewford-home .dewford-event-detail h2 {font-size:28px;}
+}
