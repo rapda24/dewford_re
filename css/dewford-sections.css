@@ -1,0 +1,142 @@
+.dewford-eyebrow{font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--dewford-purple);margin-bottom:20px;}
+.dewford-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;padding-top:100px;padding-bottom:48px;}
+.dewford-section-heading h2{font-size:clamp(30px,3vw,48px);font-weight:500;line-height:1.35;}.dewford-section-heading strong{font-weight:700;color:inherit;}
+.dewford-text-link{color:var(--dewford-purple);font-weight:600;white-space:nowrap;}
+
+.dewford-events .service-block-two{min-width:0;}
+
+.dewford-events .service-block-two:focus-within .overlay-content{opacity:1;visibility:visible;transform:none;}
+.dewford-events time{font-size:14px;color:inherit;}.dewford-events .overlay-content a{color:var(--dewford-purple);}
+.dewford-events .dewford-event-cover{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1;filter:brightness(.55);}
+.dewford-events-status{grid-column:1/-1;min-height:430px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;padding:40px;color:#fff;text-align:center;font-size:20px;}.dewford-events-status a{color:#fff;text-decoration:underline;}
+.dewford-inquiry{background:var(--id-color-dark);}.dewford-inquiry .dewford-eyebrow{color:var(--dewford-orange);}.dewford-inquiry .sec-title-style-three .title{font-size:clamp(36px,3.7vw,58px);font-weight:500;line-height:1.35;}.dewford-inquiry strong{color:inherit;font-weight:700;}.dewford-inquiry .sec-title-style-three .text{font-weight:500;color:#fff;line-height:1.8;}.dewford-inquiry-phone,.dewford-inquiry-email{display:block;color:#fff;}.dewford-inquiry-phone{font-size:28px;font-weight:600;}.dewford-inquiry-email{margin-top:8px;font-size:15px;}
+.dewford-inquiry .project-block-two{margin:0;}.dewford-consultation-form{padding:40px;background:#fff;color:var(--id-color-dark);}.dewford-consultation-form h3{font-size:26px;font-weight:700;margin-bottom:28px;}.dewford-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;}.dewford-form-grid label{display:grid;gap:8px;font-size:14px;font-weight:600;}.dewford-form-grid label>span{display:contents;color:var(--dewford-purple);}.dewford-form-grid input,.dewford-form-grid select,.dewford-form-grid textarea{width:100%;min-width:0;background:#fff;color:var(--id-color-dark);border:1px solid #ded5e3;border-radius:0;padding:12px;font:500 16px/1.5 'Pretendard Korean',Arial,sans-serif;}.dewford-form-grid textarea{resize:vertical;}.dewford-form-grid input::placeholder,.dewford-form-grid textarea::placeholder{color:#777;}.dewford-form-wide{grid-column:1/-1;}.dewford-consent{display:flex;align-items:flex-start;gap:10px;font-size:13px;font-weight:400;line-height:1.7;margin:24px 0;}.dewford-consent input{margin-top:5px;flex:0 0 auto;width:16px;height:16px;accent-color:var(--dewford-purple);}.dewford-form-honeypot{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}.dewford-submit{display:flex;align-items:center;justify-content:space-between;width:100%;padding:16px 20px;background:var(--dewford-purple);color:#fff;border:0;font-weight:600;}.dewford-submit:disabled{opacity:.6;}.dewford-form-status{font-size:14px;margin:16px 0 0;}.dewford-consultation-form :focus-visible{outline:2px solid var(--dewford-orange)!important;outline-offset:2px;}
+.dewford-visit{position:relative;background:#e6e2d9;isolation:isolate;}.dewford-map-background{position:absolute;inset:0;z-index:0;overflow:hidden;}.dewford-map-background .root_daum_roughmap{width:100%!important;height:100%!important;padding:0!important;}.dewford-map-background .wrap_map{height:100%!important;}.dewford-map-background .wrap_cont,.dewford-map-background .wrap_controllers{display:none!important;}.dewford-visit>.auto-container{position:relative;pointer-events:none;}.dewford-visit .dewford-eyebrow{color:var(--dewford-orange);font-size:11px;}.dewford-visit h2{color:#fff;font-size:clamp(27px,2.3vw,36px);font-weight:500;line-height:1.45;word-break:keep-all;}.dewford-visit strong{color:inherit;font-weight:700;}.dewford-visit-description{font-weight:400;line-height:1.8;margin-top:24px;}.dewford-visit address{font-style:normal;font-size:15px;line-height:1.8;margin:24px 0 16px;}.dewford-visit address span{display:block;color:var(--dewford-orange);font-size:11px;letter-spacing:.1em;}.dewford-visit a{color:#fff;font-size:14px;overflow-wrap:anywhere;}.dewford-visit a.dewford-visit-phone{font-size:26px;font-weight:600;}.dewford-visit .dewford-map-link{margin-top:28px;padding-top:20px;border-top:1px solid #ffffff44;width:100%;}
+.dewford-event-board{padding-top:80px;padding-bottom:100px;}.dewford-event-board h1{font-size:clamp(32px,4vw,54px);font-weight:700;margin-bottom:48px;}.dewford-board-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;}.dewford-board-card{border:1px solid #e4dce8;padding:24px;}.dewford-board-card img{width:100%;aspect-ratio:4/3;object-fit:cover;margin-bottom:24px;}.dewford-board-card h2{font-size:24px;line-height:1.4;}.dewford-board-card a{color:var(--dewford-purple);}.dewford-board-grid .dewford-events-status{color:#52196d;min-height:220px;}.dewford-board-grid .dewford-events-status a{color:inherit;}.dewford-event-detail{max-width:900px;margin:0 auto;}.dewford-event-detail img{width:100%;height:auto;margin:30px 0;}.dewford-event-body{white-space:pre-wrap;line-height:1.9;}.dewford-event-detail h2{font-size:36px;font-weight:700;}
+@media(max-width:991px){.dewford-event-grid,.dewford-board-grid{grid-template-columns:1fr 1fr;}.dewford-section-heading{padding-top:70px;}.dewford-consultation-form{padding:28px;}}
+@media(max-width:767px){.dewford-section-heading{display:block;}.dewford-text-link{display:inline-block;margin-top:20px;}.dewford-event-grid,.dewford-board-grid,.dewford-form-grid{grid-template-columns:1fr;}.dewford-visit .dewford-map-background{height:420px;}.dewford-visit>.auto-container{padding-top:330px;}.dewford-visit .service-block-home-3{width:100%;margin-left:0;}.dewford-consultation-form{padding:24px;}}
+.dewford-visit .dewford-visit-description {color:#fff;}
+#events,#inquiry,#location {scroll-margin-top:90px;}
+
+/* Clip horizontal decoration without creating a scrolling ancestor for sticky titles. */
+.dewford-home > .page-wrapper {overflow:clip;}
+@media(min-width:992px){
+ .dewford-inquiry-sticky {position:sticky;top:110px;}
+}
+
+
+/* Restore template surface hierarchy; brand colors remain on accents and dark sections. */
+.dewford-home :is(.services-section-three,.services-section-seven) {
+ --theme-color1:#fff;
+ --theme-color1-rgb:255,255,255;
+ --theme-color2:rgb(82 25 109 / 20%);
+}
+.dewford-home :is(.services-section-three,.services-section-seven) .sub-title {color:var(--id-color);}
+.dewford-home .service-block-three .inner-box:hover .content-box .text {color:#fff;}
+.dewford-home .service-block-three .inner-box:hover .theme-btn:hover {color:var(--id-color-dark);}
+.dewford-home .service-nav-tab .nav-link.active,
+.dewford-home .service-nav-tab .nav-link:hover {background:var(--id-color);color:#fff;}
+.dewford-home .dewford-events {background:#fff;}
+.dewford-events .outer-box {background-size:cover;background-position:center;}
+.dewford-events .service-two-slider {overflow:hidden;}
+.dewford-events .overlay-content {color:var(--id-color-dark);}
+.dewford-events .overlay-content .text {color:var(--id-color-dark);}
+.dewford-events .dewford-event-category {font-size:14px;font-weight:600;letter-spacing:.08em;margin-bottom:20px;display:block;}
+.dewford-events .content .dewford-event-category {color:#fff;}
+.dewford-visit .overlay-content {pointer-events:auto;background:#fff;color:var(--id-color-dark);margin:0;box-shadow:none;}
+.dewford-visit :is(h2,a,.dewford-visit-description) {color:var(--id-color-dark);}
+.dewford-visit .dewford-map-link {border-color:rgb(82 25 109 / 20%);}
+.dewford-visit .dewford-eyebrow,.dewford-visit address span {color:var(--id-color);}
+@media(max-width:767px){
+ .dewford-visit .overlay-content {position:relative;}
+ .dewford-visit .service-block-home-3 .inner-box {min-height:0;}
+}
+
+/* Program cards: primary surface, readable white copy and secondary accents. */
+.dewford-home .services-section-three .service-block-three .inner-box {background:var(--id-color);color:#fff;}
+.dewford-home .services-section-three .service-block-three .inner-box::before {background:var(--id-color-dark);}
+.dewford-home .services-section-three .service-block-three :is(.title,.title a,.text,.theme-btn,.theme-btn .icon) {color:#fff;}
+.dewford-home .services-section-three .service-block-three .content-box .text {border-color:rgb(255 255 255 / 35%);}
+.dewford-home .services-section-three .service-block-three .content-box .text::before {background:var(--sub-color);}
+.dewford-home .services-section-three .service-block-three .icon-box {background:var(--sub-color);color:var(--id-color-dark);}
+.dewford-home .services-section-three .service-block-three .inner-box:hover .icon-box {background:#fff;color:var(--id-color);}
+.dewford-home .services-section-three .service-block-three .icon-box .dewford-program-icon path {fill:none;stroke:currentColor;}
+.dewford-home .services-section-three .service-block-three .theme-btn {border-color:var(--sub-color);}
+.dewford-home .services-section-three .service-block-three .theme-btn:hover,
+.dewford-home .services-section-three .service-block-three .theme-btn:hover :is(.btn-title,.icon) {color:var(--id-color-dark);}
+.dewford-home .services-section-three .service-block-three .theme-btn::before {background:var(--sub-color);}
+.dewford-home .services-section-three .service-block-three .title a:hover {color:var(--sub-color);}
+.dewford-home .services-section-three .bg-image {background-image:url('../images/main/main_14.jpg');background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed;}
+@media(hover:none),(prefers-reduced-motion:reduce){
+ .dewford-home .services-section-three .bg-image {background-attachment:scroll;}
+}
+
+.dewford-home .about-section .video-box .dewford-about-video {padding:0;height:auto;overflow:hidden;}
+.dewford-about-video video {display:block;width:100%;height:auto;aspect-ratio:1280 / 674;object-fit:contain;background:var(--id-color-dark);}
+.dewford-home .services-section-seven .image-box .image img {object-fit:cover;}
+
+.dewford-about-email {min-width:0;}
+.dewford-about-email .dewford-email-icon {display:flex;align-items:center;justify-content:center;flex:0 0 60px;height:60px;margin-right:16px;background:var(--id-color);color:#fff;}
+.dewford-home .about-section .content-column .dewford-about-email .info h6 {margin:0 0 5px;}
+.dewford-about-email .info a {color:var(--id-color-dark);font-size:16px;font-weight:600;overflow-wrap:anywhere;}
+.dewford-about-email .info a:hover {color:var(--id-color);}
+/* The right About column follows the viewport within the row ending at the video. */
+@media(min-width:992px){
+ .dewford-home .about-section > .auto-container > .row {align-items:stretch;}
+ .dewford-home .about-section .image-column {align-self:stretch;}
+ .dewford-home .about-section .image-column > .inner-column {position:sticky;top:110px;}
+}
+
+/* Imported index_bu banner/services geometry, using the shared Dewford palette. */
+.dewford-home .banner-section-one {background:#fff;}
+.dewford-home .banner-section-one .btn-box .text {border-color:rgb(82 25 109 / 15%);}
+.dewford-home .banner-section-one .btn-box .text::before {bottom:0;}
+.dewford-home .services-section .bg-image img {object-fit:cover;object-position:center;}
+.dewford-home .services-section .service-block .inner-box {background:var(--id-color);color:#fff;}
+.dewford-home .services-section .service-block :is(.title,.title a,.text,.theme-btn,.theme-btn .icon) {color:#fff;}
+.dewford-home .services-section .service-block .content-box .text {border-color:rgb(255 255 255 / 35%);}
+.dewford-home .services-section .service-block .content-box .text::before {background:var(--sub-color);}
+.dewford-home .services-section .service-block .icon-box {color:var(--sub-color);}
+.dewford-home .services-section .service-block .icon-box svg path {fill:none;stroke:currentColor;}
+.dewford-home .services-section .service-block .inner-box:hover .icon-box {color:#fff;}
+.dewford-home .services-section .service-block .theme-btn {border-color:var(--sub-color);}
+.dewford-home .services-section .service-block .theme-btn::before {background:var(--sub-color);}
+.dewford-home .services-section .service-block .theme-btn:hover,
+.dewford-home .services-section .service-block .theme-btn:hover :is(.btn-title,.icon) {color:var(--id-color-dark);}
+#programs {scroll-margin-top:110px;}
+/* Program photo area and card dividers. */
+.dewford-home #programs {--program-photo-height:clamp(240px,38vw,600px);padding-top:var(--program-photo-height);}
+.dewford-home #programs .bg-image {height:var(--program-photo-height);background:#fff;}
+.dewford-home #programs .bg-image img {display:block;width:100%;height:100%;object-fit:cover;object-position:center;}
+.dewford-home #programs .service-block .inner-box {height:100%;border:1px solid rgb(255 255 255 / 45%);}
+.dewford-home #programs .service-block .inner-box::before {inset:1px;width:calc(100% - 2px);height:calc(100% - 2px);}
+
+/* Each event owns its photo; full frames avoid enlarged shared-background crops. */
+.dewford-home .dewford-events .outer-box {background:var(--id-color-dark);}
+.dewford-home .dewford-events .service-block-two .inner-box {display:flex;flex-direction:column;align-items:stretch;min-height:0;height:100%;background:var(--id-color);}
+.dewford-home .dewford-events .dewford-event-photo {display:block;position:relative;width:100%;height:auto;aspect-ratio:4 / 3;object-fit:contain;object-position:center;background:var(--id-color-dark);flex:none;}
+.dewford-home .dewford-events .swiper-wrapper {align-items:stretch;}
+.dewford-home .dewford-events .swiper-slide {height:auto;}
+.dewford-home .dewford-events .service-block-two {height:100%;}
+.dewford-home .dewford-events .service-block-two .content {padding:28px;min-height:190px;}
+.dewford-home .dewford-events .service-block-two .overlay-content {padding:28px;}
+.dewford-home .services-section-seven .image-box .image img {display:block;width:100%;height:100%;object-fit:cover;}
+.dewford-board-card img {object-fit:contain;background:var(--id-color-dark);}
+/* Retain the requested cover treatment while keeping the children's faces in view. */
+.dewford-home #programs .bg-image img {object-position:center 35%;}
+/* Overlap the program cards with the lower edge of the photo. */
+.dewford-home #programs .outer-box {position:relative;z-index:2;margin-top:-120px;}
+@media(max-width:1199.98px){.dewford-home #programs .outer-box {margin-top:-80px;}}
+@media(max-width:767.98px){.dewford-home #programs .outer-box {margin-top:-48px;}}
+
+/* Preserve the template's tabs / text / image columns with matching panel heights. */
+.dewford-home .services-section-seven .tab-pane > .row {align-items:stretch;}
+.dewford-home .services-section-seven .service-block-seven .inner-box {height:100%;}
+.dewford-home .services-section-seven .image-box .image {position:relative;overflow:hidden;}
+@media(min-width:992px){
+ .dewford-home .services-section-seven .image-box .image img {position:absolute;inset:0;}
+}
+@media(max-width:991.98px){
+ .dewford-home .services-section-seven .service-block-seven .inner-box {height:auto;}
+ .dewford-home .services-section-seven .image-box .image {height:auto;aspect-ratio:4 / 3;}
+}

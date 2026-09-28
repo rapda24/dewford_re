@@ -59,6 +59,7 @@ var THEMEMASCOT = {};
 
 	//Hide Loading Box (Preloader)
 	const svg = document.getElementById("preloaderSvg");
+		if (svg) {
 		const preTl = gsap.timeline({
 			onComplete: startAnimationAfterPreloader,
 		});
@@ -88,6 +89,7 @@ var THEMEMASCOT = {};
 			zIndex: -1,
 			display: "none",
 		});
+		}
 		let svgText = document.querySelector("svg text");
 		function startAnimationAfterPreloader() {
 			if (svgText) {

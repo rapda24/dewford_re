@@ -1,0 +1,720 @@
+/* Palette and shared UI adapted from https://rapda24.github.io/dewford/ */
+:root {--dewford-purple:#52196d;--dewford-purple-dark:#351044;--dewford-orange:#f5a100;--id-color:var(--dewford-purple);--sub-color:var(--dewford-orange);--theme-color1:var(--dewford-purple);--theme-color2:var(--dewford-orange);--theme-color3:#fff;--theme-color1-rgb:82,25,109;--theme-color2-rgb:245,161,0;--theme-color3-rgb:255,255,255;--link-color:var(--dewford-purple);--link-hover-color:var(--dewford-orange);}
+.dewford-header {position:fixed;top:0;left:0;width:100%;z-index:1000;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:168px;padding:20px 3%;background:var(--dewford-purple);color:#fff;transition:min-height .25s,padding .25s,background-color .25s;}
+.dewford-header.is-scrolled {min-height:90px;padding-block:16px;}
+.dewford-brand {flex-shrink:0;}.dewford-brand img {display:block;width:330px;height:auto;transition:width .25s;}.is-scrolled .dewford-brand img {width:220px;}
+.dewford-header a,.dewford-drawer a {color:inherit;}.dewford-header a:hover,.dewford-drawer a:hover {color:var(--dewford-orange);}
+.dewford-navigation {display:flex;align-items:center;gap:26px;list-style:none;margin:0;padding:0;}
+.dewford-navigation > li {position:relative;}.dewford-navigation > li > a {display:block;padding:18px 0;font-size:14px;font-weight:600;letter-spacing:.02em;white-space:nowrap;}
+.dewford-navigation .sub-menu {position:absolute;top:100%;left:0;width:280px;padding:14px 0;background:#fff;color:#52196d;box-shadow:0 8px 30px #0002;list-style:none;visibility:hidden;opacity:0;transform:translateY(8px);transition:.2s;}
+.dewford-navigation li:hover > .sub-menu,.dewford-navigation li:focus-within > .sub-menu {visibility:visible;opacity:1;transform:none;}
+.dewford-navigation .sub-menu a {display:block;padding:10px 20px;font-size:14px;line-height:1.5;}
+.dewford-email {font-size:12px;white-space:nowrap;}.dewford-menu-toggle {display:grid;gap:6px;background:none;color:#fff;width:44px;height:44px;padding:9px;border:0;flex-shrink:0;cursor:pointer;}.dewford-menu-toggle span {display:block;background:currentColor;height:2px;width:26px;}
+.dewford-drawer {position:fixed;inset:0;margin:0 0 0 auto;width:min(620px,100%);max-width:100%;height:100dvh;max-height:100dvh;border:0;padding:64px 48px;background:var(--dewford-purple);color:#fff;overflow:auto;}.dewford-drawer::backdrop {background:#30103fcc;}.dewford-drawer > img {display:block;margin-bottom:30px;}.dewford-menu-close {position:absolute;top:16px;right:24px;background:none;color:#fff;border:0;font-size:40px;cursor:pointer;}.dewford-drawer .dewford-navigation {display:block;}.dewford-drawer .sub-menu {position:static;visibility:visible;opacity:1;transform:none;background:none;color:#fff;box-shadow:none;width:auto;padding:0 0 10px;}.dewford-drawer .sub-menu a {padding:6px 0;font-weight:400;}.dewford-drawer .dewford-navigation > li > a {font-size:21px;color:var(--dewford-orange);}.dewford-menu-open {overflow:hidden;}
+.dewford-header :focus-visible,.dewford-drawer :focus-visible {outline:2px solid var(--dewford-orange);outline-offset:4px;}
+@media(max-width:1599px){.dewford-email{display:none;}.dewford-brand img{width:285px;}.dewford-navigation{gap:20px;}}
+@media(max-width:1199px){.dewford-desktop-nav{display:none;}.dewford-header,.dewford-header.is-scrolled{min-height:88px;padding:18px 24px;}.dewford-brand img,.is-scrolled .dewford-brand img{width:220px;}}
+@media(max-width:767px){.dewford-header,.dewford-header.is-scrolled{min-height:80px;padding:14px 20px;}.dewford-brand img,.is-scrolled .dewford-brand img{width:195px;}.dewford-drawer{padding:60px 28px;}}
+.dewford-floating-links {
+  position: fixed; right: max(24px, env(safe-area-inset-right));
+  top: 50%; bottom: auto; transform: translateY(-50%); z-index: 900; width: 220px;
+}
+.dewford-floating-links ul { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.dewford-floating-links li { margin: 0; padding: 0; }
+.dewford-floating-links a {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  min-height: 48px; padding: 12px 20px; background: #f4f3ef; color: #26212d;
+  font-size: 14px; line-height: 1.4; font-weight: 500; text-decoration: none;
+  box-shadow: 0 2px 12px rgba(0,0,0,.09); transition: background-color .2s, color .2s;
+}
+.dewford-floating-links a svg { flex: 0 0 20px; transition: transform .2s; }
+.dewford-floating-links a:hover, .dewford-floating-links a:focus-visible { background: #5b3582; color: #fff; }
+.dewford-floating-links a:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.dewford-floating-links a:hover svg { transform: translateX(3px); }
+body .pxl-scroll-top { right: 24px; bottom: max(24px, env(safe-area-inset-bottom)) !important; }
+html.dewford-intro-active .dewford-floating-links, body.body-overflow .dewford-floating-links { visibility: hidden; }
+@media (max-width: 767px) {
+  .dewford-floating-links { width: 168px; right: max(12px, env(safe-area-inset-right)); top: 50%; bottom: auto; }
+  .dewford-floating-links ul { gap: 6px; }
+  .dewford-floating-links a { min-height: 44px; padding: 10px 12px; font-size: 12px; gap: 8px; }
+  .dewford-floating-links a svg { width: 16px; height: 16px; flex-basis: 16px; }
+  body .pxl-scroll-top { right: 12px; bottom: max(12px, env(safe-area-inset-bottom)) !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dewford-floating-links a, .dewford-floating-links a svg { transition: none; }
+}
+
+/* Explicit circular exceptions to the page's square-corner style. */
+html body .pxl-cursor, html body .pxl-cursor *,
+html body .pxl-cursor *::before, html body .pxl-cursor *::after,
+html body .pxl-scroll-top, html body .pxl-scroll-top::before, html body .pxl-scroll-top::after,
+html body .dewford-kakao-floating {
+  border-radius: 50% !important;
+  border-start-start-radius: 50% !important; border-start-end-radius: 50% !important;
+  border-end-start-radius: 50% !important; border-end-end-radius: 50% !important;
+}
+.dewford-kakao-floating {
+  position: fixed; right: 24px; bottom: calc(max(24px, env(safe-area-inset-bottom)) + 58px); z-index: 900;
+  display: flex; align-items: center; justify-content: center; width: 46px; height: 46px;
+  background: #fee500; color: #391b1b; box-shadow: 0 2px 12px rgba(0,0,0,.14);
+  transition: background-color .2s;
+}
+.dewford-kakao-floating:hover { background: #ffed45; color: #391b1b; }
+.dewford-kakao-floating:focus-visible { outline: 2px solid #5b3582; outline-offset: 4px; }
+html.dewford-intro-active .dewford-kakao-floating,
+body.body-overflow .dewford-kakao-floating { visibility: hidden; }
+@media (max-width: 767px) {
+  .dewford-kakao-floating { right: 12px; bottom: calc(max(12px, env(safe-area-inset-bottom)) + 58px); }
+}
+/* Leave room for the bottom controls on short landscape screens. */
+@media (max-height: 500px) {
+  .dewford-floating-links { top: 45%; }
+  .dewford-floating-links ul { gap: 4px; }
+  .dewford-floating-links a { min-height: 36px; padding-top: 6px; padding-bottom: 6px; }
+}
+
+/* Keep the Korean hero message readable across desktop and mobile. */
+.elementor-1818 .elementor-element.elementor-element-d4ddac1 .pxl-heading .pxl-item--title {
+  font-size: clamp(28px, 4.2vw, 60px);
+  line-height: 1.5;
+  word-break: keep-all;
+  letter-spacing: -0.03em;
+}
+
+/* Supporting copy beneath the About Dewford statement. */
+#about .dewford-about-description {
+  margin: 24px 0 0;
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 400;
+  line-height: 1.8;
+  color: #000;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* Matching local SVG icons for the three learning outcomes. */
+#about .dewford-outcome-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 24px;
+  background: var(--dewford-purple, #52196d);
+  color: #fff;
+}
+#about .dewford-outcome-icon svg {
+  display: block;
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: currentColor;
+}
+@media (max-width: 767px) {
+  #about .dewford-outcome-icon { width: 56px; height: 56px; margin-bottom: 20px; }
+}
+
+/* Quiet cards retain the three-column learning outcomes layout. */
+#about .dewford-outcomes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+#about .dewford-outcome-card {
+  width: 100%;
+  min-width: 0;
+  padding: 38px 30px;
+  background: #faf9fb;
+  border: 1px solid #e9e5ec;
+  color: #000;
+}
+#about .dewford-outcome-card .dewford-outcome-icon {
+  width: 56px;
+  height: 56px;
+  margin-bottom: 32px;
+  background: #52196d;
+  color: #fff;
+}
+#about .dewford-outcome-card .pxl-item--subtitle { margin-bottom: 20px; }
+#about .dewford-outcome-card .dewford-outcome-prefix {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 18px;
+  line-height: 1.3;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+#about .dewford-outcome-card .dewford-outcome-role {
+  display: block;
+  font-size: clamp(32px, 3vw, 40px);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -.03em;
+}
+#about .dewford-outcome-card .pxl-item--title {
+  font-size: 17px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+#about .dewford-outcome-card .pxl-heading,
+#about .dewford-outcome-card .pxl-item--subtitle,
+#about .dewford-outcome-card .pxl-item--subtext,
+#about .dewford-outcome-card .pxl-item--subtext strong,
+#about .dewford-outcome-card .pxl-item--subtext strong span,
+#about .dewford-outcome-card .pxl-item--title,
+#about .dewford-outcome-card .pxl-heading--text { color: #000 !important; }
+@media (max-width: 991px) {
+  #about .dewford-outcomes { gap: 14px; }
+  #about .dewford-outcome-card { padding: 28px 20px; }
+}
+@media (max-width: 767px) {
+  #about .dewford-outcomes { grid-template-columns: 1fr; }
+  #about .dewford-outcome-card { padding: 30px; }
+  #about .dewford-outcome-card .dewford-outcome-icon { margin-bottom: 24px; }
+}
+
+/* Allow the larger hero message enough horizontal space. */
+#home .elementor-element-49f46aa { display: none; }
+#home .elementor-element-b205833 {
+  width: 100%;
+  max-width: 1120px;
+  --margin-left: 0px;
+}
+
+/* Give the brand name a little more space within the About statement. */
+#about .elementor-element-ac278bf .dewford-about-name {
+  letter-spacing: .025em;
+}
+
+#about .elementor-element-ac278bf .dewford-about-line { display: block; }
+
+/* Paired About photos share one frame size regardless of source proportions. */
+#about .elementor-element-d1e5761 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 20px;
+}
+#about .elementor-element-d1e5761 > .elementor-widget-pxl_image {
+  width: 100%;
+  min-width: 0;
+}
+#about .elementor-element-d1e5761 .pxl-item--image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+#about .elementor-element-d1e5761 .pxl-item--image img {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  object-fit: cover;
+  object-position: center;
+}
+@media (max-width: 767px) {
+  #about .elementor-element-d1e5761 { grid-template-columns: 1fr; }
+}
+#pxl-footer-elementor address { font-style: normal; font-size: 16px; line-height: 1.8; color: #fff; }
+#pxl-footer-elementor .pxl-link a { font-size: 15px; line-height: 1.6; }
+#pxl-footer-elementor .elementor-element-90fa0a0 { gap: 24px; }
+#pxl-footer-elementor .pxl-logo img { width: 267px; height: auto; }
+
+/* Clearly separate actionable contact details from the introductory copy. */
+#location .dewford-location-contacts { width: 100%; margin-top: 12px; }
+#location .dewford-contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 18px 0;
+  border-top: 1px solid #ded9e2;
+  color: #000;
+  text-decoration: none;
+}
+#location .dewford-contact-icon {
+  display: flex; align-items: center; justify-content: center;
+  flex: 0 0 42px; width: 42px; height: 42px;
+  background: #52196d; color: #fff;
+}
+#location .dewford-contact-icon svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; }
+#location .dewford-contact-row > span:last-child { min-width: 0; }
+#location .dewford-contact-label { display: block; margin-bottom: 5px; font-size: 11px; font-weight: 500; letter-spacing: .14em; }
+#location .dewford-contact-value { display: block; font-size: clamp(17px, 1.5vw, 21px); font-weight: 600; line-height: 1.6; letter-spacing: -.025em; }
+#location .dewford-contact-row:hover .dewford-contact-value { text-decoration: underline; text-underline-offset: 5px; }
+#location .dewford-contact-row:focus-visible { outline: 2px solid #52196d; outline-offset: 4px; }
+/* Keep footer contact details and the full wordmark within their columns. */
+#pxl-footer-elementor .elementor-element-74c7fcb { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 60px; }
+#pxl-footer-elementor .elementor-element-ae87360,
+#pxl-footer-elementor .elementor-element-f0c8b61 { width: 100%; min-width: 0; }
+#pxl-footer-elementor .elementor-element-ae7e34d a { font-size: clamp(16px, 1.6vw, 22px); overflow-wrap: anywhere; }
+#pxl-footer-elementor .pxl-logo,
+#pxl-footer-elementor .pxl-logo a { height: auto; max-height: none; overflow: visible; }
+#pxl-footer-elementor .pxl-logo img { display: block; width: 240px; height: auto; max-height: none; object-fit: contain; }
+#pxl-footer-elementor .elementor-element-3e75dd8 p { word-break: keep-all; overflow-wrap: break-word; }
+@media (max-width: 767px) {
+  #pxl-footer-elementor .elementor-element-74c7fcb { grid-template-columns: 1fr; gap: 36px; }
+  #pxl-footer-elementor .elementor-element-90fa0a0 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Full-width rectangular surfaces without the old rounded-card gutters. */
+#inquiry.elementor-element-560ad1d { padding-left: 0; padding-right: 0; }
+#pxl-footer-elementor .elementor-element-afd98bd {
+  margin: 0;
+  padding: 0;
+  --margin-top: 0px;
+  --margin-bottom: 0px;
+  --padding-left: 0px;
+  --padding-right: 0px;
+}
+#pxl-footer-elementor .elementor-element-90fa0a0 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+#pxl-footer-elementor .elementor-element-90fa0a0 > .elementor-widget { width: 100%; min-width: 0; }
+
+
+/* Balanced spacing for the inquiry submit button. */
+body #inquiry button.wpcf7-submit.wpcf7-btn-abs {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: 14px 28px !important;
+  min-height: 54px;
+  line-height: 1.4;
+}
+body #inquiry button.wpcf7-submit.wpcf7-btn-abs .pxl--btn-icon {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  flex-shrink: 0;
+  transform: none;
+}
+
+/* Footer contact icons match the outline icons in the location section. */
+#pxl-footer-elementor .dewford-footer-contact {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+#pxl-footer-elementor .dewford-footer-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 28px;
+  color: #fff;
+}
+#pxl-footer-elementor .dewford-footer-contact-icon svg {
+  display: block;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+}
+#pxl-footer-elementor .dewford-footer-contact > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+/* Improve desktop header legibility while reserving space around navigation. */
+@media (min-width: 1200px) {
+  body .elementor-4277 .pxl-logo img {
+    width: 164px !important;
+    height: 36px !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: contain;
+  }
+  body .dewford-main-menu .dewford-navigation > li > a,
+  body .elementor-4277 .elementor-element.elementor-element-abb0524 .dewford-navigation > li > a {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+
+/* Preserve the supplied logo's artwork and original aspect ratio. */
+body img[src^="assets/images/dewford/logo-"] {
+  height: auto !important;
+  aspect-ratio: 2000 / 650;
+  object-fit: contain;
+  filter: none !important;
+}
+body .elementor-4277 .pxl-logo img[src^="assets/images/dewford/logo-"] { height: auto !important; }
+
+/* Keep the mobile wordmark readable when its white header becomes purple. */
+body #pxl-header-mobile.pxl-header-mobile-fixed .pxl-logo-mobile img[src="assets/images/dewford/logo.png"] {
+  filter: brightness(0) invert(1) !important;
+}
+
+#pxl-footer-elementor a.dewford-footer-kakao {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background: #fee500;
+  color: #391b1b !important;
+}
+#pxl-footer-elementor a.dewford-footer-kakao:hover { background: #ffed45; }
+#pxl-footer-elementor a.dewford-footer-kakao:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+/* Diagonal arrows for the rectangular floating quick links. */
+.dewford-floating-links a > svg {
+  transform: rotate(-45deg);
+  transform-origin: center;
+}
+
+
+#events .dewford-event-heading-line { display: block; }
+
+
+/* Introduction to the three learning outcomes. */
+#about .dewford-learning-intro {
+  width: 100%;
+  margin-top: clamp(40px, 5vw, 72px);
+  color: #000;
+}
+#about .dewford-learning-eyebrow {
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: .12em;
+}
+#about #dewford-learning-title {
+  margin: 0 0 24px;
+  font-size: clamp(28px, 3vw, 42px);
+  line-height: 1.4;
+  letter-spacing: -.03em;
+  color: #000;
+  word-break: keep-all;
+}
+#about .dewford-learning-description {
+  margin: 0;
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.8;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+#about .dewford-learning-intro + .dewford-outcomes { margin-top: 36px; --margin-top: 36px; }
+
+/* Learning journey: titles on the left, supporting copy on the right. */
+#about .dewford-learning-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: clamp(32px, 5vw, 72px);
+  row-gap: 16px;
+  align-items: start;
+}
+#about .dewford-learning-eyebrow { grid-column: 1; grid-row: 1; margin: 0; }
+#about #dewford-learning-title { grid-column: 1; grid-row: 2; margin: 0; }
+#about .dewford-learning-description { grid-column: 2; grid-row: 1 / 3; align-self: center; }
+@media (max-width: 767px) {
+  #about .dewford-learning-intro { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
+  #about .dewford-learning-description { grid-column: 1; grid-row: 3; margin-top: 8px; }
+}
+
+/* Supplied circular crests replace the original decorative SVG badges. */
+#about .elementor-element-361288f .pxl-icon1 a {
+  background: #fff !important;
+  padding: 16px;
+  box-sizing: border-box;
+  width: 120px;
+  min-width: 120px;
+  height: 120px;
+}
+#about .elementor-element-361288f .dewford-about-crest {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+@media (max-width: 767px) {
+  #about .elementor-element-361288f .pxl-icon1 a { width: 80px; min-width: 80px; height: 80px; padding: 10px; }
+}
+
+/* Match the light gray border of the outcome cards. */
+#about .elementor-element-361288f .pxl-icon1 a,
+#about .elementor-element-361288f .pxl-icon1 a::before,
+#about .elementor-element-361288f .pxl-icon1 a::after {
+  border-color: #e9e5ec !important;
+}
+/* Every photo keeps one unit; the active card adds one equal text unit. */
+#event-list .dewford-events-ready { overflow: hidden; touch-action: pan-y; }
+#event-list .dewford-events-ready .pxl-swiper-wrapper { display: flex; gap: var(--event-gap, 32px); margin: 0; padding: 0; transition: transform 650ms ease; }
+#event-list .dewford-events-ready .pxl-swiper-slide { flex: 0 0 auto; width: var(--event-unit); min-width: 0; max-width: none; padding: 0; margin: 0; transition: width 650ms ease; box-sizing: border-box; }
+#event-list .dewford-events-ready .swiper-slide-active { width: calc(var(--event-unit) * 2); }
+#event-list .pxl-post--inner { display: flex; gap: 0; width: 100%; min-width: 0; height: 420px; min-height: 420px; margin: 0; padding: 0; overflow: hidden; animation: none !important; }
+#event-list .pxl-post--featured { flex: 0 0 var(--event-unit, 100%); width: var(--event-unit, 100%); max-width: none; margin: 0; overflow: hidden; }
+#event-list .pxl-post--featured a { display: block; height: 100%; }
+#event-list .pxl-post--featured img { width: 100%; height: 100%; object-fit: cover; }
+#event-list .pxl-post--holder { display: flex !important; flex: 0 0 var(--event-unit, 50%); width: var(--event-unit, 50%); margin: 0; padding: 24px 18px; box-sizing: border-box; opacity: 0 !important; visibility: hidden !important; overflow-y: auto; }
+#event-list .swiper-slide-active .pxl-post--holder { opacity: 1 !important; visibility: visible !important; }
+#event-list .pxl-post--title { font-size: 22px; line-height: 1.4; }
+#event-list .pxl-post--content { font-size: 14px; line-height: 1.6; }
+#event-list .dewford-events-reset .pxl-swiper-wrapper,
+#event-list .dewford-events-reset .pxl-swiper-slide { transition: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  #event-list .dewford-events-ready .pxl-swiper-wrapper,
+  #event-list .dewford-events-ready .pxl-swiper-slide { transition: none; }
+}
+
+/* Footer Kakao button matches the floating Kakao button. */
+body #pxl-footer-elementor a.dewford-footer-kakao {
+  border-radius: 50% !important;
+  border-start-start-radius: 50% !important;
+  border-start-end-radius: 50% !important;
+  border-end-start-radius: 50% !important;
+  border-end-end-radius: 50% !important;
+  background: #fee500;
+  color: #391b1b !important;
+}
+body #pxl-footer-elementor a.dewford-footer-kakao svg path { fill: #391b1b !important; }
+body #pxl-footer-elementor a.dewford-footer-kakao svg text { fill: #fee500 !important; }
+
+/* Consistent, compact typography for all footer contact information. */
+body #pxl-footer-elementor .dewford-footer-contact,
+body #pxl-footer-elementor .dewford-footer-contact > span:last-child {
+  font-size: 16px !important;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+/* Match the header CTA's compact icon-button spacing. */
+body #inquiry button.wpcf7-submit.wpcf7-btn-abs {
+  padding: 4px 20px 4px 4px !important;
+  min-height: 48px;
+}
+
+/* Keep the inquiry contact heading and links readable on purple. */
+body #inquiry .elementor-element-1a48bc7 .pxl-item--subtitle,
+body #inquiry .elementor-element-1a48bc7 .pxl-item--subtext,
+body #inquiry .elementor-element-1a48bc7 .pxl-heading--text,
+body #inquiry .elementor-element-1a48bc7 .pxl-heading--text a {
+  color: #fff !important;
+}
+
+/* Local SVG social icons, ready for the school's official channel URLs. */
+#pxl-footer-elementor .dewford-footer-socials { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: flex-end; }
+body #pxl-footer-elementor .dewford-footer-social {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; min-width: 44px; padding: 0; border: 0;
+  border-radius: 50% !important;
+  border-start-start-radius: 50% !important; border-start-end-radius: 50% !important;
+  border-end-start-radius: 50% !important; border-end-end-radius: 50% !important;
+  color: #fff !important; opacity: 1; box-shadow: none;
+}
+body #pxl-footer-elementor .dewford-social-instagram { background: #833ab4; }
+body #pxl-footer-elementor .dewford-social-facebook { background: #1877f2; }
+body #pxl-footer-elementor .dewford-social-youtube { background: #f00; }
+body #pxl-footer-elementor .dewford-footer-social svg { display: block; color: #fff; }
+body #pxl-footer-elementor .dewford-social-youtube .dewford-youtube-play { fill: #f00 !important; }
+@media (max-width: 767px) { #pxl-footer-elementor .dewford-footer-socials { justify-content: flex-start; } }
+
+/* Center sticky navigation independently of the logo and email widths. */
+@media (min-width: 1201px) {
+  body .elementor-4277 .elementor-element-4c151ff > .e-con-inner { position: relative; }
+  body .elementor-4277 .elementor-element.elementor-element-abb0524 {
+    position: absolute !important;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
+    margin: 0;
+    flex: none;
+  }
+}
+
+/* Quiet footer social buttons, with brand colors on hover and keyboard focus. */
+body #pxl-footer-elementor a.dewford-footer-kakao,
+body #pxl-footer-elementor a.dewford-footer-social {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff !important;
+  box-sizing: border-box;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+body #pxl-footer-elementor a.dewford-footer-kakao svg path { fill: #fff !important; }
+body #pxl-footer-elementor a.dewford-footer-kakao svg text { fill: #351044 !important; }
+body #pxl-footer-elementor a.dewford-social-youtube .dewford-youtube-play { fill: #351044 !important; }
+body #pxl-footer-elementor a.dewford-footer-kakao:is(:hover, :focus-visible) { background: #fee500; border-color: #fee500; color: #391b1b !important; }
+body #pxl-footer-elementor a.dewford-footer-kakao:is(:hover, :focus-visible) svg path { fill: #391b1b !important; }
+body #pxl-footer-elementor a.dewford-footer-kakao:is(:hover, :focus-visible) svg text { fill: #fee500 !important; }
+body #pxl-footer-elementor a.dewford-social-instagram:is(:hover, :focus-visible) { background: #833ab4; border-color: #833ab4; }
+body #pxl-footer-elementor a.dewford-social-facebook:is(:hover, :focus-visible) { background: #1877f2; border-color: #1877f2; }
+body #pxl-footer-elementor a.dewford-social-youtube:is(:hover, :focus-visible) { background: #f00; border-color: #f00; }
+body #pxl-footer-elementor a.dewford-social-youtube:is(:hover, :focus-visible) .dewford-youtube-play { fill: #f00 !important; }
+
+
+.dewford-floating-links a {color:#fff;background:var(--dewford-purple);border-left:3px solid var(--dewford-orange);}.dewford-floating-links a:hover,.dewford-floating-links a:focus-visible{background:var(--dewford-orange);color:#000;}.dewford-floating-links a > svg{transform:rotate(-45deg);}.dewford-floating-links a:hover > svg{transform:rotate(-45deg) translateX(3px);}
+@media(max-width:767px){.dewford-floating-links{display:none;}}
+@media(prefers-reduced-motion:reduce){.dewford-header,.dewford-brand img,.dewford-navigation .sub-menu{transition:none;}}
+
+/* Empty subpage canvas; template sections can be added inside main later. */
+.dewford-subpage-content {min-height:55vh;}
+.dewford-navigation a[aria-current="page"] {color:var(--dewford-orange);}
+
+/* Header size changes must not move content or alter the scroll position. */
+:root {--dewford-header-space:168px;}
+.dewford-subpage .page-wrapper {padding-top:var(--dewford-header-space);}
+.dewford-home .dewford-header:not(.is-scrolled) {background-color:transparent;}
+@media(max-width:1199px){:root{--dewford-header-space:88px;}}
+@media(max-width:767px){:root{--dewford-header-space:80px;}}
+
+/* Match the source's paired 46px circular controls; isolate icon typography. */
+.dewford-kakao-floating {padding:0;border:0;line-height:1;box-sizing:border-box;flex-shrink:0;}
+.dewford-kakao-floating > img {display:block;width:28px;height:28px;max-width:none;flex:0 0 28px;transform:none;}
+.dewford-scroll-top {position:fixed;z-index:900;display:grid;place-items:center;width:46px;height:46px;padding:0;border:0;border-radius:50%;background:var(--dewford-purple);color:#fff;box-shadow:inset 0 0 0 2px #d4d4d4;cursor:pointer;}
+.dewford-scroll-top[hidden] {display:none;}
+.dewford-scroll-top .dewford-scroll-arrow {display:block;width:20px;height:20px;}
+.dewford-scroll-top .pxl-scroll-progress-circle {position:absolute;inset:0;width:46px;height:46px;pointer-events:none;}
+.dewford-scroll-top .pxl-scroll-progress-circle path {fill:none;stroke:var(--dewford-orange);stroke-width:4;stroke-dasharray:100;stroke-dashoffset:100;}
+.dewford-scroll-top:hover {background:var(--dewford-orange);color:#000;}
+.dewford-scroll-top:focus-visible,.dewford-kakao-floating:focus-visible {outline:2px solid var(--dewford-orange)!important;outline-offset:4px;}
+html.dewford-intro-active .dewford-scroll-top,html.dewford-menu-open :is(.dewford-scroll-top,.dewford-kakao-floating,.dewford-floating-links) {visibility:hidden;}
+
+/* Source footer palette and information, using the index-2 column layout. */
+.dewford-footer {background:#351044;color:#fff;}
+.dewford-footer .upper-box {align-items:center;gap:40px;border-color:rgb(255 255 255 / 18%);}
+.dewford-footer .upper-box .footer-logo {flex:0 0 316px;padding:0;border:0;}
+.dewford-footer .footer-logo img {display:block;width:316px;max-width:100%;height:auto;}
+.dewford-footer .upper-box .text {margin:0;max-width:590px;color:#fff;opacity:1;word-break:keep-all;line-height:1.8;}
+.dewford-footer .dewford-footer-channel {display:flex;align-items:center;justify-content:center;flex:0 0 46px;width:46px;height:46px;border-radius:50%;background:#fee500;}
+.dewford-footer-channel img {display:block;width:28px;height:28px;}
+.dewford-footer .footer-column .about-widget .footer-title {font-size:clamp(28px,3vw,42px);line-height:1.4;word-break:keep-all;}
+.dewford-footer .dewford-footer-details {display:grid;gap:18px;margin:28px 0 0;font-style:normal;font-size:16px;line-height:1.7;word-break:keep-all;}
+.dewford-footer .dewford-footer-details a {display:block;color:#fff;overflow-wrap:anywhere;}
+.dewford-footer-details span {display:block;margin-bottom:3px;font-size:11px;letter-spacing:.12em;color:var(--dewford-orange);}
+.dewford-footer .footer-column .widget-title {font-size:15px;color:var(--dewford-orange);margin-bottom:24px;}
+.dewford-footer .user-links li {padding-left:0;}
+.dewford-footer .user-links li::before {display:none;}
+.dewford-footer .user-links a {color:#fff;white-space:normal;line-height:1.6;}
+.dewford-footer a:hover {color:var(--dewford-orange);}
+.dewford-footer a:focus-visible {outline:2px solid var(--dewford-orange)!important;outline-offset:5px;}
+.dewford-footer .footer-column:last-child {margin-top:0;margin-bottom:0;padding-top:0;}
+.dewford-footer .footer-column:last-child::before {display:none;}
+.dewford-footer .footer-bottom {border-color:rgb(255 255 255 / 18%);margin-top:64px;padding:28px 0;}
+.dewford-footer .footer-bottom .copyright {font-size:14px;color:rgb(255 255 255 / 80%);line-height:1.7;}
+@media(max-width:1199px){.dewford-footer .footer-column{margin-bottom:36px;}.dewford-footer .footer-bottom{margin-top:24px;}}
+@media(max-width:991px){.dewford-footer .upper-box{align-items:flex-start;gap:24px;}.dewford-footer .upper-box .footer-logo{flex-basis:auto;}}
+@media(max-width:767px){.dewford-footer .footer-logo img{width:260px;}.dewford-footer .footer-bottom{padding-right:58px;}.dewford-footer .footer-bottom .copyright{text-align:left;}}
+
+/* Supplied common wordmark stays white on purple and photo backgrounds. */
+.dewford-brand img,.dewford-footer .footer-logo img {filter:brightness(0) invert(1);}
+
+/* Typography: readable body weights, clear medium/bold title hierarchy. */
+:root {--dewford-weight-body:400;--dewford-weight-medium:500;--dewford-weight-title:700;--h1-font-weight:700;--h2-font-weight:700;--h3-font-weight:600;}
+.dewford-home,.dewford-subpage {font-weight:var(--dewford-weight-body);}
+.dewford-header .dewford-email,.dewford-navigation .sub-menu a {font-weight:var(--dewford-weight-medium);}
+.dewford-footer .upper-box .text,.dewford-footer .dewford-footer-details,.dewford-footer .user-links a {font-weight:var(--dewford-weight-medium);}
+.dewford-footer .footer-column .about-widget .footer-title {font-weight:var(--dewford-weight-medium);}
+.dewford-footer .footer-title strong {font-weight:var(--dewford-weight-title);color:inherit;}
+.dewford-footer .footer-column .widget-title,.dewford-footer-details span {font-weight:600;}
+.dewford-footer .footer-bottom .copyright {font-weight:var(--dewford-weight-body);}
+
+/* Original logo geometry: 74.6px crest + 17.3px gap + 223.5px wordmark. */
+.dewford-logo {display:grid;grid-template-columns:74.6fr 223.5fr;column-gap:5.485%;align-items:center;width:316px;max-width:100%;}
+.dewford-header .dewford-logo img,.dewford-footer .dewford-logo img,.dewford-drawer .dewford-logo img {display:block;width:100%;max-width:100%;height:auto;min-width:0;transition:none;}
+.dewford-logo .dewford-logo-text {filter:brightness(0) invert(1);}
+.dewford-header .dewford-brand {width:330px;transition:width .25s;}
+.dewford-header.is-scrolled .dewford-brand {width:220px;}
+.dewford-drawer-logo {margin-bottom:30px;}
+@media(max-width:1599px){.dewford-header .dewford-brand{width:285px;}}
+@media(max-width:1199px){.dewford-header .dewford-brand,.dewford-header.is-scrolled .dewford-brand{width:220px;}}
+@media(max-width:767px){.dewford-header .dewford-brand,.dewford-header.is-scrolled .dewford-brand{width:195px;}.dewford-footer .dewford-logo{width:260px;}}
+@media(prefers-reduced-motion:reduce){.dewford-header .dewford-brand{transition:none;}}
+
+/* Shared social controls. */
+.dewford-footer .dewford-footer-socials {display:flex;justify-content:flex-end;align-items:center;gap:12px;}
+.dewford-footer .dewford-footer-social {display:inline-flex;align-items:center;justify-content:center;flex:0 0 44px;width:44px;height:44px;padding:0;box-sizing:border-box;border:1px solid #fff;border-radius:50%;background:transparent;color:#fff;line-height:1;transition:background-color .2s,border-color .2s,color .2s;}
+.dewford-footer .dewford-footer-social svg {display:block;flex:none;}
+.dewford-footer .dewford-social-kakao svg path {fill:currentColor;}
+.dewford-footer .dewford-social-kakao svg text {fill:#351044;font:700 7.5px Arial,sans-serif;}
+.dewford-footer .dewford-social-youtube .dewford-youtube-play {fill:#351044;}
+.dewford-footer .dewford-social-kakao:is(:hover,:focus-visible) {background:#fee500;border-color:#fee500;color:#391b1b;}
+.dewford-footer .dewford-social-kakao:is(:hover,:focus-visible) svg text {fill:#fee500;}
+.dewford-footer .dewford-social-instagram:is(:hover,:focus-visible) {background:#833ab4;border-color:#833ab4;color:#fff;}
+.dewford-footer .dewford-social-facebook:is(:hover,:focus-visible) {background:#1877f2;border-color:#1877f2;color:#fff;}
+.dewford-footer .dewford-social-youtube:is(:hover,:focus-visible) {background:#f00;border-color:#f00;color:#fff;}
+.dewford-footer .dewford-social-youtube:is(:hover,:focus-visible) .dewford-youtube-play {fill:#f00;}
+.dewford-footer .dewford-footer-social:focus-visible {outline:2px solid var(--dewford-orange)!important;outline-offset:4px;}
+@media(prefers-reduced-motion:reduce){.dewford-footer .dewford-footer-social{transition:none;}}
+
+/* The copied About section is visible without the template's GSAP reveal loader. */
+.dewford-home .about-section .reveal {visibility:visible;}
+
+/* Keep the copied About photo visible independently of template reveal/mobile rules. */
+.dewford-home .about-section .image-column .image {display:block;visibility:visible;width:100%;}
+.dewford-home .about-section .image-column .image img {display:block;width:100%;height:auto;}
+.dewford-home .about-section .image-column .text {border-bottom-color:#e4dce8;}
+.dewford-home .about-section .image-column .text::before {bottom:0;}
+
+/* Shared Dewford palette: primary, secondary and deep primary. */
+:root {
+ --id-color-dark:var(--dewford-purple-dark);
+ --theme-color-dark:var(--id-color-dark);
+ --theme-color-black:var(--id-color-dark);
+ --theme-black:var(--id-color-dark);
+ --theme-color-black-rgb:53,16,68;
+ --headings-color:var(--id-color-dark);
+ --text-color:var(--id-color-dark);
+ --text-color-rgb:53,16,68;
+}
+
+
+/* index-2.html footer: top logo/story/socials, left introduction, right links/contact row. */
+.dewford-footer.footer-style-home-two {background:var(--id-color-dark);}
+.dewford-footer.footer-style-home-two .widgets-section {padding:74px 0 0;}
+.dewford-footer.footer-style-home-two .upper-box {gap:32px;}
+.dewford-footer.footer-style-home-two .upper-box .footer-logo {flex:0 0 260px;padding-right:24px;border-right:1px solid rgb(255 255 255 / 18%);}
+.dewford-footer.footer-style-home-two .upper-box .text {flex:1;max-width:590px;margin:0;font-weight:500;}
+.dewford-footer.footer-style-home-two .dewford-footer-socials {flex:0 0 auto;gap:8px;flex-wrap:nowrap;}
+.dewford-footer.footer-style-home-two .footer-text {color:#fff;opacity:1;font-weight:400;}
+.dewford-footer.footer-style-home-two .dewford-footer-contact-row {margin-top:-97px;padding-top:37px;}
+.dewford-footer.footer-style-home-two .dewford-footer-contact-row::before {display:block;background:rgb(255 255 255 / 18%);width:100%;left:0;}
+.dewford-footer.footer-style-home-two .info-box .text {color:var(--sub-color);font-weight:500;}
+.dewford-footer.footer-style-home-two .info-box .title {font-size:20px;line-height:1.6;}
+.dewford-footer.footer-style-home-two .info-box .title.two {font-size:16px;}
+.dewford-footer.footer-style-home-two .info-box a {color:#fff;overflow-wrap:anywhere;}
+.dewford-footer-email {font-size:14px;}
+.dewford-footer-email-label {margin-top:12px;}
+@media(max-width:1199.98px){
+ .dewford-footer.footer-style-home-two .dewford-footer-contact-row {margin-top:0;}
+ .dewford-footer.footer-style-home-two .upper-box {flex-wrap:wrap;}
+}
+@media(max-width:991.98px){
+ .dewford-footer.footer-style-home-two .upper-box .footer-logo {flex-basis:auto;border:0;padding:0;}
+ .dewford-footer.footer-style-home-two .upper-box .text {flex:auto;}
+ .dewford-footer.footer-style-home-two .widgets-section {padding-top:30px;}
+}
+.dewford-footer.footer-style-home-two .footer-column .about-widget .footer-text {color:#fff;opacity:1;font-weight:400;}
+.dewford-footer.footer-style-home-two .about-widget .theme-btn,
+.dewford-footer.footer-style-home-two .about-widget .theme-btn .btn-title,
+.dewford-footer.footer-style-home-two .about-widget .theme-btn .icon {color:#fff;}
+.dewford-footer.footer-style-home-two .about-widget .theme-btn:hover,
+.dewford-footer.footer-style-home-two .about-widget .theme-btn:hover .btn-title,
+.dewford-footer.footer-style-home-two .about-widget .theme-btn:hover .icon {color:var(--id-color-dark);}
+
+/* Korean-only face preserves existing Latin type and icon fonts. */
+@font-face {
+ font-family:'Pretendard Korean';
+ src:url('../fonts/pretendard/PretendardVariable.woff2') format('woff2');
+ font-style:normal;font-weight:100 900;font-display:swap;
+ unicode-range:U+1100-11FF,U+3130-318F,U+A960-A97F,U+AC00-D7AF,U+D7B0-D7FF,U+3000-303F,U+FF00-FFEF;
+}
+:root {
+ --body-font-family:'Pretendard Korean','GT Walsheim Pro',sans-serif;
+ --heading-font-family:'Pretendard Korean','GT Walsheim Pro',sans-serif;
+ --dewford-weight-body:500;--dewford-weight-medium:500;
+ --body-font-weight:500;
+}
+:is(.dewford-home,.dewford-subpage) :is(p,.text,.footer-text,.dewford-visit-description,.dewford-consent,.dewford-event-body,.list-info li) {font-weight:500!important;}
+:is(.dewford-home,.dewford-subpage) :is(h1,h2,h3,h4,h5,h6,.title,.footer-title) {font-weight:600!important;}
+:is(.dewford-home,.dewford-subpage) :is(h1,h2,h3,h4,h5,h6,.title,.footer-title) strong {font-weight:750!important;}
+:is(.dewford-home,.dewford-subpage) :is(input,textarea,select,button) {font-family:'Pretendard Korean',Arial,sans-serif;}

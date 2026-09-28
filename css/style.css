@@ -7719,7 +7719,7 @@ sec-title-style-three
 }
 .about-section .content-column .sec-title-style-three {
   padding-bottom: 24px;
-  border-bottom: 1px solid var(--theme-color1);
+  border-bottom: 1px solid rgba(82, 25, 109, 0.15);
   max-width: 586px;
   margin-bottom: 33px;
 }
@@ -7730,7 +7730,7 @@ sec-title-style-three
   width: 102px;
   height: 3px;
   left: 0;
-  bottom: 1.5px;
+  bottom: 0;
 }
 .about-section .content-column .sec-title-style-three .title {
   margin-bottom: 30px;
