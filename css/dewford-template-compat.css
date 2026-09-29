@@ -487,3 +487,9 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
  #main-content .services-section-three .dewford-journey-slider .service-block-three {flex-shrink:0;padding:0;height:auto;margin-bottom:0;}
  #main-content .services-section-three .dewford-journey-slider .service-block-three .inner-box {height:100%;}
 }
+
+@media(max-width:767.98px){
+ #main-content #events .dewford-experience-slider {overflow:hidden;}
+ #main-content #events .dewford-experience-grid.swiper-wrapper {display:flex;gap:0;}
+ #main-content #events .dewford-experience-grid > .swiper-slide {flex-shrink:0;height:auto;}
+}

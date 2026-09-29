@@ -175,3 +175,35 @@
   mobile.addEventListener('change', sync);
   sync();
 })();
+
+/* Static experience grid on desktop, swipeable cards on mobile. */
+(() => {
+  const grid = document.querySelector('.dewford-home .service-section-four .dewford-experience-grid');
+  if (!grid || !window.Swiper) return;
+  const container = document.createElement('div');
+  container.className = 'dewford-experience-slider';
+  grid.before(container);
+  container.append(grid);
+  const cards = [...grid.children];
+  const mobile = matchMedia('(max-width:767.98px)');
+  let slider;
+  const sync = () => {
+    if (mobile.matches && !slider) {
+      grid.classList.add('swiper-wrapper');
+      cards.forEach(card => card.classList.add('swiper-slide'));
+      slider = new Swiper(container, {
+        slidesPerView: 1.08, spaceBetween: 0,
+        speed: matchMedia('(prefers-reduced-motion:reduce)').matches ? 0 : 400,
+        watchOverflow: true, grabCursor: true,
+        keyboard: {enabled: true, onlyInViewport: true}
+      });
+    } else if (!mobile.matches && slider) {
+      slider.destroy(true, true);
+      slider = null;
+      grid.classList.remove('swiper-wrapper');
+      cards.forEach(card => card.classList.remove('swiper-slide'));
+    }
+  };
+  mobile.addEventListener('change', sync);
+  sync();
+})();

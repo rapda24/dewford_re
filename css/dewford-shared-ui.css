@@ -187,3 +187,5 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text .dewfo
  html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text,
  html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text .dewford-korean-text {font-size:16px!important;}
 }
+
+.dewford-scroll-top {display:none!important;}
