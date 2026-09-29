@@ -192,7 +192,9 @@
       grid.classList.add('swiper-wrapper');
       cards.forEach(card => card.classList.add('swiper-slide'));
       slider = new Swiper(container, {
-        slidesPerView: 1.08, spaceBetween: 0,
+        slidesPerView: 1, spaceBetween: 0, autoHeight: true,
+        rewind: true,
+        autoplay: {delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true},
         speed: matchMedia('(prefers-reduced-motion:reduce)').matches ? 0 : 400,
         watchOverflow: true, grabCursor: true,
         keyboard: {enabled: true, onlyInViewport: true}
@@ -246,4 +248,32 @@
     });
   });
   observer.observe(document.body, {subtree:true, childList:true, characterData:true});
+})();
+
+// Reveal curriculum cards from alternating sides on mobile scroll.
+(() => {
+  const cards = [...document.querySelectorAll('.why-choose-us-four .feature-block')];
+  if (!cards.length || !('IntersectionObserver' in window)) return;
+  const mobile = matchMedia('(max-width:767.98px)');
+  const reduced = matchMedia('(prefers-reduced-motion:reduce)');
+  let observer;
+  const sync = () => {
+    if (observer) observer.disconnect();
+    cards.forEach(card => card.classList.remove('dewford-curriculum-reveal', 'is-visible'));
+    if (!mobile.matches || reduced.matches) return;
+    observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+    cards.forEach(card => {
+      card.classList.add('dewford-curriculum-reveal');
+      observer.observe(card);
+    });
+  };
+  mobile.addEventListener('change', sync);
+  reduced.addEventListener('change', sync);
+  sync();
 })();

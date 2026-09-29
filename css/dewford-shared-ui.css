@@ -227,3 +227,16 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer :is(.text,.footer-t
  html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) :is(.dewford-footer-mobile-link,.dewford-footer-desktop-label) {font-size:var(--dewford-mobile-body)!important;}
  html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) :is(.dewford-korean-text,.word,.char,h1 a,h2 a,h3 a,h4 a,h5 a,h6 a,.title a,.title strong,.footer-title strong) {font-size:inherit!important;}
 }
+
+@media(max-width:767.98px){
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .theme-btn {padding:2.5vw 4vw!important;min-height:44px;gap:2vw;font-size:14px!important;line-height:1.4!important;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .theme-btn .btn-title {font-size:14px!important;line-height:1.4!important;}
+}
+
+@media(max-width:767.98px){
+ .dewford-drawer .dewford-dialog-story {display:none;}
+}
+
+@media(max-width:767.98px){
+ .dewford-footer.footer-style-home-two .upper-box .footer-logo .dewford-logo {width:208px;max-width:100%;}
+}
