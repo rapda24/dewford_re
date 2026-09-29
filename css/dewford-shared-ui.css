@@ -4,7 +4,7 @@
 :is(.dewford-home,.dewford-subpage) .dewford-header { background-color: var(--id-color); }
 :is(.dewford-home,.dewford-subpage) .dewford-header:not(.is-scrolled) { background-color: transparent; }
 :is(.dewford-home,.dewford-subpage) .dewford-header.is-scrolled, :is(.dewford-home,.dewford-subpage) .dewford-drawer, :is(.dewford-home,.dewford-subpage) .dewford-drawer::backdrop { background-color: var(--id-color); }
-:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two { background-color: rgb(53, 27, 67); }
+:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two { background-color: var(--id-color); }
 :is(.dewford-home,.dewford-subpage) .dewford-floating-links a { background: rgb(242, 242, 242); color: rgb(41, 41, 41); border-left-color: var(--id-color); }
 :is(.dewford-home,.dewford-subpage) .dewford-floating-links a > svg, :is(.dewford-home,.dewford-subpage) .dewford-floating-links a:hover > svg { transform: rotate(-45deg); }
 :is(.dewford-home,.dewford-subpage) .dewford-scroll-top { background: rgb(52, 52, 52); color: rgb(255, 255, 255); }
@@ -196,4 +196,8 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text .dewfo
  .dewford-drawer .dewford-dialog-story h2 {font-size:clamp(14px,4.8vw,30px);line-height:1.5;word-break:keep-all;overflow-wrap:normal;}
  .dewford-dialog-story-break {display:block;}
  .dewford-dialog-story-space {display:none;}
+}
+
+@media(max-width:767.98px){
+ html body:is(.dewford-home,.dewford-subpage) .footer-style-home-two .upper-box .text {font-size:16px;}
 }
