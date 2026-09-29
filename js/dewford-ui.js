@@ -144,3 +144,34 @@
     toggle.focus();
   });
 })();
+
+/* Learning journey cards slide only on mobile. */
+(() => {
+  const container = document.querySelector('.dewford-home .services-section-three .auto-container');
+  const row = container?.querySelector(':scope > .row');
+  if (!row || !window.Swiper) return;
+  const cards = [...row.children].filter(card => card.classList.contains('service-block-three'));
+  const mobile = matchMedia('(max-width:767.98px)');
+  let slider;
+  const sync = () => {
+    if (mobile.matches && !slider) {
+      container.classList.add('dewford-journey-slider');
+      row.classList.add('swiper-wrapper');
+      cards.forEach(card => card.classList.add('swiper-slide'));
+      slider = new Swiper(container, {
+        slidesPerView: 1.08, spaceBetween: 16,
+        speed: matchMedia('(prefers-reduced-motion:reduce)').matches ? 0 : 400,
+        watchOverflow: true, grabCursor: true,
+        keyboard: {enabled: true, onlyInViewport: true}
+      });
+    } else if (!mobile.matches && slider) {
+      slider.destroy(true, true);
+      slider = null;
+      container.classList.remove('dewford-journey-slider');
+      row.classList.remove('swiper-wrapper');
+      cards.forEach(card => card.classList.remove('swiper-slide'));
+    }
+  };
+  mobile.addEventListener('change', sync);
+  sync();
+})();

@@ -113,3 +113,77 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-t
  .dewford-footer .dewford-footer-menu-grid {grid-template-columns:1fr;gap:32px;margin-top:24px;}
  .dewford-footer .dewford-footer-menu-grid > .footer-column {margin-bottom:0;}
 }
+
+.dewford-footer .dewford-footer-mobile-link {display:none;}
+@media(max-width:767.98px){
+ .dewford-footer .dewford-footer-menu-grid .user-links,
+ .dewford-footer .dewford-footer-desktop-label {display:none;}
+ .dewford-footer .dewford-footer-mobile-link {display:block;color:inherit;}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-column .widget-title,
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-column .widget-title :is(a,span,strong) {font-weight:400!important;}
+ .dewford-footer .dewford-footer-menu-grid .widget-title {margin-bottom:0;}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-column .about-widget .footer-title {font-size:24px!important;}
+}
+@media(max-width:767.98px){
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-menu-grid .footer-column .widget-title,
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-menu-grid .footer-column .widget-title .dewford-footer-mobile-link {font-weight:400!important;}
+}
+
+@media(max-width:767.98px){
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-menu-grid .footer-column .widget-title .dewford-footer-desktop-label {font-weight:400!important;font-size:16px!important;}
+.dewford-footer .dewford-footer-menu-grid {gap:.875em;margin-top:0;margin-bottom:24px;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-contact-row .info .dewford-footer-contact-value {display:flex;align-items:flex-start;gap:8px;margin:0;color:#fff;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-contact-row .info .dewford-footer-contact-value,
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-contact-row .info .dewford-footer-contact-value span {font-size:16px!important;font-weight:400!important;}
+.dewford-footer .dewford-footer-contact-value + .dewford-footer-contact-value {margin-top:16px!important;}
+.dewford-footer .dewford-footer-contact-value svg {margin-top:2px;flex-shrink:0;}
+.dewford-footer .dewford-footer-contact-value span {min-width:0;overflow-wrap:anywhere;}
+
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-column .about-widget .footer-title,
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-column .about-widget .footer-title :is(span,strong) {font-size:24px!important;font-weight:700!important;}
+
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text,
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text .dewford-korean-text {font-size:14px!important;}
+
+}
+
+@media(max-width:767.98px){
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-menu-grid .footer-column .widget-title .dewford-footer-mobile-link {font-size:16px!important;font-weight:400!important;}
+ .dewford-footer .dewford-contact-desktop-label {display:none;}
+}
+@media(min-width:768px){
+ .dewford-footer .dewford-footer-contact-value {display:grid!important;grid-template-columns:18px minmax(0,1fr);gap:8px;color:#fff;}
+ .dewford-footer .dewford-contact-desktop-label {grid-column:2;color:var(--sub-color);font-weight:500;}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-contact-value > .dewford-contact-value-text,
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-contact-value > .dewford-contact-value-text span {grid-column:2;font-size:16px!important;font-weight:400!important;}
+ .dewford-footer .dewford-footer-contact-value + .dewford-footer-contact-value {margin-top:20px;}
+}
+@media(max-width:767.98px){
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .dewford-footer-menu-grid .widget-title :is(.dewford-footer-mobile-link,.dewford-footer-desktop-label) {font-size:16px!important;font-weight:400!important;}
+}
+@media(min-width:768px){
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .dewford-footer-menu-grid .widget-title .dewford-footer-desktop-label {font-size:24px!important;font-weight:600!important;}
+}
+
+.dewford-footer .dewford-footer-intro-break {display:none;}
+@media(min-width:1200px){
+ .dewford-footer.footer-style-home-two .upper-box {display:grid;grid-template-columns:calc(41.666667% + 7.5px) minmax(0,1fr) 200px;gap:0;}
+ .dewford-footer.footer-style-home-two .upper-box .footer-logo {position:relative;width:100%;padding:0;border:0;}
+ .dewford-footer.footer-style-home-two .upper-box .footer-logo .dewford-logo {width:260px;}
+ .dewford-footer.footer-style-home-two .upper-box .footer-logo::after {content:"";position:absolute;left:calc(50% + 130px);top:50%;transform:translateY(-50%);height:52px;width:1px;background:rgb(255 255 255 / 18%);}
+ .dewford-footer.footer-style-home-two .upper-box > .text {max-width:none;padding-right:16px;}
+ .dewford-footer .dewford-footer-intro-break {display:block;}
+ .dewford-footer .dewford-footer-intro-space {display:none;}
+}
+
+@media(max-width:767.98px){
+ .dewford-footer .dewford-footer-intro-break {display:block;}
+ .dewford-footer .dewford-footer-intro-space {display:none;}
+}
+
+@media(max-width:767.98px){
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-column .about-widget .footer-title,
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-column .about-widget .footer-title :is(span,strong) {font-size:28px!important;}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text,
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text .dewford-korean-text {font-size:16px!important;}
+}

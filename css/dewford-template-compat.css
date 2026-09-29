@@ -480,3 +480,10 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 @media(max-width:991.98px){
  #main-content .features-section-three .inner-container .bg-image {display:none;}
 }
+
+@media(max-width:767.98px){
+ #main-content .services-section-three .dewford-journey-slider {overflow:hidden;}
+ #main-content .services-section-three .dewford-journey-slider > .row {flex-wrap:nowrap;margin:0;}
+ #main-content .services-section-three .dewford-journey-slider .service-block-three {flex-shrink:0;padding:0;height:auto;margin-bottom:0;}
+ #main-content .services-section-three .dewford-journey-slider .service-block-three .inner-box {height:100%;}
+}
