@@ -1,0 +1,101 @@
+/* Neutral surfaces; the original ID and sub colors remain interaction accents. */
+:root {
+  --dewford-ink:#292929;
+  --dewford-muted:#606060;
+  --dewford-paper:#f5f5f5;
+  --dewford-line:#dedede;
+  --dewford-charcoal:#2a2a2a;
+  --dewford-panel:#393939;
+  --theme-color-dark:var(--dewford-charcoal);
+  --theme-color-black:var(--dewford-ink);
+  --theme-black:var(--dewford-ink);
+  --theme-color-black-rgb:41,41,41;
+  --headings-color:var(--dewford-ink);
+  --text-color:var(--dewford-muted);
+  --text-color-rgb:96,96,96;
+  --theme-light-background:var(--dewford-paper);
+}
+body:is(.dewford-home,.dewford-subpage) {background:var(--dewford-paper);color:var(--dewford-muted);}
+.dewford-header,.dewford-drawer,.dewford-drawer::backdrop {background:var(--dewford-charcoal);}
+.dewford-navigation .sub-menu {color:var(--dewford-ink);}
+.dewford-header .dewford-header-talk {background:var(--dewford-panel);}
+.dewford-header-talk > span {color:var(--dewford-ink);}
+.dewford-hero,#home .dewford-hero-slideshow,.dewford-page-title {background:var(--dewford-charcoal);}
+#home .dewford-hero-slideshow::after {background:linear-gradient(180deg,rgb(21 21 21 / 55%),rgb(21 21 21 / 35%) 40%,rgb(21 21 21 / 72%));}
+.dewford-page-title::before {background:#212121;}
+.dewford-floating-links a {background:#f5f5f5;color:var(--dewford-ink);border-left-color:var(--id-color);box-shadow:0 3px 18px rgb(0 0 0 / 8%);}
+.dewford-scroll-top {background:var(--dewford-charcoal);}
+.dewford-home :is(.banner-section-one,.about-section,.dewford-events) {background:var(--dewford-paper);}
+.dewford-home .services-section-three,
+.dewford-home .services-section-three .outer-box,
+.dewford-home .services-section-seven.pt-0,
+.dewford-home .dewford-inquiry {background:var(--dewford-charcoal);}
+.dewford-home .services-section .service-block .inner-box,
+.dewford-home .services-section-three .service-block-three .inner-box,
+.dewford-home .services-section-seven .service-block-seven .inner-box,
+.dewford-home .dewford-events .service-block-two .inner-box {background:var(--dewford-panel);}
+.dewford-home .services-section-three .service-block-three .inner-box::before,
+.dewford-home .dewford-events .outer-box,
+.dewford-home .dewford-events .dewford-event-photo {background:var(--dewford-charcoal);}
+.dewford-home .services-section-seven .service-nav-tab .nav-link:is(.active,:hover) {background:var(--id-color);border-color:var(--id-color);}
+.dewford-home .services-section-seven .service-nav-tab .nav-link {border-color:#777777;}
+.dewford-home .banner-section-one .btn-box .text,
+.dewford-home .about-section .image-column .text {border-color:var(--dewford-line);}
+.dewford-events .overlay-content {background:var(--dewford-paper);}
+.dewford-events .overlay-content,.dewford-events .overlay-content .text,
+.dewford-consultation-form,.dewford-form-grid :is(input,select,textarea),
+.dewford-about-email .info a,
+.dewford-home .dewford-visit :is(h2,.dewford-visit-description,.dewford-contact-address,.dewford-contact-link,.dewford-visit-contact-value) {color:var(--dewford-ink);}
+.dewford-form-grid :is(input,select,textarea),.dewford-board-card {border-color:var(--dewford-line);}
+.dewford-visit,.dewford-visit .overlay-content {background:var(--dewford-paper);}
+.dewford-footer.footer-style-home-two {background:#242424;}
+.dewford-footer .dewford-social-kakao svg text,
+.dewford-footer .dewford-social-youtube .dewford-youtube-play {fill:#242424;}
+.dewford-footer .footer-column .widget-title,
+.dewford-footer.footer-style-home-two .info-box .text {color:#c5c5c5;}
+.dewford-contact-template {
+  --theme-color3:#e5e5e5;--theme-color-dark:var(--dewford-charcoal);
+  --theme-color-black:var(--dewford-ink);--headings-color:var(--dewford-ink);
+  --text-color:var(--dewford-muted);--theme-light-background:var(--dewford-paper);
+  --theme-light-background-text-color:var(--dewford-ink);
+  --notech-black:var(--dewford-ink);--notech-base:var(--dewford-muted);
+}
+.dewford-contact-template .form-control {color:var(--dewford-ink);}
+.dewford-news {--theme-color1:#f2f2f2;--theme-color2:#d9d9d9;--theme-color3:#e5e5e5;--theme-light-background:var(--dewford-paper);}
+html body .dewford-calendar,
+html body .dewford-calendar :is(h2,h3),
+html body .dewford-calendar-toolbar,
+.dewford-subpage .dewford-events-intro p {color:var(--dewford-ink);}
+html body .dewford-calendar-weekdays,
+html body .dewford-calendar button.dewford-calendar-day {border-color:var(--dewford-line);}
+/* Keep the learning tabs, using light panels and a fine accent for selection. */
+.dewford-home .services-section-seven.pt-0 {background:#f5f5f5;}
+.dewford-home .services-section-seven .sec-title-style-three :is(.title,.text) {color:var(--dewford-ink);}
+.dewford-home .services-section-seven .sec-title-style-three .sub-title {color:var(--dewford-muted);}
+.dewford-home .services-section-seven .service-nav-tab .nav-link {background:transparent;color:var(--dewford-muted);border-color:#d5d5d5;}
+.dewford-home .services-section-seven .service-nav-tab .nav-link:is(.active,:hover) {background:#ebebeb;color:var(--id-color);border-color:var(--id-color);}
+.dewford-home .services-section-seven .service-block-seven .inner-box {background:#eaeaea;}
+.dewford-home .services-section-seven .service-block-seven .inner-box :is(.text,.number) {color:var(--dewford-ink);}
+.dewford-home .services-section-seven .service-block-seven .inner-box :is(.theme-btn,.theme-btn .icon) {color:var(--id-color);}
+.dewford-home .services-section-seven .service-block-seven .icon-box {color:var(--id-color);}
+.dewford-home .services-section-seven .service-block-seven .content-box .text {border-bottom-color:#cecece;}
+/* Match the inherited compound selector so light-panel text stays readable. */
+.dewford-home .services-section-seven .service-block-seven .inner-box .content-box .text {color:var(--dewford-ink);}
+.dewford-home .services-section-seven .service-block-seven .inner-box .theme-btn {background:transparent;color:var(--id-color);border:1px solid #bcbcbc;}
+/* Keep floating navigation outside the reading column at laptop widths. */
+@media(min-width:768px) and (max-width:1599px){
+ .dewford-floating-links {width:150px;right:16px;top:auto;bottom:148px;transform:none;}
+ .dewford-floating-links a {min-height:40px;padding:10px 12px;font-size:var(--dewford-small-text,14px);}
+ .dewford-floating-links ul {gap:4px;}
+}
+
+/* Preserve the source About layout while replacing the video with a still. */
+.dewford-home .about-section .video-box .dewford-about-photo {padding:0;height:auto;overflow:hidden;background:var(--dewford-paper);}
+.dewford-home .dewford-about-photo img {display:block;width:100%;height:auto;aspect-ratio:1280 / 674;object-fit:cover;}
+
+/* Neutral surfaces with the original ID purple reserved for accents. */
+:root {--dewford-purple:#52196d;--id-color:#52196d;--dewford-purple-dark:#262626;--dewford-orange:#b8b8b8;--theme-color1-rgb:82,25,109;--theme-color2-rgb:184,184,184;}
+.dewford-kakao-floating > img,.dewford-footer-channel > img {filter:grayscale(1);}
+/* Neutralize the remaining template surfaces used by contact and news pages. */
+.dewford-subpage .dewford-contact-template .form-control {background-color:#f5f5f5;border-color:#dedede;}
+.dewford-subpage .dewford-news .news-block-four .inner-block {border-color:#e4e4e4;}

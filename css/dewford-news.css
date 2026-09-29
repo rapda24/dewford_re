@@ -1,0 +1,30 @@
+/* Original news template palette and layout, isolated from home brand overrides. */
+.dewford-news {
+ --theme-color1:#f1f1f1;--theme-color2:#d8d8d8;--theme-color3:#e4e4e4;
+ --theme-color1-rgb:241,241,241;--theme-color2-rgb:216,216,216;--theme-color3-rgb:228,228,228;
+ --theme-color-dark:#111111;--theme-color-black:#000000;--theme-black:#000000;
+ --theme-color-black-rgb:0,0,0;--theme-color-white:#ffffff;
+ --headings-color:#111111;--text-color:#525252;--text-color-rgb:82,82,82;
+ --theme-light-background:#f6f6f6;--theme-light-background-text-color:#111111;
+ color:var(--text-color);
+}
+.dewford-news,.dewford-news *,.dewford-news *::before,.dewford-news *::after {border-radius:0!important;}
+/* Source thumbnails share a 437 × 335 frame. */
+.dewford-news .news-block-four .inner-block .image-box .inner-box .image {aspect-ratio:437 / 335;}
+.dewford-news .news-block-four .inner-block .image-box .inner-box .image img {height:100%;object-fit:cover;}
+.dewford-news .news-block-four .title {word-break:keep-all;overflow-wrap:anywhere;}
+.dewford-news .blog-details__text-2 {white-space:pre-line;}
+.dewford-news .sidebar__post-image img {object-fit:cover;}
+.dewford-neighbor-label {display:block;font-size:var(--dewford-small-text,14px);}
+/* Rotate the arrow glyph only, keeping its square button background upright. */
+.dewford-news .read-more .icon {transform:none;flex-shrink:0;}
+.dewford-news .read-more .icon::before {display:inline-block;transform:rotate(-45deg);}
+.dewford-subpage .dewford-news .theme-btn.btn-style-two {background:transparent;color:var(--headings-color);border-color:var(--theme-color2);}
+.dewford-subpage .dewford-news .theme-btn.btn-style-two::before {background:var(--theme-color2)!important;}
+.dewford-subpage .dewford-news .theme-btn.btn-style-two:is(:hover,:focus-visible) {background:var(--theme-color2)!important;border-color:var(--theme-color2)!important;color:var(--theme-color-black)!important;}
+.dewford-subpage .dewford-news .theme-btn.btn-style-two:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:var(--theme-color-black)!important;}
+
+.dewford-news .sidebar__search-form button[type=submit] {color:var(--headings-color);}
+/* Event summaries keep the original card geometry with bounded copy. */
+.dewford-news .news-block-four .inner-block .content-box .inner-box .title a {display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.dewford-news .news-block-four .inner-block .content-box .inner-box .text {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}

@@ -9,13 +9,107 @@
   <link href="css/dewford-brand.css" rel="stylesheet">
   <link href="images/common/symbol_2.png" rel="icon" type="image/png">
 <link href="css/dewford-navigation.css" rel="stylesheet">
+<link href="css/dewford-contact.css" rel="stylesheet">
 <link href="css/dewford-mobile.css" rel="stylesheet">
+<link href="css/dewford-page-title.css" rel="stylesheet">
+<link href="css/dewford-gray.css" rel="stylesheet">
 </head>
 <body class="dewford-subpage">
   <div class="page-wrapper">
     <div data-dewford-component="header"></div>
     <main id="main-content" class="dewford-subpage-content" aria-label="Contact">
-      <!-- 추후 기존 템플릿의 본문 레이아웃을 이곳에 추가합니다. -->
+      <section class="contact-details dewford-contact-template">
+    <div class="container pt-110 pb-70">
+      <div class="row">
+        <div class="col-xl-7 col-lg-6">
+          <div class="sec-title">
+            <h2>입학·교육 상담 신청</h2>
+          </div>
+          <!-- Contact Form -->
+          <form id="dewford-inquiry-form" method="post">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <input name="name" autocomplete="name" maxlength="80" required aria-label="학부모 성함" class="form-control" type="text" placeholder="학부모 성함 *">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <input name="email" autocomplete="email" maxlength="254" aria-label="이메일" class="form-control required email" type="email" placeholder="이메일">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <select name="program" class="form-control" required aria-label="관심 과정"><option value="">관심 과정 *</option><option>국제 유치부</option><option>유치 방과후</option><option>초등 방과후</option><option>기타 상담</option></select>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <input name="phone" autocomplete="tel" maxlength="30" required aria-label="연락처" class="form-control" type="tel" placeholder="연락처 *">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <textarea name="message" maxlength="3000" aria-label="상담 내용" class="form-control required" rows="7" placeholder="아이의 연령과 궁금하신 내용을 남겨주세요."></textarea>
+            </div>
+            <label class="dewford-contact-consent"><input name="consent" type="checkbox" required><span>상담 답변을 위한 성함, 연락처, 이메일 및 상담 내용의 수집·이용에 동의합니다. 입력 내용은 상담 목적으로 저장되며 ADMIN@DEWFORD.COM으로 삭제를 요청할 수 있습니다.</span></label>
+<div class="mb-5">
+              <input name="website" class="form-control" type="hidden" value="" />
+              <button type="submit" class="theme-btn btn-style-one" data-loading-text="Please wait..."><span class="btn-title">상담 신청하기</span></button>
+              <button type="reset" class="theme-btn btn-style-one"><span class="btn-title">초기화</span></button>
+            </div>
+          <p role="status" aria-live="polite"></p></form>
+          <!-- Contact Form Validation-->
+        </div>
+        <div class="col-xl-5 col-lg-6">
+          <div class="contact-details__right">
+            <div class="sec-title">
+              <h2>용산 이태원에서<br>만나는 DEWFORD</h2>
+              <div class="text">아이의 영어 경험과 현재 학습 수준을 바탕으로 적합한 과정을 상담합니다. 프로그램과 입학에 대해 편하게 문의해 주세요.</div>
+            </div>
+            <ul class="list-unstyled contact-details__info">
+              <li>
+                <div class="icon">
+                  <span class="fa-classic fa-light fa-phone-plus"></span>
+                </div>
+                <div class="text">
+                  <h6 class="mb-1">PHONE</h6>
+                  <a href="tel:0264011012">02-6401-1012</a>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <span class="fal fa-envelope"></span>
+                </div>
+                <div class="text">
+                  <h6 class="mb-1">EMAIL</h6>
+                  <a href="mailto:ADMIN@DEWFORD.COM">ADMIN@DEWFORD.COM</a>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <span class="fal fa-location-arrow"></span>
+                </div>
+                <div class="text">
+                  <h6 class="mb-1">ADDRESS</h6>
+                  <span>(04392) 서울시 용산구 장문로27<br>청화아파트 상가 1층 #101호</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--Contact Details End-->
+
+  <!-- Map Section-->
+  <section class="map-section">
+    <div class="map w-100 dewford-contact-map"><div id="daumRoughmapContainer1789966626792" class="root_daum_roughmap root_daum_roughmap_landing"></div></div>
+  </section>
+
     </main>
     <div data-dewford-component="footer"></div>
     <div data-dewford-component="floating"></div>
@@ -23,7 +117,11 @@
   <script src="js/dewford-config.js"></script>
 <script src="js/dewford-api.js"></script>
 <script src="js/dewford-common.js"></script>
+<script src="js/dewford-page-title.js"></script>
 <script src="js/dewford-typography.js"></script>
   <script src="js/dewford-ui.js"></script>
+<script src="js/dewford-consultation.js"></script>
+<script charset="UTF-8" src="https://t1.kakaocdn.net/kakaomapweb/roughmap/loader/prod/roughmapLoader.js"></script>
+<script src="js/dewford-map.js"></script>
 </body>
 </html>

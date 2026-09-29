@@ -54,11 +54,29 @@
     if (!posts.length) { showStatus('새로운 소식을 준비하고 있습니다.'); return; }
     list.replaceChildren();
     for (const post of posts) {
+      if (home && list.dataset.eventLayout === 'journal') {
+        const card = element('article', 'dr-news-card');
+        const href = 'detail.html?id=' + encodeURIComponent(post.id);
+        const photo = element('a', 'dr-news-photo'); photo.href = href;
+        photo.setAttribute('aria-label', post.title);
+        const url = imageURL(post.image);
+        if (url) {
+          const image = element('img'); image.src = url; image.alt = ''; image.loading = 'lazy'; image.decoding = 'async'; photo.append(image);
+        } else photo.append(element('span', 'dr-news-placeholder', 'DEWFORD'));
+        const content = element('div', 'dr-news-copy');
+        content.append(element(post.date ? 'time' : 'span', 'dr-news-meta', post.date || post.category || 'DEWFORD'));
+        const title = element('h3'); const link = element('a', '', post.title); link.href = href; title.append(link);
+        content.append(title, element('p', '', post.excerpt || ''));
+        const more = element('a', 'dr-link', '자세히 보기'); more.href = href;
+        const arrow = element('i', '', '↗'); arrow.setAttribute('aria-hidden', 'true'); more.append(arrow); content.append(more);
+        card.append(photo, content); list.append(card);
+        continue;
+      }
       const card = element('article', home ? 'service-block-two' : 'dewford-board-card');
       const inner = element('div', home ? 'inner-box' : '');
       const url = imageURL(post.image);
       if (url) { const image = element('img', home ? 'dewford-event-photo' : ''); image.src = url; image.alt = post.title; image.loading = 'lazy'; inner.append(image); }
-      const href = 'event.html?id=' + encodeURIComponent(post.id);
+      const href = 'detail.html?id=' + encodeURIComponent(post.id);
       const heading = () => { const h = element(home ? 'h4' : 'h2', 'title'); const a = element('a', '', post.title); a.href = href; h.append(a); return h; };
       const content = element('div', home ? 'content' : '');
       content.append(element(post.date ? 'time' : 'span', 'dewford-event-category', post.date || post.category || ''), heading()); inner.append(content);
@@ -75,7 +93,7 @@
         const slide = element('div', 'swiper-slide'); slide.append(card); list.append(slide);
       } else list.append(card);
     }
-    if (home && window.Swiper) {
+    if (home && window.Swiper && list.dataset.eventLayout !== 'journal') {
       new Swiper('.service-two-slider', {
         speed: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1500,
         loop: posts.length > 4, slidesPerView: 1, spaceBetween: 0,
