@@ -353,3 +353,18 @@
 .dewford-renewal .dr-journey-copy :is(.dr-section-number,.dr-link i) {color:#fff;background:var(--id-color);border-color:#ffffff66;}
 .dewford-renewal .dr-journey-copy .dr-link:hover i {background:#351044;}
 .dewford-renewal .dr-learning-list {overflow-anchor:none;}
+
+/* Secondary color marks editorial details; all button surfaces stay in the ID palette. */
+.dewford-renewal .dr-program-copy::before,
+.dewford-renewal .dr-news-meta::before,
+.dewford-home #location .dr-visit-card::before {background:var(--sub-color);}
+/* Hover responds through color and a restrained shadow, without moving the target. */
+.dewford-renewal .dr-link i {transition:background-color .22s ease,border-color .22s ease,color .22s ease;}
+.dewford-renewal .dr-link:hover i {transform:none;}
+.dewford-renewal :is(.dr-program-photo,.dr-news-photo) img,
+.dewford-renewal :is(.dr-program-photo,.dr-news-photo):hover img {transform:none;transition:none;}
+.dewford-renewal :is(.dr-program-card,.dr-news-card):is(:hover,:focus-within) {border-color:#52196d55;box-shadow:0 8px 22px #29212f0b;}
+.dewford-renewal .dr-link {transition:color .22s ease,border-color .22s ease,background-color .22s ease;}
+.dewford-renewal .dr-link:hover {border-color:var(--id-color);}
+.dewford-renewal .dewford-submit {transition:background-color .22s ease,color .22s ease;}
+.dewford-renewal .dewford-submit:not(:disabled):is(:hover,:focus-visible) {background:#351044;color:#fff;}

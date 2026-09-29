@@ -173,7 +173,7 @@ var THEMEMASCOT = {};
 		if (tagetedElementContainer?.length) {
 			tagetedElementContainer.forEach(e => {
 				var t = new SplitType(e, {
-					types: "chars",
+					types: "words, chars",
 				});
 				gsap.from(t.chars, {
 					scrollTrigger: {
@@ -385,8 +385,8 @@ var THEMEMASCOT = {};
 				pauseOnMouseEnter: false,
 			},
 			navigation: {
-				nextEl: ".array-prev",
-				prevEl: ".array-next",
+				nextEl: ".banner-section-three .array-next",
+				prevEl: ".banner-section-three .array-prev",
 			},
 		});
 	}
@@ -428,7 +428,7 @@ var THEMEMASCOT = {};
 	if ($('.service-four-slider').length) {
 		var swiper = new Swiper(".service-four-slider", {
 			speed:1500,
-			loop: true,
+			loop: document.querySelector(".service-four-slider").dataset.loop !== "false",
 			slidesPerView: 1,
 			spaceBetween: 0,
 			breakpoints: {
@@ -567,7 +567,7 @@ var THEMEMASCOT = {};
 	}
 
 	// Background image area start here ***
-	$("[data-background").each(function() {
+	$("[data-background]").each(function() {
 	  $(this).css(
 	    "background-image",
 	    "url( " + $(this).attr("data-background") + "  )"

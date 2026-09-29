@@ -1,0 +1,162 @@
+/* Isolate imported template sections from Dewford shared typography. */
+#main-content.dewford-template-content {
+  --theme-color1: #F1F2EB;
+  --theme-color2: #D7D9CF;
+  --theme-color3: #E3E5DD;
+  --theme-color1-rgb: 241, 242, 235;
+  --theme-color2-rgb: 215, 217, 207;
+  --theme-color3-rgb: 227, 229, 221;
+  --theme-color1-text-color: #fff;
+  --theme-color2-text-color: #fff;
+  --theme-color3-text-color: #fff;
+  --body-bg: #fff;
+  --theme-color-white: #ffffff;
+  --theme-color-white-rgb: 255, 255, 255;
+  --theme-color-light: #f2f8f9;
+  --theme-color-gray: #f6f6f6;
+  --theme-color-silver: #eee;
+  --theme-color-black: #000000;
+  --theme-color-black-rgb: 0, 0, 0;
+  --theme-color-dark: #111111;
+  --gradient-1: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgb(217, 244, 95) 100%);
+  --text-color: #525252;
+  --text-color-rgb: 82, 82, 82;
+  --headings-color: #111111;
+  --link-color: var(--theme-color1);
+  --link-hover-color: var(--theme-color1);
+  --review-color: #FF901B;
+  --body-font-family: "GT Walsheim Pro", sans-serif;
+  --heading-font-family: "GT Walsheim Pro", sans-serif;
+  --style-font-family: "Kdam Thmor Pro", sans-serif;
+  --body-font-size: 16px;
+  --body-line-height: 1.75;
+  --body-font-weight: 400;
+  --line-height-heading-h1: 1.2625em;
+  --line-height-heading-h2: 1.2em;
+  --line-height-heading-h3: 1.2778em;
+  --line-height-heading: 1.384615em;
+  --line-height-heading-small: 1.4em;
+  --h1-font-size: 60px;
+  --h2-font-size: 40px;
+  --h3-font-size: 32px;
+  --h4-font-size: 24px;
+  --h5-font-size: 20px;
+  --h6-font-size: 16px;
+  --h1-font-weight: 600;
+  --h2-font-weight: 600;
+  --h3-font-weight: 500;
+  --h4-font-weight: 500;
+  --h5-font-weight: 500;
+  --h6-font-weight: 500;
+  --sec-title-subtitle-color: var(--headings-color);
+  --sec-title-subtitle-font-size: 16px;
+  --sec-title-subtitle-font-family: var(--heading-font-family);
+  --sec-title-subtitle-font-weight: 700;
+  --sec-title-subtitle-line-height: 23px;
+  --sec-title-color: var(--headings-color);
+  --sec-title-font-size: 50px;
+  --sec-title-font-family: var(--heading-font-family);
+  --sec-title-font-weight: 600;
+  --sec-title-title-line-height: var(--line-height-heading-h2);
+  --theme-light-background: #f8f6f1;
+  --theme-light-background-text-color: var(--headings-color);
+  --theme-black: #000000;
+  --container-width: 1384px;
+  --small-container-width: 1000px;
+  --large-container-width: 1790px;
+  --container-pt: 0px;
+  --container-pb: 0px;
+
+ font-family:var(--body-font-family);font-size:var(--body-font-size);font-weight:var(--body-font-weight);line-height:var(--body-line-height);letter-spacing:normal;color:var(--text-color);
+}
+
+#main-content.dewford-template-content :is(h1,h2,h3,h4,h5,h6,p,a,li,button,label,.text,.title,.sub-title,.btn-title) {letter-spacing:normal!important;}
+#main-content.dewford-template-content :is(p,.text,.list-info li) {font-weight:400!important;line-height:1.75!important;}
+#main-content.dewford-template-content :is(h1,h2,h3,h4,h5,h6,.title) {font-family:var(--heading-font-family);}
+#main-content.dewford-template-content h1 {font-weight:var(--h1-font-weight)!important;line-height:var(--line-height-heading-h1)!important;}
+#main-content.dewford-template-content h2 {font-weight:var(--h2-font-weight)!important;line-height:var(--line-height-heading-h2)!important;}
+#main-content.dewford-template-content h3 {font-weight:var(--h3-font-weight)!important;line-height:var(--line-height-heading-h3)!important;}
+#main-content.dewford-template-content :is(h4,h5,h6) {font-weight:500!important;line-height:var(--line-height-heading)!important;}
+#main-content.dewford-template-content :is(a,button,.btn-title) {line-height:inherit!important;}
+#main-content.dewford-template-content .banner-section-three .title {font-weight:500!important;line-height:83px!important;}
+#main-content.dewford-template-content .banner-section-three .bottom-box .text {color:#fff;}
+#main-content.dewford-template-content .banner-section-three .bg-image img {object-fit:cover;}
+#main-content.dewford-template-content .sec-title .sub-title {line-height:var(--sec-title-subtitle-line-height)!important;}
+#main-content.dewford-template-content .theme-btn .fa-arrow-right {transform:none;}
+#main-content.dewford-template-content .about-section .image-column .text {border-bottom-color:var(--theme-color2);}
+#main-content.dewford-template-content .service-section-four {overflow:hidden;}
+@media(max-width:575.98px){
+ #main-content.dewford-template-content .banner-section-three .title {line-height:1.24!important;font-size:clamp(36px,9.4vw,55px);}
+}
+#main-content.dewford-template-content .sec-title-style-three h2 {font-size:40px!important;font-weight:500!important;letter-spacing:-1px!important;}
+#main-content.dewford-template-content .sec-title-style-three .text {line-height:1.5!important;font-weight:300!important;}
+#main-content.dewford-template-content .banner-count-box .inner-box .text {line-height:1.4!important;}
+@media(max-width:1199.98px){#main-content.dewford-template-content .features-section-two .sec-title-style-three h2 {font-size:38px!important;}}
+@media(max-width:991.98px){#main-content.dewford-template-content .sec-title-style-three h2 {font-size:32px!important;}}
+/* Shared chrome uses the brand ID; the imported sections retain their own tokens. */
+:root {--dewford-purple:#52196d;--id-color:#52196d;}
+.dewford-home .dewford-header {background-color:var(--id-color);}
+.dewford-home .dewford-header:not(.is-scrolled) {background-color:transparent;}
+.dewford-home .dewford-header.is-scrolled,
+.dewford-home .dewford-drawer,
+.dewford-home .dewford-drawer::backdrop {background-color:var(--id-color);}
+.dewford-home .dewford-footer.footer-style-home-two {background-color:#351b43;}
+#main-content.dewford-template-content .text-reveal-anim .word {display:inline-block;white-space:nowrap;margin:0;padding:0;overflow:visible;line-height:inherit;vertical-align:baseline;}
+/* Neutral buttons, with ID purple reserved for hover and keyboard focus. */
+.dewford-home .dewford-floating-links a {background:#f2f2f2;color:#292929;border-left-color:#b7b7b7;}
+.dewford-home .dewford-floating-links a > svg,
+.dewford-home .dewford-floating-links a:hover > svg {transform:rotate(-45deg);}
+.dewford-home .dewford-scroll-top {background:#343434;color:#fff;}
+.dewford-home .dewford-scroll-top .pxl-scroll-progress-circle path {stroke:#b7b7b7;}
+.dewford-home .dewford-kakao-floating {background:#e6e6e6;}
+.dewford-home .dewford-kakao-floating > img {filter:grayscale(1);}
+.dewford-home :is(.dewford-floating-links a,.dewford-scroll-top,.dewford-kakao-floating) {transition:background-color .22s,color .22s,border-color .22s;}
+.dewford-home :is(.dewford-floating-links a,.dewford-scroll-top,.dewford-kakao-floating):is(:hover,:focus-visible) {background:var(--id-color);color:#fff;border-color:var(--id-color);}
+.dewford-home #main-content :is(.theme-btn,.array-prev,.array-next,.slider-prev,.slider-next) {background:#f2f2f2;color:#292929;border-color:#d6d6d6;}
+.dewford-home #main-content :is(.theme-btn,.array-prev,.array-next,.slider-prev,.slider-next):is(:hover,:focus-visible),
+.dewford-home .dewford-footer .theme-btn:is(:hover,:focus-visible) {background:var(--id-color)!important;color:#fff!important;border-color:var(--id-color)!important;}
+.dewford-home #main-content .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon) {color:#fff!important;}
+.dewford-home .dewford-footer .theme-btn:is(:hover,:focus-visible) {box-shadow:inset 0 0 0 1px #ffffff80;}
+/* Use the template's directional fill for every button, including shared controls. */
+.dewford-home :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,button,.dewford-kakao-floating) {--button-surface:#f2f2f2;}
+.dewford-home :is(.dewford-menu-toggle,.dewford-menu-close,.dewford-dialog-parent,.dewford-submenu-toggle) {--button-surface:transparent;}
+.dewford-home :is(.dewford-scroll-top,.dewford-header-talk) {--button-surface:#343434;}
+.dewford-home .dewford-kakao-floating {--button-surface:#e6e6e6;}
+.dewford-home .dewford-footer .theme-btn {--button-surface:#343434;}
+html body.dewford-home :is(#main-content,.page-wrapper) :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,button,.dewford-kakao-floating) {
+ isolation:isolate;overflow:hidden;background-color:var(--button-surface)!important;
+ transition:color .25s ease,border-color .25s ease;
+}
+/* Preserve fixed/absolute positioning of the floating and menu controls. */
+.dewford-home :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,.array-prev,.array-next,.slider-prev,.slider-next,.dewford-dialog-parent,.dewford-submenu-toggle,.dewford-menu-toggle) {position:relative;}
+html body.dewford-home :is(#main-content,.page-wrapper) :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,button,.dewford-kakao-floating)::before {
+ content:"";display:block!important;position:absolute;inset:0;width:100%;height:100%;
+ background:var(--id-color)!important;border:0;border-radius:inherit;z-index:-1;pointer-events:none;
+ opacity:1;transform:scaleX(0);transform-origin:right center;
+ transition:transform .5s cubic-bezier(.86,0,.07,1);
+}
+html body.dewford-home :is(#main-content,.page-wrapper) :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,button,.dewford-kakao-floating):is(:hover,:focus-visible)::before {
+ transform:scaleX(1);transform-origin:left center;
+}
+html body.dewford-home :is(#main-content,.page-wrapper) :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,button,.dewford-kakao-floating):is(:hover,:focus-visible) {color:#fff!important;}
+@media(prefers-reduced-motion:reduce){
+ html body.dewford-home :is(#main-content,.page-wrapper) :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,button,.dewford-kakao-floating)::before {transition:none;}
+}
+/* Keep the base surface steady while the purple overlay travels across it. */
+html body.dewford-home :is(#main-content,.page-wrapper) :is(.theme-btn,.dewford-floating-links a,.dewford-header-talk,button,.dewford-kakao-floating):is(:hover,:focus-visible) {background-color:var(--button-surface)!important;}
+/* Brand-specific floating controls keep their own colors in every state. */
+.dewford-home .dewford-kakao-floating {--button-surface:#fee500;}
+.dewford-home .dewford-kakao-floating > img {filter:none;}
+.dewford-home .dewford-scroll-top {--button-surface:#000;color:#fff;box-shadow:none;}
+.dewford-home .dewford-scroll-top .pxl-scroll-progress-circle path {stroke:#fff;}
+html body.dewford-home .page-wrapper :is(.dewford-kakao-floating,.dewford-scroll-top)::before {display:none!important;}
+html body.dewford-home .dewford-kakao-floating {--button-surface:#fee500;}
+html body.dewford-home .dewford-scroll-top {--button-surface:#000;}
+html body.dewford-home :is(#main-content,.page-wrapper) :is(a.dewford-kakao-floating,button.dewford-scroll-top)::before {display:none!important;}
+/* Footer admissions CTA: white surface with a yellow directional fill. */
+html body.dewford-home .dewford-footer .theme-btn {--button-surface:#fff;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn,
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible),
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn :is(.btn-title,.icon,.dewford-korean-text),
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#292929!important;border-color:#fff!important;box-shadow:none;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn::before {background:#f5a100!important;}

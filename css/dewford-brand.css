@@ -771,9 +771,9 @@ html.dewford-intro-active .dewford-scroll-top,html.dewford-menu-open :is(.dewfor
 .dewford-scroll-title .dewford-korean-text {vertical-align:baseline;line-height:inherit;}
 @media(max-width:767.98px){.dewford-home #dewford-hero-title {font-size:clamp(30px,6vw,44px)!important;}}
 /* Explicit button contrast overrides inherited card hover colors. */
-:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two)::before {background:var(--sub-color)!important;}
-:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two):is(:hover,:focus-visible) {background:var(--sub-color)!important;color:var(--id-color-dark)!important;border-color:var(--sub-color)!important;}
-:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two):is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:var(--id-color-dark)!important;}
+:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two)::before {background:var(--id-color)!important;}
+:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two):is(:hover,:focus-visible) {background:var(--id-color)!important;color:#fff!important;border-color:var(--id-color)!important;}
+:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two):is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#fff!important;}
 :is(.dewford-home,.dewford-subpage) .theme-btn :is(.btn-title,.icon) {position:relative;z-index:1;}
 :is(.dewford-home,.dewford-subpage) .theme-btn:focus-visible {outline:2px solid var(--id-color)!important;outline-offset:4px;}
 .dewford-home .dewford-events .overlay-content :is(.title a,.dewford-text-link):is(:hover,:focus-visible),
@@ -783,6 +783,7 @@ html.dewford-intro-active .dewford-scroll-top,html.dewford-menu-open :is(.dewfor
 .dewford-home .dewford-inquiry .dewford-contact-link:is(:hover,:focus-visible),
 .dewford-footer.footer-style-home-two :is(.user-links a,.info-box a):is(:hover,:focus-visible) {color:var(--sub-color)!important;}
 .dewford-submit:not(:disabled):is(:hover,:focus-visible) {background:var(--id-color-dark);color:#ffffff;}
+
 
 /* Square content panels and regular controls; circular social/utility buttons retain their styles. */
 :is(.dewford-home,.dewford-subpage) :is(

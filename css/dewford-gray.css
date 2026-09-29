@@ -94,8 +94,46 @@ html body .dewford-calendar button.dewford-calendar-day {border-color:var(--dewf
 .dewford-home .dewford-about-photo img {display:block;width:100%;height:auto;aspect-ratio:1280 / 674;object-fit:cover;}
 
 /* Neutral surfaces with the original ID purple reserved for accents. */
-:root {--dewford-purple:#52196d;--id-color:#52196d;--dewford-purple-dark:#262626;--dewford-orange:#b8b8b8;--theme-color1-rgb:82,25,109;--theme-color2-rgb:184,184,184;}
+:root {--dewford-purple:#52196d;--id-color:#52196d;--dewford-purple-dark:#262626;--dewford-orange:#f5a100;--theme-color1-rgb:82,25,109;--theme-color2-rgb:245,161,0;}
 .dewford-kakao-floating > img,.dewford-footer-channel > img {filter:grayscale(1);}
 /* Neutralize the remaining template surfaces used by contact and news pages. */
 .dewford-subpage .dewford-contact-template .form-control {background-color:#f5f5f5;border-color:#dedede;}
 .dewford-subpage .dewford-news .news-block-four .inner-block {border-color:#e4e4e4;}
+
+/* Shared controls: stable arrows and a single ID-colored hover treatment. */
+:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two)::before {display:none!important;}
+:is(.dewford-home,.dewford-subpage) .theme-btn,
+:is(.dewford-home,.dewford-subpage) .theme-btn .icon {transition:background-color .22s ease,border-color .22s ease,color .22s ease;}
+:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two):is(:hover,:focus-visible) {background:#351044!important;border-color:#351044!important;color:#fff!important;}
+:is(.dewford-home,.dewford-subpage) .theme-btn:is(.btn-style-one,.btn-style-two):is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#fff!important;}
+.dewford-floating-links a:is(:hover,:focus-visible) {background:var(--id-color);color:#fff;}
+.dewford-floating-links a > svg,.dewford-floating-links a:hover > svg {transform:rotate(-45deg);transition:none;}
+.dewford-scroll-top:hover {background:var(--id-color);color:#fff;}
+.dewford-header-talk > span {background:var(--id-color);color:#fff;}
+/* Keep the hero button's lettering and plus icon still on hover. */
+.dewford-hero-cta {transition:background-color .22s ease,color .22s ease;}
+.dewford-hero-cta-icon {background:var(--id-color);color:#fff;transition:background-color .22s ease;}
+.dewford-hero-cta:is(:hover,:focus-visible) {background:#ededed;color:#262626;}
+.dewford-hero-cta:is(:hover,:focus-visible) .dewford-hero-cta-icon {transform:none;background:#351044;}
+.dewford-hero-cta-text::before {display:none;}
+.dewford-hero-cta .dewford-hero-cta-text > span,
+.dewford-hero-cta:is(:hover,:focus-visible) .dewford-hero-cta-text > span {opacity:1;transform:none;transition:none;}
+/* Footer: ID controls and a narrow brand rule, with secondary-color labels. */
+.dewford-footer.footer-style-home-two {border-top:6px solid var(--id-color);}
+.dewford-footer.footer-style-home-two .footer-column .widget-title,
+.dewford-footer.footer-style-home-two .info-box .text,
+.dewford-footer .dewford-footer-info-icon {color:var(--sub-color);}
+.dewford-footer.footer-style-home-two .about-widget .theme-btn {background:var(--id-color);border-color:var(--id-color);color:#fff;}
+.dewford-footer .dewford-footer-social {background:var(--id-color);border-color:var(--id-color);color:#fff;}
+.dewford-footer .dewford-social-kakao svg text,
+.dewford-footer .dewford-social-youtube .dewford-youtube-play {fill:var(--id-color);}
+.dewford-footer .dewford-footer-social:is(:hover,:focus-visible) {background:#351044;border-color:#351044;color:#fff;}
+.dewford-footer .dewford-social-kakao:is(:hover,:focus-visible) svg text,
+.dewford-footer .dewford-social-youtube:is(:hover,:focus-visible) .dewford-youtube-play {fill:#351044;}
+.dewford-footer .user-links a {transition:color .22s ease;}
+.dewford-footer .user-links a::before {background:var(--sub-color);width:100%;opacity:0;transition:opacity .22s ease;}
+.dewford-footer .user-links a:is(:hover,:focus-visible)::before {opacity:1;}
+@media(prefers-reduced-motion:reduce){
+ :is(.dewford-home,.dewford-subpage) :is(.theme-btn,.theme-btn .icon,.dewford-hero-cta,.dewford-hero-cta-icon),
+ .dewford-footer .user-links a,.dewford-footer .user-links a::before {transition:none;}
+}
