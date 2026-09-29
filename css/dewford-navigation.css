@@ -60,3 +60,18 @@
  .dewford-header .dewford-desktop-nav > .dewford-navigation > li > a {display:flex;align-items:center;}
  .dewford-header .dewford-desktop-nav .sub-menu {top:100%;margin-top:0;}
 }
+/* Include submenu padding in its animated height. */
+.dewford-dialog-submenu {box-sizing:border-box;}
+/* Bring the popup photo, navigation and crest closer together. */
+.dewford-dialog-layout {column-gap:100px;}
+.dewford-dialog-story h2 {margin-bottom:48px;}
+.dewford-dialog-crest {margin-bottom:16px;}
+@media(max-width:1199px){
+ .dewford-dialog-layout {gap:32px;}
+ .dewford-dialog-story h2 {margin-bottom:32px;}
+}
+@media(max-width:767px){
+ .dewford-dialog-layout {gap:20px;}
+ .dewford-dialog-story h2 {margin-bottom:20px;}
+ .dewford-dialog-crest {margin-bottom:12px;}
+}

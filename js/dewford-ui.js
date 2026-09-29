@@ -79,6 +79,32 @@
     toggle.setAttribute('aria-expanded', 'true');
     document.documentElement.classList.add('dewford-menu-open');
   });
+  const submenuAnimations = new Map();
+  const slideSubmenu = (submenu, open) => {
+    const running = submenuAnimations.get(submenu);
+    if (!running && submenu.hidden === !open) return;
+    const from = submenu.hidden ? 0 : submenu.getBoundingClientRect().height;
+    running?.cancel();
+    submenuAnimations.delete(submenu);
+    submenu.hidden = false;
+    submenu.inert = !open;
+    const padding = getComputedStyle(submenu).paddingBottom;
+    const height = submenu.scrollHeight;
+    const finish = () => {
+      submenu.hidden = !open;
+      submenu.style.removeProperty('overflow');
+      submenuAnimations.delete(submenu);
+      alignDialogBaseline();
+    };
+    if (!submenu.animate || matchMedia('(prefers-reduced-motion: reduce)').matches) { finish(); return; }
+    submenu.style.overflow = 'hidden';
+    const animation = submenu.animate([
+      {height: `${from}px`, paddingBottom: from ? padding : '0px', opacity: from ? 1 : 0},
+      {height: `${open ? height : 0}px`, paddingBottom: open ? padding : '0px', opacity: open ? 1 : 0}
+    ], {duration: 350, easing: 'cubic-bezier(.22,.8,.25,1)'});
+    submenuAnimations.set(submenu, animation);
+    animation.onfinish = finish;
+  };
   drawer.querySelectorAll('.dewford-submenu-toggle').forEach(button => {
     const parent = button.closest('.dewford-dialog-row').querySelector('.dewford-dialog-parent');
     const toggleSubmenu = () => {
@@ -87,12 +113,12 @@
         if (other === button) return;
         other.setAttribute('aria-expanded', 'false');
         other.closest('.dewford-dialog-row').querySelector('.dewford-dialog-parent')?.setAttribute('aria-expanded', 'false');
-        document.getElementById(other.getAttribute('aria-controls')).hidden = true;
+        slideSubmenu(document.getElementById(other.getAttribute('aria-controls')), false);
         other.querySelector('span').textContent = '+';
       });
       button.setAttribute('aria-expanded', String(!expanded));
       parent?.setAttribute('aria-expanded', String(!expanded));
-      document.getElementById(button.getAttribute('aria-controls')).hidden = expanded;
+      slideSubmenu(document.getElementById(button.getAttribute('aria-controls')), !expanded);
       button.querySelector('span').textContent = expanded ? '+' : '−';
     };
     button.addEventListener('click', toggleSubmenu);

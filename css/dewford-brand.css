@@ -808,3 +808,8 @@ html.dewford-intro-active .dewford-scroll-top,html.dewford-menu-open :is(.dewfor
 @media(max-width:767.98px){
  :root {--dewford-small-text:clamp(14px,3.6vw,16px);}
 }
+/* Site-wide body weight; title weights remain independently defined. */
+:root {--body-font-weight:500;--dewford-weight-body:500;--dewford-weight-medium:500;}
+body {font-weight:500;}
+html body :is(p,.text,.footer-text,.copyright,li,label,input,textarea,select,button,a,.btn-title,.sub-title,.dewford-korean-text) {font-weight:500!important;}
+html body :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title) :is(a,span,strong,.dewford-korean-text) {font-weight:inherit!important;}

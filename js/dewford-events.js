@@ -54,6 +54,34 @@
     if (!posts.length) { showStatus('새로운 소식을 준비하고 있습니다.'); return; }
     list.replaceChildren();
     for (const post of posts) {
+      if (home && list.dataset.eventLayout === 'service-four') {
+        const slide = element('div', 'swiper-slide');
+        const card = element('article', 'service-block-four');
+        const inner = element('div', 'inner-box');
+        const href = 'detail.html?id=' + encodeURIComponent(post.id);
+        const heading = () => {
+          const title = element('h4', 'title');
+          const link = element('a', '', post.title); link.href = href; title.append(link); return title;
+        };
+        const excerpt = post.excerpt || '아이들의 배움과 성장이 담긴 이야기를 만나보세요.';
+        const content = element('div', 'content');
+        content.append(heading(), element('div', 'text', excerpt));
+        const overlay = element('div', 'overlay-content');
+        overlay.append(heading(), element('div', 'text', excerpt));
+        const meta = element('ul', 'list-info');
+        for (const value of [post.category, post.date].filter(Boolean)) {
+          const item = element('li');
+          const icon = element('i', 'fa-light fa-calendar'); icon.setAttribute('aria-hidden', 'true');
+          item.append(icon, document.createTextNode(' ' + value)); meta.append(item);
+        }
+        overlay.append(meta);
+        const box = element('div', 'btn-box');
+        const more = element('a', 'theme-btn btn-style-two'); more.href = href;
+        const arrow = element('i', 'icon fa-light fa-arrow-right'); arrow.setAttribute('aria-hidden', 'true');
+        more.append(element('span', 'btn-title', '이벤트 자세히 보기'), arrow); box.append(more); overlay.append(box);
+        inner.append(content, overlay); card.append(inner); slide.append(card); list.append(slide);
+        continue;
+      }
       if (home && list.dataset.eventLayout === 'journal') {
         const card = element('article', 'dr-news-card');
         const href = 'detail.html?id=' + encodeURIComponent(post.id);
@@ -92,6 +120,24 @@
       if (home) {
         const slide = element('div', 'swiper-slide'); slide.append(card); list.append(slide);
       } else list.append(card);
+    }
+    if (home && list.dataset.eventLayout === 'service-four') {
+      const slider = list.parentElement;
+      slider.swiper?.destroy(true, true);
+      const section = list.closest('.service-section-four');
+      new Swiper(slider, {
+        speed: matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1000,
+        slidesPerView: 1, spaceBetween: 0, rewind: true, watchOverflow: true,
+        autoplay: matchMedia('(prefers-reduced-motion: reduce)').matches ? false : {
+          delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true
+        },
+        breakpoints: {768:{slidesPerView:2},1400:{slidesPerView:3},1599:{slidesPerView:4}},
+        navigation: {
+          prevEl: section.querySelector('.slider-prev'),
+          nextEl: section.querySelector('.slider-next')
+        }
+      });
+      return;
     }
     if (home && window.Swiper && list.dataset.eventLayout !== 'journal') {
       new Swiper('.service-two-slider', {

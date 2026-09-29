@@ -25,8 +25,8 @@
   --link-color: var(--theme-color1);
   --link-hover-color: var(--theme-color1);
   --review-color: #FF901B;
-  --body-font-family: "GT Walsheim Pro", sans-serif;
-  --heading-font-family: "GT Walsheim Pro", sans-serif;
+  --body-font-family: "Pretendard Korean", "GT Walsheim Pro", sans-serif;
+  --heading-font-family: "Pretendard Korean", "GT Walsheim Pro", sans-serif;
   --style-font-family: "Kdam Thmor Pro", sans-serif;
   --body-font-size: 16px;
   --body-line-height: 1.75;
@@ -103,7 +103,7 @@
 .dewford-home .dewford-footer.footer-style-home-two {background-color:#351b43;}
 #main-content.dewford-template-content .text-reveal-anim .word {display:inline-block;white-space:nowrap;margin:0;padding:0;overflow:visible;line-height:inherit;vertical-align:baseline;}
 /* Neutral buttons, with ID purple reserved for hover and keyboard focus. */
-.dewford-home .dewford-floating-links a {background:#f2f2f2;color:#292929;border-left-color:#b7b7b7;}
+.dewford-home .dewford-floating-links a {background:#f2f2f2;color:#292929;border-left-color:var(--id-color);}
 .dewford-home .dewford-floating-links a > svg,
 .dewford-home .dewford-floating-links a:hover > svg {transform:rotate(-45deg);}
 .dewford-home .dewford-scroll-top {background:#343434;color:#fff;}
@@ -160,3 +160,203 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-b
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn :is(.btn-title,.icon,.dewford-korean-text),
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#292929!important;border-color:#fff!important;box-shadow:none;}
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn::before {background:#f5a100!important;}
+/* Header controls retain their original styling, outside the shared fill effect. */
+html body.dewford-home .dewford-header .dewford-header-talk {--button-surface:var(--id-color);}
+html body.dewford-home .dewford-header .dewford-menu-toggle {--button-surface:transparent;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header :is(.dewford-header-talk,.dewford-menu-toggle)::before {display:none!important;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header :is(.dewford-header-talk,.dewford-menu-toggle) {overflow:visible;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header .dewford-header-talk:hover {color:var(--dewford-orange)!important;}
+/* Separate the main banner CTA from its supporting copy. */
+#main-content.dewford-template-content .banner-section-three .content-box .theme-btn.btn-style-two {margin-top:28px;}
+@media(max-width:767.98px){
+ #main-content.dewford-template-content .banner-section-three .content-box .theme-btn.btn-style-two {margin-top:clamp(20px,5vw,28px);}
+}
+/* One shared counter stays outside Swiper's moving/fading slides. */
+#main-content .banner-section-three .banner-count-anchor {position:absolute;inset:auto 0 0;z-index:2;pointer-events:none;}
+#main-content .banner-section-three .banner-count-anchor .inner-box {pointer-events:auto;}
+#main-content .banner-section-three .banner-count-caption {margin:14px 0 0;font-size:14px;color:#606060;}
+#main-content .banner-section-three .content-box > .title {min-height:166px;}
+#main-content .banner-section-three .bottom-box .text {font-family:'Pretendard Korean',sans-serif;word-break:keep-all;line-height:1.75!important;}
+#main-content .banner-section-three .bg-image::before {background:rgba(0,0,0,.5);}
+@media(max-width:767.98px){
+ #main-content .banner-section-three .outer-box {padding-bottom:36vh;}
+ #main-content .banner-section-three .content-box > .title {min-height:0;}
+ #main-content .banner-section-three .bottom-box .text {font-size:clamp(16px,4.1vw,18px);}
+ #main-content .banner-section-three .bottom-box .text br {display:none;}
+ #main-content .banner-section-three .banner-count-anchor .inner-box {right:4vw;padding:3vh 5vw;max-width:70vw;}
+}
+/* New image and value icons retain the original Why section composition. */
+#main-content .why-choose-us-four .inner-container .image img {object-fit:cover;object-position:35% top;}
+#main-content .why-choose-us-four .dewford-value-icon {display:flex;align-items:center;justify-content:center;padding:0;color:#000;line-height:1;}
+#main-content .why-choose-us-four .dewford-value-icon svg {display:block;}
+#main-content .why-choose-us-four .feature-block .text {word-break:keep-all;}
+/* Use the Korean-only Pretendard face without changing Latin or icon glyphs. */
+.dewford-home .dewford-korean-text {font-family:'Pretendard Korean','GT Walsheim Pro',sans-serif!important;}
+
+/* Equal-height curriculum cards finish on the same baseline as the photo. */
+#main-content .why-choose-us-four .feature-block {display:flex;margin-bottom:0;}
+#main-content .why-choose-us-four .feature-block .inner-block {width:100%;height:100%;}
+#main-content .why-choose-us-four .inner-container > .image {margin-bottom:0;}
+/* Consistent title and body weights across the home page. */
+body.dewford-home {--body-font-weight:500;--dewford-weight-body:500;--dewford-weight-medium:500;--h1-font-weight:700;--h2-font-weight:700;--h3-font-weight:700;--h4-font-weight:700;--h5-font-weight:700;--h6-font-weight:700;font-weight:500;}
+#main-content.dewford-template-content {--body-font-weight:500;--h1-font-weight:700;--h2-font-weight:700;--h3-font-weight:700;--h4-font-weight:700;--h5-font-weight:700;--h6-font-weight:700;font-weight:500;}
+html body.dewford-home :is(#main-content,.page-wrapper) :is(p,.text,li,a,button,label,input,select,textarea,.btn-title,.sub-title) {font-weight:500!important;}
+html body.dewford-home :is(#main-content,.page-wrapper) :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title),
+html body.dewford-home :is(#main-content,.page-wrapper) :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title) :is(a,span,strong,.char,.word) {font-weight:700!important;}
+/* Eyebrow labels use the body weight even when marked up as a small heading. */
+html body.dewford-home :is(#main-content,.page-wrapper) .sub-title {font-weight:500!important;}
+html body.dewford-home #main-content.dewford-template-content :is(p,.text,li,a,button,label,input,select,textarea,.btn-title) {font-weight:500!important;}
+html body.dewford-home #main-content.dewford-template-content :is(h1,h2,h3,h4,h5,h6,.title),
+html body.dewford-home #main-content.dewford-template-content :is(h1,h2,h3,h4,h5,h6,.title) :is(a,span,strong,.char,.word) {font-weight:700!important;}
+html body.dewford-home #main-content.dewford-template-content .sub-title {font-weight:500!important;}
+/* Curriculum icon hover follows the ID palette. */
+#main-content .why-choose-us-four .dewford-value-icon {transition:background-color .25s ease,color .25s ease;}
+#main-content .why-choose-us-four .feature-block .inner-block:hover .dewford-value-icon,
+#main-content .why-choose-us-four .feature-block .inner-block:focus-within .dewford-value-icon {background-color:var(--id-color);color:#fff;}
+/* Education statement replaces the template's unsupported experience statistic. */
+#main-content .service-section-home-3 {background-position:center;}
+#main-content .service-section-home-3 .dewford-education-symbol {display:block;width:96px;height:96px;object-fit:contain;filter:brightness(0);}
+#main-content .service-section-home-3 .overlay-content .title {margin-bottom:28px;text-transform:none;}
+#main-content .service-section-home-3 .overlay-content .info-box {margin-bottom:0;}
+#main-content .service-section-home-3 .overlay-content .info-box .text {margin-top:0;font-size:16px;line-height:1.75!important;text-transform:none;word-break:keep-all;}
+@media(max-width:767.98px){
+ #main-content .service-section-home-3 .overlay-content .info-box .text {font-size:clamp(16px,4.1vw,18px);}
+}
+#main-content #events .outer-box {background-position:center;background-size:cover;}
+#main-content #events .service-block-four :is(.title,.text) {word-break:keep-all;}
+#main-content #events .list-info li {display:flex;align-items:center;gap:10px;}
+#main-content #events .dewford-events-status {padding:40px;color:#fff;}
+#main-content #events .service-block-four .inner-box:focus-within .overlay-content {opacity:1;visibility:visible;transform:none;}
+/* Footer text links use the sub color; the yellow CTA keeps dark text. */
+.dewford-home .dewford-footer {--sub-color:#f5a100;}
+html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visible),
+html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visible) :is(span,.text,.dewford-korean-text) {color:var(--sub-color)!important;}
+/* Fixed, centered learning-journey photo replaces the inline template image. */
+#main-content .services-section-three .dewford-journey-background {
+ background-image:url('../images/main/main_13.jpg');
+ background-position:center center;background-size:cover;
+ background-repeat:no-repeat;background-attachment:fixed;
+}
+#main-content .services-section-three .dewford-journey-background::before {background:rgba(0,0,0,.25);}
+@media(max-width:1199.98px){
+ #main-content .services-section-three .dewford-journey-background {display:block;background-size:contain;background-color:#211b17;}
+}
+/* Match index-2: the photo sits behind the lower half of the content cards. */
+#main-content .services-section-three {padding-bottom:0;}
+#main-content .services-section-three .dewford-journey-background {height:414px;bottom:0;}
+#main-content .services-section-three .outer-box {padding-bottom:130px;}
+@media(max-width:991.98px){
+ #main-content .services-section-three .outer-box {padding-bottom:51px;}
+ #main-content .services-section-three .dewford-journey-background {height:50%;background-size:cover;}
+}
+/* Keep the learning icons outlined in both normal and hover states. */
+#main-content .services-section-three .service-block-three .icon-box svg,
+#main-content .services-section-three .service-block-three .icon-box svg path {fill:none;stroke:currentColor;}
+#main-content .services-section-three .service-block-three .icon-box .icon {transition:color .25s ease;}
+#main-content .services-section-three .service-block-three .inner-box:hover .icon-box {background-color:var(--theme-color1);}
+#main-content .services-section-three .service-block-three .inner-box:hover .icon-box .icon {color:var(--id-color);transform:none;}
+/* Match the template service icon rotation while keeping the icon box centered. */
+#main-content .why-choose-us-four .dewford-value-icon svg {transform:scale(1) rotate(0deg);transform-origin:center;transition:transform .3s ease;}
+#main-content .why-choose-us-four .inner-block:hover .dewford-value-icon svg,
+#main-content .why-choose-us-four .inner-block:focus-within .dewford-value-icon svg {transform:scale(-1) rotate(180deg);}
+@media(prefers-reduced-motion:reduce){
+ #main-content .why-choose-us-four .dewford-value-icon svg {transition:none;}
+}
+/* Learning journey icons share the curriculum's rotation and ID hover colors. */
+#main-content .services-section-three .service-block-three .icon-box {transition:background-color .25s ease,color .25s ease;}
+#main-content .services-section-three .service-block-three .icon-box .icon {transform:scale(1) rotate(0deg);transform-origin:center;transition:transform .3s ease,color .25s ease;}
+#main-content .services-section-three .service-block-three .inner-box:is(:hover,:focus-within) .icon-box {background-color:#fff;color:var(--id-color);}
+#main-content .services-section-three .service-block-three .inner-box:is(:hover,:focus-within) .icon-box .icon {color:var(--id-color);transform:scale(-1) rotate(180deg);}
+@media(prefers-reduced-motion:reduce){
+ #main-content .services-section-three .service-block-three .icon-box .icon {transition:none;}
+}
+/* Replace only the About image slot and video visual. */
+#main-content .about-section .dewford-about-still img {display:block;width:100%;height:100%;object-fit:cover;}
+#main-content .about-section .dewford-about-form-panel {width:100%;aspect-ratio:auto;height:auto;margin-bottom:44px;padding:clamp(20px,2.3vw,36px);background:#f3f3f3;overflow:visible;}
+#main-content .about-section .dewford-about-form h3 {font-size:24px;margin:0 0 24px;}
+#main-content .about-section .dewford-about-fields {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+#main-content .about-section .dewford-about-fields label {display:block;font-size:14px;line-height:1.5!important;}
+#main-content .about-section .dewford-about-fields :is(input,select,textarea) {display:block;width:100%;min-width:0;margin-top:6px;padding:10px 12px;background:#fff;border:1px solid #d3d3d3;color:#292929;font-family:'Pretendard Korean',sans-serif;font-size:16px;line-height:1.5;}
+#main-content .about-section .form-wide {grid-column:1/-1;}
+#main-content .about-section .dewford-about-fields textarea {resize:vertical;min-height:92px;}
+#main-content .about-section .form-consent {display:flex;align-items:flex-start;gap:9px;margin:18px 0;font-size:14px;line-height:1.55!important;}
+#main-content .about-section .form-consent input {flex:0 0 16px;width:16px;height:16px;margin-top:3px;accent-color:var(--id-color);}
+#main-content .about-section .dewford-about-form .theme-btn {width:100%;}
+#main-content .about-section .dewford-form-status {font-size:14px;margin:12px 0 0;}
+@media(max-width:767.98px){
+ #main-content .about-section .dewford-about-form-panel {aspect-ratio:auto;padding:6vw;max-height:none;}
+ #main-content .about-section .dewford-about-fields {gap:4vw;}
+}
+/* Card hover must not hide the arrow on the button's neutral surface. */
+html body.dewford-home #main-content .services-section-three .service-block-three .theme-btn:not(:hover):not(:focus-visible),
+html body.dewford-home #main-content .services-section-three .service-block-three .theme-btn:not(:hover):not(:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#292929!important;}
+html body.dewford-home #main-content .services-section-three .service-block-three .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#fff!important;}
+
+/* Let the form size to its content and follow the adjacent desktop column. */
+@media(min-width:992px){
+ #main-content .about-section > .auto-container > .row {align-items:stretch;}
+ #main-content .about-section .image-column {align-self:stretch;}
+ #main-content .about-section .image-column > .inner-column {position:sticky;top:110px;}
+}
+/* Clip horizontal animation overflow without creating a sticky scroll container. */
+.dewford-home > .page-wrapper {overflow:clip;}
+#main-content .about-section .info-block {flex-wrap:wrap;gap:24px;}
+#main-content .about-section .info-block .info-box {margin-right:0;}
+#main-content .about-section .info-block .icon {flex-shrink:0;}
+#main-content .about-section .dewford-about-address .images {display:grid;place-items:center;flex:0 0 60px;background:var(--theme-color-dark);color:#fff;}
+#main-content .about-section .dewford-about-address .info h6 {margin:0 0 5px;color:#525252;}
+#main-content .about-section .dewford-about-address address {font-style:normal;margin:0;font-size:16px;line-height:1.5;}
+#main-content .about-section .dewford-about-address a {color:inherit;}
+#main-content .about-section .sec-title-style-three .text {word-break:keep-all;}
+/* Crossfade the feature photos without jumping back to the second image. */
+#main-content .dewford-feature-crossfade .feature-block-two .inner-box .image {
+ opacity:0;z-index:1;pointer-events:none;
+ transition:opacity .65s cubic-bezier(.22,.61,.36,1);
+}
+#main-content .dewford-feature-crossfade .feature-block-two .inner-box.active .image {opacity:1;}
+#main-content .dewford-feature-crossfade .feature-block-two .inner-box:focus-visible {outline:2px solid var(--id-color);outline-offset:3px;}
+@media(prefers-reduced-motion:reduce){
+ #main-content .dewford-feature-crossfade .feature-block-two .inner-box .image {transition:none;}
+}
+/* Viewport-height hero with copy safely below the fixed header. */
+#main-content .banner-section-three {height:80dvh;}
+#main-content .banner-section-three :is(.banner-active,.swiper-wrapper,.swiper-slide,.swiper-slide > .auto-container,.banner-slider) {height:100%;}
+#main-content .banner-section-three .outer-box {height:100%;padding:clamp(180px,24dvh,260px) 0 0;}
+#main-content .banner-section-three .content-box {transform:none;transition:none;}
+#main-content.dewford-template-content .banner-section-three .content-box > .title {min-height:0;font-size:clamp(42px,4.4vw,68px);line-height:1.16!important;margin-bottom:24px;}
+#main-content .banner-section-three .content-box {max-width:min(774px,65vw);}
+#main-content .banner-section-three .banner-count-anchor .inner-box {padding:24px 30px;}
+@media(max-width:767.98px){
+ #main-content .banner-section-three {height:100dvh;}
+ #main-content .banner-section-three .outer-box {padding: max(130px,19dvh) 0 0;}
+ #main-content .banner-section-three .content-box {max-width:100%;}
+ #main-content.dewford-template-content .banner-section-three .content-box > .title {font-size:clamp(28px,7.5vw,44px);line-height:1.2!important;margin-bottom:3dvh;}
+ #main-content .banner-section-three .banner-count-anchor .inner-box {display:grid;grid-template-columns:auto 1fr;column-gap:5vw;align-items:center;padding:2.5dvh 5vw;max-width:85vw;}
+ #main-content .banner-section-three .banner-count-anchor .count-box {font-size:36px;}
+ #main-content .banner-section-three .banner-count-anchor .text {margin:0;padding:0;border:0;font-size:16px;}
+ #main-content .banner-section-three .banner-count-anchor .text::before {display:none;}
+ #main-content .banner-section-three .banner-count-caption {grid-column:1/-1;margin-top:1dvh;}
+}
+@media(min-width:768px) and (max-height:800px){
+ #main-content .banner-section-three .outer-box {padding-top:180px;}
+ #main-content.dewford-template-content .banner-section-three .content-box > .title {font-size:clamp(36px,3.5vw,52px);margin-bottom:16px;}
+ #main-content.dewford-template-content .banner-section-three .content-box .theme-btn {margin-top:16px;}
+}
+/* Give the shared banner counter more breathing room. */
+#main-content .banner-section-three .banner-count-anchor .inner-box {width:360px;max-width:360px;padding:40px 42px;}
+@media(max-width:991.98px){
+ #main-content .banner-section-three .banner-count-anchor .inner-box {width:300px;max-width:300px;padding:32px;}
+}
+@media(max-width:767.98px){
+ #main-content .banner-section-three .banner-count-anchor .inner-box {width:78vw;max-width:85vw;padding:3.5dvh 7vw;column-gap:7vw;}
+ #main-content .banner-section-three .banner-count-caption {margin-top:2dvh;}
+}
+/* Desktop minimum height; mobile retains its 100dvh hero. */
+@media(min-width:768px){
+ #main-content .banner-section-three {height:max(80dvh,900px);min-height:900px;}
+ #main-content .banner-section-three .outer-box {padding-top:clamp(240px,28dvh,320px);}
+}
+/* The popup uses plain controls, without the shared button fill. */
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer button,
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer button:is(:hover,:focus-visible) {background:transparent!important;box-shadow:none;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer button::before {display:none!important;}
