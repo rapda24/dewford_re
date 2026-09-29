@@ -57,7 +57,7 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-drawer .dewford-dialog-sub
 html body:is(.dewford-home,.dewford-subpage) .dewford-drawer .dewford-dialog-submenu a:is(:hover, :focus-visible) { background-color: rgba(255, 255, 255, 0.16); color: rgb(255, 255, 255) !important; }
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-navigation > li > a:is(:hover, :focus-visible), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a, button):is(:hover, :focus-visible) { color: rgb(245, 161, 0) !important; }
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-navigation > li > a:is(:hover, :focus-visible) *, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a, button):is(:hover, :focus-visible) * { color: inherit !important; }
-@media (max-width: 767.98px) {.dewford-dialog-crest > svg { animation: auto ease 0s 1 normal none running none; }}
+
 .dewford-drawer:focus { outline: none; }
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-header-talk { --button-surface: transparent; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header .dewford-header-talk, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header .dewford-header-talk:is(:hover, :focus-visible) { box-shadow: none; background: transparent !important; }
@@ -189,3 +189,11 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-text .dewfo
 }
 
 .dewford-scroll-top {display:none!important;}
+
+
+.dewford-dialog-story-break {display:none;}
+@media(max-width:767.98px){
+ .dewford-drawer .dewford-dialog-story h2 {font-size:clamp(14px,4.8vw,30px);line-height:1.5;word-break:keep-all;overflow-wrap:normal;}
+ .dewford-dialog-story-break {display:block;}
+ .dewford-dialog-story-space {display:none;}
+}
