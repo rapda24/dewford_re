@@ -1,9 +1,9 @@
 /* Isolate imported template sections from Dewford shared typography. */
 #main-content.dewford-template-content {
-  --theme-color1: #F1F2EB;
+  --theme-color1: #f4f4f4;
   --theme-color2: #D7D9CF;
   --theme-color3: #E3E5DD;
-  --theme-color1-rgb: 241, 242, 235;
+  --theme-color1-rgb: 244, 244, 244;
   --theme-color2-rgb: 215, 217, 207;
   --theme-color3-rgb: 227, 229, 221;
   --theme-color1-text-color: #fff;
@@ -209,10 +209,8 @@ html body.dewford-home #main-content.dewford-template-content :is(p,.text,li,a,b
 html body.dewford-home #main-content.dewford-template-content :is(h1,h2,h3,h4,h5,h6,.title),
 html body.dewford-home #main-content.dewford-template-content :is(h1,h2,h3,h4,h5,h6,.title) :is(a,span,strong,.char,.word) {font-weight:700!important;}
 html body.dewford-home #main-content.dewford-template-content .sub-title {font-weight:500!important;}
-/* Curriculum icon hover follows the ID palette. */
-#main-content .why-choose-us-four .dewford-value-icon {transition:background-color .25s ease,color .25s ease;}
-#main-content .why-choose-us-four .feature-block .inner-block:hover .dewford-value-icon,
-#main-content .why-choose-us-four .feature-block .inner-block:focus-within .dewford-value-icon {background-color:var(--id-color);color:#fff;}
+/* Curriculum icons remain unchanged during hover and keyboard focus. */
+#main-content .why-choose-us-four .feature-block .inner-block .dewford-value-icon {background-color:var(--theme-color1);color:#000;transition:none;}
 /* Education statement replaces the template's unsupported experience statistic. */
 #main-content .service-section-home-3 {background-position:center;}
 #main-content .service-section-home-3 .dewford-education-symbol {display:block;width:96px;height:96px;object-fit:contain;filter:brightness(0);}
@@ -222,7 +220,7 @@ html body.dewford-home #main-content.dewford-template-content .sub-title {font-w
 @media(max-width:767.98px){
  #main-content .service-section-home-3 .overlay-content .info-box .text {font-size:clamp(16px,4.1vw,18px);}
 }
-#main-content #events .outer-box {background-position:center;background-size:cover;}
+#main-content #events .outer-box {background-position:center 0;background-size:cover;}
 #main-content #events .service-block-four :is(.title,.text) {word-break:keep-all;}
 #main-content #events .list-info li {display:flex;align-items:center;gap:10px;}
 #main-content #events .dewford-events-status {padding:40px;color:#fff;}
@@ -252,24 +250,15 @@ html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visibl
 /* Keep the learning icons outlined in both normal and hover states. */
 #main-content .services-section-three .service-block-three .icon-box svg,
 #main-content .services-section-three .service-block-three .icon-box svg path {fill:none;stroke:currentColor;}
-#main-content .services-section-three .service-block-three .icon-box .icon {transition:color .25s ease;}
-#main-content .services-section-three .service-block-three .inner-box:hover .icon-box {background-color:var(--theme-color1);}
-#main-content .services-section-three .service-block-three .inner-box:hover .icon-box .icon {color:var(--id-color);transform:none;}
-/* Match the template service icon rotation while keeping the icon box centered. */
-#main-content .why-choose-us-four .dewford-value-icon svg {transform:scale(1) rotate(0deg);transform-origin:center;transition:transform .3s ease;}
-#main-content .why-choose-us-four .inner-block:hover .dewford-value-icon svg,
-#main-content .why-choose-us-four .inner-block:focus-within .dewford-value-icon svg {transform:scale(-1) rotate(180deg);}
-@media(prefers-reduced-motion:reduce){
- #main-content .why-choose-us-four .dewford-value-icon svg {transition:none;}
-}
-/* Learning journey icons share the curriculum's rotation and ID hover colors. */
-#main-content .services-section-three .service-block-three .icon-box {transition:background-color .25s ease,color .25s ease;}
-#main-content .services-section-three .service-block-three .icon-box .icon {transform:scale(1) rotate(0deg);transform-origin:center;transition:transform .3s ease,color .25s ease;}
-#main-content .services-section-three .service-block-three .inner-box:is(:hover,:focus-within) .icon-box {background-color:#fff;color:var(--id-color);}
-#main-content .services-section-three .service-block-three .inner-box:is(:hover,:focus-within) .icon-box .icon {color:var(--id-color);transform:scale(-1) rotate(180deg);}
-@media(prefers-reduced-motion:reduce){
- #main-content .services-section-three .service-block-three .icon-box .icon {transition:none;}
-}
+#main-content .why-choose-us-four .dewford-value-icon svg {transform:none;transition:none;}
+/* Only the journey buttons react to hover. */
+#main-content .services-section-three .service-block-three .inner-box::before {display:none;}
+#main-content .services-section-three .service-block-three .inner-box .icon-box {background-color:var(--theme-color1);transition:none;}
+#main-content .services-section-three .service-block-three .inner-box .icon-box .icon {transform:none;transition:none;}
+#main-content .services-section-three .service-block-three .inner-box .icon-box svg path {transition:none;}
+#main-content .services-section-three .service-block-three .inner-box .content-box .title {color:var(--headings-color);}
+#main-content .services-section-three .service-block-three .inner-box .content-box .text {color:var(--text-color);border-color:var(--theme-color2);}
+#main-content .services-section-three .service-block-three .inner-box .content-box .text::before {background-color:var(--headings-color);}
 /* Replace only the About image slot and video visual. */
 #main-content .about-section .dewford-about-still img {display:block;width:100%;height:100%;object-fit:cover;}
 #main-content .about-section .dewford-about-form-panel {width:100%;aspect-ratio:auto;height:auto;margin-bottom:44px;padding:clamp(20px,2.3vw,36px);background:#f3f3f3;overflow:visible;}
@@ -319,7 +308,7 @@ html body.dewford-home #main-content .services-section-three .service-block-thre
  #main-content .dewford-feature-crossfade .feature-block-two .inner-box .image {transition:none;}
 }
 /* Viewport-height hero with copy safely below the fixed header. */
-#main-content .banner-section-three {height:80dvh;}
+#main-content .banner-section-three {height:100dvh;min-height:0;}
 #main-content .banner-section-three :is(.banner-active,.swiper-wrapper,.swiper-slide,.swiper-slide > .auto-container,.banner-slider) {height:100%;}
 #main-content .banner-section-three .outer-box {height:100%;padding:clamp(180px,24dvh,260px) 0 0;}
 #main-content .banner-section-three .content-box {transform:none;transition:none;}
@@ -328,7 +317,7 @@ html body.dewford-home #main-content .services-section-three .service-block-thre
 #main-content .banner-section-three .banner-count-anchor .inner-box {padding:24px 30px;}
 @media(max-width:767.98px){
  #main-content .banner-section-three {height:100dvh;}
- #main-content .banner-section-three .outer-box {padding: max(130px,19dvh) 0 0;}
+ #main-content .banner-section-three .outer-box {padding: max(150px,22dvh) 0 0;}
  #main-content .banner-section-three .content-box {max-width:100%;}
  #main-content.dewford-template-content .banner-section-three .content-box > .title {font-size:clamp(28px,7.5vw,44px);line-height:1.2!important;margin-bottom:3dvh;}
  #main-content .banner-section-three .banner-count-anchor .inner-box {display:grid;grid-template-columns:auto 1fr;column-gap:5vw;align-items:center;padding:2.5dvh 5vw;max-width:85vw;}
@@ -351,10 +340,9 @@ html body.dewford-home #main-content .services-section-three .service-block-thre
  #main-content .banner-section-three .banner-count-anchor .inner-box {width:78vw;max-width:85vw;padding:3.5dvh 7vw;column-gap:7vw;}
  #main-content .banner-section-three .banner-count-caption {margin-top:2dvh;}
 }
-/* Desktop minimum height; mobile retains its 100dvh hero. */
+/* Desktop text offset within the full viewport hero. */
 @media(min-width:768px){
- #main-content .banner-section-three {height:max(80dvh,900px);min-height:900px;}
- #main-content .banner-section-three .outer-box {padding-top:clamp(240px,28dvh,320px);}
+ #main-content .banner-section-three .outer-box {padding-top:clamp(270px,32dvh,360px);}
 }
 /* The popup uses plain controls, without the shared button fill. */
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer button,
@@ -382,8 +370,8 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford
 /* Lightweight mobile backgrounds and motion. Desktop retains the fixed effect. */
 @media(max-width:767.98px){
  #main-content .services-section-three .dewford-journey-background {background-image:url('../images/optimized/main_13-768.webp');background-attachment:scroll;}
- #main-content #events .outer-box {background-image:url('../images/optimized/main_03-768.webp')!important;}
- #main-content .service-section-home-3 {background-image:url('../images/optimized/main_24-768.webp')!important;}
+ #main-content #events .outer-box {background-image:url('../images/optimized/main_38-768.webp')!important;}
+
  #main-content .banner-section-three .bg-image {transform:none!important;transition:none;}
  #main-content .reveal {visibility:visible;opacity:1;}
  .dewford-dialog-crest > svg {animation:none;}
@@ -409,4 +397,86 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 @media(max-width:767.98px){
  #main-content .service-section-home-3 .service-block-home-3 .inner-box {min-height:max(500px,75dvh);}
  #main-content .service-section-home-3 .service-block-home-3 .overlay-content {width:max-content;max-width:82vw;padding:6vw;}
+}
+
+/* Hide the main banner slide navigation. */
+#main-content .banner-section-three .arrow-box {display:none;}
+
+/* Original index-2 service layout, with four static columns instead of Swiper. */
+#main-content #events .outer-box {background-position:center 0;}
+#main-content #events .outer-box::before {background:rgba(0,0,0,.28);}
+#main-content #events .dewford-experience-grid {position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
+#main-content #events .service-block-four {min-width:0;}
+#main-content #events .service-block-four .inner-box:focus-within .content {opacity:0;visibility:hidden;}
+@media(max-width:1199.98px){
+ #main-content #events .dewford-experience-grid {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:575.98px){
+ #main-content #events .dewford-experience-grid {grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce){
+ #main-content #events .service-block-four :is(.content,.overlay-content) {transition:none;}
+}
+
+/* Event board preview follows the index-2 team cards. */
+
+#main-content .dewford-event-preview .name {word-break:keep-all;}
+#main-content .dewford-event-preview .dewford-events-status {color:var(--text-color);padding:24px;}
+
+/* Approach: white surface, aligned introduction and static educational icons. */
+#main-content .features-section-three,
+#main-content .features-section-three .outer-container {background:#fff;}
+#main-content .features-section-three .feature-block-three .inner-block,
+#main-content .features-section-three .feature-block-three .icon-box,
+#main-content .features-section-three .feature-block-three .icon-box .icon {transition:none;transform:none;}
+#main-content .features-section-three .feature-block-three .icon-box {display:flex;align-items:center;justify-content:center;color:#fff;}
+#main-content .features-section-three .feature-block-three .icon-box .icon {display:flex;align-items:center;justify-content:center;}
+@media(min-width:992px){
+ #main-content .features-section-three .sec-title-box {display:grid;grid-template-columns:calc(45% - 102px) minmax(0,1fr);padding:100px 100px 72px;gap:0;}
+ #main-content .features-section-three .sec-title-style-three {padding-right:30px;}
+ #main-content .features-section-three .sec-right-box {max-width:435px;}
+}
+
+/* Keep the original team portrait proportions regardless of uploaded image size. */
+#main-content .dewford-event-slider {overflow:hidden;}
+#main-content .dewford-event-image {display:block;aspect-ratio:29 / 32;background-size:cover;background-position:center;transition:transform .4s ease;}
+#main-content .team-block-two .inner-block:hover .dewford-event-image {transform:scale(1.1);}
+#main-content .dewford-event-preview .name {min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+#main-content .dewford-event-pagination {position:relative;text-align:center;padding-bottom:20px;}
+#main-content .dewford-event-pagination .swiper-pagination-bullet {margin:0 5px;}
+#main-content .dewford-event-pagination .swiper-pagination-bullet-active {background:var(--id-color);}
+@media(min-width:992px){
+ #main-content .dewford-event-preview .sec-title-box {display:grid;grid-template-columns:var(--intro-start,45%) minmax(0,1fr);gap:0;}
+ #main-content .dewford-event-preview .sec-title-style-three {padding-right:30px;}
+}
+@media(prefers-reduced-motion:reduce){#main-content .dewford-event-image {transition:none;}}
+
+#main-content .dewford-event-pagination {display:none;}
+
+#main-content .dewford-event-preview .sec-right-box .theme-btn {--button-surface:#fff;}
+
+/* Mirror only the location photo, leaving the contact panel readable. */
+#main-content .service-section-home-3 {isolation:isolate;background-image:none;}
+#main-content .service-section-home-3::before {content:"";position:absolute;inset:0;z-index:-1;background:url('../images/optimized/main_19-uniform-1600.webp') center / cover no-repeat;transform:scaleX(-1);}
+#main-content .service-section-home-3 .dewford-location-label {display:block;font-size:14px;letter-spacing:.1em;margin-top:18px;margin-bottom:4px;}
+#main-content .service-section-home-3 .dewford-location-label:first-child {margin-top:0;}
+#main-content .service-section-home-3 .info-box a {color:inherit;}
+@media(max-width:767.98px){#main-content .service-section-home-3::before {background-image:url('../images/optimized/main_19-uniform-768.webp');}}
+
+#main-content .service-section-home-3 .info-box .dewford-location-row {display:flex;align-items:flex-start;gap:12px;margin-top:16px;}
+#main-content .service-section-home-3 .info-box .dewford-location-row:first-child {margin-top:0;}
+#main-content .service-section-home-3 .dewford-location-row svg {flex:0 0 20px;margin-top:2px;}
+#main-content .service-section-home-3 .dewford-location-row > span {min-width:0;overflow-wrap:anywhere;}
+
+#main-content .features-section-three .feature-block-three .inner-block {background-color:var(--theme-color1);}
+
+/* Original main_06 photo: reserve the left side for the overlapping cards. */
+#main-content .features-section-three .inner-container .bg-image {background:#d1ceca;display:flex;justify-content:flex-end;align-items:center;}
+#main-content .features-section-three .inner-container .bg-image img {width:100%;height:100%;object-fit:cover;object-position:center;}
+#main-content .features-section-three .inner-container .bg-image::before {display:none;}
+@media(min-width:992px) and (max-width:1399.98px){
+ #main-content .features-section-three .feature-block-three {width:25%;}
+}
+@media(max-width:991.98px){
+ #main-content .features-section-three .inner-container .bg-image {display:none;}
 }

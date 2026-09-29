@@ -584,9 +584,9 @@ var THEMEMASCOT = {};
 	});
 
 	// Background image hover change area start here ***
-	$(".service-block-four").hover(function() {
+	$(".service-block-four[data-bg]").hover(function() {
 	  let newBackground = $(this).data("bg");
-	  $(".service-section-four .outer-box")
+	  $(this).closest(".service-section-four").find(".outer-box")
 	    .attr("data-background", newBackground)
 	    .css("background-image", "url(" + newBackground + ")");
 	});

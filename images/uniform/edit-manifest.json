@@ -1,0 +1,24 @@
+{
+  "mode": "built-in image_gen",
+  "prompt": "Use case: identity-preserve. Edit target image 1 only. Change every child's top to a matching deep purple (#52196D) crew-neck sweatshirt or short-sleeved T-shirt, realistic school uniforms. Input 2 is the actual school emblem: use its design in yellow (#f5a100) as a SMALL embroidered emblem only on each child's anatomical LEFT chest (viewer right for a front-facing child), ONLY if that chest area is clearly visible and placement natural. Omit the emblem completely if obscured, foreshortened, cropped, back-facing or awkward; never put it on the right chest, sleeve, back or center. Preserve every child's identity, face, hair, skin, age, pose, hands, body proportions, trousers, shoes, backpacks, background, lighting, framing and aspect ratio. Keep adult clothes unchanged. No other changes. Return a single edited photograph, not a collage.",
+  "assets": {
+    "19": "/Users/yeonsoojung/.codex/generated_images/01a0ea8c-9f0a-7171-a433-3fb23f6e5a7e/exec-2a477978-b811-4d08-a23f-6053f44f6b3b.png",
+    "37": "/Users/yeonsoojung/.codex/generated_images/01a0ea8c-9f0a-7171-a433-3fb23f6e5a7e/exec-12bd9a11-6d4a-46b0-9b45-584660c6db7c.png",
+    "43": "/Users/yeonsoojung/.codex/generated_images/01a0ea8c-9f0a-7171-a433-3fb23f6e5a7e/exec-90647c0a-b5ed-4dc1-8420-859ffed5903d.png",
+    "08": "/Users/yeonsoojung/.codex/generated_images/01a0ea8c-9f0a-7171-a433-3fb23f6e5a7e/exec-22f57765-34ce-4249-aa48-3286fef5eeb6.png"
+  },
+  "notes": [
+    "main_37 replaces duplicate main_28 in features-section-three",
+    "main_19 back-facing children: omit all emblems; existing CSS mirror retained",
+    "main_37 and main_43: removed awkward side/sleeve emblems; retained only clearly visible left-chest emblem",
+    "Event board photos and service-section-four group photo excluded per user correction; no event edits applied",
+    "Existing purple-uniform main_25, main_28 and main_34 retained"
+  ],
+  "replacement26": {
+    "source": "/Users/yeonsoojung/.codex/generated_images/01a0ea8c-9f0a-7171-a433-3fb23f6e5a7e/exec-5a490420-2666-42aa-9268-58ecb5c9ea1f.png",
+    "output": "images/uniform/main_26-uniform.png",
+    "mode": "built-in image_gen",
+    "prompt": "Clothing-only edit. Purple crewneck sweatshirts and yellow left-chest symbols. Preserve original people, positions, framing, books and library. No recomposition.",
+    "supersedes": "main_26-uniform-right; no longer used"
+  }
+}

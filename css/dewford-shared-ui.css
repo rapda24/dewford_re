@@ -1,0 +1,115 @@
+/* Shared main/subpage chrome. Scoped away from page-specific content. */
+@scope (:root) to (#main-content) {
+:root { --dewford-purple: #52196d; --id-color: #52196d; }
+:is(.dewford-home,.dewford-subpage) .dewford-header { background-color: var(--id-color); }
+:is(.dewford-home,.dewford-subpage) .dewford-header:not(.is-scrolled) { background-color: transparent; }
+:is(.dewford-home,.dewford-subpage) .dewford-header.is-scrolled, :is(.dewford-home,.dewford-subpage) .dewford-drawer, :is(.dewford-home,.dewford-subpage) .dewford-drawer::backdrop { background-color: var(--id-color); }
+:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two { background-color: rgb(53, 27, 67); }
+:is(.dewford-home,.dewford-subpage) .dewford-floating-links a { background: rgb(242, 242, 242); color: rgb(41, 41, 41); border-left-color: var(--id-color); }
+:is(.dewford-home,.dewford-subpage) .dewford-floating-links a > svg, :is(.dewford-home,.dewford-subpage) .dewford-floating-links a:hover > svg { transform: rotate(-45deg); }
+:is(.dewford-home,.dewford-subpage) .dewford-scroll-top { background: rgb(52, 52, 52); color: rgb(255, 255, 255); }
+:is(.dewford-home,.dewford-subpage) .dewford-scroll-top .pxl-scroll-progress-circle path { stroke: rgb(183, 183, 183); }
+:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating { background: rgb(230, 230, 230); }
+:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating > img { filter: grayscale(1); }
+:is(.dewford-home,.dewford-subpage) :is(.dewford-floating-links a, .dewford-scroll-top, .dewford-kakao-floating) { transition: background-color 0.22s, color 0.22s, border-color 0.22s; }
+:is(.dewford-home,.dewford-subpage) :is(.dewford-floating-links a, .dewford-scroll-top, .dewford-kakao-floating):is(:hover, :focus-visible) { background: var(--id-color); color: rgb(255, 255, 255); border-color: var(--id-color); }
+:is(.dewford-home,.dewford-subpage) #main-content :is(.theme-btn, .array-prev, .array-next, .slider-prev, .slider-next):is(:hover, :focus-visible), :is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn:is(:hover, :focus-visible) { background: var(--id-color) !important; color: rgb(255, 255, 255) !important; border-color: var(--id-color) !important; }
+:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn:is(:hover, :focus-visible) { box-shadow: rgba(255, 255, 255, 0.5) 0px 0px 0px 1px inset; }
+:is(.dewford-home,.dewford-subpage) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, button, .dewford-kakao-floating) { --button-surface: #f2f2f2; }
+:is(.dewford-home,.dewford-subpage) :is(.dewford-menu-toggle, .dewford-menu-close, .dewford-dialog-parent, .dewford-submenu-toggle) { --button-surface: transparent; }
+:is(.dewford-home,.dewford-subpage) :is(.dewford-scroll-top, .dewford-header-talk) { --button-surface: #343434; }
+:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating { --button-surface: #e6e6e6; }
+:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn { --button-surface: #343434; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, button, .dewford-kakao-floating) { isolation: isolate; overflow: hidden; transition: color 0.25s, border-color 0.25s; background-color: var(--button-surface) !important; }
+:is(.dewford-home,.dewford-subpage) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, .array-prev, .array-next, .slider-prev, .slider-next, .dewford-dialog-parent, .dewford-submenu-toggle, .dewford-menu-toggle) { position: relative; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, button, .dewford-kakao-floating)::before { content: ""; position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; border-radius: inherit; z-index: -1; pointer-events: none; opacity: 1; transform: scaleX(0); transform-origin: right center; transition: transform 0.5s cubic-bezier(0.86, 0, 0.07, 1); display: block !important; background: var(--id-color) !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, button, .dewford-kakao-floating):is(:hover, :focus-visible)::before { transform: scaleX(1); transform-origin: left center; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, button, .dewford-kakao-floating):is(:hover, :focus-visible) { color: rgb(255, 255, 255) !important; }
+@media (prefers-reduced-motion: reduce) {html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, button, .dewford-kakao-floating)::before { transition: none; }}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(.theme-btn, .dewford-floating-links a, .dewford-header-talk, button, .dewford-kakao-floating):is(:hover, :focus-visible) { background-color: var(--button-surface) !important; }
+:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating { --button-surface: #fee500; }
+:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating > img { filter: none; }
+:is(.dewford-home,.dewford-subpage) .dewford-scroll-top { --button-surface: #000; color: rgb(255, 255, 255); box-shadow: none; }
+:is(.dewford-home,.dewford-subpage) .dewford-scroll-top .pxl-scroll-progress-circle path { stroke: rgb(255, 255, 255); }
+html body:is(.dewford-home,.dewford-subpage) .page-wrapper :is(.dewford-kakao-floating, .dewford-scroll-top)::before { display: none !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating { --button-surface: #fee500; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top { --button-surface: #000; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(a.dewford-kakao-floating, button.dewford-scroll-top)::before { display: none !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn { --button-surface: #fff; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover, :focus-visible), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn :is(.btn-title, .icon, .dewford-korean-text), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover, :focus-visible) :is(.btn-title, .icon, .dewford-korean-text) { box-shadow: none; color: rgb(41, 41, 41) !important; border-color: rgb(255, 255, 255) !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn::before { background: rgb(245, 161, 0) !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-header-talk { --button-surface: var(--id-color); }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-menu-toggle { --button-surface: transparent; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header :is(.dewford-header-talk, .dewford-menu-toggle)::before { display: none !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header :is(.dewford-header-talk, .dewford-menu-toggle) { overflow: visible; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header .dewford-header-talk:hover { color: var(--dewford-orange) !important; }
+:is(.dewford-home,.dewford-subpage) .dewford-korean-text { font-family: "Pretendard Korean", "GT Walsheim Pro", sans-serif !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(p, .text, li, a, button, label, input, select, textarea, .btn-title, .sub-title) { font-weight: 500 !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(h1, h2, h3, h4, h5, h6, .title, .footer-title, .widget-title), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(h1, h2, h3, h4, h5, h6, .title, .footer-title, .widget-title) :is(a, span, strong, .char, .word) { font-weight: 700 !important; }
+:is(.dewford-home,.dewford-subpage) .dewford-footer { --sub-color: #f5a100; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer a:not(.theme-btn):is(:hover, :focus-visible), html body:is(.dewford-home,.dewford-subpage) .dewford-footer a:not(.theme-btn):is(:hover, :focus-visible) :is(span, .text, .dewford-korean-text) { color: var(--sub-color) !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer button, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer button:is(:hover, :focus-visible) { box-shadow: none; background: transparent !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer button::before { display: none !important; }
+:is(.dewford-home,.dewford-subpage) .dewford-header:not(.is-scrolled):is(:hover, :focus-within) { background-color: var(--id-color); }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .sub-menu a:is(:hover, :focus-visible) { background-color: var(--id-color); color: rgb(255, 255, 255) !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .sub-menu a:is(:hover, :focus-visible) * { color: inherit !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-drawer .dewford-dialog-submenu a { transition: background-color 0.2s; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-drawer .dewford-dialog-submenu a:is(:hover, :focus-visible) { background-color: rgba(255, 255, 255, 0.16); color: rgb(255, 255, 255) !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-navigation > li > a:is(:hover, :focus-visible), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a, button):is(:hover, :focus-visible) { color: rgb(245, 161, 0) !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-navigation > li > a:is(:hover, :focus-visible) *, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a, button):is(:hover, :focus-visible) * { color: inherit !important; }
+@media (max-width: 767.98px) {.dewford-dialog-crest > svg { animation: auto ease 0s 1 normal none running none; }}
+.dewford-drawer:focus { outline: none; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-header-talk { --button-surface: transparent; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header .dewford-header-talk, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header .dewford-header-talk:is(:hover, :focus-visible) { box-shadow: none; background: transparent !important; }
+html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-header-talk > span { background: rgb(245, 161, 0); color: rgb(255, 255, 255); }
+}
+/* Normalize legacy subpage overrides to the main page's shared controls. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating {background:#fee500!important;--button-surface:#fee500;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating > img {filter:none;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top {background:#000!important;--button-surface:#000;color:#fff;}
+@media(min-width:768px){
+ html body:is(.dewford-home,.dewford-subpage) .dewford-floating-links {width:220px;right:max(24px,env(safe-area-inset-right));top:50%;bottom:auto;transform:translateY(-50%);}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-floating-links ul {gap:8px;}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-floating-links a {min-height:48px;padding:12px 20px;}
+}
+
+/* Footer uses the same rules on every page, independent of content styles. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-title {font-size:48px!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title),
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title) :is(a,span,strong) {font-weight:700!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn {position:relative;isolation:isolate;overflow:hidden;background:#fff!important;color:#292929!important;border-color:#fff!important;gap:14px;max-width:none;transition:color .25s,border-color .25s;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn :is(.btn-title,.icon,.dewford-korean-text) {color:#292929!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn::before {content:"";position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:inherit;z-index:-1;pointer-events:none;opacity:1;display:block!important;background:#f5a100!important;transform:scaleX(0);transform-origin:right center;transition:transform .5s cubic-bezier(.86,0,.07,1);}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn:is(:hover,:focus-visible)::before {transform:scaleX(1);transform-origin:left center;}
+@media(max-width:767.98px){html body:is(.dewford-home,.dewford-subpage) .dewford-footer .auto-container {padding-left:12px;padding-right:12px;}}
+@media(prefers-reduced-motion:reduce){html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn::before {transition:none;}}
+
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-column .about-widget .footer-title {font-weight:700!important;}
+
+/* Footer social channels retain their own hover palette. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer a.dewford-footer-social:is(:hover,:focus-visible) {color:#fff!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer a.dewford-footer-social.dewford-social-kakao:is(:hover,:focus-visible) {background:#fee500;border-color:#fee500;color:#3c1e1e!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-kakao:is(:hover,:focus-visible) svg text {fill:#fee500;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-instagram:is(:hover,:focus-visible) {background:radial-gradient(circle at 30% 110%,#ffdc80 0%,#fcaf45 20%,#f77737 35%,#e1306c 55%,#c13584 70%,#833ab4 90%);border-color:#c13584;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-facebook:is(:hover,:focus-visible) {background:#1877f2;border-color:#1877f2;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-youtube:is(:hover,:focus-visible) {background:#ff0000;border-color:#ff0000;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-youtube:is(:hover,:focus-visible) .dewford-youtube-play {fill:#1c1c1c;}
+
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-column .widget-title,
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-column .widget-title :is(a,span,strong) {font-weight:600!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .user-links a,
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .user-links a :is(span,strong) {font-weight:400!important;}
+
+/* Consistent footer contact values. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-contact-row .info :is(.title,.dewford-footer-email),
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-contact-row .info :is(.title,.dewford-footer-email) :is(a,span,strong) {font-size:16px!important;font-weight:400!important;}
+
+.dewford-footer .footer-column[aria-label="ABOUT DEWFORD"] .widget-title {white-space:nowrap;}
+
+.dewford-footer .dewford-footer-menu-grid {display:grid;grid-template-columns:max-content max-content max-content;justify-content:space-between;gap:36px;align-content:start;}
+.dewford-footer .dewford-footer-menu-grid > .footer-column {width:auto;margin-left:0;padding-left:0;padding-right:0;}
+.dewford-footer .user-links a[href="international-preschool.html"] {white-space:nowrap;}
+@media(max-width:767.98px){
+ .dewford-footer .dewford-footer-menu-grid {grid-template-columns:1fr;gap:32px;margin-top:24px;}
+ .dewford-footer .dewford-footer-menu-grid > .footer-column {margin-bottom:0;}
+}

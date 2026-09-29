@@ -37,9 +37,10 @@
   const toggle = document.querySelector('.dewford-menu-toggle');
   const scrollTop = document.querySelector('.dewford-scroll-top');
   const progress = scrollTop?.querySelector('.pxl-scroll-progress-circle path');
+  let headerHovered = false;
   const update = () => {
     const position = Math.max(0, window.scrollY);
-    header.classList.toggle('is-scrolled', position > 0);
+    header.classList.toggle('is-scrolled', position > 0 || headerHovered);
     if (scrollTop) {
       scrollTop.hidden = position === 0;
       const distance = document.documentElement.scrollHeight - window.innerHeight;
@@ -49,6 +50,15 @@
   };
   scrollTop?.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  });
+  header.addEventListener('pointerenter', event => {
+    if (event.pointerType !== 'mouse') return;
+    headerHovered = true;
+    update();
+  });
+  header.addEventListener('pointerleave', () => {
+    headerHovered = false;
+    update();
   });
   window.addEventListener('resize', update);
   window.addEventListener('load', update);

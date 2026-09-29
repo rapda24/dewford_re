@@ -13559,7 +13559,7 @@ faq-section-home-two
   transition: all 400ms ease;
 }
 .team-block-two .inner-block .content-box {
-  background-color: var(--theme-color2);
+  background-color: #fff;
   padding: 370px 24px 36px;
   position: relative;
   margin-top: -345px;

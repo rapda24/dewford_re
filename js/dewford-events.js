@@ -53,6 +53,46 @@
     }
     if (!posts.length) { showStatus('새로운 소식을 준비하고 있습니다.'); return; }
     list.replaceChildren();
+    if (home && list.dataset.eventLayout === 'team-two') {
+      for (const post of posts) {
+        const href = 'detail.html?id=' + encodeURIComponent(post.id);
+        const card = element('article', 'team-block-two swiper-slide');
+        const inner = element('div', 'inner-block');
+        const imageBox = element('div', 'image-box');
+        const figure = element('figure', 'image');
+        const imageLink = element('a'); imageLink.href = href;
+        imageLink.className = 'dewford-event-image';
+        imageLink.setAttribute('aria-label', post.title);
+        imageLink.style.backgroundImage = 'url(' + JSON.stringify(imageURL(post.image) || 'images/optimized/main_38-768.webp') + ')';
+        figure.append(imageLink); imageBox.append(figure);
+        const content = element('div', 'content-box');
+        const info = element('div', 'info-box');
+        const title = element('h5', 'name');
+        const link = element('a', '', post.title); link.href = href; title.append(link);
+        info.append(title, element(post.date ? 'time' : 'div', 'designation', post.date || post.category || 'Dewford'));
+        content.append(info); inner.append(imageBox, content); card.append(inner); list.append(card);
+      }
+      const slider = list.parentElement;
+      new Swiper(slider, {
+        slidesPerView: 1, spaceBetween: 30, speed: 600, rewind: true,
+        autoplay: {delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true},
+        watchOverflow: true, grabCursor: true,
+        breakpoints: {768: {slidesPerView: 2}, 992: {slidesPerView: 3}},
+        keyboard: {enabled: true, onlyInViewport: true},
+        pagination: {el: slider.querySelector('.dewford-event-pagination'), clickable: true}
+      });
+      const heading = list.closest('.teams-section-two').querySelector('.sec-title-box');
+      const reference = document.querySelector('.features-section-three .sec-right-box');
+      if (reference) {
+        const alignHeading = () => {
+          heading.style.setProperty('--intro-start', Math.max(0, reference.getBoundingClientRect().left - heading.getBoundingClientRect().left) + 'px');
+        };
+        new ResizeObserver(alignHeading).observe(document.documentElement);
+        window.addEventListener('resize', alignHeading);
+        alignHeading();
+      }
+      return;
+    }
     for (const post of posts) {
       if (home && list.dataset.eventLayout === 'service-four') {
         const slide = element('div', 'swiper-slide');

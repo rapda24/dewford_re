@@ -81,8 +81,8 @@
     </div>
   </div>
 </div>`;
-  if (filename !== 'detail.html') section.after(emblem.content.cloneNode(true));
-  if (introductions[filename]) {
+  if (filename !== 'detail.html' && main.dataset.pageIntro !== 'false') section.after(emblem.content.cloneNode(true));
+  if (introductions[filename] && main.dataset.pageIntro !== 'false') {
     const [heading, text] = introductions[filename];
     const intro = document.createElement('header');
     intro.className = 'dewford-subpage-intro dewford-events-intro';
