@@ -51,7 +51,7 @@
 <div class="dewford-header-actions"><a class="dewford-email" href="mailto:ADMIN@DEWFORD.COM"><svg class="dewford-contact-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span>ADMIN@DEWFORD.COM</span></a><button class="dewford-menu-toggle" type="button" aria-label="전체 메뉴 열기" aria-expanded="false" aria-controls="dewford-drawer"><span class="dewford-menu-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button><a class="dewford-header-talk" href="admissions-inquiry.html"><span aria-hidden="true">+</span>LET’S TALK</a></div>
 </header>
 <dialog id="dewford-drawer" class="dewford-drawer" aria-label="전체 메뉴">
-<button class="dewford-menu-close" type="button" aria-label="전체 메뉴 닫기" autofocus><span>Close</span><span class="dewford-menu-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
+<button class="dewford-menu-close" type="button" aria-label="전체 메뉴 닫기"><span>Close</span><span class="dewford-menu-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span></button>
 <div class="dewford-dialog-layout">
   <div class="dewford-dialog-story"><h2>영어로 생각하고 표현하는 아이로.<br>Dewford에서 배움의 가능성을 넓혀갑니다.</h2><img class="dewford-dialog-photo" src="images/common/menu-learning.webp" width="1920" height="1183" alt="함께 책을 읽는 아버지와 아이"></div>
   <div class="dewford-dialog-navigation">

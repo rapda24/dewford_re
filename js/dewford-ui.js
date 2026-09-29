@@ -74,7 +74,9 @@
   }
   window.addEventListener('resize', alignDialogBaseline);
   toggle.addEventListener('click', () => {
+    drawer.tabIndex = -1;
     drawer.showModal();
+    drawer.focus({ preventScroll: true });
     alignDialogBaseline();
     toggle.setAttribute('aria-expanded', 'true');
     document.documentElement.classList.add('dewford-menu-open');

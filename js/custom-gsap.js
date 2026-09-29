@@ -1,3 +1,4 @@
+if (!(document.body.classList.contains('dewford-home') && matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches)) {
 
 var device_width = window.screen.width;
 
@@ -507,3 +508,4 @@ gsap.utils.toArray(".tm-gsap-img-parallax").forEach(function(container) {
         ease: "none",
     });
 });
+}

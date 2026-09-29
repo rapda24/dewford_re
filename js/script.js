@@ -168,6 +168,7 @@ var THEMEMASCOT = {};
 
 	// Text Invert
 	function initTextReveal() {
+        if (document.body.classList.contains('dewford-home') && matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches) return;
 		const tagetedElementContainer =
 			document.querySelectorAll(".text-reveal-anim");
 		if (tagetedElementContainer?.length) {
@@ -818,7 +819,7 @@ var THEMEMASCOT = {};
 
 
 	//Image Reveal Animation
-	if($('.reveal').length){
+	if($('.reveal').length && !(document.body.classList.contains('dewford-home') && matchMedia('(max-width: 767px), (prefers-reduced-motion: reduce)').matches)){
 		gsap.registerPlugin(ScrollTrigger);
 		let revealContainers = document.querySelectorAll(".reveal");
 		revealContainers.forEach((container) => {

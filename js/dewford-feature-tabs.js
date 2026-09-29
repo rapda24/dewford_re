@@ -10,10 +10,10 @@
       card.classList.toggle('active', card === selected);
       card.tabIndex = 0;
       const image = card.querySelector('.image img');
-      if (image) { image.loading = 'eager'; image.decode?.().catch(() => {}); }
+      if (image) { image.loading = 'lazy'; }
       const activate = async () => {
         const current = ++request;
-        if (image?.decode) { try { await image.decode(); } catch { return; } }
+        if (image && matchMedia('(min-width: 768px)').matches && image.decode) { try { await image.decode(); } catch { return; } }
         if (current !== request || selected === card) return;
         selected.classList.remove('active');
         card.classList.add('active');

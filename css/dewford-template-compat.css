@@ -233,7 +233,7 @@ html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visibl
 html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visible) :is(span,.text,.dewford-korean-text) {color:var(--sub-color)!important;}
 /* Fixed, centered learning-journey photo replaces the inline template image. */
 #main-content .services-section-three .dewford-journey-background {
- background-image:url('../images/main/main_13.jpg');
+ background-image:url('../images/optimized/main_13-1600.webp');
  background-position:center center;background-size:cover;
  background-repeat:no-repeat;background-attachment:fixed;
 }
@@ -373,3 +373,40 @@ html body.dewford-home .dewford-header .dewford-navigation > li > a:is(:hover,:f
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a,button):is(:hover,:focus-visible) {color:#f5a100!important;}
 html body.dewford-home .dewford-header .dewford-navigation > li > a:is(:hover,:focus-visible) *,
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a,button):is(:hover,:focus-visible) * {color:inherit!important;}
+.dewford-education-mobile-break {display:none;}
+@media(max-width:767.98px){
+ #main-content .service-section-home-3 .overlay-content .title br,
+ #main-content .service-section-home-3 .dewford-education-mobile-break {display:block;}
+ #main-content .service-section-home-3 .dewford-education-desktop-space {display:none;}
+}
+/* Lightweight mobile backgrounds and motion. Desktop retains the fixed effect. */
+@media(max-width:767.98px){
+ #main-content .services-section-three .dewford-journey-background {background-image:url('../images/optimized/main_13-768.webp');background-attachment:scroll;}
+ #main-content #events .outer-box {background-image:url('../images/optimized/main_03-768.webp')!important;}
+ #main-content .service-section-home-3 {background-image:url('../images/optimized/main_24-768.webp')!important;}
+ #main-content .banner-section-three .bg-image {transform:none!important;transition:none;}
+ #main-content .reveal {visibility:visible;opacity:1;}
+ .dewford-dialog-crest > svg {animation:none;}
+}
+.dewford-drawer:focus {outline:none;}
+#main-content .features-section-two .dewford-features-title-break {display:none;}
+@media(max-width:767.98px){
+ #main-content .features-section-two .sec-title-style-three .title br {display:block;}
+ #main-content .features-section-two .dewford-features-title-space {display:none;}
+}
+/* Only the plus tile has a surface in the header CTA. */
+html body.dewford-home .dewford-header .dewford-header-talk {--button-surface:transparent;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header .dewford-header-talk,
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header .dewford-header-talk:is(:hover,:focus-visible) {background:transparent!important;box-shadow:none;}
+html body.dewford-home .dewford-header .dewford-header-talk > span {background:#f5a100;color:#fff;}
+/* Light gray curriculum cards without borders. */
+#main-content .why-choose-us-four .feature-block .inner-block {border:0;box-shadow:none;background-color:#f7f7f7;}
+
+#main-content .why-choose-us-four .feature-block:nth-child(2) .inner-block {background-color:#fff;}
+/* Keep the photo section height and size the statement panel to its copy. */
+#main-content .service-section-home-3 .service-block-home-3 .inner-box {overflow:visible;}
+#main-content .service-section-home-3 .service-block-home-3 .overlay-content {width:max-content;max-width:100%;left:auto;right:0;}
+@media(max-width:767.98px){
+ #main-content .service-section-home-3 .service-block-home-3 .inner-box {min-height:max(500px,75dvh);}
+ #main-content .service-section-home-3 .service-block-home-3 .overlay-content {width:max-content;max-width:82vw;padding:6vw;}
+}
