@@ -360,3 +360,16 @@ html body.dewford-home #main-content .services-section-three .service-block-thre
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer button,
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer button:is(:hover,:focus-visible) {background:transparent!important;box-shadow:none;}
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer button::before {display:none!important;}
+/* Header remains transparent at the top until hovered or keyboard-focused. */
+.dewford-home .dewford-header:not(.is-scrolled):is(:hover,:focus-within) {background-color:var(--id-color);}
+/* Highlight submenu rows through their surface, keeping text readable. */
+html body.dewford-home .dewford-header .sub-menu a:is(:hover,:focus-visible) {background-color:var(--id-color);color:#fff!important;}
+html body.dewford-home .dewford-header .sub-menu a:is(:hover,:focus-visible) * {color:inherit!important;}
+html body.dewford-home .dewford-drawer .dewford-dialog-submenu a {transition:background-color .2s ease;}
+html body.dewford-home .dewford-drawer .dewford-dialog-submenu a:is(:hover,:focus-visible) {background-color:rgba(255,255,255,.16);color:#fff!important;}
+html body.dewford-home .dewford-drawer .dewford-dialog-submenu a:is(:hover,:focus-visible) * {color:inherit!important;}
+/* Main navigation hover uses the sub accent; submenu surface highlights stay intact. */
+html body.dewford-home .dewford-header .dewford-navigation > li > a:is(:hover,:focus-visible),
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a,button):is(:hover,:focus-visible) {color:#f5a100!important;}
+html body.dewford-home .dewford-header .dewford-navigation > li > a:is(:hover,:focus-visible) *,
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford-dialog-row > :is(a,button):is(:hover,:focus-visible) * {color:inherit!important;}
