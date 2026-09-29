@@ -182,7 +182,7 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header .dewford
  #main-content .banner-section-three .outer-box {padding-bottom:36vh;}
  #main-content .banner-section-three .content-box > .title {min-height:0;}
  #main-content .banner-section-three .bottom-box .text {font-size:clamp(16px,4.1vw,18px);}
- #main-content .banner-section-three .bottom-box .text br {display:none;}
+ #main-content .banner-section-three .bottom-box .text br {display:block;}
  #main-content .banner-section-three .banner-count-anchor .inner-box {right:4vw;padding:3vh 5vw;max-width:70vw;}
 }
 /* New image and value icons retain the original Why section composition. */

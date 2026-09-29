@@ -207,3 +207,43 @@
   mobile.addEventListener('change', sync);
   sync();
 })();
+
+// Keep sentence breaks consistent in mobile copy, including loaded event text.
+(() => {
+  const excluded = 'script,style,noscript,textarea,input,select,option,svg,canvas,pre,code,[contenteditable="true"],a[href^="mailto:"],a[href^="tel:"]';
+  const applyBreaks = root => {
+    if (root.nodeType === Node.ELEMENT_NODE && root.closest(excluded)) return;
+    const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    if (root.nodeType === Node.TEXT_NODE) nodes.push(root);
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+    nodes.forEach(node => {
+      if (!node.parentElement || node.parentElement.closest(excluded)) return;
+      const text = node.nodeValue;
+      // A sentence separator has whitespace after it; dots in URLs and numbers do not.
+      const pattern = /[.。](?=\s+\S)/g;
+      const matches = [...text.matchAll(pattern)];
+      if (!matches.length) return;
+      const fragment = document.createDocumentFragment();
+      let start = 0;
+      matches.forEach(match => {
+        const end = match.index + 1;
+        fragment.append(document.createTextNode(text.slice(start, end)));
+        const br = document.createElement('br');
+        br.className = 'dewford-mobile-sentence-break';
+        fragment.append(br);
+        start = end;
+      });
+      fragment.append(document.createTextNode(text.slice(start)));
+      node.replaceWith(fragment);
+    });
+  };
+  applyBreaks(document.body);
+  const observer = new MutationObserver(records => {
+    records.forEach(record => {
+      if (record.type === 'characterData') applyBreaks(record.target);
+      else record.addedNodes.forEach(applyBreaks);
+    });
+  });
+  observer.observe(document.body, {subtree:true, childList:true, characterData:true});
+})();
