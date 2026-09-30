@@ -159,7 +159,10 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-b
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible),
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn :is(.btn-title,.icon,.dewford-korean-text),
 html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#292929!important;border-color:#fff!important;box-shadow:none;}
-html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn::before {background:#f5a100!important;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn::before {background:var(--id-color)!important;transform:scaleX(0);transform-origin:left center;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible)::before {transform:scaleX(1);transform-origin:left center;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) {background-color:var(--button-surface)!important;color:#fff!important;border-color:#fff!important;}
+html body.dewford-home :is(#main-content,.page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#fff!important;}
 /* Header controls retain their original styling, outside the shared fill effect. */
 html body.dewford-home .dewford-header .dewford-header-talk {--button-surface:var(--id-color);}
 html body.dewford-home .dewford-header .dewford-menu-toggle {--button-surface:transparent;}
@@ -197,6 +200,9 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header .dewford
 #main-content .why-choose-us-four .feature-block {display:flex;margin-bottom:0;}
 #main-content .why-choose-us-four .feature-block .inner-block {width:100%;height:100%;}
 #main-content .why-choose-us-four .inner-container > .image {margin-bottom:0;}
+@media(max-width:1199.98px){
+ #main-content .why-choose-us-four .inner-container > .image {display:block;position:relative;width:100%;height:clamp(260px,70vw,520px);margin-bottom:32px;z-index:auto;}
+}
 /* Consistent title and body weights across the home page. */
 body.dewford-home {--body-font-weight:500;--dewford-weight-body:500;--dewford-weight-medium:500;--h1-font-weight:700;--h2-font-weight:700;--h3-font-weight:700;--h4-font-weight:700;--h5-font-weight:700;--h6-font-weight:700;font-weight:500;}
 #main-content.dewford-template-content {--body-font-weight:500;--h1-font-weight:700;--h2-font-weight:700;--h3-font-weight:700;--h4-font-weight:700;--h5-font-weight:700;--h6-font-weight:700;font-weight:500;}
@@ -218,9 +224,9 @@ html body.dewford-home #main-content.dewford-template-content .sub-title {font-w
 #main-content .service-section-home-3 .overlay-content .info-box {margin-bottom:0;}
 #main-content .service-section-home-3 .overlay-content .info-box .text {margin-top:0;font-size:16px;line-height:1.75!important;text-transform:none;word-break:keep-all;}
 @media(max-width:767.98px){
- #main-content .service-section-home-3 .overlay-content .info-box .text {font-size:clamp(16px,4.1vw,18px);}
+ #main-content .service-section-home-3 .overlay-content .info-box .text {font-size:14px;}
 }
-#main-content #events .outer-box {background-position:center 0;background-size:cover;}
+#main-content #events .outer-box {background-position:center;background-size:cover;}
 #main-content #events .service-block-four :is(.title,.text) {word-break:keep-all;}
 #main-content #events .list-info li {display:flex;align-items:center;gap:10px;}
 #main-content #events .dewford-events-status {padding:40px;color:#fff;}
@@ -242,7 +248,7 @@ html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visibl
 /* Match index-2: the photo sits behind the lower half of the content cards. */
 #main-content .services-section-three {padding-bottom:0;}
 #main-content .services-section-three .dewford-journey-background {height:414px;bottom:0;}
-#main-content .services-section-three .outer-box {padding-bottom:130px;}
+#main-content .services-section-three .outer-box {max-width:none;width:100%;padding-bottom:130px;}
 @media(max-width:991.98px){
  #main-content .services-section-three .outer-box {padding-bottom:51px;}
  #main-content .services-section-three .dewford-journey-background {height:50%;background-size:cover;}
@@ -393,16 +399,21 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 /* Keep the photo section height and size the statement panel to its copy. */
 #main-content .service-section-home-3 .service-block-home-3 .inner-box {overflow:visible;}
 #main-content .service-section-home-3 .service-block-home-3 .overlay-content {width:max-content;max-width:100%;left:auto;right:0;}
+@media(min-width:992px){
+ #main-content .service-section-home-3 .service-block-home-3 .overlay-content {width:440px;max-width:none;padding:52px 48px;}
+ #main-content .service-section-home-3 .overlay-content .dewford-location-heading .title {font-size:36px;line-height:1.35;}
+ #main-content .service-section-home-3 .overlay-content .dewford-location-heading .title br {display:block;}
+}
 @media(max-width:767.98px){
  #main-content .service-section-home-3 .service-block-home-3 .inner-box {min-height:max(500px,75dvh);}
- #main-content .service-section-home-3 .service-block-home-3 .overlay-content {width:max-content;max-width:82vw;padding:6vw;}
+ #main-content .service-section-home-3 .service-block-home-3 .overlay-content {width:max-content;max-width:72vw;padding:4vw;}
 }
 
 /* Hide the main banner slide navigation. */
 #main-content .banner-section-three .arrow-box {display:none;}
 
 /* Original index-2 service layout, with four static columns instead of Swiper. */
-#main-content #events .outer-box {background-position:center 0;}
+#main-content #events .outer-box {background-position:center;}
 #main-content #events .outer-box::before {background:rgba(0,0,0,.28);}
 #main-content #events .dewford-experience-grid {position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
 #main-content #events .service-block-four {min-width:0;}
@@ -428,7 +439,7 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 #main-content .features-section-three .feature-block-three .inner-block,
 #main-content .features-section-three .feature-block-three .icon-box,
 #main-content .features-section-three .feature-block-three .icon-box .icon {transition:none;transform:none;}
-#main-content .features-section-three .feature-block-three .icon-box {display:flex;align-items:center;justify-content:center;color:#fff;}
+#main-content .features-section-three .feature-block-three .icon-box {display:flex;align-items:center;justify-content:center;color:#fff;background-color:var(--id-color);}
 #main-content .features-section-three .feature-block-three .icon-box .icon {display:flex;align-items:center;justify-content:center;}
 @media(min-width:992px){
  #main-content .features-section-three .sec-title-box {display:grid;grid-template-columns:calc(45% - 102px) minmax(0,1fr);padding:100px 100px 72px;gap:0;}
@@ -437,7 +448,7 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 }
 
 /* Keep the original team portrait proportions regardless of uploaded image size. */
-#main-content .dewford-event-slider {overflow:hidden;}
+#main-content .dewford-event-slider {overflow:hidden;padding-bottom:0;}
 #main-content .dewford-event-image {display:block;aspect-ratio:29 / 32;background-size:cover;background-position:center;transition:transform .4s ease;}
 #main-content .team-block-two .inner-block:hover .dewford-event-image {transform:scale(1.1);}
 #main-content .dewford-event-preview .name {min-height:2.6em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
@@ -477,7 +488,7 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
  #main-content .features-section-three .feature-block-three {width:25%;}
 }
 @media(max-width:991.98px){
- #main-content .features-section-three .inner-container .bg-image {display:none;}
+ #main-content .features-section-three .inner-container .bg-image {display:flex;position:relative;inset:auto;width:100%;height:clamp(260px,70vw,520px);margin-top:24px;}
 }
 
 @media(max-width:767.98px){
@@ -495,10 +506,10 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 
 
 @media(max-width:767.98px){
- #main-content .service-section-home-3 .dewford-location-heading {display:flex;align-items:center;gap:4vw;margin-bottom:28px;}
+ #main-content .service-section-home-3 .dewford-location-heading {display:flex;align-items:center;gap:3vw;margin-bottom:18px;}
  #main-content .service-section-home-3 .dewford-location-heading .icon-box {flex:none;margin:0;}
- #main-content .service-section-home-3 .dewford-location-heading .dewford-education-symbol {width:12vw;height:12vw;max-width:64px;max-height:64px;}
- #main-content .service-section-home-3 .dewford-location-heading .title {margin:0;font-size:clamp(18px,5vw,24px);line-height:1.4;}
+ #main-content .service-section-home-3 .dewford-location-heading .dewford-education-symbol {width:10vw;height:10vw;max-width:48px;max-height:48px;}
+ #main-content .service-section-home-3 .dewford-location-heading .title {margin:0;font-size:clamp(16px,4.4vw,20px);line-height:1.4;}
  #main-content .service-section-home-3 .dewford-location-heading .title br {display:block;}
 }
 
@@ -558,4 +569,17 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
  #main-content .features-section-three .feature-block-three .inner-block .text {grid-column:1 / -1;max-width:none;margin:0;text-align:left;}
  #main-content .services-section-three .service-block-three .content-box .text {padding-bottom:3vw;}
  #main-content .services-section-three .service-block-three .btn-box {grid-column:1 / -1;margin:0;}
+}
+
+/* Shared vertical spacing for the home page sections. */
+#main-content.dewford-template-content {--dewford-section-space:130px;}
+#main-content > :is(.teams-section-two,.why-choose-us-four,.about-section) {padding-top:var(--dewford-section-space);padding-bottom:var(--dewford-section-space);}
+#main-content .services-section-three .outer-box {padding-top:var(--dewford-section-space);padding-bottom:var(--dewford-section-space);}
+#main-content .features-section-three .sec-title-box {padding-top:var(--dewford-section-space);}
+#main-content .features-section-three .outer-container {padding-bottom:var(--dewford-section-space);}
+/* Card and pagination spacing is managed by the section's bottom padding. */
+#main-content .dewford-event-preview .team-block-two .inner-block {margin-bottom:0;}
+#main-content .dewford-event-preview .dewford-event-pagination {padding-bottom:0;margin-top:30px;}
+@media(max-width:991.98px){
+ #main-content.dewford-template-content {--dewford-section-space:90px;}
 }

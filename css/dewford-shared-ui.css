@@ -37,7 +37,10 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top { --button-surf
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(a.dewford-kakao-floating, button.dewford-scroll-top)::before { display: none !important; }
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn { --button-surface: #fff; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover, :focus-visible), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn :is(.btn-title, .icon, .dewford-korean-text), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover, :focus-visible) :is(.btn-title, .icon, .dewford-korean-text) { box-shadow: none; color: rgb(41, 41, 41) !important; border-color: rgb(255, 255, 255) !important; }
-html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn::before { background: rgb(245, 161, 0) !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn::before {background:var(--id-color)!important;transform:scaleX(0);transform-origin:left center;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible)::before {transform:scaleX(1);transform-origin:left center;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) {background-color:var(--button-surface)!important;color:#fff!important;border-color:#fff!important;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#fff!important;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-header-talk { --button-surface: var(--id-color); }
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-menu-toggle { --button-surface: transparent; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header :is(.dewford-header-talk, .dewford-menu-toggle)::before { display: none !important; }
@@ -97,8 +100,8 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-you
 
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-column .widget-title,
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-column .widget-title :is(a,span,strong) {font-weight:600!important;}
-html body:is(.dewford-home,.dewford-subpage) .dewford-footer .user-links a,
-html body:is(.dewford-home,.dewford-subpage) .dewford-footer .user-links a :is(span,strong) {font-weight:400!important;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .user-links a,
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .user-links a :is(span,strong) {font-weight:400!important;}
 
 /* Consistent footer contact values. */
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-contact-row .info :is(.title,.dewford-footer-email),

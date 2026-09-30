@@ -622,12 +622,12 @@ html.dewford-intro-active .dewford-scroll-top,html.dewford-menu-open :is(.dewfor
 .dewford-logo {display:grid;grid-template-columns:74.6fr 223.5fr;column-gap:5.485%;align-items:center;width:316px;max-width:100%;}
 .dewford-header .dewford-logo img,.dewford-footer .dewford-logo img,.dewford-drawer .dewford-logo img {display:block;width:100%;max-width:100%;height:auto;min-width:0;transition:none;}
 .dewford-logo .dewford-logo-text {filter:brightness(0) invert(1);}
-.dewford-header .dewford-brand {width:330px;transition:width .25s;}
-.dewford-header.is-scrolled .dewford-brand {width:220px;}
+.dewford-header .dewford-brand {width:264px;transition:width .25s;}
+.dewford-header.is-scrolled .dewford-brand {width:176px;}
 .dewford-drawer-logo {margin-bottom:30px;}
-@media(max-width:1599px){.dewford-header .dewford-brand{width:285px;}}
-@media(max-width:1199px){.dewford-header .dewford-brand,.dewford-header.is-scrolled .dewford-brand{width:220px;}}
-@media(max-width:767px){.dewford-header .dewford-brand,.dewford-header.is-scrolled .dewford-brand{width:195px;}.dewford-footer .dewford-logo{width:260px;}}
+@media(max-width:1599px){.dewford-header .dewford-brand{width:228px;}}
+@media(max-width:1199px){.dewford-header .dewford-brand,.dewford-header.is-scrolled .dewford-brand{width:176px;}}
+@media(max-width:767px){.dewford-header .dewford-brand,.dewford-header.is-scrolled .dewford-brand{width:156px;}.dewford-footer .dewford-logo{width:260px;}}
 @media(prefers-reduced-motion:reduce){.dewford-header .dewford-brand{transition:none;}}
 
 /* Shared social controls. */
