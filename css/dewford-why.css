@@ -1,9 +1,9 @@
 /* Retain the source templates’ palette only inside the imported Why sections. */
-.dewford-subpage-content[data-page-intro="false"] > :is(.about-section-home-two,.funfact-section,.features-section-three) {
-  --theme-color1: #F1F2EB;
+.dewford-subpage-content[data-page-intro="false"] > :is(.project-details,.service-section-two,.features-section-three,.dewford-why-clients,.why-choose-us-four) {
+  --theme-color1: #f4f4f4;
   --theme-color2: #D7D9CF;
   --theme-color3: #E3E5DD;
-  --theme-color1-rgb: 241, 242, 235;
+  --theme-color1-rgb: 244, 244, 244;
   --theme-color2-rgb: 215, 217, 207;
   --theme-color3-rgb: 227, 229, 221;
   --theme-color1-text-color: #fff;
@@ -31,4 +31,38 @@
   --theme-light-background-text-color: var(--headings-color);
   --theme-black: #000000;
 color:var(--text-color);
+}
+
+#main-content.dewford-subpage-content > .service-section-two {background:#fff;}
+
+#main-content.dewford-subpage-content > :is(.project-details,.features-section-three),
+#main-content.dewford-subpage-content > .features-section-three .outer-container {background-color:var(--theme-color1);}
+
+#main-content .dewford-why-services {overflow:hidden;}
+#main-content .dewford-why-services > .swiper-wrapper {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
+#main-content .dewford-why-services .swiper-slide {min-width:0;}
+#main-content .dewford-why-pagination {display:none;}
+#main-content .dewford-why-services .inner-box:focus-within .overlay-content {opacity:1;visibility:visible;transform:none;}
+#main-content .dewford-why-services .inner-box:focus-within .content {opacity:0;visibility:hidden;}
+@media(max-width:767.98px){
+ #main-content .dewford-why-services > .swiper-wrapper {display:flex;}
+ #main-content .dewford-why-services .swiper-slide {flex-shrink:0;height:auto;}
+ #main-content .dewford-why-services .inner-box .content {display:none;}
+ #main-content .dewford-why-services .inner-box .overlay-content {position:relative;opacity:1;visibility:visible;transform:none;}
+ #main-content .dewford-why-pagination {display:block;position:relative;padding:16px 0;background:#fff;}
+ #main-content .dewford-why-pagination .swiper-pagination-bullet-active {background:var(--id-color);}
+}
+
+/* Full-width client backdrop with four service cards. */
+#main-content .dewford-why-clients > .large-container {width:100%;max-width:none;padding-inline:0;}
+#main-content .dewford-why-clients .inner-container {background-size:cover;background-position:center;}
+#main-content .dewford-why-clients .claint-outer {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:24px;max-width:1440px;}
+#main-content .dewford-why-clients .service-block {min-width:0;}
+#main-content .dewford-why-clients .service-block .inner-box {display:flex;flex-direction:column;height:100%;margin-bottom:0;padding:36px 24px;}
+#main-content .dewford-why-clients .service-block .btn-box {margin-top:auto;}
+@media(max-width:991.98px){
+ #main-content .dewford-why-clients .claint-outer {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:575.98px){
+ #main-content .dewford-why-clients .claint-outer {grid-template-columns:1fr;}
 }
