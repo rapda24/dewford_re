@@ -28,3 +28,31 @@
 /* Event summaries keep the original card geometry with bounded copy. */
 .dewford-news .news-block-four .inner-block .content-box .inner-box .title a {display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .dewford-news .news-block-four .inner-block .content-box .inner-box .text {display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;}
+
+/* Match news-grid.html colors without changing the shared page chrome. */
+#main-content .dewford-event-template {
+ --theme-color1:#F1F2EB;--theme-color2:#D7D9CF;--theme-color3:#E3E5DD;
+ --theme-color1-rgb:241,242,235;--theme-color2-rgb:215,217,207;--theme-color3-rgb:227,229,221;
+ --theme-color-dark:#111111;--theme-color-black:#000;--theme-color-white:#fff;
+ --headings-color:#111111;--text-color:#525252;
+ --link-color:var(--theme-color1);--link-hover-color:var(--theme-color1);
+ background:#fff;color:var(--text-color);
+}
+
+/* Reserve the same copy height for every event card. */
+#main-content .dewford-event-template .news-block-four .content-box .inner-box .title {
+ line-height:1.4;height:2.8em;overflow:hidden;
+}
+#main-content .dewford-event-template .news-block-four .content-box .inner-box .title a {
+ display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;line-height:inherit;
+}
+#main-content .dewford-event-template .news-block-four .content-box .inner-box .text {
+ box-sizing:content-box;line-height:1.6;height:4.8em;
+}
+#main-content .dewford-event-template .dewford-event-excerpt {
+ display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;
+}
+
+#main-content .dewford-event-template .news-block-four .image {aspect-ratio:437 / 335;}
+#main-content .dewford-event-template .news-block-four .image a {display:block;height:100%;}
+#main-content .dewford-event-template .news-block-four .image img {height:100%;object-fit:cover;}

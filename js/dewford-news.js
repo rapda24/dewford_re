@@ -2,6 +2,7 @@
 (async () => {
   const list = document.querySelector('[data-event-list="board"]');
   const detail = document.querySelector('[data-news-detail]');
+  if (!list && !detail) return;
   const id = new URLSearchParams(location.search).get('id');
   const href = post => 'detail.html?id=' + encodeURIComponent(post.id);
   if (list && id) { location.replace('detail.html' + location.search); return; }
@@ -39,7 +40,9 @@
         if (img) { const clone = img.cloneNode(); clone.alt = ''; clone.setAttribute('aria-hidden','true'); imageLink.append(img, clone); }
         imageLink.setAttribute('aria-label',post.title); figure.append(imageLink); imageInner.append(figure); imageBox.append(imageInner);
         const content = node('div', 'content-box'); const inner = node('div','inner-box');
-        const title = node('h4','title'); title.append(link(post)); inner.append(title,node('div','text',post.excerpt || ''));
+        const title = node('h4','title'); title.append(link(post));
+        const excerpt = node('div','text'); excerpt.append(node('span','dewford-event-excerpt',post.excerpt || ''));
+        inner.append(title,excerpt);
         const more = link(post,'read-more','자세히 보기 '); const arrow = node('i','icon fa fa-solid fa-arrow-right'); arrow.setAttribute('aria-hidden','true'); more.append(arrow);
         content.append(inner,more); block.append(imageBox,content); card.append(block); list.append(card);
       });

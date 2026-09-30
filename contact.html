@@ -18,24 +18,123 @@
 <body class="dewford-subpage">
   <div class="page-wrapper">
     <div data-dewford-component="header"></div>
-    <main id="main-content" class="dewford-subpage-content" aria-label="Contact" data-page-intro="false">
+    <main id="main-content" class="dewford-subpage-content dewford-contact-page" aria-label="Contact" data-page-intro="false">
+<section class="contact-details">
+    <div class="container pt-110 pb-70">
+      <div class="row">
+        <div class="col-xl-7 col-lg-6">
+          <div class="sec-title">
+            <h2>입학·교육 상담 신청</h2>
+          </div>
+          <!-- Contact Form -->
+          <form id="contact_form" name="contact_form" action="includes/sendmail.php" method="post">
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <input name="form_name" class="form-control" type="text" placeholder="학부모 성함" aria-label="학부모 성함">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <input name="form_email" class="form-control required email" type="email" placeholder="이메일 주소" aria-label="이메일 주소">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <input name="form_subject" class="form-control required" type="text" placeholder="상담 제목 또는 관심 교육 과정" aria-label="상담 제목 또는 관심 교육 과정">
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <input name="form_phone" class="form-control" type="text" placeholder="연락처" aria-label="연락처">
+                </div>
+              </div>
+            </div>
+            <div class="mb-3">
+              <textarea name="form_message" class="form-control required" rows="7" placeholder="아이의 연령, 현재 영어 학습 경험과 궁금하신 내용을 남겨주세요." aria-label="상담 내용"></textarea>
+            </div>
+            <div class="mb-5">
+              <input name="form_botcheck" class="form-control" type="hidden" value="" />
+              <button type="submit" class="theme-btn btn-style-one" data-loading-text="접수 중입니다..."><span class="btn-title">상담 신청하기</span></button>
+              <button type="reset" class="theme-btn btn-style-one"><span class="btn-title">다시 작성</span></button>
+            </div>
+          </form>
+          <!-- Contact Form Validation-->
+        </div>
+        <div class="col-xl-5 col-lg-6">
+          <div class="contact-details__right">
+            <div class="sec-title">
+              <h2>Dewford에 문의하세요</h2>
+              <div class="text">아이에게 맞는 배움의 시작을 함께 찾아갑니다. 교육 과정과 입학, 방문 상담에 대해 궁금한 점을 남겨주세요.</div>
+            </div>
+            <ul class="list-unstyled contact-details__info">
+              <li>
+                <div class="icon">
+                  <span class="fa-classic fa-light fa-phone-plus"></span>
+                </div>
+                <div class="text">
+                  <h6 class="mb-1">전화 상담</h6>
+                  <a href="tel:0264011012"><span>전화</span> 02-6401-1012</a>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <span class="fal fa-envelope"></span>
+                </div>
+                <div class="text">
+                  <h6 class="mb-1">이메일 문의</h6>
+                  <a href="mailto:admin@dewford.com">admin@dewford.com</a>
+                </div>
+              </li>
+              <li>
+                <div class="icon">
+                  <span class="fal fa-location-arrow"></span>
+                </div>
+                <div class="text">
+                  <h6 class="mb-1">오시는 길</h6>
+                  <span>(04392) 서울시 용산구 장문로 27, 청화아파트 상가 1층 #101호</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <!--Contact Details End-->
-
-  <!-- Map Section-->
-
-
+<section class="map-section">
+    <iframe tabindex="-1" title="Dewford 오시는 길 지도" loading="lazy" class="map w-100"  src="https://maps.google.com/maps?hl=ko&amp;q=%EC%84%9C%EC%9A%B8%ED%8A%B9%EB%B3%84%EC%8B%9C%20%EC%9A%A9%EC%82%B0%EA%B5%AC%20%EC%9E%A5%EB%AC%B8%EB%A1%9C%2027&amp;z=17&amp;output=embed"></iframe>
+  </section>
     </main>
     <div data-dewford-component="footer"></div>
     <div data-dewford-component="floating"></div>
   </div>
+  <script src="js/jquery.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.fancybox.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/wow.js"></script>
+  <script src="js/appear.js"></script>
+  <script src="js/select2.min.js"></script>
+  <script src="js/knob.js"></script>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/splitType.js"></script>
+  <script src="js/gsap-scroll-smoother.js"></script>
+  <script src="js/gsap-scroll-to-plugin.js"></script>
+  <script src="js/SplitText.min.js"></script>
+  <script src="js/custom-gsap.js"></script>
+  <script src="js/jquery-scrolltofixed-min.js"></script>
+  <script src="js/script.js"></script>
   <script src="js/dewford-config.js"></script>
 <script src="js/dewford-api.js"></script>
 <script src="js/dewford-common.js"></script>
 <script src="js/dewford-page-title.js"></script>
 <script src="js/dewford-typography.js"></script>
   <script src="js/dewford-ui.js"></script>
-<script charset="UTF-8" src="https://t1.kakaocdn.net/kakaomapweb/roughmap/loader/prod/roughmapLoader.js"></script>
-<script src="js/dewford-map.js"></script>
 </body>
 </html>

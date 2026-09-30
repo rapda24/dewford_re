@@ -21781,3 +21781,6 @@ Sidebar
   color: var(--theme-color-white);
   padding: 16px 30px;
 }
+
+/* Keep words together throughout the site. */
+html body, html body * {word-break:keep-all!important;}

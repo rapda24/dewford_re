@@ -28,3 +28,9 @@
  .dewford-contact-template .mb-5 .theme-btn {margin-bottom:8px;}
  .dewford-contact-map {height:400px;}
 }
+
+/* Keep the contact surface white and the embedded map stationary. */
+#main-content.dewford-contact-page,
+#main-content.dewford-contact-page > :is(.contact-details,.map-section) {background:#fff;}
+#main-content.dewford-contact-page .map-section {margin-bottom:0;padding-bottom:0;line-height:0;}
+#main-content.dewford-contact-page .map-section iframe {display:block;pointer-events:none;border:0;margin:0;}
