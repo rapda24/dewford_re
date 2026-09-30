@@ -53,9 +53,23 @@
     const title = detail.querySelector('[data-detail-title]');
     if (!post) { title.textContent = '게시물을 찾을 수 없습니다.'; detail.querySelector('.sidebar').hidden = true; return; }
     title.textContent = post.title; document.title = post.title + ' | Dewford';
-    const img = photo(post); if (img) { img.loading = 'eager'; detail.querySelector('[data-detail-image]').append(img); }
+    const badge = detail.querySelector('[data-detail-date]');
+    if (badge) {
+      const date = /^(\d{4})-(\d{2})-(\d{2})(?:$|T)/.exec(post.date || '');
+      badge.hidden = false;
+      badge.querySelector('.day').textContent = date ? date[3] : '날짜';
+      badge.querySelector('.month').textContent = date ? Number(date[2]) + '월' : '미등록';
+      badge.setAttribute('aria-label', date ? `${date[1]}년 ${Number(date[2])}월 ${Number(date[3])}일` : '날짜 미등록');
+    }
+    const img = photo(post); if (img) { img.loading = 'eager'; detail.querySelector('[data-detail-image]').prepend(img); }
     const meta = detail.querySelector('[data-detail-meta]');
-    meta.append(node('li','',post.category || 'DEWFORD EVENTS'));
+    const categoryItem = node('li');
+    const categoryLink = node('a', '', post.category || 'DEWFORD EVENTS');
+    categoryLink.href = post.category ? 'event.html?q=' + encodeURIComponent(post.category) : 'event.html';
+    const categoryIcon = node('i', 'fas fa-folder-open');
+    categoryIcon.setAttribute('aria-hidden', 'true');
+    categoryLink.prepend(categoryIcon, document.createTextNode(' '));
+    categoryItem.append(categoryLink); meta.append(categoryItem);
     if (post.date) { const li = node('li'); const time = node('time','',post.date); li.append(time); meta.append(li); }
     detail.querySelector('[data-detail-body]').textContent = post.body || post.excerpt || '';
     const postTags = detail.querySelector('[data-detail-post-tags]');
@@ -71,6 +85,9 @@
     const categories = [...new Set(posts.map(p => p.category).filter(Boolean))];
     categories.forEach(category => {
       const li = node('li'); const a = node('a','',category); a.href = 'event.html?q=' + encodeURIComponent(category);
+      const categoryIcons = { 'FIELD TRIP': 'fa-map-location-dot', MUSIC: 'fa-music', 'SCHOOL LIFE': 'fa-school', LITERACY: 'fa-book-open', COMMUNITY: 'fa-users' };
+      const icon = node('i', 'fas ' + (categoryIcons[category.toUpperCase()] || 'fa-folder-open') + ' dewford-category-icon');
+      icon.setAttribute('aria-hidden','true'); a.prepend(icon);
       a.append(node('span','lnr-icon-arrow-right')); li.append(a); detail.querySelector('[data-detail-categories]').append(li);
       const tag = node('a','',category); tag.href = a.href; detail.querySelector('[data-detail-tags]').append(tag);
     });

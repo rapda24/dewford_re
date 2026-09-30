@@ -3,7 +3,7 @@
   --theme-color1: #f4f4f4;
   --theme-color2: #D7D9CF;
   --theme-color3: #E3E5DD;
-  --theme-color1-rgb: 244, 244, 244;
+  --theme-color1-rgb: 244,244,244;
   --theme-color2-rgb: 215, 217, 207;
   --theme-color3-rgb: 227, 229, 221;
   --theme-color1-text-color: #fff;
@@ -65,4 +65,79 @@ color:var(--text-color);
 }
 @media(max-width:575.98px){
  #main-content .dewford-why-clients .claint-outer {grid-template-columns:1fr;}
+}
+
+#main-content .project-details .dewford-why-project-subtitle > i {margin-right:8px;color:var(--id-color);}
+
+/* Korean headings on Why Dewford remain upright and bold. */
+html body.dewford-subpage #main-content .dewford-why-korean-title,
+html body.dewford-subpage #main-content .dewford-why-korean-title * {font-style:normal!important;font-weight:800!important;}
+
+/* Static promise cards: icon, two-line title, rule, and description. */
+#main-content .dewford-why-clients .service-block .inner-box::before {display:none;}
+#main-content .dewford-why-clients .service-block .inner-box,
+#main-content .dewford-why-clients .service-block .icon-box,
+#main-content .dewford-why-clients .service-block .content-box,
+#main-content .dewford-why-clients .service-block .title {transition:none;transform:none;}
+#main-content .dewford-why-clients .service-block .icon-box svg path {fill:#111111;transition:none;}
+#main-content .dewford-why-clients .service-block .title {color:var(--headings-color);line-height:1.4!important;min-height:2.8em;}
+#main-content .dewford-why-clients .service-block .content-box .dewford-why-card-divider {height:0;padding:0;margin:24px 0;border-bottom:1px solid var(--theme-color2);}
+#main-content .dewford-why-clients .service-block .content-box .dewford-why-card-divider::before {background:var(--headings-color);transition:none;}
+#main-content .dewford-why-clients .dewford-why-card-description {font-size:18px;color:var(--text-color);word-break:keep-all;}
+
+#main-content .dewford-why-clients .inner-container {padding-top:520px;}
+@media(max-width:991.98px){
+ #main-content .dewford-why-clients .inner-container {padding-top:360px;}
+}
+
+html body.dewford-subpage #main-content .project-details .project-list-item > .title {font-size:26px!important;line-height:1.4!important;}
+@media(max-width:767.98px){
+ html body.dewford-subpage #main-content .project-details .project-list-item > .title {font-size:24px!important;}
+}
+
+html body.dewford-subpage #main-content > :is(.project-details,.dewford-why-clients,.why-choose-us-four) h2.title {font-size:50px!important;}
+
+body.dewford-subpage #main-content > .clients-section.dewford-why-clients {padding-bottom:0!important;}
+
+/* Alternating Learning Journey cards, scoped to Why Dewford. */
+#main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block {background:#f4f4f4;color:#525252;}
+#main-content .why-choose-us-four .feature-block:nth-child(even) .inner-block {background:#000;color:#fff;}
+#main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block .title,
+#main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block .title a {color:#111;}
+#main-content .why-choose-us-four .feature-block:nth-child(even) .inner-block :is(.title,.title a,.text) {color:#fff;}
+#main-content .why-choose-us-four .feature-block .inner-block .number {display:grid;place-items:center;background:#fff;color:#111;font-size:36px;}
+#main-content .why-choose-us-four .feature-block .title {line-height:1.4!important;min-height:2.8em;}
+
+#main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row {display:grid;grid-template-columns:56px minmax(0,180px) minmax(0,1fr);gap:16px;align-items:start;padding:28px 0;margin:0;}
+#main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row:first-child {padding-top:0;}
+#main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row + .dewford-icon-copy-row {border-top:1px solid #dcd2e2;}
+#main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-heading {display:grid;grid-column:1 / span 2;grid-template-columns:56px minmax(0,1fr);gap:16px;align-items:center;}
+#main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-icon {display:grid;place-items:center;width:56px;height:56px;background:var(--id-color);color:#fff;font-size:28px;}
+html body.dewford-subpage #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-title {margin:0;font-size:26px!important;line-height:1.4!important;}
+#main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-text {min-width:0;font-size:17px;line-height:1.5;}
+@media(max-width:767.98px){
+ #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row {grid-template-columns:56px minmax(0,1fr);gap:20px 16px;padding:24px 0;}
+ #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-text {grid-column:1 / -1;font-size:16px;}
+ html body.dewford-subpage #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-title {font-size:24px!important;}
+}
+
+/* Section labels and education icons on Why Dewford. */
+html body.dewford-subpage #main-content .sub-title {font-size:16px!important;}
+#main-content .sub-title > i {display:inline-block;margin-right:8px;vertical-align:middle;}
+#main-content .dewford-why-clients .service-block .icon-box > i {display:inline-block;font-size:48px;line-height:1;color:#111;}
+
+/* Background photos preserve the existing image frames. */
+#main-content .dewford-why-photo {background-size:cover;background-position:center;background-repeat:no-repeat;}
+#main-content .project-details__img.dewford-why-photo {width:100%;aspect-ratio:645 / 500;}
+#main-content .why-choose-us-four .inner-container .image img {object-fit:cover;object-position:center;}
+
+/* Keep the original index-1 photo behind the overlapping cards, above the page canvas. */
+#main-content .why-choose-us-four .inner-container {isolation:isolate;}
+#main-content .why-choose-us-four .inner-container > .image {
+  position:absolute;
+  top:0;
+  left:0;
+  width:50%;
+  height:100%;
+  z-index:-1;
 }

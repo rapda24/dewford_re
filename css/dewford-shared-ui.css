@@ -243,3 +243,26 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer :is(.text,.footer-t
 @media(max-width:767.98px){
  .dewford-footer.footer-style-home-two .upper-box .footer-logo .dewford-logo {width:208px;max-width:100%;}
 }
+
+/* Match the home page's vertical section spacing on all Dewford subpages. */
+body.dewford-subpage #main-content {--dewford-section-space:130px;}
+body.dewford-subpage #main-content > section:not(.dewford-page-title):not(.contact-details):not(.map-section):not(.service-section-two):not(.clients-section):not(.features-section-three) {
+ padding-top:var(--dewford-section-space)!important;
+ padding-bottom:var(--dewford-section-space)!important;
+}
+body.dewford-subpage #main-content > .contact-details > .container {
+ padding-top:var(--dewford-section-space)!important;
+ padding-bottom:var(--dewford-section-space)!important;
+}
+body.dewford-subpage #main-content > .clients-section {padding-top:0!important;padding-bottom:var(--dewford-section-space)!important;}
+body.dewford-subpage #main-content > .clients-section:not(.dewford-why-clients) .inner-container {padding-top:var(--dewford-section-space);}
+body.dewford-subpage #main-content > .features-section-three .sec-title-box {padding-top:var(--dewford-section-space);}
+body.dewford-subpage #main-content > .features-section-three .outer-container {padding-bottom:var(--dewford-section-space);}
+@media(max-width:991.98px){
+ body.dewford-subpage #main-content {--dewford-section-space:90px;}
+}
+
+/* White default canvas; individual section backgrounds remain in control. */
+html body.dewford-subpage {--body-bg:#fff;background-color:#fff;}
+html body.dewford-subpage > .page-wrapper,
+html body.dewford-subpage #main-content.dewford-subpage-content {background-color:#fff;}

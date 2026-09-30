@@ -46,3 +46,6 @@ html body .dewford-why-about-template .elementor-element.elementor-element-f6f63
 .dewford-subpage .dewford-events-intro p {margin:0;font-size:17px;font-weight:500;color:#3c3c3c;word-break:keep-all;}
 .dewford-events-intro + .news-section-four {padding-top:0;}
 @media(max-width:767px){.dewford-subpage .dewford-events-intro{padding-bottom:40px;}.dewford-subpage .dewford-events-intro h2{font-size:clamp(28px,8.21vw,40px);}.dewford-subpage .dewford-events-intro p{font-size:clamp(16px,4.1vw,20px);}}
+
+/* Shared title banner height across desktop and mobile subpages. */
+.dewford-subpage .dewford-page-title {height:70dvh;min-height:0;box-sizing:border-box;}

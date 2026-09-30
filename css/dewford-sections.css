@@ -27,8 +27,8 @@
 
 /* Restore template surface hierarchy; brand colors remain on accents and dark sections. */
 .dewford-home .services-section-three {
- --theme-color1:#ffffff;
- --theme-color1-rgb:255,255,255;
+ --theme-color1:#f4f4f4;
+ --theme-color1-rgb:244,244,244;
  --theme-color2:rgb(43 43 43 / 20%);
 }
 .dewford-home .services-section-three .sub-title {color:var(--id-color);}
@@ -158,7 +158,7 @@
 @keyframes dewford-tab-fade-in {from {opacity:0;} to {opacity:1;}}
 @media(prefers-reduced-motion:reduce){.dewford-home .services-section-seven .dewford-crossfade-tabs > .tab-pane.active {animation:none;}}
 /* Original template styling with brand colors and cover images. */
-.dewford-home .services-section-seven {--theme-color1:var(--id-color);--theme-color2:var(--sub-color);}
+.dewford-home .services-section-seven {--theme-color1:#f4f4f4;--theme-color2:var(--sub-color);}
 .dewford-home .services-section-seven .service-nav-tab .nav-link {border-color:var(--id-color);}
 .dewford-home .services-section-seven .service-block-seven .inner-box {background:var(--id-color);color:#ffffff;}
 .dewford-home .services-section-seven .service-block-seven .inner-box :is(.text,.theme-btn,.theme-btn .icon) {color:#ffffff;}

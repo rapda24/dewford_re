@@ -1,5 +1,5 @@
 /* Retain page-contact.html's two-column form/contact layout and map section. */
-.dewford-contact-template {--theme-color1:var(--id-color);--theme-color2:var(--sub-color);--theme-color3:#e4e4e4;--theme-color-dark:var(--id-color);--theme-color-black:var(--id-color-dark);--headings-color:var(--id-color);--text-color:var(--id-color-dark);--theme-light-background:#f6f6f6;--theme-light-background-text-color:var(--id-color-dark);--notech-black:var(--id-color);--notech-base:var(--id-color-dark);color:var(--text-color);}
+.dewford-contact-template {--theme-color1:#f4f4f4;--theme-color2:var(--sub-color);--theme-color3:#e4e4e4;--theme-color-dark:var(--id-color);--theme-color-black:var(--id-color-dark);--headings-color:var(--id-color);--text-color:var(--id-color-dark);--theme-light-background:#f6f6f6;--theme-light-background-text-color:var(--id-color-dark);--notech-black:var(--id-color);--notech-base:var(--id-color-dark);color:var(--text-color);}
 .dewford-contact-template,.dewford-contact-template * {border-radius:0!important;}
 .dewford-contact-template .form-control {font-size:16px;}
 .dewford-contact-consent {display:flex;align-items:flex-start;gap:10px;font-size:var(--dewford-small-text,14px);line-height:1.3;margin-bottom:24px;}

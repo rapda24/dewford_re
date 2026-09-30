@@ -15,140 +15,92 @@
 <link href="css/dewford-page-title.css" rel="stylesheet">
 <link href="css/dewford-gray.css" rel="stylesheet">
 <link href="css/dewford-shared-ui.css" rel="stylesheet">
+<style>
+#main-content.dewford-detail-page {background:#fff;}
+#main-content.dewford-detail-page > .blog-details {
+ --theme-color1:#f4f4f4;--theme-color1-rgb:244,244,244;
+ --theme-color2:#D7D9CF;--theme-color3:#E3E5DD;
+ --theme-color-dark:#111111;--theme-color-black:#000;--theme-color-white:#fff;
+ --headings-color:#111111;--text-color:#525252;
+ background:#fff;color:var(--text-color);
+}
+</style>
 </head>
 <body class="dewford-subpage">
   <div class="page-wrapper">
     <div data-dewford-component="header"></div>
-    <main id="main-content" class="dewford-subpage-content" aria-label="Events" data-page-intro="false">
-<section class="blog-details pt-100 pb-100 dewford-news" data-news-detail="">
-    <div class="container">
-      <div class="row">
-        <div class="col-xl-8 col-lg-7">
-          <div class="blog-details__left">
-            <div class="blog-details__img" data-detail-image=""></div>
-            <div class="blog-details__content">
-              <ul class="list-unstyled blog-details__meta" data-detail-meta=""></ul>
-              <h3 class="blog-details__title" data-detail-title="">소식을 불러오는 중입니다.</h3>
-              <p class="blog-details__text-2" data-detail-body=""></p>
+    <main id="main-content" class="dewford-subpage-content dewford-detail-page" aria-label="Events" data-page-intro="false">
+<section class="blog-details pt-100 pb-100" data-news-detail="">
+<div class="container">
+<div class="row">
+<div class="col-xl-8 col-lg-7">
+<div class="blog-details__left">
+<div class="blog-details__img" data-detail-image=""><div class="blog-details__date" data-detail-date="" hidden=""><span class="day"></span><span class="month"></span></div></div>
+<div class="blog-details__content">
+<ul class="list-unstyled blog-details__meta" data-detail-meta=""></ul>
+<h3 class="blog-details__title" data-detail-title="">소식을 불러오는 중입니다.</h3>
+<p class="blog-details__text-2" data-detail-body=""></p>
 
 
-            </div>
-            <div class="blog-details__bottom">
-              <p class="blog-details__tags" data-detail-post-tags=""><span>Tags</span></p>
-              <div class="blog-details__social-list"> <a href="#none" aria-label="소셜 채널"><i class="fab fa-twitter"></i></a> <a href="#none" aria-label="소셜 채널"><i class="fab fa-facebook"></i></a> <a href="#none" aria-label="소셜 채널"><i class="fab fa-pinterest-p"></i></a> <a href="#none" aria-label="소셜 채널"><i class="fab fa-instagram"></i></a> </div>
-            </div>
-            <div class="nav-links" data-detail-neighbors=""></div>
-            <div class="comment-one" hidden="" aria-hidden="true">
-              <h3 class="comment-one__title">2 Comments</h3>
-              <div class="comment-one__single">
-                <div class="comment-one__image"> <img src="images/resource/author-2.jpg" alt=""> </div>
-                <div class="comment-one__content">
-                  <h3>Kevin Martin</h3>
-                  <p>Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia nulla.
-                    Aliquam quis purus in justo pulvinar tempor. Aliquam tellus nulla,
-                    sollicitudin at euismod.
-                  </p>
-                  <a href="news-details.html" class="theme-btn btn-style-one comment-one__btn"><span class="btn-title">Reply</span></a>
-                </div>
-              </div>
-              <div class="comment-one__single">
-                <div class="comment-one__image"> <img src="images/resource/author-3.jpg" alt=""> </div>
-                <div class="comment-one__content">
-                  <h3>Sarah Albert</h3>
-                  <p>Mauris non dignissim purus, ac commodo diam. Donec sit amet lacinia nulla.
-                    Aliquam quis purus in justo pulvinar tempor. Aliquam tellus nulla,
-                    sollicitudin at euismod.
-                  </p>
-                  <a href="news-details.html" class="theme-btn btn-style-one comment-one__btn"><span class="btn-title">Reply</span></a>
-                </div>
-              </div>
-              <div class="comment-form">
-                <h3 class="comment-form__title">Leave a Comment</h3>
-                <form id="contact_form" name="contact_form" class="" method="post">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="mb-3">
-                        <input name="form_name" class="form-control" type="text" placeholder="Name" disabled="">
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="mb-3">
-                        <input name="form_email" class="form-control required email" type="email" placeholder="Email" disabled="">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <textarea name="form_message" class="form-control required" rows="5" placeholder="Messages" disabled=""></textarea>
-                  </div>
-                  <div class="mb-3">
-                    <input name="form_botcheck" class="form-control" type="hidden" value="" disabled="">
-                    <button type="submit" class="theme-btn btn-style-two" data-loading-text="Please wait..." disabled=""><span class="btn-title">Submit Comment</span></button>
-                  </div>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-5">
-          <div class="sidebar">
+</div>
+<div class="blog-details__bottom">
+<p class="blog-details__tags" data-detail-post-tags=""><span>분류</span></p>
 
-            <div class="sidebar__single sidebar__post">
-              <h3 class="sidebar__title">다른 소식</h3>
-              <ul class="sidebar__post-list list-unstyled" data-detail-related=""></ul>
-            </div>
-            <div class="sidebar__single sidebar__category">
-              <h3 class="sidebar__title">카테고리</h3>
-              <ul class="sidebar__category-list list-unstyled" data-detail-categories=""></ul>
-            </div>
-            <div class="sidebar__single sidebar__tags">
-              <h3 class="sidebar__title">태그</h3>
-              <div class="sidebar__tags-list" data-detail-tags=""></div>
-            </div>
-            <div class="sidebar__single sidebar__comments" hidden="" aria-hidden="true">
-              <h3 class="sidebar__title">Recent Comments</h3>
-              <ul class="sidebar__comments-list list-unstyled">
-                <li>
-                  <div class="sidebar__comments-icon"> <i class="fas fa-comments"></i> </div>
-                  <div class="sidebar__comments-text-box">
-                    <p>A wordpress commenter on <br>
-                      launch new mobile app
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div class="sidebar__comments-icon"> <i class="fas fa-comments"></i> </div>
-                  <div class="sidebar__comments-text-box">
-                    <p> <span>John Doe</span> on template:</p>
-                    <h5>comments</h5>
-                  </div>
-                </li>
-                <li>
-                  <div class="sidebar__comments-icon"> <i class="fas fa-comments"></i> </div>
-                  <div class="sidebar__comments-text-box">
-                    <p>A wordpress commenter on <br>
-                      launch new mobile app
-                    </p>
-                  </div>
-                </li>
-                <li>
-                  <div class="sidebar__comments-icon"> <i class="fas fa-comments"></i> </div>
-                  <div class="sidebar__comments-text-box">
-                    <p> <span>John Doe</span> on template:</p>
-                    <h5>comments</h5>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+</div>
+<div class="nav-links" data-detail-neighbors=""></div>
+
+</div>
+</div>
+<div class="col-xl-4 col-lg-5">
+<div class="sidebar">
+<div class="sidebar__single sidebar__search">
+<form action="event.html" class="sidebar__search-form" method="get">
+<input aria-label="소식 검색" name="q" placeholder="소식 검색" type="search"/>
+<button aria-label="검색" type="submit"><i class="lnr-icon-search"></i></button>
+</form>
+</div>
+<div class="sidebar__single sidebar__post">
+<h3 class="sidebar__title"><i class="fas fa-newspaper" aria-hidden="true"></i> 최근 소식</h3>
+<ul class="sidebar__post-list list-unstyled" data-detail-related=""></ul>
+</div>
+<div class="sidebar__single sidebar__category">
+<h3 class="sidebar__title"><i class="fas fa-folder-open" aria-hidden="true"></i> 카테고리</h3>
+<ul class="sidebar__category-list list-unstyled" data-detail-categories=""></ul>
+</div>
+<div class="sidebar__single sidebar__tags">
+<h3 class="sidebar__title"><i class="fas fa-tags" aria-hidden="true"></i> 태그</h3>
+<div class="sidebar__tags-list" data-detail-tags=""></div>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+</section>
 </main>
     <div data-dewford-component="footer"></div>
     <div data-dewford-component="floating"></div>
   </div>
-  <script src="js/dewford-config.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.fancybox.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/wow.js"></script>
+  <script src="js/appear.js"></script>
+  <script src="js/select2.min.js"></script>
+  <script src="js/knob.js"></script>
+  <script src="js/swiper.min.js"></script>
+  <script src="js/gsap.min.js"></script>
+  <script src="js/ScrollTrigger.min.js"></script>
+  <script src="js/splitType.js"></script>
+  <script src="js/gsap-scroll-smoother.js"></script>
+  <script src="js/gsap-scroll-to-plugin.js"></script>
+  <script src="js/SplitText.min.js"></script>
+  <script src="js/custom-gsap.js"></script>
+  <script src="js/jquery-scrolltofixed-min.js"></script>
+  <script src="js/script.js"></script>
+<script src="js/dewford-config.js"></script>
 <script src="js/dewford-api.js"></script>
 <script src="js/dewford-common.js"></script>
 <script src="js/dewford-page-title.js"></script>
