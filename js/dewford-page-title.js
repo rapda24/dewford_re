@@ -97,15 +97,37 @@
   }
   const slides=[...photos.children];const reduced=matchMedia('(prefers-reduced-motion: reduce)');
   let active=0,timer,visible=true;
+  const zooms = new Map();
+  const startZoom = slide => {
+    zooms.get(slide)?.cancel();
+    if (reduced.matches) return;
+    const animation = slide.querySelector('img').animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(1.1)' }],
+      { duration: 6500, easing: 'linear', fill: 'forwards' }
+    );
+    zooms.set(slide, animation);
+  };
   const schedule=()=>{
     clearTimeout(timer);
-    if(reduced.matches||document.hidden||!visible)return;
+    const paused = reduced.matches || document.hidden || !visible;
+    zooms.forEach(animation => paused ? animation.pause() : animation.play());
+    if(paused)return;
     timer=setTimeout(()=>{
       const next=(active+1)%slides.length;const img=slides[next].querySelector('img');
-      if(img.complete&&img.naturalWidth){slides[next].classList.add('is-active');slides[active].classList.remove('is-active');active=next;}
+      if(img.complete&&img.naturalWidth){startZoom(slides[next]);slides[next].classList.add('is-active');slides[active].classList.remove('is-active');active=next;}
       schedule();
     },5000);
   };
   if('IntersectionObserver' in window)new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;schedule();}).observe(section);
-  document.addEventListener('visibilitychange',schedule);reduced.addEventListener('change',schedule);schedule();
+  document.addEventListener('visibilitychange',schedule);
+  reduced.addEventListener('change', () => {
+    zooms.forEach(animation => animation.cancel());
+    zooms.clear();
+    startZoom(slides[active]);
+    schedule();
+  });
+  const firstImage = slides[active].querySelector('img');
+  const begin = () => { startZoom(slides[active]); schedule(); };
+  if (firstImage.complete) begin();
+  else firstImage.addEventListener('load', begin, { once: true });
 })();

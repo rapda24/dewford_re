@@ -3,7 +3,7 @@
 #main-content.dewford-refined-page :is(h2,h3,h4,h5) {font-style:normal;font-weight:700;overflow-wrap:anywhere;}
 #main-content.dewford-refined-page .sub-title {font-size:16px!important;line-height:1.5;}
 #main-content.dewford-refined-page .sub-title i {margin-right:8px;}
-#main-content.dewford-refined-page .reveal {visibility:visible;}
+#main-content.dewford-refined-page:not(.dewford-philosophy-content) .reveal {visibility:visible;}
 #main-content.dewford-refined-page img {max-width:100%;}
 #main-content.dewford-refined-page .service-block .icon-box i {font-size:48px;line-height:1;}
 #main-content.dewford-refined-page .service-block-two .icon-box {display:grid;place-items:center;flex-shrink:0;}
@@ -43,13 +43,13 @@
  #main-content.dewford-refined-page .team-details .container,#main-content.dewford-refined-page .team-contact-form .container {padding-top:0;padding-bottom:0;}
  #main-content.dewford-refined-page .team-details__bottom {padding-top:40px!important;}
 }
-#main-content.dewford-refined-page .anim-fade-move {opacity:1!important;visibility:visible!important;transform:none!important;}
+#main-content.dewford-refined-page:not(.dewford-philosophy-content) .anim-fade-move {opacity:1!important;visibility:visible!important;transform:none!important;}
 #main-content.dewford-refined-page .projects-section-two h2.title {font-size:44px!important;line-height:1.35!important;}
 #main-content.dewford-refined-page .team-contact-form {background:#fff;}
 #main-content.dewford-refined-page .team-contact-form > .container {padding-block:0;}
 #main-content.dewford-refined-page .service-section-two .outer-box {background-image:url('../images/sub/sub_15.jpg');background-size:cover;background-position:center;}
-#main-content.dewford-refined-page .reveal,
-#main-content.dewford-refined-page .reveal img {transform:none!important;opacity:1!important;visibility:visible!important;}
+#main-content.dewford-refined-page:not(.dewford-philosophy-content) .reveal,
+#main-content.dewford-refined-page:not(.dewford-philosophy-content) .reveal img {transform:none!important;opacity:1!important;visibility:visible!important;}
 /* Match the spacing and typography established on Why Dewford. */
 html body.dewford-subpage #main-content.dewford-refined-page h2.title,
 html body.dewford-subpage #main-content.dewford-refined-page .section-title__title {font-size:50px!important;line-height:1.3!important;font-weight:800!important;font-style:normal;letter-spacing:-.035em;}

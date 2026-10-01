@@ -1,0 +1,169 @@
+/* Page-specific composition. Shared chrome and accessibility remain independent. */
+html body.dewford-layout-rolling-enrollment #main-content .about-section .row {align-items:start;}
+html body.dewford-layout-rolling-enrollment #main-content .about-section .image-column {margin-left:0;width:45%;}
+html body.dewford-layout-rolling-enrollment #main-content .about-section .content-column {width:55%;padding-right:48px;}
+html body.dewford-layout-rolling-enrollment #main-content .about-section .image img {aspect-ratio:4/5!important;}
+html body.dewford-layout-rolling-enrollment #main-content .dewford-admissions-steps-shell {display:grid;grid-template-columns:1fr 1.3fr;gap:64px;}
+html body.dewford-layout-rolling-enrollment #main-content .dewford-admissions-steps-shell > :is(.auto-container,.outer-box) {width:100%;padding:0;margin:0;}
+html body.dewford-layout-rolling-enrollment #main-content .dewford-stage-grid > .swiper-wrapper {display:block;}
+html body.dewford-layout-rolling-enrollment #main-content .service-block-two .inner-box {border:0;border-radius:0;background:none;}
+html body.dewford-layout-rolling-enrollment #main-content .service-block-two .overlay-content {padding:0 0 32px 56px;background:none;border-left:1px solid #d9c9e2;margin-left:18px;}
+html body.dewford-layout-rolling-enrollment #main-content .service-block-two .overlay-content:before {left:-19px;top:0;right:auto;display:grid;place-items:center;width:38px;height:38px;background:var(--id-color);color:white;border-radius:50%;}
+html body.dewford-layout-rolling-enrollment #main-content .service-block-two .icon-box {display:none;}
+html body.dewford-layout-rolling-enrollment #main-content .swiper-slide:last-child .overlay-content {border-left-color:transparent;padding-bottom:0;}
+@media(max-width:991px){
+ html body.dewford-layout-rolling-enrollment #main-content .about-section :is(.image-column,.content-column) {width:100%;padding-right:12px;}
+ html body.dewford-layout-rolling-enrollment #main-content .about-section .image img {aspect-ratio:4/3!important;}
+ html body.dewford-layout-rolling-enrollment #main-content .dewford-admissions-steps-shell {grid-template-columns:1fr;gap:20px;}
+}
+/* Early Learning: a photo-led, alternating learning journey. */
+html body.dewford-layout-international-preschool #main-content .about-section .row {flex-direction:row-reverse;align-items:center;}
+html body.dewford-layout-international-preschool #main-content .about-section .image-column {width:48%;margin:0;}
+html body.dewford-layout-international-preschool #main-content .about-section .content-column {width:52%;padding-left:48px;}
+html body.dewford-layout-international-preschool #main-content .about-section .image img {aspect-ratio:4/5!important;}
+html body.dewford-layout-international-preschool #main-content .service-section-two {background:#fcfaf6;}
+html body.dewford-layout-international-preschool #main-content .dewford-section-heading {text-align:center;}
+html body.dewford-layout-international-preschool #main-content .dewford-stage-grid > .swiper-wrapper {display:block;}
+html body.dewford-layout-international-preschool #main-content .dewford-stage-grid .swiper-slide {margin-bottom:32px!important;}
+html body.dewford-layout-international-preschool #main-content .service-block-two .inner-box {display:grid;grid-template-columns:1fr 1fr;border:0;align-items:center;background:#fff;}
+html body.dewford-layout-international-preschool #main-content .dewford-stage-photo {width:100%;height:310px;object-fit:cover;}
+html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(even) .dewford-stage-photo {grid-column:2;grid-row:1;}
+html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(even) .overlay-content {grid-column:1;grid-row:1;}
+html body.dewford-layout-international-preschool #main-content .service-block-two .overlay-content {padding:36px;height:auto;}
+html body.dewford-layout-international-preschool #main-content .service-block-two .icon-box {display:none;}
+html body.dewford-layout-international-preschool #main-content .service-block-two .overlay-content:before {position:static;display:block;font-size:14px;margin-bottom:20px;color:var(--id-color);}
+@media(max-width:991px){
+ html body.dewford-layout-international-preschool #main-content .about-section :is(.content-column,.image-column) {width:100%;padding-inline:12px;}
+ html body.dewford-layout-international-preschool #main-content .about-section .image img {aspect-ratio:4/3!important;}
+}
+@media(max-width:767px){
+ html body.dewford-layout-international-preschool #main-content .service-block-two .inner-box {display:flex;flex-direction:column;align-items:stretch;}
+ html body.dewford-layout-international-preschool #main-content .dewford-stage-photo {height:230px;}
+ html body.dewford-layout-international-preschool #main-content .service-block-two .overlay-content {padding:26px;}
+}
+/* International Primary: editorial opening and a connected writing progression. */
+html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:first-child > .col-lg-6 {width:100%;}
+html body.dewford-layout-elementary-international #main-content .project-details .sec-title-style-three {max-width:820px;margin:0 auto 48px;text-align:center;}
+html body.dewford-layout-elementary-international #main-content .dewford-why-copy-rows {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;border-top:1px solid #ddd3e2;padding-top:20px;}
+html body.dewford-layout-elementary-international #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row {display:block;border:0;padding:12px 0;}
+html body.dewford-layout-elementary-international #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-heading {display:flex;gap:14px;align-items:center;margin-bottom:18px;}
+html body.dewford-layout-elementary-international #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-title {font-size:22px!important;}
+html body.dewford-layout-elementary-international #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-icon {width:44px;height:44px;flex-shrink:0;}
+html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:last-child > .col-md-6:first-child {width:58%;}
+html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:last-child > .col-md-6:last-child {width:42%;}
+html body.dewford-layout-elementary-international #main-content .project-details__img {height:360px;}
+html body.dewford-layout-elementary-international #main-content .service-section-two {background:#281532;}
+html body.dewford-layout-elementary-international #main-content .service-section-two :is(h2.title,.sub-title) {color:#fff!important;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .inner-box {border:0;border-top:1px solid #806e87;border-radius:0;background:none;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content {background:none;color:#fff;padding:32px 12px 0 0;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content :is(.title,.title a,.text) {color:#fff;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content:before {color:#c4b6ca;}
+@media(max-width:767px){
+ html body.dewford-layout-elementary-international #main-content .dewford-why-copy-rows {grid-template-columns:1fr;gap:8px;}
+ html body.dewford-layout-elementary-international #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row + .dewford-icon-copy-row {border-top:1px solid #ddd3e2;padding-top:24px;}
+ html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:last-child > .col-md-6 {width:100%!important;}
+ html body.dewford-layout-elementary-international #main-content .project-details__img {height:250px;}
+}
+/* Primary ESL: a syllabus-style level comparison, not a card grid. */
+html body.dewford-layout-elementary-esl #main-content .about-section .row {align-items:start;}
+html body.dewford-layout-elementary-esl #main-content .about-section .image-column {width:50%;margin:0;padding-left:40px;}
+html body.dewford-layout-elementary-esl #main-content .about-section .image img {aspect-ratio:1/1!important;}
+html body.dewford-layout-elementary-esl #main-content .service-section-two {background:#fff;border-block:1px solid #e8e1eb;}
+html body.dewford-layout-elementary-esl #main-content .dewford-stage-grid > .swiper-wrapper {display:block;border-top:2px solid var(--id-color);}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .inner-box {border:0;border-radius:0;border-bottom:1px solid #ded5e3;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content {display:grid;grid-template-columns:64px 1fr 1.3fr;align-items:center;gap:28px;padding:32px 20px;background:none;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content:before {position:static;font-size:32px;line-height:1;color:#a698ad;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .icon-box {display:none;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content .title {margin:0!important;}
+html body.dewford-layout-elementary-esl #main-content .swiper-slide:nth-child(even) .overlay-content {background:#f8f5fa;}
+html body.dewford-layout-elementary-esl #main-content .faq-section-home-two {background:#faf9f7;}
+@media(max-width:991px){
+ html body.dewford-layout-elementary-esl #main-content .about-section .image-column {width:100%;padding-inline:12px;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .image img {aspect-ratio:4/3!important;}
+}
+@media(max-width:767px){
+ html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content {grid-template-columns:38px 1fr;gap:16px;padding:26px 12px;}
+ html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content .text {grid-column:2;}
+}
+/* Apply Now: campus visit information followed by a focused split form. */
+html body.dewford-layout-admissions-inquiry #main-content .team-details__top .row {align-items:center;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__top-img img {aspect-ratio:4/5!important;object-fit:cover;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__bottom .row > div {width:100%;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__bottom-left {max-width:740px;margin-bottom:40px;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__bottom-right {margin:0;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__progress {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single {padding:44px 0 0;margin:0;border-bottom:0;border-top:1px solid #e8e1eb;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single:before {top:14px;}
+html body.dewford-layout-admissions-inquiry #main-content .team-contact-form > .container {display:grid;grid-template-columns:1fr 1.8fr;gap:48px;align-items:start;}
+html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .sec-title {text-align:left!important;}
+html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .col-lg-8 {width:100%;}
+html body.dewford-layout-admissions-inquiry #main-content #dewford-inquiry-form {padding:32px;}
+html body.dewford-layout-admissions-inquiry #main-content #dewford-inquiry-form .form-consent {line-height:1.75!important;}
+@media(max-width:991px){
+ html body.dewford-layout-admissions-inquiry #main-content .team-contact-form > .container {grid-template-columns:1fr;gap:0;}
+}
+@media(max-width:767px){
+ html body.dewford-layout-admissions-inquiry #main-content .team-details__progress {grid-template-columns:1fr;gap:28px;}
+ html body.dewford-layout-admissions-inquiry #main-content .team-details__top-img img {aspect-ratio:4/3!important;}
+ html body.dewford-layout-admissions-inquiry #main-content #dewford-inquiry-form {padding:24px 20px;}
+}
+/* Calendar pages share date behavior, while their information hierarchy differs. */
+html body.dewford-polished-page #main-content .dewford-calendar-switch {display:flex;gap:8px;margin:0 0 28px;}
+html body.dewford-polished-page #main-content .dewford-calendar-switch a {padding:10px 18px;border:1px solid #ded5e3;color:var(--id-color);font-size:14px;}
+html body.dewford-polished-page #main-content .dewford-calendar-switch a[aria-current] {background:var(--id-color);color:#fff;border-color:var(--id-color);}
+html body.dewford-layout-preschool-calendar #main-content .dewford-calendar > :is(h2,p) {text-align:center;}
+html body.dewford-layout-preschool-calendar #main-content .dewford-calendar-switch {justify-content:center;}
+html body.dewford-layout-preschool-calendar #main-content .dewford-calendar-toolbar {background:#fcfaf6;}
+html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-workspace {display:grid;grid-template-columns:minmax(0,1fr) 280px;gap:28px;align-items:start;}
+html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-details {margin:0;padding:28px 24px;border:0;border-top:3px solid var(--id-color);}
+html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-toolbar {gap:14px;padding:20px;}
+html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-month-controls {gap:12px;}
+html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-toolbar h3 {min-width:0;font-size:22px;}
+html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-day {min-height:88px;}
+@media(max-width:1439px){html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-workspace {grid-template-columns:1fr;}}
+@media(max-width:767px){html body.dewford-layout-elementary-calendar #main-content .dewford-calendar-day {min-height:66px;}}
+/* Events: lead story with a magazine-style archive underneath. */
+html body.dewford-layout-event #main-content [data-event-list] {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin:0;}
+html body.dewford-layout-event #main-content .news-block-four {width:100%;padding:0;margin:0;min-width:0;}
+html body.dewford-layout-event #main-content .news-block-four:first-child {grid-column:1/-1;}
+html body.dewford-layout-event #main-content .news-block-four:first-child .inner-block {display:grid;grid-template-columns:1.4fr 1fr;align-items:center;background:#f8f5fa;border:0;}
+html body.dewford-layout-event #main-content .news-block-four:first-child .content-box {padding:40px;}
+html body.dewford-layout-event #main-content .news-block-four:first-child .content-box .inner-box .title {font-size:30px;min-height:0;}
+html body.dewford-layout-event #main-content .news-block-four:first-child .image {aspect-ratio:4/3;}
+html body.dewford-layout-event #main-content .dewford-story-category {font-size:12px;letter-spacing:.1em!important;color:var(--id-color);font-weight:700;margin-bottom:16px;}
+html body.dewford-layout-event #main-content .dewford-editorial-heading {max-width:100%;display:grid;grid-template-columns:1.2fr 1fr;gap:12px 48px;align-items:end;}
+html body.dewford-layout-event #main-content .dewford-editorial-heading .sub-title {grid-column:1/-1;margin:0;}
+html body.dewford-layout-event #main-content .dewford-editorial-heading h2 {margin:0;}
+html body.dewford-layout-event #main-content .dewford-editorial-heading > p:last-child {margin:0;}
+@media(max-width:767px){
+ html body.dewford-layout-event #main-content [data-event-list],html body.dewford-layout-event #main-content .dewford-editorial-heading {grid-template-columns:1fr;}
+ html body.dewford-layout-event #main-content .news-block-four:first-child .inner-block {display:block;}
+ html body.dewford-layout-event #main-content .news-block-four:first-child .content-box {padding:26px;}
+ html body.dewford-layout-event #main-content .news-block-four:first-child .content-box .inner-box .title {font-size:24px;}
+}
+/* Responsive refinement after inspecting all desktop compositions. */
+html body.dewford-layout-admissions-inquiry #main-content .dewford-form-intro {margin-top:24px;color:#665e6b;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-phone {display:inline-block;margin-top:24px;color:var(--id-color);font-size:22px;font-weight:700;}
+@media(min-width:768px) and (max-width:1439px){
+ html body.dewford-polished-page #main-content .about-section :is(.content-column,.image-column) {width:100%;margin-inline:0;padding-inline:12px;}
+ html body.dewford-polished-page #main-content .about-section .image img {aspect-ratio:16/9!important;}
+ html body.dewford-layout-rolling-enrollment #main-content .dewford-admissions-steps-shell {grid-template-columns:1fr;gap:24px;}
+ html body.dewford-layout-elementary-international #main-content .dewford-why-copy-rows {grid-template-columns:1fr;}
+ html body.dewford-layout-admissions-inquiry #main-content .team-details__top .row > div {width:100%;}
+ html body.dewford-layout-admissions-inquiry #main-content .team-details__top-right {padding:32px 0 0;}
+ html body.dewford-layout-admissions-inquiry #main-content .team-contact-form > .container {grid-template-columns:1fr;gap:20px;}
+ html body.dewford-layout-event #main-content .news-block-four:first-child .inner-block {display:block;}
+}
+@media(max-width:767px){
+ html body.dewford-layout-rolling-enrollment #main-content .service-block-two .overlay-content {padding-left:40px;}
+ html body.dewford-layout-elementary-international #main-content .project-details .sec-title-style-three {text-align:left;}
+ html body.dewford-layout-elementary-international #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-title {font-size:21px!important;}
+ html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .sec-title {margin-bottom:28px;}
+ html body.dewford-layout-event #main-content .news-block-four .content-box .inner-box .title {min-height:0;}
+ html body.dewford-polished-page #main-content .dewford-calendar-switch a {min-height:44px;display:flex;align-items:center;}
+}
+/* Mobile inspection fixes: keep two-digit markers and icon glyphs intact. */
+html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content:before {white-space:nowrap;width:auto;min-width:38px;word-break:normal;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content .icon-box {display:flex;align-items:center;justify-content:center;line-height:1;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .icon-box i {display:block;line-height:1;position:static;transform:none;padding:0;margin:0;}
+@media(max-width:767px){html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content:before {font-size:26px;}}

@@ -1,25 +1,28 @@
 <!DOCTYPE html>
+
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Apply Now | Dewford</title>
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/style.css" rel="stylesheet">
-  <link href="css/dewford-brand.css" rel="stylesheet">
-  <link href="images/common/symbol_2.png" rel="icon" type="image/png">
-<link href="css/dewford-navigation.css" rel="stylesheet">
-<link href="css/dewford-mobile.css" rel="stylesheet">
-<link href="css/dewford-page-title.css" rel="stylesheet">
-<link href="css/dewford-gray.css" rel="stylesheet">
-<link href="css/dewford-shared-ui.css" rel="stylesheet">
-<link href="css/dewford-refined-pages.css" rel="stylesheet">
-<link href="css/dewford-calm-content.css" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Apply Now | Dewford</title>
+<link href="css/bootstrap.min.css" rel="stylesheet"/>
+<link href="css/style.css" rel="stylesheet"/>
+<link href="css/dewford-brand.css" rel="stylesheet"/>
+<link href="images/common/symbol_2.png" rel="icon" type="image/png"/>
+<link href="css/dewford-navigation.css" rel="stylesheet"/>
+<link href="css/dewford-mobile.css" rel="stylesheet"/>
+<link href="css/dewford-page-title.css" rel="stylesheet"/>
+<link href="css/dewford-gray.css" rel="stylesheet"/>
+<link href="css/dewford-refined-pages.css" rel="stylesheet"/>
+<link href="css/dewford-calm-content.css" rel="stylesheet"/>
+<link href="css/dewford-shared-ui.css" rel="stylesheet"/>
+<link href="css/dewford-subpage-polish.css" rel="stylesheet"/>
+<link href="css/dewford-page-layouts.css" rel="stylesheet"/>
 </head>
-<body class="dewford-subpage">
-  <div class="page-wrapper">
-    <div data-dewford-component="header"></div>
-    <main aria-label="Apply Now" class="dewford-subpage-content dewford-refined-page dewford-calm-content" data-page-intro="false" id="main-content"><section class="team-details">
+<body class="dewford-subpage dewford-polished-page dewford-layout-admissions-inquiry">
+<div class="page-wrapper">
+<div data-dewford-component="header"></div>
+<main aria-label="Apply Now" class="dewford-subpage-content dewford-refined-page dewford-calm-content" data-page-intro="false" id="main-content"><section class="team-details">
 <div class="container pt-120 pb-100">
 <div class="team-details__top pb-70">
 <div class="row">
@@ -87,53 +90,33 @@
 <div class="container pt-120 pb-120">
 <div class="sec-title text-center">
 <h2 class="section-title__title">입학 상담 신청</h2>
-</div>
+<p class="dewford-form-intro">아이에게 맞는 배움의 시작을 함께 찾아갑니다. 필수 항목(*)을 작성해 주세요.</p><a class="dewford-consultation-phone" href="tel:0264011012">02-6401-1012</a></div>
 <div class="row justify-content-center">
 <div class="col-lg-8">
 <!-- Contact Form -->
-<form action="includes/sendmail.php" id="contact_form" method="post" name="contact_form">
-<div class="row">
-<div class="col-sm-6">
-<div class="mb-3">
-<input aria-label="학부모 성함" class="form-control" name="form_name" placeholder="학부모 성함" type="text"/>
+<form class="dewford-about-form" id="dewford-inquiry-form">
+
+<div class="dewford-about-fields">
+<label>학부모 성함 <span aria-hidden="true">*</span><input autocomplete="name" maxlength="80" name="name" required=""/></label>
+<label>연락처 <span aria-hidden="true">*</span><input autocomplete="tel" maxlength="30" name="phone" placeholder="010-0000-0000" required="" type="tel"/></label>
+<label>이메일<input autocomplete="email" maxlength="254" name="email" type="email"/></label>
+<label>관심 과정 <span aria-hidden="true">*</span><select name="program" required=""><option value="">선택해 주세요</option><option>국제 유치부</option><option>유치 방과후</option><option>초등 방과후</option><option>기타 상담</option></select></label>
+<label class="form-wide">상담 내용<textarea maxlength="3000" name="message" placeholder="아이의 연령과 궁금하신 내용을 남겨주세요." rows="3"></textarea></label>
 </div>
-</div>
-<div class="col-sm-6">
-<div class="mb-3">
-<input aria-label="이메일 주소" class="form-control required email" name="form_email" placeholder="이메일 주소" type="email"/>
-</div>
-</div>
-</div>
-<div class="row">
-<div class="col-sm-6">
-<div class="mb-3">
-<input aria-label="상담 제목 또는 관심 교육 과정" class="form-control required" name="form_subject" placeholder="상담 제목 또는 관심 교육 과정" type="text"/>
-</div>
-</div>
-<div class="col-sm-6">
-<div class="mb-3">
-<input aria-label="연락처" class="form-control" name="form_phone" placeholder="연락처" type="text"/>
-</div>
-</div>
-</div>
-<div class="mb-3">
-<textarea aria-label="상담 내용" class="form-control required" name="form_message" placeholder="아이의 연령, 현재 영어 학습 경험과 궁금하신 내용을 남겨주세요." rows="7"></textarea>
-</div>
-<div class="mb-5">
-<input class="form-control" name="form_botcheck" type="hidden" value=""/>
-<button class="theme-btn btn-style-one" data-loading-text="접수 중입니다..." type="submit"><span class="btn-title">상담 신청하기</span></button>
-<button class="theme-btn btn-style-one" type="reset"><span class="btn-title">다시 작성</span></button>
-</div>
+<div aria-hidden="true" hidden=""><label>Website<input autocomplete="off" name="website" tabindex="-1"/></label></div>
+<label class="form-consent"><input name="consent" required="" type="checkbox"/><span>상담 답변을 위한 성함, 연락처, 이메일 및 상담 내용의 수집·이용에 동의합니다. 정보는 상담 목적으로 저장되며 ADMIN@DEWFORD.COM으로 삭제를 요청할 수 있습니다.</span></label>
+<button class="theme-btn btn-style-two" type="submit"><span class="btn-title">상담 신청하기</span><i aria-hidden="true" class="icon fa-light fa-arrow-right"></i></button>
+<p aria-live="polite" class="dewford-form-status" role="status"></p>
 </form>
 <!-- Contact Form Validation-->
 </div>
 </div>
 </div>
 </section></main>
-    <div data-dewford-component="footer"></div>
-    <div data-dewford-component="floating"></div>
-  </div>
-  <script src="js/jquery.js"></script>
+<div data-dewford-component="footer"></div>
+<div data-dewford-component="floating"></div>
+</div>
+<script src="js/jquery.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.fancybox.js"></script>
@@ -157,6 +140,8 @@
 <script src="js/dewford-common.js"></script>
 <script src="js/dewford-page-title.js"></script>
 <script src="js/dewford-typography.js"></script>
-  <script src="js/dewford-ui.js"></script>
+<script src="js/dewford-ui.js"></script>
+<script src="js/dewford-consultation.js"></script>
+<script src="js/dewford-subpage-polish.js"></script>
 </body>
 </html>

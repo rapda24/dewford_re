@@ -5,7 +5,7 @@
 .dewford-page-title {position:relative;isolation:isolate;display:grid;place-items:center;min-height:700px;overflow:hidden;background:var(--id-color);padding:80px 24px;}
 .dewford-page-title-photos,.dewford-page-title-slide {position:absolute;inset:0;}
 .dewford-page-title-photos {z-index:-2;}
-.dewford-page-title-slide {opacity:0;transition:opacity 1.2s ease;}
+.dewford-page-title-slide {opacity:0;transition:opacity 1.5s ease;}
 .dewford-page-title-slide.is-active {opacity:1;}
 .dewford-page-title-slide img {display:block;width:100%;height:100%;object-fit:cover;}
 .dewford-page-title::before {content:'';position:absolute;inset:0;background:var(--id-color);opacity:.65;z-index:-1;pointer-events:none;}

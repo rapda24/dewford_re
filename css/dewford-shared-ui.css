@@ -67,6 +67,8 @@ html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-header-talk > span { background: rgb(245, 161, 0); color: rgb(255, 255, 255); }
 }
 /* Normalize legacy subpage overrides to the main page's shared controls. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-floating-links a {box-shadow:0 2px 12px rgba(0,0,0,.09);}
+.dewford-drawer:focus {outline:none;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating {background:#fee500!important;--button-surface:#fee500;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating > img {filter:none;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top {background:#000!important;--button-surface:#000;color:#fff;}

@@ -75,7 +75,7 @@
       const slider = list.parentElement;
       new Swiper(slider, {
         slidesPerView: 1, spaceBetween: 30, speed: 600, rewind: true,
-        autoplay: {delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true},
+        autoplay: {delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: false},
         watchOverflow: true, grabCursor: true,
         breakpoints: {768: {slidesPerView: 2}, 992: {slidesPerView: 3}},
         keyboard: {enabled: true, onlyInViewport: true},
