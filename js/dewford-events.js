@@ -69,7 +69,7 @@
         const info = element('div', 'info-box');
         const title = element('h5', 'name');
         const link = element('a', '', post.title); link.href = href; title.append(link);
-        info.append(title, element(post.date ? 'time' : 'div', 'designation', post.date || post.category || 'Dewford'));
+        info.append(title, element('div', 'designation', post.category || 'DEWFORD LIFE'));
         content.append(info); inner.append(imageBox, content); card.append(inner); list.append(card);
       }
       const slider = list.parentElement;

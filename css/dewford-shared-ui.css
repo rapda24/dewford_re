@@ -266,3 +266,30 @@ body.dewford-subpage #main-content > .features-section-three .outer-container {p
 html body.dewford-subpage {--body-bg:#fff;background-color:#fff;}
 html body.dewford-subpage > .page-wrapper,
 html body.dewford-subpage #main-content.dewford-subpage-content {background-color:#fff;}
+
+/* Compact mobile footer. */
+@media(max-width:767.98px){
+ .dewford-footer.footer-style-home-two .footer-bottom {align-items:flex-start;justify-content:flex-start;}
+ .dewford-footer.footer-style-home-two .footer-bottom .copyright {width:100%;margin-left:0;text-align:left;}
+ .dewford-footer.footer-style-home-two .footer-column .about-widget .footer-text {margin-bottom:0;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .footer-title {font-size:clamp(16px,4.5vw,24px)!important;white-space:nowrap;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .footer-title :is(span,strong) {display:inline;font-size:inherit!important;}
+ .dewford-footer .about-widget .footer-title br,
+ .dewford-footer .about-widget > .theme-btn,
+ .dewford-footer .dewford-footer-menu-grid {display:none!important;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .footer-bottom .copyright,
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .footer-bottom .copyright :is(a,span) {font-size:14px!important;}
+}
+
+/* Keep mobile footer contact details on three compact lines. */
+@media(max-width:767.98px){
+ .dewford-footer.footer-style-home-two .dewford-footer-contact-row {padding-top:20px;}
+ .dewford-footer .dewford-footer-contact-row > .row {row-gap:8px;}
+ .dewford-footer .dewford-footer-contact-row .info-box {margin-top:0!important;margin-bottom:0;}
+ .dewford-footer .dewford-footer-contact-value + .dewford-footer-contact-value {margin-top:8px!important;}
+ .dewford-footer .dewford-footer-contact-value br {display:none;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .dewford-footer-contact-row .info .dewford-footer-contact-value {align-items:center;gap:6px;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .dewford-footer-contact-row .dewford-contact-value-text {font-size:14px!important;white-space:nowrap;letter-spacing:0!important;line-height:1.5!important;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .dewford-footer-contact-row a[href="contact.html"] .dewford-contact-value-text {font-size:clamp(10px,3vw,14px)!important;}
+ .dewford-footer .dewford-footer-contact-value svg {width:16px;height:16px;margin-top:0;}
+}

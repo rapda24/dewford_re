@@ -89,7 +89,7 @@
                                 <path class="dewford-youtube-play" fill="#f00" d="m10 8 6 4-6 4Z" />
                               </svg></a></div></div>
   <div class="footer-column col-xl-5"><div class="about-widget">
-   <h2 class="footer-title">영어로 <strong>생각하고<br>표현하는 아이로</strong></h2>
+   <h2 class="footer-title">영어로 <strong>생각하고 <br>표현하는 아이로</strong></h2>
    <div class="footer-text">아이에게 맞는 배움의 시작,<br>Dewford와 함께 상담해 보세요.</div>
    <a class="theme-btn btn-style-two" href="admissions-inquiry.html"><span class="btn-title">입학·교육 상담 신청</span><i class="icon fa-light fa-arrow-right" aria-hidden="true"></i></a>
   </div></div>
@@ -100,7 +100,7 @@
     <a class="dewford-footer-contact-value" href="mailto:ADMIN@DEWFORD.COM"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span class="dewford-contact-desktop-label">EMAIL</span><span class="dewford-contact-value-text">ADMIN@DEWFORD.COM</span></a>
    </div></div>
    <div class="info-box col-md-7"><div class="info">
-    <a class="dewford-footer-contact-value" href="contact.html"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="dewford-contact-desktop-label">ADDRESS</span><span class="dewford-contact-value-text">(04392) 서울시 용산구 장문로27,<br>청화아파트 상가 1층 #101호</span></a>
+    <a class="dewford-footer-contact-value" href="contact.html"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="dewford-contact-desktop-label">ADDRESS</span><span class="dewford-contact-value-text">(04392) 서울시 용산구 장문로27, <br>청화아파트 상가 1층 #101호</span></a>
    </div></div>
   </div></div>
  </div><div class="footer-bottom"><div class="copyright">© 2026 DEWFORD INTERNATIONAL COLLEGE. All rights reserved.</div></div></div></div>

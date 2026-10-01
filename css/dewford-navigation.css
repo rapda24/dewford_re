@@ -75,3 +75,8 @@
  .dewford-dialog-story h2 {margin-bottom:20px;}
  .dewford-dialog-crest {margin-bottom:12px;}
 }
+
+/* Scale the top-of-page logo to 80% at each breakpoint. */
+.dewford-header:not(.is-scrolled) .dewford-brand {width:211.2px;}
+@media(min-width:1200px) and (max-width:1439px){.dewford-header:not(.is-scrolled) .dewford-brand{width:182.4px;}}
+@media(max-width:1199px){.dewford-header:not(.is-scrolled) .dewford-brand{width:102.4px;}}

@@ -237,7 +237,7 @@ html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visibl
 html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visible) :is(span,.text,.dewford-korean-text) {color:var(--sub-color)!important;}
 /* Fixed, centered learning-journey photo replaces the inline template image. */
 #main-content .services-section-three .dewford-journey-background {
- background-image:url('../images/optimized/main_13-1600.webp');
+ background-image:url('../images/photo/mjourney.jpg');
  background-position:center center;background-size:cover;
  background-repeat:no-repeat;background-attachment:fixed;
 }
@@ -289,6 +289,7 @@ html body.dewford-home #main-content .services-section-three .service-block-thre
 
 /* Let the form size to its content and follow the adjacent desktop column. */
 @media(min-width:992px){
+ #main-content .about-section .dewford-about-still {height:400px;}
  #main-content .about-section > .auto-container > .row {align-items:stretch;}
  #main-content .about-section .image-column {align-self:stretch;}
  #main-content .about-section .image-column > .inner-column {position:sticky;top:110px;}
@@ -375,7 +376,7 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford
 }
 /* Lightweight mobile backgrounds and motion. Desktop retains the fixed effect. */
 @media(max-width:767.98px){
- #main-content .services-section-three .dewford-journey-background {background-image:url('../images/optimized/main_13-768.webp');background-attachment:scroll;}
+ #main-content .services-section-three .dewford-journey-background {background-image:url('../images/photo/mjourney.jpg');background-attachment:scroll;}
  #main-content #events .outer-box {background-image:url('../images/optimized/main_01-768.webp')!important;}
 
  #main-content .banner-section-three .bg-image {transform:none!important;transition:none;}
