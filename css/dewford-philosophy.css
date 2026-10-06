@@ -205,3 +205,30 @@ html body.dewford-philosophy-page #main-content .about-block-home-two .title {fo
 /* Paint the icon above the animated card background, including its font glyph. */
 #main-content.dewford-philosophy-content .services-section .service-block .inner-box .icon-box {position:relative;z-index:1;}
 #main-content.dewford-philosophy-content .services-section .service-block .inner-box:is(:hover,:focus-within,.active) .icon-box i::before {color:#fff!important;-webkit-text-fill-color:#fff!important;}
+
+/* Preserve portrait photographs instead of cropping them into landscape cards. */
+html body.dewford-subpage #main-content.dewford-philosophy-content .project-block-two .image {height:auto;aspect-ratio:auto;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .project-block-two .image a {display:block;height:auto;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .project-block-two .image img {display:block;position:relative;inset:auto;width:100%;height:auto;aspect-ratio:auto!important;object-fit:contain;}
+html body.dewford-subpage #main-content.dewford-philosophy-content #communication .image a {transform:scaleX(-1);}
+/* Brand purple replaces the black hover/active card background. */
+html body.dewford-subpage #main-content.dewford-philosophy-content .services-section .service-block .inner-box::before {background-color:var(--id-color);}
+
+/* Neutral learning journey surface with a brand-colored consultation button. */
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two {background-color:#f4f4f4;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two :is(.title,.title a,.sub-title,.text,.year-info,.categories-list,.categories-list p,.dewford-program-description) {color:var(--headings-color, #292929)!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .year-info {background-color:#e4e4e4;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .sec-title-style-three .text {border-color:#d6d6d6;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .sec-title-style-three .text::before {background-color:var(--headings-color, #292929);}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn {--button-surface:var(--id-color);background-color:var(--id-color)!important;border-color:var(--id-color)!important;color:#fff!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn :is(.btn-title,.icon,i) {color:#fff!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn::before {background-color:#3d1252!important;}
+
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) {background-color:#fff!important;color:#000!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,i) {color:#000!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn::before {background-color:#fff!important;}
+
+/* Align the second desktop photograph with the bottom of Vision. */
+@media(min-width:1440px){
+ #main-content.dewford-philosophy-content .dewford-philosophy-vision-image {align-self:end;}
+}

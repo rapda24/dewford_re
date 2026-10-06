@@ -1,4 +1,5 @@
 import { receiveInquiry } from './inquiries.js';
+import { adminRoute, managedPublic } from './admin.js';
 
 function json(body, status = 200, extraHeaders = {}) {
   return Response.json(body, {
@@ -26,6 +27,21 @@ export default {
         'Access-Control-Allow-Headers': 'Accept, Content-Type', 'Access-Control-Max-Age': '600'
       } });
     }
+    if (url.pathname.startsWith('/api/admin/')) {
+      try {
+        const result = await adminRoute(request, env);
+        return json({ data: result.data }, 200, result.headers);
+      } catch (error) {
+        return json({ error: { code: error.status ? error.message : 'DATABASE_UNAVAILABLE' } }, error.status || 503);
+      }
+    }
+    const mediaMatch = /^\/api\/media\/([a-f0-9-]{36}\.(?:png|jpg|webp))$/.exec(url.pathname);
+    if (mediaMatch && request.method === 'GET') {
+      if (!env.MEDIA) return json({error:{code:'MEDIA_NOT_CONFIGURED'}}, 503);
+      const object = await env.MEDIA.get(mediaMatch[1]);
+      if (!object) return json({error:{code:'NOT_FOUND'}}, 404);
+      return new Response(object.body, {headers:{'Content-Type':object.httpMetadata.contentType,'Cache-Control':'public, max-age=31536000, immutable','X-Content-Type-Options':'nosniff'}});
+    }
     if (request.method === 'POST' && url.pathname === '/api/inquiries') {
       try {
         const result = await receiveInquiry(request, env);
@@ -45,6 +61,8 @@ export default {
         await env.DB.prepare('SELECT 1 FROM public_content LIMIT 1').all();
         return json({ data: { status: 'ok', database: 'ready' } }, 200, headers);
       }
+      const managed = await managedPublic(request, env, contentMatch[1]);
+      if (managed) return json({data:managed}, 200, headers);
       const row = await env.DB.prepare(
         'SELECT slug, payload, updated_at FROM public_content WHERE slug = ? AND published = 1'
       ).bind(contentMatch[1]).first();

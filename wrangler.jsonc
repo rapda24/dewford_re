@@ -11,14 +11,14 @@
     "not_found_handling": "none"
   },
   "vars": {
+    "ADMIN_USERNAME": "admin",
     "ALLOWED_ORIGINS": "https://rapda24.github.io"
   },
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "dewford-db",
-      // Replace with the ID returned by `npx wrangler d1 create dewford-db`.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "b8589514-c4e5-4205-ab02-da6cfb65fe5a",
       "migrations_dir": "migrations"
     }
   ]

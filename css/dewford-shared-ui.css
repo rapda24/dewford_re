@@ -335,3 +335,34 @@ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) h6
 
 /* Linked titles use the original sans-serif family. */
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .title a {font-family:var(--dewford-default-title-font-family)!important;}
+
+/* Square subpage content surfaces, preserving social channel icon shapes. */
+html body.dewford-subpage .dewford-subpage-content,
+html body.dewford-subpage .dewford-subpage-content :not(:is(.team-details__social,.team-details__social *,.social-icon,.social-icon *,.social-icons,.social-icons *,.dewford-footer-social,.dewford-footer-social *)) {border-radius:0!important;}
+html body.dewford-subpage .dewford-subpage-content :not(:is(.team-details__social,.team-details__social *,.social-icon,.social-icon *,.social-icons,.social-icons *))::before,
+html body.dewford-subpage .dewford-subpage-content :not(:is(.team-details__social,.team-details__social *,.social-icon,.social-icon *,.social-icons,.social-icons *))::after {border-radius:0!important;}
+html body.dewford-subpage #main-content .dewford-consultation-socials {display:flex;flex-wrap:wrap;gap:16px 28px;}
+html body.dewford-subpage #main-content .dewford-consultation-channel {display:flex;align-items:center;gap:10px;}
+html body.dewford-subpage #main-content .dewford-consultation-channel a {display:inline-flex;align-items:center;justify-content:center;margin:0;}
+html body.dewford-subpage #main-content .dewford-consultation-kakao,
+html body.dewford-subpage #main-content .dewford-consultation-kakao:hover {background:#fee500!important;color:#191919!important;}
+html body.dewford-subpage #main-content .dewford-consultation-naver,
+html body.dewford-subpage #main-content .dewford-consultation-naver:hover {background:#03c75a!important;color:#fff!important;}
+html body.dewford-subpage #main-content .dewford-consultation-channel img {display:block;filter:none;}
+
+.dewford-footer .dewford-footer-registration {display:flex;flex-wrap:wrap;gap:8px 20px;margin-bottom:12px;color:#fff;}
+.dewford-footer .dewford-footer-registration span {font-size:14px;line-height:1.6!important;}
+@media(max-width:767.98px){
+ .dewford-footer .dewford-footer-registration {flex-direction:column;gap:4px;}
+}
+
+/* Copyright left, registration right; reverse the row order on mobile. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-bottom {display:flex;align-items:center;justify-content:space-between;gap:16px;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-bottom .copyright {width:auto;margin:0;text-align:left;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-registration {flex-direction:row;flex-wrap:nowrap;gap:16px;margin:0;text-align:right;}
+@media(max-width:767.98px){
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .footer-bottom {flex-direction:column;align-items:flex-start;gap:10px;padding-right:0;}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-registration {order:-1;gap:10px;text-align:left;}
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-registration span {font-size:clamp(10px,2.8vw,14px)!important;white-space:nowrap;}
+ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer.footer-style-home-two .footer-bottom .copyright {font-size:clamp(9px,2.5vw,14px)!important;white-space:nowrap;}
+}

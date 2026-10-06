@@ -103,7 +103,7 @@
     <a class="dewford-footer-contact-value" href="contact.html"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="dewford-contact-desktop-label">ADDRESS</span><span class="dewford-contact-value-text">(04392) 서울시 용산구 장문로27, <br>청화아파트 상가 1층 #101호</span></a>
    </div></div>
   </div></div>
- </div><div class="footer-bottom"><div class="copyright">© 2026 DEWFORD INTERNATIONAL COLLEGE. All rights reserved.</div></div></div></div>
+ </div><div class="footer-bottom"><div class="copyright">© 2026 DEWFORD INTERNATIONAL COLLEGE. All rights reserved.</div><div class="dewford-footer-registration"><span>듀포드인터내셔널컬리지어학원</span><span>학원등록번호 제3355호</span></div></div></div></div>
 </footer>`,
     floating: `  <nav class="dewford-floating-links" aria-label="빠른 안내">
     <ul>

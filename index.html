@@ -21,6 +21,7 @@
   <link href="css/dewford-template-compat.css" rel="stylesheet">
   <link href="css/dewford-intro.css" rel="stylesheet">
   <link href="css/dewford-shared-ui.css" rel="stylesheet">
+  <link href="css/dewford-home-popup.css" rel="stylesheet">
 </head>
 
 <body class="dewford-home">
@@ -131,7 +132,7 @@
           <div class="banner-count-box">
             <div class="inner-box">
               <div class="count-box" aria-label="세 가지 핵심 성장 방향">
-                    <span class="count-text" data-speed="1800" data-stop="326" aria-hidden="true">0</span>+</div>
+                <span class="count-text" data-speed="1800" data-stop="326" aria-hidden="true">0</span>+</div>
               <div class="text">스스로 성장하는<br>세 가지 배움의 방향</div>
               <p class="banner-count-caption">읽고 · 쓰고 · 배우는 힘</p>
             </div>
@@ -144,29 +145,7 @@
       </section>
       <!--End Banner Section Three -->
 
-      <section class="teams-section-two dewford-event-preview">
-        <div class="auto-container">
-          <div class="sec-title-box">
-            <div class="sec-title-style-three">
-              <h6 class="sub-title">// Events at DEWFORD //</h6>
-              <h2 class="title text-reveal-anim">Discover Our<br>Latest Stories.</h2>
-            </div>
-            <div class="sec-right-box">
-              <div class="text">아이들의 배움과 성장이 담긴 순간들.<br>DEWFORD의 새로운 소식과 이벤트를 만나보세요.</div>
-              <a href="event.html" class="theme-btn btn-style-one">
-                <span class="btn-title">전체 이벤트 보기</span>
-                <span class="icon"><i class="fa-light fa-arrow-right" aria-hidden="true"></i></span>
-              </a>
-            </div>
-          </div>
-          <div class="dewford-event-slider swiper-container">
-            <div class="swiper-wrapper" data-event-list="home" data-event-layout="team-two">
-              <p class="dewford-events-status" role="status">이벤트 소식을 불러오고 있습니다.</p>
-            </div>
-            <div class="dewford-event-pagination"></div>
-          </div>
-        </div>
-      </section>
+
 
 
       <!-- Features Section -->
@@ -308,6 +287,30 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="teams-section-two dewford-event-preview">
+        <div class="auto-container">
+          <div class="sec-title-box">
+            <div class="sec-title-style-three">
+              <h6 class="sub-title">// Events at DEWFORD //</h6>
+              <h2 class="title text-reveal-anim">Discover Our<br>Latest Stories.</h2>
+            </div>
+            <div class="sec-right-box">
+              <div class="text">아이들의 배움과 성장이 담긴 순간들.<br>DEWFORD의 새로운 소식과 이벤트를 만나보세요.</div>
+              <a href="event.html" class="theme-btn btn-style-one">
+                <span class="btn-title">전체 이벤트 보기</span>
+                <span class="icon"><i class="fa-light fa-arrow-right" aria-hidden="true"></i></span>
+              </a>
+            </div>
+          </div>
+          <div class="dewford-event-slider swiper-container">
+            <div class="swiper-wrapper" data-event-list="home" data-event-layout="team-two">
+              <p class="dewford-events-status" role="status">이벤트 소식을 불러오고 있습니다.</p>
+            </div>
+            <div class="dewford-event-pagination"></div>
           </div>
         </div>
       </section>
@@ -657,6 +660,14 @@
 
     <div data-dewford-component="floating"></div>
   </div><!-- End Page Wrapper -->
+  <dialog id="dewford-home-popup" aria-label="DEWFORD 안내">
+    <div class="dewford-popup-image"><img src="images/sub/pop2026_1.png" alt="DEWFORD 안내 팝업"></div>
+    <div class="dewford-popup-actions">
+      <label><input type="checkbox" id="dewford-popup-hide-today">오늘 하루 보지 않기</label>
+      <button type="button" data-popup-close autofocus>닫기 <span aria-hidden="true">×</span></button>
+    </div>
+  </dialog>
+  <script src="js/dewford-home-popup.js"></script>
   <script src="js/jquery.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -688,6 +699,8 @@
   <script src="js/dewford-consultation.js"></script>
   <script src="js/dewford-event-samples.js"></script>
   <script src="js/dewford-events.js"></script>
+  <script src="js/dewford-admin-client.js"></script>
+  <script src="js/dewford-admin-tools.js"></script>
 </body>
 
 </html>

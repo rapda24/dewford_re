@@ -24,12 +24,12 @@
     let data;
     try { ({ data } = await DewfordAPI.content('events')); }
     catch (error) { if (!window.DEWFORD_EVENT_SAMPLES?.length) throw error; }
-    const source = Array.isArray(data?.posts) && data.posts.length ? data.posts : window.DEWFORD_EVENT_SAMPLES || [];
+    const source = Array.isArray(data?.posts) ? data.posts : window.DEWFORD_EVENT_SAMPLES || [];
     let posts = source.filter(p => p && typeof p.id === 'string' && typeof p.title === 'string')
-      .sort((a,b) => String(b.date || '').localeCompare(String(a.date || '')));
+      .sort((a,b) => data?.ordered ? 0 : String(b.date || '').localeCompare(String(a.date || '')));
     if (list) {
       const query = new URLSearchParams(location.search).get('q')?.trim().toLowerCase();
-      if (query) posts = posts.filter(post => [post.title,post.category,post.excerpt].join(' ').toLowerCase().includes(query));
+      if (query) posts = posts.filter(post => [post.title,post.excerpt].join(' ').toLowerCase().includes(query));
       list.replaceChildren();
       if (!posts.length) list.textContent = '새로운 소식을 준비하고 있습니다.';
       posts.forEach(post => {
@@ -37,15 +37,27 @@
         const block = node('div', 'inner-block');
         const imageBox = node('div', 'image-box'); const imageInner = node('div', 'inner-box');
         const figure = node('figure', 'image'); const imageLink = link(post); imageLink.replaceChildren(); const img = photo(post);
-        if (img) { const clone = img.cloneNode(); clone.alt = ''; clone.setAttribute('aria-hidden','true'); imageLink.append(img, clone); }
+        if (img) {
+          imageLink.append(img);
+          if (list.dataset.eventLayout !== 'photo-title') {
+            const clone = img.cloneNode(); clone.alt = ''; clone.setAttribute('aria-hidden','true'); imageLink.append(clone);
+          }
+        }
         imageLink.setAttribute('aria-label',post.title); figure.append(imageLink); imageInner.append(figure); imageBox.append(imageInner);
         const content = node('div', 'content-box'); const inner = node('div','inner-box');
         const title = node('h4','title'); title.append(link(post));
-        const excerpt = node('div','text'); excerpt.append(node('span','dewford-event-excerpt',post.excerpt || ''));
-        const category = node('p', 'dewford-story-category', post.category || 'DEWFORD LIFE');
-        inner.append(category,title,excerpt);
+        if (list.dataset.eventLayout === 'photo-title') {
+          inner.append(title);
+          content.append(inner);
+        } else {
+          const excerpt = node('div','text'); excerpt.append(node('span','dewford-event-excerpt',post.excerpt || ''));
+          inner.append(title,excerpt);
+          content.append(inner);
+        }
         const more = link(post,'read-more','자세히 보기 '); const arrow = node('i','icon fa fa-solid fa-arrow-right'); arrow.setAttribute('aria-hidden','true'); more.append(arrow);
-        content.append(inner,more); block.append(imageBox,content); card.append(block); list.append(card);
+        more.setAttribute('aria-label', post.title + ' 자세히 보기');
+        content.append(more);
+        block.append(imageBox,content); card.append(block); list.append(card);
       });
       return;
     }
@@ -64,33 +76,18 @@
     }
     const img = photo(post); if (img) { img.loading = 'eager'; detail.querySelector('[data-detail-image]').prepend(img); }
     const meta = detail.querySelector('[data-detail-meta]');
-    const categoryItem = node('li');
-    const categoryLink = node('a', '', post.category || 'DEWFORD EVENTS');
-    categoryLink.href = post.category ? 'event.html?q=' + encodeURIComponent(post.category) : 'event.html';
-    const categoryIcon = node('i', 'fas fa-folder-open');
-    categoryIcon.setAttribute('aria-hidden', 'true');
-    categoryLink.prepend(categoryIcon, document.createTextNode(' '));
-    categoryItem.append(categoryLink); meta.append(categoryItem);
     if (post.date) { const li = node('li'); const time = node('time','',post.date); li.append(time); meta.append(li); }
     detail.querySelector('[data-detail-body]').textContent = post.body || post.excerpt || '';
-    const postTags = detail.querySelector('[data-detail-post-tags]');
-    if (postTags && post.category) {
-      const tag = node('a','',post.category);
-      tag.href = 'event.html?q=' + encodeURIComponent(post.category);
-      postTags.append(tag);
+    const gallery = node('div', 'dewford-event-gallery');
+    for (const src of (post.gallery || [])) {
+      const image = photo({image:src,title:post.title}); if (!image) continue;
+      image.style.cssText = 'display:block;max-width:100%;height:auto;margin:24px 0;';
+      gallery.append(image);
     }
+    if (gallery.childElementCount) detail.querySelector('[data-detail-body]').after(gallery);
     const index = posts.indexOf(post); const neighbors = detail.querySelector('[data-detail-neighbors]');
     [[posts[index-1],'prev','이전 소식'],[posts[index+1],'next','다음 소식']].forEach(([item,cls,label]) => {
       if (!item) return; const div = node('div',cls); const a = link(item); a.prepend(node('span','dewford-neighbor-label',label)); div.append(a); neighbors.append(div);
-    });
-    const categories = [...new Set(posts.map(p => p.category).filter(Boolean))];
-    categories.forEach(category => {
-      const li = node('li'); const a = node('a','',category); a.href = 'event.html?q=' + encodeURIComponent(category);
-      const categoryIcons = { 'FIELD TRIP': 'fa-map-location-dot', MUSIC: 'fa-music', 'SCHOOL LIFE': 'fa-school', LITERACY: 'fa-book-open', COMMUNITY: 'fa-users' };
-      const icon = node('i', 'fas ' + (categoryIcons[category.toUpperCase()] || 'fa-folder-open') + ' dewford-category-icon');
-      icon.setAttribute('aria-hidden','true'); a.prepend(icon);
-      a.append(node('span','lnr-icon-arrow-right')); li.append(a); detail.querySelector('[data-detail-categories]').append(li);
-      const tag = node('a','',category); tag.href = a.href; detail.querySelector('[data-detail-tags]').append(tag);
     });
     const related = detail.querySelector('[data-detail-related]');
     posts.filter(p => p.id !== id).slice(0,3).forEach(item => {

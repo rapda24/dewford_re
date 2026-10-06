@@ -1,0 +1,13 @@
+/* Replace the image in index.html; adjust the desktop width here. */
+#dewford-home-popup {width:min(480px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 32px);margin:auto;padding:0;border:0;border-radius:0;background:#fff;color:#292929;box-shadow:0 20px 80px rgb(0 0 0 / 24%);overflow:auto;}
+#dewford-home-popup::backdrop {background:rgb(0 0 0 / 55%);}
+#dewford-home-popup .dewford-popup-image {background:#fff;}
+#dewford-home-popup img {display:block;width:100%;height:auto;max-height:calc(100dvh - 100px);object-fit:contain;}
+#dewford-home-popup .dewford-popup-actions {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-top:1px solid #e5e5e5;}
+#dewford-home-popup label {display:flex;align-items:center;gap:8px;margin:0;font:400 13px/1.5 var(--dewford-body-font-family);cursor:pointer;}
+#dewford-home-popup input {width:16px;height:16px;margin:0;accent-color:var(--id-color);}
+html body.dewford-home #dewford-home-popup button {display:flex;align-items:center;gap:8px;padding:4px 0;border:0;background:transparent!important;color:#292929!important;font:600 14px/1.5 var(--dewford-body-font-family);cursor:pointer;}
+html body.dewford-home #dewford-home-popup button::before {display:none!important;}
+html body.dewford-home #dewford-home-popup button:hover {color:var(--id-color)!important;}
+#dewford-home-popup button span {font-size:23px;line-height:1;}
+#dewford-home-popup :is(button,input):focus-visible {outline:2px solid var(--id-color);outline-offset:4px;}

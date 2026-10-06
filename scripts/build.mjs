@@ -23,8 +23,8 @@ for (const dir of ['css', 'js', 'images', 'fonts', 'plugins', 'video']) {
       const info = await stat(source);
       if (info.isFile() && info.size > 25 * 1024 * 1024) {
         // This original is not referenced by any current page; retain it in source only.
-        if (path.relative(root, source).startsWith('images/') && !references.includes(path.basename(source))) {
-          console.log('Source-only oversized image: ' + path.relative(root, source));
+        if (['images/', 'video/'].some(prefix => path.relative(root, source).startsWith(prefix)) && !references.includes(path.basename(source))) {
+          console.log('Source-only oversized asset: ' + path.relative(root, source));
           return false;
         }
         throw new Error('Asset exceeds Cloudflare 25 MiB limit: ' + source);

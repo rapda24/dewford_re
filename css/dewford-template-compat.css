@@ -584,3 +584,18 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 @media(max-width:991.98px){
  #main-content.dewford-template-content {--dewford-section-space:90px;}
 }
+
+/* Home sequence: curriculum, learning journey, then school events. */
+body.dewford-home #main-content.dewford-template-content > .why-choose-us-four {background-color:#f4f4f4;}
+body.dewford-home #main-content.dewford-template-content > .services-section-three,
+body.dewford-home #main-content.dewford-template-content > .services-section-three .outer-box {background-color:#fff;}
+body.dewford-home #main-content.dewford-template-content > .dewford-event-preview {background-color:#f4f4f4;}
+/* Keep the image above the section background, beneath the overlapping cards. */
+body.dewford-home #main-content.dewford-template-content > .why-choose-us-four .inner-container {isolation:isolate;}
+/* Alternate card surfaces while keeping both distinct from the section gray. */
+body.dewford-home #main-content.dewford-template-content > .why-choose-us-four .feature-block .inner-block {background-color:#e6e6e6;}
+body.dewford-home #main-content.dewford-template-content > .why-choose-us-four .feature-block:nth-child(2) .inner-block {background-color:#fff;}
+body.dewford-home #main-content.dewford-template-content > .why-choose-us-four .theme-btn.btn-style-one {--button-surface:#fff;}
+body.dewford-home #main-content.dewford-template-content > .services-section-three .service-block-three .inner-box {background-color:#f4f4f4;}
+body.dewford-home #main-content.dewford-template-content > .services-section-three .service-block-three .inner-box .icon-box {background-color:#fff;}
+body.dewford-home #main-content.dewford-template-content > .services-section-three .theme-btn.btn-style-two {--button-surface:#fff;}

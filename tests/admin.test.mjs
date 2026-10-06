@@ -1,0 +1,82 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { DatabaseSync } from 'node:sqlite';
+import { readFileSync } from 'node:fs';
+import { pbkdf2Sync } from 'node:crypto';
+import worker from '../server/worker.js';
+function environment() {
+  const db = new DatabaseSync(':memory:');
+  for (const file of ['0001_public_content.sql','0003_admin.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
+  const DB = {prepare(sql) {
+    const statement = db.prepare(sql); let values=[];
+    const wrapper={bind(...args){values=args;return wrapper;},async first(){return statement.get(...values)||null;},async all(){return {results:statement.all(...values)};},async run(){const result=statement.run(...values);return {meta:{changes:Number(result.changes)}};}};
+    return wrapper;
+  }};
+  const password='test-password-123'; const salt='test-salt';
+  const env={DB,ADMIN_USERNAME:'admin',ADMIN_PASSWORD_HASH:'pbkdf2$100000$'+salt+'$'+pbkdf2Sync(password,salt,100000,32,'sha256').toString('hex')};
+  return {env,db,password};
+}
+async function call(env,path,payload,auth={}) {
+  const headers={...(payload?{'Content-Type':'application/json',Origin:'https://dewford.example'}:{}),...(auth.cookie?{Cookie:auth.cookie}:{}),...(auth.csrf?{'X-CSRF-Token':auth.csrf}:{}),...auth.headers};
+  const response=await worker.fetch(new Request('https://dewford.example/api/'+path,{method:payload?'POST':'GET',headers,body:payload?JSON.stringify(payload):undefined}),env);
+  const body=await response.json();return {response,...body};
+}
+async function login(env,password){const result=await call(env,'admin/login',{username:'admin',password});assert.equal(result.response.status,200);assert.match(result.response.headers.get('Set-Cookie'),/HttpOnly; SameSite=Strict/);return {cookie:result.response.headers.get('Set-Cookie').split(';')[0],csrf:result.data.csrf};}
+const item={title:'새 소식',date:'2026-10-06',body:'내용',image:'images/sub/pop2026_1.png',published:true};
+test('admin rejects unauthenticated writes, bad credentials, CSRF and cross-origin requests',async()=>{
+  const {env,password}=environment();
+  assert.equal((await call(env,'admin/content',{action:'save',board:'events',revision:0,item})).response.status,401);
+  assert.equal((await call(env,'admin/login',{username:'admin',password:'wrong'})).response.status,401);
+  const auth=await login(env,password);
+  assert.equal((await call(env,'admin/content',{action:'save',board:'events',revision:0,item},{cookie:auth.cookie})).response.status,403);
+  assert.equal((await call(env,'admin/content',{action:'save',board:'events',revision:0,item},{...auth,headers:{Origin:'https://foreign.example'}})).response.status,403);
+  assert.equal((await call(env,'admin/session',null,auth)).data.authenticated,true);
+});
+test('CRUD, board transfer, ordering, conflict protection and empty public feed',async()=>{
+  const {env,password}=environment();const auth=await login(env,password);
+  let result=await call(env,'admin/content',{action:'save',board:'events',revision:0,item},auth);
+  assert.equal(result.response.status,200);const id=result.data.boards.events[0].id;
+  assert.equal((await call(env,'content/events')).data.posts.length,1);
+  assert.equal((await call(env,'admin/content',{action:'delete',board:'events',revision:0,id},auth)).response.status,409);
+  result=await call(env,'admin/content',{action:'save',board:'events',revision:1,id,item:{...item,title:'수정된 제목'}},auth);assert.equal(result.data.boards.events[0].title,'수정된 제목');
+  result=await call(env,'admin/content',{action:'move',board:'events',target:'preschool',revision:2,id,date:'2026-11-10'},auth);assert.equal(result.data.boards.events.length,0);assert.equal((await call(env,'content/calendar')).data.preschool[0].date,'2026-11-10');
+  result=await call(env,'admin/content',{action:'save',board:'preschool',revision:3,item:{...item,title:'둘째'}},auth);const second=result.data.boards.preschool[0].id;
+  result=await call(env,'admin/content',{action:'reorder',board:'preschool',revision:4,id:second,direction:1},auth);assert.equal(result.data.boards.preschool[1].id,second);
+  result=await call(env,'admin/content',{action:'delete',board:'preschool',revision:5,id},auth);assert.equal(result.data.boards.preschool.length,1);
+  result=await call(env,'admin/content',{action:'delete',board:'preschool',revision:6,id:second},auth);assert.equal((await call(env,'content/calendar')).data.preschool.length,0);
+  assert.deepEqual((await call(env,'content/events')).data.posts,[]);
+});
+test('drafts and scheduled/disabled popups are not exposed publicly; last popup can be deleted',async()=>{
+  const {env,password}=environment();const auth=await login(env,password);
+  let result=await call(env,'admin/content',{action:'save',board:'events',revision:0,item:{...item,published:false}},auth);assert.equal((await call(env,'content/events')).data.posts.length,0);
+  const popup={title:'예약 팝업',image:item.image,enabled:true,published:true,startsAt:'2099-01-01T00:00:00+09:00',width:500};
+  result=await call(env,'admin/content',{action:'save',board:'popups',revision:1,item:popup},auth);const id=result.data.boards.popups[0].id;
+  assert.equal((await call(env,'content/popups')).data.popups.length,1);
+  result=await call(env,'admin/content',{action:'delete',board:'popups',revision:2,id:'home-2026'},auth);assert.equal((await call(env,'content/popups')).data.popups.length,0);
+  result=await call(env,'admin/content',{action:'save',board:'popups',revision:3,id,item:{...popup,startsAt:'',enabled:false}},auth);assert.equal((await call(env,'content/popups')).data.popups.length,0);
+  await call(env,'admin/content',{action:'delete',board:'popups',revision:4,id},auth);assert.equal((await call(env,'content/popups')).data.popups.length,0);
+});
+test('invalid URLs, dates, missing item IDs and logout are handled safely',async()=>{
+  const {env,password}=environment();const auth=await login(env,password);
+  for(const bad of [{...item,image:'javascript:alert(1)'},{...item,date:'2026-02-30'},{...item,date:'invalid'}])assert.equal((await call(env,'admin/content',{action:'save',board:'events',revision:0,item:bad},auth)).response.status,400);
+  assert.equal((await call(env,'admin/content',{action:'delete',board:'events',revision:0,id:'missing'},auth)).response.status,404);
+  assert.equal((await call(env,'admin/logout',{},auth)).response.status,200);
+  assert.equal((await call(env,'admin/session',null,auth)).data.authenticated,false);
+});
+test('login is rate-limited and legacy content survives the first save',async()=>{
+  const {env,db,password}=environment();
+  db.prepare('INSERT INTO public_content(slug,payload,published) VALUES (?,?,1)').run('events',JSON.stringify({posts:[{...item,id:'legacy'}]}));
+  const auth=await login(env,password);const result=await call(env,'admin/content',{action:'save',board:'events',revision:0,item},auth);assert.equal(result.data.boards.events.length,2);
+  for(let i=0;i<9;i++)await call(env,'admin/login',{username:'admin',password:'wrong'});
+  assert.equal((await call(env,'admin/login',{username:'admin',password})).response.status,429);
+});
+test('authenticated image upload and public media serving; executable formats are rejected',async()=>{
+  const {env,password}=environment();const auth=await login(env,password);const objects=new Map();
+  env.MEDIA={async put(key,bytes,options){objects.set(key,{bytes,options});},async get(key){const value=objects.get(key);return value?{body:value.bytes,httpMetadata:value.options.httpMetadata}:null;}};
+  const upload=async bytes=>worker.fetch(new Request('https://dewford.example/api/admin/upload',{method:'POST',headers:{Origin:'https://dewford.example',Cookie:auth.cookie,'X-CSRF-Token':auth.csrf},body:bytes}),env);
+  const png=new Uint8Array([137,80,78,71,13,10,26,10]);
+  const response=await upload(png);assert.equal(response.status,200);const {data}=await response.json();
+  const media=await worker.fetch(new Request('https://dewford.example'+data.url),env);assert.equal(media.status,200);assert.equal(media.headers.get('Content-Type'),'image/png');assert.deepEqual(new Uint8Array(await media.arrayBuffer()),png);
+  assert.equal((await upload('<svg onload="alert(1)"></svg>')).status,415);
+  assert.equal((await upload(new Uint8Array(5*1024*1024+1))).status,413);
+});

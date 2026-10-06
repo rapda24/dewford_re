@@ -30,12 +30,12 @@
     catch (error) {
       if (!window.DEWFORD_EVENT_SAMPLES?.length) throw error;
     }
-    if (!Array.isArray(data?.posts) || !data.posts.length) {
+    if (!Array.isArray(data?.posts)) {
       data = { posts: window.DEWFORD_EVENT_SAMPLES || [] };
     }
     const posts = (Array.isArray(data?.posts) ? data.posts : []).filter(post =>
       post && typeof post.id === 'string' && typeof post.title === 'string'
-    ).sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+    ).sort((a, b) => data?.ordered ? 0 : String(b.date || '').localeCompare(String(a.date || '')));
     const id = !home && new URLSearchParams(location.search).get('id');
     if (id) {
       const post = posts.find(post => post.id === id);
@@ -44,7 +44,7 @@
       const detail = document.querySelector('[data-event-detail]');
       detail.hidden = false; detail.className = 'dewford-event-detail';
       const back = element('a', 'dewford-text-link', '← 전체 소식'); back.href = 'event.html';
-      detail.append(back, element('h2', '', post.title), element(post.date ? 'time' : 'span', '', post.date || post.category || ''));
+      detail.append(back, element('h2', '', post.title), element(post.date ? 'time' : 'span', '', post.date || ''));
       const url = imageURL(post.image);
       if (url) { const image = element('img'); image.src = url; image.alt = post.title; detail.append(image); }
       detail.append(element('div', 'dewford-event-body', post.body || post.excerpt || ''));
@@ -69,7 +69,7 @@
         const info = element('div', 'info-box');
         const title = element('h5', 'name');
         const link = element('a', '', post.title); link.href = href; title.append(link);
-        info.append(title, element('div', 'designation', post.category || 'DEWFORD LIFE'));
+        info.append(title);
         content.append(info); inner.append(imageBox, content); card.append(inner); list.append(card);
       }
       const slider = list.parentElement;
@@ -109,7 +109,7 @@
         const overlay = element('div', 'overlay-content');
         overlay.append(heading(), element('div', 'text', excerpt));
         const meta = element('ul', 'list-info');
-        for (const value of [post.category, post.date].filter(Boolean)) {
+        for (const value of [post.date].filter(Boolean)) {
           const item = element('li');
           const icon = element('i', 'fa-light fa-calendar'); icon.setAttribute('aria-hidden', 'true');
           item.append(icon, document.createTextNode(' ' + value)); meta.append(item);
@@ -132,7 +132,7 @@
           const image = element('img'); image.src = url; image.alt = ''; image.loading = 'lazy'; image.decoding = 'async'; photo.append(image);
         } else photo.append(element('span', 'dr-news-placeholder', 'DEWFORD'));
         const content = element('div', 'dr-news-copy');
-        content.append(element(post.date ? 'time' : 'span', 'dr-news-meta', post.date || post.category || 'DEWFORD'));
+        content.append(element(post.date ? 'time' : 'span', 'dr-news-meta', post.date || 'DEWFORD'));
         const title = element('h3'); const link = element('a', '', post.title); link.href = href; title.append(link);
         content.append(title, element('p', '', post.excerpt || ''));
         const more = element('a', 'dr-link', '자세히 보기'); more.href = href;
@@ -147,7 +147,7 @@
       const href = 'detail.html?id=' + encodeURIComponent(post.id);
       const heading = () => { const h = element(home ? 'h4' : 'h2', 'title'); const a = element('a', '', post.title); a.href = href; h.append(a); return h; };
       const content = element('div', home ? 'content' : '');
-      content.append(element(post.date ? 'time' : 'span', 'dewford-event-category', post.date || post.category || ''), heading()); inner.append(content);
+      content.append(element(post.date ? 'time' : 'span', 'dewford-event-category', post.date || ''), heading()); inner.append(content);
       const overlay = element('div', home ? 'overlay-content' : '');
       if (home) overlay.append(heading());
       overlay.append(element('p', 'text', post.excerpt || ''));

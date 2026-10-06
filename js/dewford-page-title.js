@@ -11,8 +11,8 @@
     'elementary-esl.html':['Primary ESL Program','아이의 영어 수준에 맞춰 문장부터 글까지, 표현의 기초를 차근차근 다집니다.'],
     'preschool-calendar.html':['Early Learning Calendar','아이들의 배움과 다양한 경험으로 채워지는 유치부 일정을 확인하세요.'],
     'elementary-calendar.html':['Primary Calendar','초등 과정의 학습과 활동 일정을 확인하세요.'],
-    'event.html':['Events','아이들의 배움과 성장이 담긴 DEWFORD의 순간들을 만나보세요.'],
-    'detail.html':['Event Story','하나의 경험이 배움으로 이어지는 순간, 아이들의 이야기를 자세히 전합니다.'],
+    'event.html':['DEWFORD EVENTS','듀포드의 특별한 순간'],
+    'detail.html':['DEWFORD EVENTS','듀포드의 특별한 순간'],
     'contact.html':['Contact','용산 이태원에서 시작하는 아이의 더 넓은 세상, DEWFORD를 만나보세요.']
   };
   const introductions = {
