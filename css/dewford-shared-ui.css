@@ -1,3 +1,15 @@
+/* Shared title typography: change these values to update titles site-wide. */
+:root {
+  --dewford-body-font-family: "Pretendard", Arial, sans-serif;
+  --body-font-family: var(--dewford-body-font-family);
+  --dewford-title-font-family: "Playfair Display", "Pretendard", Georgia, serif;
+  --dewford-title-font-weight: 700;
+  --dewford-title-letter-spacing: .035em;
+  --dewford-default-title-font-family: var(--dewford-body-font-family);
+  --heading-font-family: var(--dewford-default-title-font-family);
+  --style-font-family: var(--dewford-default-title-font-family);
+}
+
 /* Shared main/subpage chrome. Scoped away from page-specific content. */
 @scope (:root) to (#main-content) {
 :root { --dewford-purple: #52196d; --id-color: #52196d; }
@@ -39,16 +51,16 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn { --butt
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover, :focus-visible), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn :is(.btn-title, .icon, .dewford-korean-text), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover, :focus-visible) :is(.btn-title, .icon, .dewford-korean-text) { box-shadow: none; color: rgb(41, 41, 41) !important; border-color: rgb(255, 255, 255) !important; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn::before {background:var(--id-color)!important;transform:scaleX(0);transform-origin:left center;}
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible)::before {transform:scaleX(1);transform-origin:left center;}
-html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) {background-color:var(--button-surface)!important;color:#fff!important;border-color:#fff!important;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) {background-color:var(--id-color)!important;color:#fff!important;border-color:var(--id-color)!important;}
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-footer .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#fff!important;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-header-talk { --button-surface: var(--id-color); }
 html body:is(.dewford-home,.dewford-subpage) .dewford-header .dewford-menu-toggle { --button-surface: transparent; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header :is(.dewford-header-talk, .dewford-menu-toggle)::before { display: none !important; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header :is(.dewford-header-talk, .dewford-menu-toggle) { overflow: visible; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-header .dewford-header-talk:hover { color: var(--dewford-orange) !important; }
-:is(.dewford-home,.dewford-subpage) .dewford-korean-text { font-family: "Pretendard Korean", "GT Walsheim Pro", sans-serif !important; }
+:is(.dewford-home,.dewford-subpage) .dewford-korean-text { font-family: var(--dewford-body-font-family) !important; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(p, .text, li, a, button, label, input, select, textarea, .btn-title, .sub-title) { font-weight: 500 !important; }
-html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(h1, h2, h3, h4, h5, h6, .title, .footer-title, .widget-title), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(h1, h2, h3, h4, h5, h6, .title, .footer-title, .widget-title) :is(a, span, strong, .char, .word) { font-weight: 700 !important; }
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(h1, h2, h3, h4, h5, h6, .title, .footer-title, .widget-title), html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) :is(h1, h2, h3, h4, h5, h6, .title, .footer-title, .widget-title) :is(a, span, strong, .char, .word) { font-weight: var(--dewford-title-font-weight) !important; }
 :is(.dewford-home,.dewford-subpage) .dewford-footer { --sub-color: #f5a100; }
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer a:not(.theme-btn):is(:hover, :focus-visible), html body:is(.dewford-home,.dewford-subpage) .dewford-footer a:not(.theme-btn):is(:hover, :focus-visible) :is(span, .text, .dewford-korean-text) { color: var(--sub-color) !important; }
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer button, html body:is(.dewford-home,.dewford-subpage) :is(#main-content, .page-wrapper) .dewford-drawer button:is(:hover, :focus-visible) { box-shadow: none; background: transparent !important; }
@@ -81,7 +93,7 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top {background:#00
 /* Footer uses the same rules on every page, independent of content styles. */
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .footer-title {font-size:48px!important;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title),
-html body:is(.dewford-home,.dewford-subpage) .dewford-footer :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title) :is(a,span,strong) {font-weight:700!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title) :is(a,span,strong) {font-weight:var(--dewford-title-font-weight)!important;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn {position:relative;isolation:isolate;overflow:hidden;background:#fff!important;color:#292929!important;border-color:#fff!important;gap:14px;max-width:none;transition:color .25s,border-color .25s;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn :is(.btn-title,.icon,.dewford-korean-text) {color:#292929!important;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .theme-btn::before {content:"";position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:inherit;z-index:-1;pointer-events:none;opacity:1;display:block!important;background:#f5a100!important;transform:scaleX(0);transform-origin:right center;transition:transform .5s cubic-bezier(.86,0,.07,1);}
@@ -295,3 +307,31 @@ html body.dewford-subpage #main-content.dewford-subpage-content {background-colo
  html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .dewford-footer-contact-row a[href="contact.html"] .dewford-contact-value-text {font-size:clamp(10px,3vw,14px)!important;}
  .dewford-footer .dewford-footer-contact-value svg {width:16px;height:16px;margin-top:0;}
 }
+
+/* Footer-only Naver Talk and Blog social controls. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer a.dewford-footer-social:is(.dewford-social-naver,.dewford-social-blog):is(:hover,:focus-visible) {background:#03c75a;border-color:#03c75a;color:#fff!important;}
+.dewford-footer.footer-style-home-two .dewford-footer-socials {flex-wrap:wrap;max-width:100%;}
+
+/* Keep the footer admission CTA on the same brand-purple hover in every page. */
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .theme-btn:is(:hover,:focus-visible) {background:var(--id-color)!important;border-color:var(--id-color)!important;color:#fff!important;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .theme-btn::before {background:var(--id-color)!important;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,.dewford-korean-text) {color:#fff!important;}
+
+/* Keep the blog lettering inside its speech bubble and show active channels only. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-blog svg text {font-family:Arial,sans-serif!important;font-size:9px!important;font-weight:700!important;letter-spacing:0!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-social:is(.dewford-social-instagram,.dewford-social-facebook,.dewford-social-youtube) {display:none!important;}
+
+/* Preserve the white outline on the footer admission CTA in every state. */
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .theme-btn,
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .theme-btn:is(:hover,:focus-visible) {border:1px solid #fff!important;}
+
+/* Serif typography applies only to semantic headings. */
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) :is(h1,h2,h3,h4,h5,h6) {font-family:var(--dewford-title-font-family)!important;font-weight:var(--dewford-title-font-weight)!important;letter-spacing:var(--dewford-title-letter-spacing)!important;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) :is(h1,h2,h3,h4,h5,h6) :is(a,strong,.word,.char):not(.dewford-korean-text) {font-family:inherit!important;letter-spacing:inherit!important;}
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) :is(.title,.sub-title,.footer-title,.widget-title):not(:is(h1,h2,h3,h4,h5,h6)) {font-family:var(--dewford-default-title-font-family)!important;}
+
+/* Small section labels retain the original sans-serif typography. */
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) h6.sub-title {font-family:var(--dewford-default-title-font-family)!important;letter-spacing:.025em!important;}
+
+/* Linked titles use the original sans-serif family. */
+html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .title a {font-family:var(--dewford-default-title-font-family)!important;}

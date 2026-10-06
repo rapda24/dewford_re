@@ -2,14 +2,14 @@
 .dewford-header {padding:20px 30px;}
 .dewford-header .dewford-desktop-nav {position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:max-content;}
 .dewford-header .dewford-navigation {gap:18px;}
-.dewford-header .dewford-navigation > li > a {font-family:'Pretendard Korean',Arial,sans-serif;font-size:16px;font-weight:600;letter-spacing:.02em;}
+.dewford-header .dewford-navigation > li > a {font-family:'Pretendard',Arial,sans-serif;font-size:16px;font-weight:600;letter-spacing:.02em;}
 .dewford-header .dewford-header-actions {display:flex;align-items:center;gap:26px;margin-left:auto;}
-.dewford-header .dewford-email {display:none;font-family:'Pretendard Korean',Arial,sans-serif;font-size:var(--dewford-small-text,14px);font-weight:500;}
+.dewford-header .dewford-email {display:none;font-family:'Pretendard',Arial,sans-serif;font-size:var(--dewford-small-text,14px);font-weight:500;}
 .dewford-header .dewford-menu-toggle {display:grid;place-items:center;width:30px;height:44px;padding:0;}
 .dewford-menu-dots {display:grid!important;grid-template-columns:repeat(3,3px);grid-template-rows:repeat(3,3px);gap:5px;width:19px!important;height:19px!important;background:none!important;}
 .dewford-menu-dots i {display:block;width:3px;height:3px;background:currentColor;}
 .dewford-menu-dots i:nth-child(1){grid-area:1/2;}.dewford-menu-dots i:nth-child(2){grid-area:2/1;}.dewford-menu-dots i:nth-child(3){grid-area:2/2;}.dewford-menu-dots i:nth-child(4){grid-area:2/3;}.dewford-menu-dots i:nth-child(5){grid-area:3/2;}
-.dewford-header .dewford-header-talk {display:flex;align-items:center;gap:12px;background:var(--dewford-purple);padding:4px 20px 4px 4px;color:#ffffff;font-family:'Pretendard Korean',Arial,sans-serif;font-size:var(--dewford-small-text,14px);font-weight:600;white-space:nowrap;}
+.dewford-header .dewford-header-talk {display:flex;align-items:center;gap:12px;background:var(--dewford-purple);padding:4px 20px 4px 4px;color:#ffffff;font-family:'Pretendard',Arial,sans-serif;font-size:var(--dewford-small-text,14px);font-weight:600;white-space:nowrap;}
 .dewford-header-talk > span {display:grid;place-items:center;width:40px;height:40px;background:var(--dewford-orange);color:#ffffff;font-size:22px;font-weight:500;}
 .dewford-header .dewford-header-talk {display:none;}
 .dewford-header .dewford-email {display:inline-flex;align-items:center;gap:8px;}
@@ -28,7 +28,7 @@
  .dewford-dialog-photo {grid-column:1;grid-row:2;align-self:start;margin-top:var(--dewford-dialog-photo-offset,0px);}
  .dewford-dialog-navigation {grid-column:2;grid-row:2;align-self:start;margin-top:var(--dewford-dialog-nav-offset,0px);}
 }
-.dewford-dialog-story h2 {margin:0 0 80px;color:#ffffff;font-family:'Pretendard Korean',Arial,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:48px;line-height:1.4;font-weight:700;letter-spacing:-.025em;word-break:keep-all;}
+.dewford-dialog-story h2 {margin:0 0 80px;color:#ffffff;font-family:'Pretendard',Arial,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:48px;line-height:1.4;font-weight:700;letter-spacing:-.025em;word-break:keep-all;}
 .dewford-dialog-photo {display:block;width:100%;height:auto;}
 .dewford-dialog-crest {position:relative;width:150px;height:150px;margin:0 0 32px;}
 .dewford-dialog-crest > img {position:absolute;inset:30px;width:90px;height:90px;}
@@ -37,7 +37,7 @@
 .dewford-dialog-links,.dewford-dialog-submenu {list-style:none;padding:0;margin:0;}
 .dewford-dialog-links > li {border-bottom:1px solid rgb(255 255 255 / 16%);}
 .dewford-dialog-row {display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;}
-.dewford-dialog-row > :is(a,.dewford-dialog-parent) {display:block;padding:14px 0;color:#ffffff;font-family:'Pretendard Korean',Arial,sans-serif;font-size:18px;font-weight:500;line-height:1.4;letter-spacing:.02em;}
+.dewford-dialog-row > :is(a,.dewford-dialog-parent) {display:block;padding:14px 0;color:#ffffff;font-family:'Pretendard',Arial,sans-serif;font-size:18px;font-weight:500;line-height:1.4;letter-spacing:.02em;}
 .dewford-dialog-parent {flex:1;text-align:left;border:0;background:transparent;cursor:pointer;}
 .dewford-submenu-toggle {display:grid;place-items:center;flex:0 0 44px;width:44px;height:44px;padding:0;background:none;color:#ffffff;border:0;font:600 24px Arial,sans-serif;cursor:pointer;}
 .dewford-dialog-submenu[hidden] {display:none;}

@@ -701,23 +701,22 @@ html.dewford-intro-active .dewford-scroll-top,html.dewford-menu-open :is(.dewfor
 .dewford-footer.footer-style-home-two .about-widget .theme-btn:hover .btn-title,
 .dewford-footer.footer-style-home-two .about-widget .theme-btn:hover .icon {color:var(--id-color-dark);}
 
-/* Korean-only face preserves existing Latin type and icon fonts. */
+/* Full Pretendard face for Korean and Latin text; icon fonts stay separate. */
 @font-face {
- font-family:'Pretendard Korean';
+ font-family:'Pretendard';
  src:url('../fonts/pretendard/PretendardVariable.woff2') format('woff2');
  font-style:normal;font-weight:100 900;font-display:swap;
- unicode-range:U+1100-11FF,U+3130-318F,U+A960-A97F,U+AC00-D7AF,U+D7B0-D7FF,U+3000-303F,U+FF00-FFEF;
 }
 :root {
- --body-font-family:'Pretendard Korean','GT Walsheim Pro',sans-serif;
- --heading-font-family:'Pretendard Korean','GT Walsheim Pro',sans-serif;
+ --body-font-family:var(--dewford-body-font-family);
+ --heading-font-family:var(--dewford-body-font-family);
  --dewford-weight-body:500;--dewford-weight-medium:500;
  --body-font-weight:500;
 }
 :is(.dewford-home,.dewford-subpage) :is(p,.text,.footer-text,.dewford-visit-description,.dewford-consent,.dewford-event-body,.list-info li) {font-weight:500!important;}
 :is(.dewford-home,.dewford-subpage) :is(h1,h2,h3,h4,h5,h6,.title,.footer-title) {font-weight:600!important;}
 :is(.dewford-home,.dewford-subpage) :is(h1,h2,h3,h4,h5,h6,.title,.footer-title) strong {font-weight:750!important;}
-:is(.dewford-home,.dewford-subpage) :is(input,textarea,select,button) {font-family:'Pretendard Korean',Arial,sans-serif;}
+:is(.dewford-home,.dewford-subpage) :is(input,textarea,select,button) {font-family:'Pretendard',Arial,sans-serif;}
 
 .dewford-footer .dewford-footer-contact-row .info > .text {display:flex;align-items:center;gap:8px;}
 .dewford-footer .dewford-footer-info-icon {display:block;flex:0 0 18px;width:18px;height:18px;color:var(--sub-color);}
@@ -813,3 +812,16 @@ html.dewford-intro-active .dewford-scroll-top,html.dewford-menu-open :is(.dewfor
 body {font-weight:500;}
 html body :is(p,.text,.footer-text,.copyright,li,label,input,textarea,select,button,a,.btn-title,.sub-title,.dewford-korean-text) {font-weight:500!important;}
 html body :is(h1,h2,h3,h4,h5,h6,.title,.footer-title,.widget-title) :is(a,span,strong,.dewford-korean-text) {font-weight:inherit!important;}
+
+/* Naver shortcut below the Kakao floating button. */
+html body .dewford-naver-floating {position:fixed;right:24px;bottom:max(24px,env(safe-area-inset-bottom));z-index:900;display:flex;align-items:center;justify-content:center;width:46px;height:46px;padding:0;border:0;border-radius:50%!important;background:#03c75a;color:#fff;box-shadow:0 2px 12px rgba(0,0,0,.14);box-sizing:border-box;transition:background-color .2s;}
+html body .dewford-naver-floating > img {display:block;width:24px;height:24px;max-width:none;}
+html body .dewford-naver-floating:hover {background:#02b350;}
+html body .dewford-naver-floating:focus-visible {outline:2px solid #03c75a;outline-offset:4px;}
+html.dewford-intro-active .dewford-naver-floating,html.dewford-menu-open .dewford-naver-floating,body.body-overflow .dewford-naver-floating {visibility:hidden;}
+@media(max-width:767px){
+ html body .dewford-naver-floating {right:12px;bottom:max(12px,env(safe-area-inset-bottom));}
+}
+@media(prefers-reduced-motion:reduce){
+ html body .dewford-naver-floating {transition:none;}
+}

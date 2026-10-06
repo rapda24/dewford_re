@@ -2,7 +2,7 @@
 (() => {
   if (!document.body.classList.contains('dewford-subpage')) return;
   const pages = {
-    'why-dewford.html':['Why Dewford','영어로 생각하고 표현하는 아이로, Dewford와 함께 배움의 가능성을 넓혀갑니다.'],
+    'why-dewford.html':['Why DEWFORD','영어로 생각하고 표현하는 아이로, DEWFORD와 함께 배움의 가능성을 넓혀갑니다.'],
     'educational-philosophy.html':['Vision & Mission','스스로 질문하고 생각하며, 자신의 생각을 표현하는 배움을 지향합니다.'],
     'rolling-enrollment.html':['Rolling Admissions','아이의 발달 단계와 영어 경험을 살피며, 알맞은 배움의 시작을 함께 준비합니다.'],
     'admissions-inquiry.html':['Apply Now','아이에게 맞는 교육 과정과 입학에 대해 편하게 문의해 주세요.'],
@@ -11,13 +11,13 @@
     'elementary-esl.html':['Primary ESL Program','아이의 영어 수준에 맞춰 문장부터 글까지, 표현의 기초를 차근차근 다집니다.'],
     'preschool-calendar.html':['Early Learning Calendar','아이들의 배움과 다양한 경험으로 채워지는 유치부 일정을 확인하세요.'],
     'elementary-calendar.html':['Primary Calendar','초등 과정의 학습과 활동 일정을 확인하세요.'],
-    'event.html':['Events','아이들의 배움과 성장이 담긴 Dewford의 순간들을 만나보세요.'],
+    'event.html':['Events','아이들의 배움과 성장이 담긴 DEWFORD의 순간들을 만나보세요.'],
     'detail.html':['Event Story','하나의 경험이 배움으로 이어지는 순간, 아이들의 이야기를 자세히 전합니다.'],
-    'contact.html':['Contact','용산 이태원에서 시작하는 아이의 더 넓은 세상, Dewford를 만나보세요.']
+    'contact.html':['Contact','용산 이태원에서 시작하는 아이의 더 넓은 세상, DEWFORD를 만나보세요.']
   };
   const introductions = {
-    'why-dewford.html': ['영어를 넘어,\n생각하는 힘을 키우는 곳', 'Dewford는 읽고, 질문하고, 자신의 생각을 표현하는 경험을 연결합니다. 아이가 영어로 세상을 이해하고 배움의 주체로 성장하도록 돕습니다.'],
-    'educational-philosophy.html': ['정답을 말하는 데서\n자신의 생각을 펼치는 배움으로', '스스로 읽는 힘, 생각을 글로 옮기는 힘, 새로운 것을 탐구하는 태도. Dewford는 이 세 가지를 아이의 일상 속 배움으로 이어갑니다.'],
+    'why-dewford.html': ['영어를 넘어,\n생각하는 힘을 키우는 곳', 'DEWFORD는 읽고, 질문하고, 자신의 생각을 표현하는 경험을 연결합니다. 아이가 영어로 세상을 이해하고 배움의 주체로 성장하도록 돕습니다.'],
+    'educational-philosophy.html': ['정답을 말하는 데서\n자신의 생각을 펼치는 배움으로', '스스로 읽는 힘, 생각을 글로 옮기는 힘, 새로운 것을 탐구하는 태도. DEWFORD는 이 세 가지를 아이의 일상 속 배움으로 이어갑니다.'],
     'rolling-enrollment.html': ['아이의 지금을 살피고,\n다음 배움을 함께 준비합니다', '아이마다 영어를 만난 경험과 성장의 속도는 다릅니다. 현재의 발달 단계와 영어 수준을 세심하게 살펴 적합한 과정과 입학을 안내합니다.'],
     'admissions-inquiry.html': ['우리 아이에게 맞는 시작,\n상담에서 함께 찾아갑니다', '아이의 연령과 영어 경험, 궁금하신 점을 알려주세요. 교육 과정과 입학에 대해 차근차근 안내해 드리겠습니다.'],
     'international-preschool.html': ['놀며 발견하고,\n영어로 세상을 알아갑니다', '이야기와 놀이, 주제별 탐구를 통해 영어를 자연스럽게 사용합니다. 연령별 발달과 읽기 수준을 함께 살피며 스스로 읽고 표현하는 기초를 다집니다.'],
@@ -26,12 +26,12 @@
     'preschool-calendar.html': ['작은 발견으로 채워지는\n아이들의 배움 달력', '유치부의 수업과 활동, 주요 일정을 한눈에 확인하세요. 가정에서도 아이의 새로운 경험과 성장의 순간을 함께 준비할 수 있습니다.'],
     'elementary-calendar.html': ['배움의 흐름을 살피고,\n다음 경험을 준비합니다', '초등 과정의 학습과 활동, 주요 일정을 안내합니다. 교실에서 이어지는 배움의 흐름을 확인하고 아이의 학교생활을 함께해 주세요.'],
     'event.html': ['함께 배우고 자라는\nDewford의 순간들', '교실 안팎에서 발견하고, 도전하고, 함께 성장하는 아이들의 이야기를 만나보세요.'],
-    'contact.html': ['용산 이태원에서,\n아이의 새로운 배움을 만납니다', '교육 과정과 입학에 대한 궁금한 점을 남겨주세요. 방문에 필요한 위치와 연락처를 확인하고 Dewford와 첫 만남을 준비해 보세요.']
+    'contact.html': ['용산 이태원에서,\n아이의 새로운 배움을 만납니다', '교육 과정과 입학에 대한 궁금한 점을 남겨주세요. 방문에 필요한 위치와 연락처를 확인하고 DEWFORD와 첫 만남을 준비해 보세요.']
   };
   const pageImages = {
     'why-dewford.html':[['15','50% 42%'],['19','50% 40%'],['26','50% 40%']],
-    'educational-philosophy.html':[['14','62% 40%'],['21','50% 38%'],['30','50% 40%']],
-    'rolling-enrollment.html':[['20','50% 38%'],['07','50% 40%'],['23','62% 35%']],
+    'educational-philosophy.html':[['14-philosophy-uniform','62% 40%',1536],['21-philosophy-uniform','50% 38%',1536],['30-philosophy-uniform','50% 40%',1536]],
+    'rolling-enrollment.html':[['20-enrollment-uniform-no-logo','50% 38%',1536],['07-enrollment-uniform','50% 40%',1536],['23-enrollment-uniform','62% 35%',1536]],
     'admissions-inquiry.html':[['02','60% 40%'],['05','62% 38%'],['15','50% 42%']],
     'international-preschool.html':[['06','55% 38%'],['17','50% 42%'],['14','62% 40%']],
     'elementary-international.html':[['18','50% 38%'],['22','50% 38%'],['27','35% 38%']],
@@ -57,11 +57,11 @@
   section.id='pxl-page-title-elementor';section.className='dewford-page-title';
   section.setAttribute('aria-labelledby','dewford-page-title-heading');
   const photos = document.createElement('div');photos.className='dewford-page-title-photos';photos.setAttribute('aria-hidden','true');
-  pageImages[filename].forEach(([id,focus],i) => {
+  pageImages[filename].forEach(([id,focus,width=1800],i) => {
     const slide=document.createElement('div');slide.className='dewford-page-title-slide'+(i===0?' is-active':'');
     const img=document.createElement('img');img.alt='';img.decoding='async';img.sizes='100vw';
-    img.srcset=`images/sub/title/sub-${id}-768.jpg 768w, images/sub/title/sub-${id}-1800.jpg 1800w`;
-    img.src=`images/sub/title/sub-${id}-1800.jpg`;img.style.objectPosition=focus;
+    img.srcset=`images/sub/title/sub-${id}-768.jpg 768w, images/sub/title/sub-${id}-${width}.jpg ${width}w`;
+    img.src=`images/sub/title/sub-${id}-${width}.jpg`;img.style.objectPosition=focus;
     if(i===0)img.fetchPriority='high';
     slide.append(img);photos.append(slide);
   });
@@ -72,7 +72,7 @@
   const emblem = document.createElement("template");
   emblem.innerHTML = `<div class="elementor-element elementor-element-4c41d6b elementor-widget elementor-widget-pxl_circle_text dewford-subpage-emblem" data-e-type="widget" data-element_type="widget" data-id="4c41d6b">
   <div class="elementor-widget-container">
-    <div class="dewford-subpage-emblem-link" role="img" aria-label="Dewford">
+    <div class="dewford-subpage-emblem-link" role="img" aria-label="DEWFORD">
       <svg class="dewford-subpage-emblem-ring" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
         <defs><path id="dewford-subpage-emblem-path" d="M100,30 a70,70 0 1,1 0,140 a70,70 0 1,1 0,-140"/></defs>
         <text><textPath href="#dewford-subpage-emblem-path" textLength="439.8" lengthAdjust="spacing">DEWFORD · LEARN · THINK · EXPRESS · </textPath></text>

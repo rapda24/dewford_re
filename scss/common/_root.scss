@@ -54,7 +54,7 @@ $theme-color3-text-color: #fff;
   //font family
   --body-font-family: "GT Walsheim Pro", sans-serif;
   --heading-font-family: "GT Walsheim Pro", sans-serif;
-  --style-font-family: "Kdam Thmor Pro", sans-serif;
+  --style-font-family: var(--dewford-default-title-font-family, "Pretendard", Arial, sans-serif);
 
   //body
   --body-font-size: 16px;

@@ -25,9 +25,9 @@
   --link-color: var(--theme-color1);
   --link-hover-color: var(--theme-color1);
   --review-color: #FF901B;
-  --body-font-family: "Pretendard Korean", "GT Walsheim Pro", sans-serif;
-  --heading-font-family: "Pretendard Korean", "GT Walsheim Pro", sans-serif;
-  --style-font-family: "Kdam Thmor Pro", sans-serif;
+  --body-font-family: var(--dewford-body-font-family);
+  --heading-font-family: var(--dewford-body-font-family);
+  --style-font-family: var(--dewford-default-title-font-family, var(--dewford-body-font-family));
   --body-font-size: 16px;
   --body-line-height: 1.75;
   --body-font-weight: 400;
@@ -179,7 +179,7 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header .dewford
 #main-content .banner-section-three .banner-count-anchor .inner-box {pointer-events:auto;}
 #main-content .banner-section-three .banner-count-caption {margin:14px 0 0;font-size:14px;color:#606060;}
 #main-content .banner-section-three .content-box > .title {min-height:166px;}
-#main-content .banner-section-three .bottom-box .text {font-family:'Pretendard Korean',sans-serif;word-break:keep-all;line-height:1.75!important;}
+#main-content .banner-section-three .bottom-box .text {font-family:'Pretendard',sans-serif;word-break:keep-all;line-height:1.75!important;}
 #main-content .banner-section-three .bg-image::before {background:rgba(0,0,0,.5);}
 @media(max-width:767.98px){
  #main-content .banner-section-three .outer-box {padding-bottom:36vh;}
@@ -194,7 +194,7 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-header .dewford
 #main-content .why-choose-us-four .dewford-value-icon svg {display:block;}
 #main-content .why-choose-us-four .feature-block .text {word-break:keep-all;}
 /* Use the Korean-only Pretendard face without changing Latin or icon glyphs. */
-.dewford-home .dewford-korean-text {font-family:'Pretendard Korean','GT Walsheim Pro',sans-serif!important;}
+.dewford-home .dewford-korean-text {font-family:var(--dewford-body-font-family)!important;}
 
 /* Equal-height curriculum cards finish on the same baseline as the photo. */
 #main-content .why-choose-us-four .feature-block {display:flex;margin-bottom:0;}
@@ -271,7 +271,7 @@ html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visibl
 #main-content .about-section .dewford-about-form h3 {font-size:24px;margin:0 0 24px;}
 #main-content .about-section .dewford-about-fields {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
 #main-content .about-section .dewford-about-fields label {display:block;font-size:14px;line-height:1.5!important;}
-#main-content .about-section .dewford-about-fields :is(input,select,textarea) {display:block;width:100%;min-width:0;margin-top:6px;padding:10px 12px;background:#fff;border:1px solid #d3d3d3;color:#292929;font-family:'Pretendard Korean',sans-serif;font-size:16px;line-height:1.5;}
+#main-content .about-section .dewford-about-fields :is(input,select,textarea) {display:block;width:100%;min-width:0;margin-top:6px;padding:10px 12px;background:#fff;border:1px solid #d3d3d3;color:#292929;font-family:'Pretendard',sans-serif;font-size:16px;line-height:1.5;}
 #main-content .about-section .form-wide {grid-column:1/-1;}
 #main-content .about-section .dewford-about-fields textarea {resize:vertical;min-height:92px;}
 #main-content .about-section .form-consent {display:flex;align-items:flex-start;gap:9px;margin:18px 0;font-size:14px;line-height:1.55!important;}

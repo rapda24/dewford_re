@@ -30,7 +30,6 @@ License: copyright commercial
 23. Main Footer
 **********************************************/
 @import url("https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wght@0,200..900;1,200..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap");
 @import url("animate.css");
 @import url("swiper.min.css");
 @import url("jquery.fancybox.min.css");
@@ -68,7 +67,7 @@ License: copyright commercial
   --review-color: #FF901B;
   --body-font-family: "GT Walsheim Pro", sans-serif;
   --heading-font-family: "GT Walsheim Pro", sans-serif;
-  --style-font-family: "Kdam Thmor Pro", sans-serif;
+  --style-font-family: var(--dewford-default-title-font-family, "Pretendard", Arial, sans-serif);
   --body-font-size: 16px;
   --body-line-height: 1.75;
   --body-font-weight: 400;
@@ -6334,7 +6333,7 @@ sec-title-style-three
 }
 .projects-section-two .sec-title-style-three .title {
   font-size: 104px;
-  font-weight: 400;
+  font-weight: 700;
   font-family: var(--style-font-family);
   letter-spacing: -7px;
   line-height: 1;

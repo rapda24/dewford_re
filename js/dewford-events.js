@@ -48,7 +48,7 @@
       const url = imageURL(post.image);
       if (url) { const image = element('img'); image.src = url; image.alt = post.title; detail.append(image); }
       detail.append(element('div', 'dewford-event-body', post.body || post.excerpt || ''));
-      document.title = post.title + ' | Dewford';
+      document.title = post.title + ' | DEWFORD';
       return;
     }
     if (!posts.length) { showStatus('새로운 소식을 준비하고 있습니다.'); return; }
