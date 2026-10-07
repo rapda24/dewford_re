@@ -2,10 +2,10 @@
 .dewford-news {
  --theme-color1:#f4f4f4;--theme-color2:#d8d8d8;--theme-color3:#e4e4e4;
  --theme-color1-rgb:244,244,244;--theme-color2-rgb:216,216,216;--theme-color3-rgb:228,228,228;
- --theme-color-dark:#111111;--theme-color-black:#000000;--theme-black:#000000;
- --theme-color-black-rgb:0,0,0;--theme-color-white:#ffffff;
- --headings-color:#111111;--text-color:#525252;--text-color-rgb:82,82,82;
- --theme-light-background:#f6f6f6;--theme-light-background-text-color:#111111;
+ --theme-color-dark:var(--id-color);--theme-color-black:var(--id-color);--theme-black:var(--id-color);
+ --theme-color-black-rgb:var(--dewford-subpage-brand-rgb,82,25,109);--theme-color-white:#ffffff;
+ --headings-color:var(--id-color-dark);--text-color:#525252;--text-color-rgb:82,82,82;
+ --theme-light-background:#f6f6f6;--theme-light-background-text-color:var(--id-color-dark);
  color:var(--text-color);
 }
 .dewford-news,.dewford-news *,.dewford-news *::before,.dewford-news *::after {border-radius:0!important;}
@@ -33,8 +33,8 @@
 #main-content .dewford-event-template {
  --theme-color1:#f4f4f4;--theme-color2:#D7D9CF;--theme-color3:#E3E5DD;
  --theme-color1-rgb:244,244,244;--theme-color2-rgb:215,217,207;--theme-color3-rgb:227,229,221;
- --theme-color-dark:#111111;--theme-color-black:#000;--theme-color-white:#fff;
- --headings-color:#111111;--text-color:#525252;
+ --theme-color-dark:var(--id-color);--theme-color-black:var(--id-color);--theme-color-white:#fff;
+ --headings-color:var(--id-color-dark);--text-color:#525252;
  --link-color:var(--theme-color1);--link-hover-color:var(--theme-color1);
  background:#fff;color:var(--text-color);
 }

@@ -15,13 +15,13 @@
   --theme-color-light: #f2f8f9;
   --theme-color-gray: #f6f6f6;
   --theme-color-silver: #eee;
-  --theme-color-black: #000000;
-  --theme-color-black-rgb: 0, 0, 0;
-  --theme-color-dark: #111111;
+  --theme-color-black:var(--id-color);
+  --theme-color-black-rgb:var(--dewford-subpage-brand-rgb,82,25,109);
+  --theme-color-dark:var(--id-color);
   --gradient-1: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgb(217, 244, 95) 100%);
   --text-color: #525252;
   --text-color-rgb: 82, 82, 82;
-  --headings-color: #111111;
+  --headings-color:var(--id-color-dark);
   --link-color: var(--theme-color1);
   --link-hover-color: var(--theme-color1);
   --review-color: #FF901B;
@@ -29,7 +29,7 @@
   --sec-title-color: var(--headings-color);
   --theme-light-background: #f8f6f1;
   --theme-light-background-text-color: var(--headings-color);
-  --theme-black: #000000;
+  --theme-black:var(--id-color);
 color:var(--text-color);
 }
 
@@ -224,8 +224,8 @@ html body.dewford-subpage #main-content.dewford-philosophy-content .projects-sec
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn :is(.btn-title,.icon,i) {color:#fff!important;}
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn::before {background-color:#3d1252!important;}
 
-html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) {background-color:#fff!important;color:#000!important;}
-html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,i) {color:#000!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) {background-color:#fff!important;color:var(--id-color)!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,i) {color:var(--id-color)!important;}
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn::before {background-color:#fff!important;}
 
 /* Align the second desktop photograph with the bottom of Vision. */

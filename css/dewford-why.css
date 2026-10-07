@@ -15,13 +15,13 @@
   --theme-color-light: #f2f8f9;
   --theme-color-gray: #f6f6f6;
   --theme-color-silver: #eee;
-  --theme-color-black: #000000;
-  --theme-color-black-rgb: 0, 0, 0;
-  --theme-color-dark: #111111;
+  --theme-color-black:var(--id-color);
+  --theme-color-black-rgb:var(--dewford-subpage-brand-rgb,82,25,109);
+  --theme-color-dark:var(--id-color);
   --gradient-1: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgb(217, 244, 95) 100%);
   --text-color: #525252;
   --text-color-rgb: 82, 82, 82;
-  --headings-color: #111111;
+  --headings-color:var(--id-color-dark);
   --link-color: var(--theme-color1);
   --link-hover-color: var(--theme-color1);
   --review-color: #FF901B;
@@ -29,7 +29,7 @@
   --sec-title-color: var(--headings-color);
   --theme-light-background: #f8f6f1;
   --theme-light-background-text-color: var(--headings-color);
-  --theme-black: #000000;
+  --theme-black:var(--id-color);
 color:var(--text-color);
 }
 
@@ -79,7 +79,7 @@ html body.dewford-subpage #main-content .dewford-why-korean-title * {font-style:
 #main-content .dewford-why-clients .service-block .icon-box,
 #main-content .dewford-why-clients .service-block .content-box,
 #main-content .dewford-why-clients .service-block .title {transition:none;transform:none;}
-#main-content .dewford-why-clients .service-block .icon-box svg path {fill:#111111;transition:none;}
+#main-content .dewford-why-clients .service-block .icon-box svg path {fill:var(--id-color);transition:none;}
 #main-content .dewford-why-clients .service-block .title {color:var(--headings-color);line-height:1.4!important;min-height:2.8em;}
 #main-content .dewford-why-clients .service-block .content-box .dewford-why-card-divider {height:0;padding:0;margin:24px 0;border-bottom:1px solid var(--theme-color2);}
 #main-content .dewford-why-clients .service-block .content-box .dewford-why-card-divider::before {background:var(--headings-color);transition:none;}
@@ -101,11 +101,11 @@ body.dewford-subpage #main-content > .clients-section.dewford-why-clients {paddi
 
 /* Alternating Learning Journey cards, scoped to Why Dewford. */
 #main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block {background:#f4f4f4;color:#525252;}
-#main-content .why-choose-us-four .feature-block:nth-child(even) .inner-block {background:#000;color:#fff;}
+#main-content .why-choose-us-four .feature-block:nth-child(even) .inner-block {background:var(--id-color);color:#fff;}
 #main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block .title,
-#main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block .title a {color:#111;}
+#main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block .title a {color:var(--id-color-dark);}
 #main-content .why-choose-us-four .feature-block:nth-child(even) .inner-block :is(.title,.title a,.text) {color:#fff;}
-#main-content .why-choose-us-four .feature-block .inner-block .number {display:grid;place-items:center;background:#fff;color:#111;font-size:36px;}
+#main-content .why-choose-us-four .feature-block .inner-block .number {display:grid;place-items:center;background:#fff;color:var(--id-color-dark);font-size:36px;}
 #main-content .why-choose-us-four .feature-block .title {line-height:1.4!important;min-height:2.8em;}
 
 #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row {display:grid;grid-template-columns:56px minmax(0,180px) minmax(0,1fr);gap:16px;align-items:start;padding:28px 0;margin:0;}
@@ -124,7 +124,7 @@ html body.dewford-subpage #main-content .project-details .dewford-why-copy-rows 
 /* Section labels and education icons on Why Dewford. */
 html body.dewford-subpage #main-content .sub-title {font-size:16px!important;}
 #main-content .sub-title > i {display:inline-block;margin-right:8px;vertical-align:middle;}
-#main-content .dewford-why-clients .service-block .icon-box > i {display:inline-block;font-size:48px;line-height:1;color:#111;}
+#main-content .dewford-why-clients .service-block .icon-box > i {display:inline-block;font-size:48px;line-height:1;color:var(--id-color-dark);}
 
 /* Background photos preserve the existing image frames. */
 #main-content .dewford-why-photo {background-size:cover;background-position:center;background-repeat:no-repeat;}

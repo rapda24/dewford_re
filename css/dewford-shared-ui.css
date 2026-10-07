@@ -366,3 +366,27 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-reg
  html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-registration span {font-size:clamp(10px,2.8vw,14px)!important;white-space:nowrap;}
  html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer.footer-style-home-two .footer-bottom .copyright {font-size:clamp(9px,2.5vw,14px)!important;white-space:nowrap;}
 }
+
+/* Subpage dark surfaces and accents follow the DEWFORD purple palette. */
+html body.dewford-subpage {
+ --dewford-purple-dark:color-mix(in srgb,var(--id-color) 76%,#24112d);
+ --id-color-dark:var(--dewford-purple-dark);
+ --dewford-subpage-brand-rgb:82,25,109;
+ --theme-color-dark:var(--id-color);
+ --theme-color-black:var(--id-color);
+ --theme-black:var(--id-color);
+ --theme-color-black-rgb:var(--dewford-subpage-brand-rgb);
+ --headings-color:var(--id-color-dark);
+}
+html body.dewford-subpage #main-content.dewford-subpage-content {--headings-color:var(--id-color-dark);}
+html body.dewford-subpage #main-content .dewford-page-title,
+html body.dewford-subpage #main-content .dewford-page-title::before {background:var(--id-color);}
+html body.dewford-subpage #main-content .dewford-why-clients .inner-container::before {background:color-mix(in srgb,var(--id-color) 72%,transparent);}
+html body.dewford-subpage #main-content .service-section-two .outer-box {--theme-color-dark:var(--id-color);}
+html body.dewford-subpage #main-content .contact-details__info li .icon {background:var(--id-color);}
+html body.dewford-subpage #main-content .theme-btn.btn-style-one {--button-surface:var(--id-color);}
+html body.dewford-subpage .dewford-scroll-top {background:var(--id-color)!important;--button-surface:var(--id-color);}
+html body.dewford-subpage #main-content :is(.dewford-events-intro h2,.dewford-editorial-heading h2,.team-details__top-name) {color:var(--id-color-dark);}
+html body.dewford-subpage #main-content.dewford-refined-page .services-section .service-block :is(.title,.title a,.icon-box) {color:var(--id-color-dark)!important;}
+html body.dewford-subpage #main-content.dewford-refined-page .about-block-home-two .inner-block :is(.title,.title a,.count-box) {color:var(--id-color-dark);}
+html body.dewford-polished-page #main-content {--polish-ink:var(--id-color-dark);}
