@@ -3,12 +3,11 @@
   const api = window.DewfordAdmin;
   let page = 1, query = '', busy = false, items = [], total = 0, current = null;
   const selected = new Set();
-  const stages = {received:'접수', contacting:'연락 중', scheduled:'상담 예약', completed:'상담 완료'};
+  const stages = {received:'접수', contacting:'진행중', completed:'완료'};
   const node = (tag, text, className) => {const el=document.createElement(tag);el.textContent=text;if(className)el.className=className;return el;};
   const date = value => new Date(value).toLocaleString('ko-KR', {timeZone:'Asia/Seoul',hour12:false});
   const login = () => location.replace('admin-login.html?board=inquiries');
   function selection() {
-    $('#inquiry-selected').textContent=`${selected.size}건 선택`;
     $('#inquiry-selected-status').disabled=busy||!selected.size;$('#inquiry-selected-delete').disabled=busy||!selected.size;
     const all=$('#inquiry-select-all');all.checked=items.length>0&&selected.size===items.length;all.indeterminate=selected.size>0&&selected.size<items.length;
   }
@@ -70,12 +69,14 @@
     } finally {busy=false;selection();$('#inquiry-detail-save').disabled=false;}
   }
   $('#inquiry-select-all').addEventListener('change',event=>{if(busy)return;selected.clear();if(event.target.checked)items.forEach(item=>selected.add(item.id));document.querySelectorAll('.inquiry-row-check').forEach(check=>check.checked=event.target.checked);selection();});
-  for(const scope of ['selected','all'])for(const action of ['status','delete'])$('#inquiry-'+scope+'-'+action).addEventListener('click',()=>mutate(action,scope));
+  $('#inquiry-selected-status').addEventListener('click',()=>mutate('status','selected'));
+  $('#inquiry-selected-delete').addEventListener('click',()=>mutate('delete','selected'));
   $('#inquiry-detail-save').addEventListener('click',()=>{if(current)mutate('status','selected',[current.id],$('#inquiry-detail-stage').value);});
   $('#inquiry-export').addEventListener('click',async()=>{
     if(busy)return;const button=$('#inquiry-export');button.disabled=true;
     try {
-      const data=await api.inquiries({q:query,export:1});
+      const chosen=items.filter(item=>selected.has(item.id));
+      const data=chosen.length?{items:chosen}:await api.inquiries({export:1});
       const escape=value=>String(value??'').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
       const rows=[['접수일 (한국 시간)','상담 상태','학부모 성함','연락처','이메일','관심 과정','상담 내용','개인정보 동의'],...data.items.map(item=>[date(item.created_at),stages[item.status],item.name,item.phone,item.email,item.program,item.message,item.consent===1?'동의':'미동의'])];
       const xml='<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Worksheet ss:Name="상담 접수"><Table>'+rows.map(row=>'<Row>'+row.map(value=>'<Cell><Data ss:Type="String">'+escape(value)+'</Data></Cell>').join('')+'</Row>').join('')+'</Table></Worksheet></Workbook>';

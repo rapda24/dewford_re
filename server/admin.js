@@ -176,7 +176,7 @@ export async function adminRoute(request, env) {
     const values = Array(5).fill(query.trim());
     if (body) {
       if (!['status', 'delete'].includes(body.action)) fail('INVALID_INPUT');
-      if (body.action === 'status' && !['received', 'contacting', 'scheduled', 'completed'].includes(body.status)) fail('INVALID_INPUT');
+      if (body.action === 'status' && !['received', 'contacting', 'completed'].includes(body.status)) fail('INVALID_INPUT');
       let where;
       let bindings;
       if (body.scope === 'all') { where = search; bindings = values; }
@@ -193,7 +193,7 @@ export async function adminRoute(request, env) {
     const count = await env.DB.prepare('SELECT COUNT(*) AS total FROM inquiries WHERE ' + search).bind(...values).first();
     const exporting = params.get('export') === '1';
     const rows = await env.DB.prepare('SELECT id, name, phone, email, program, message, consent, status, created_at FROM inquiries WHERE ' + search + ' ORDER BY created_at DESC, id DESC' + (exporting ? '' : ' LIMIT 20 OFFSET ?')).bind(...values, ...(exporting ? [] : [(page - 1) * 20])).all();
-    return {data:{items:rows.results, total:count.total, page, pageSize:20}};
+    return {data:{items:rows.results.map(item => ({...item, status:item.status === 'scheduled' ? 'contacting' : item.status})), total:count.total, page, pageSize:20}};
   }
   if (path === '/api/admin/content' && request.method === 'GET') return {data:await loadState(request, env)};
   if (path === '/api/admin/content' && request.method === 'POST') {

@@ -164,8 +164,8 @@ test('inquiry stages, selected deletion, filtered bulk actions and full export a
   assert.equal((await call(env,'admin/inquiries',{action:'status',scope:'all',status:'bad'},auth)).response.status,400);
   assert.equal((await call(env,'admin/inquiries',{action:'delete',scope:'selected',ids:[]},auth)).response.status,400);
   assert.equal((await call(env,'admin/inquiries',null,auth)).data.items[0].status,'received');
-  let result=await call(env,'admin/inquiries',{action:'status',scope:'selected',ids:['request-0'],status:'scheduled'},auth);
-  assert.equal(result.data.changed,1);assert.equal(db.prepare('SELECT status FROM inquiries WHERE id=?').get('request-0').status,'scheduled');
+  let result=await call(env,'admin/inquiries',{action:'status',scope:'selected',ids:['request-0'],status:'contacting'},auth);
+  assert.equal(result.data.changed,1);assert.equal(db.prepare('SELECT status FROM inquiries WHERE id=?').get('request-0').status,'contacting');
   result=await call(env,'admin/inquiries',{action:'status',scope:'all',q:'검색대상',status:'completed'},auth);assert.equal(result.data.changed,23);
   assert.equal(db.prepare('SELECT status FROM inquiries WHERE id=?').get('request-24').status,'received');
   result=await call(env,'admin/inquiries?export=1&q='+encodeURIComponent('검색대상'),null,auth);assert.equal(result.data.items.length,23);
