@@ -239,3 +239,15 @@ html body.dewford-layout-admissions-inquiry #main-content .team-details__progres
  html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-title,
  html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single p {grid-column:2;}
 }
+
+/* Application contact information beside the shared inquiry form. */
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-contacts{width:fit-content;max-width:100%;margin:28px auto 0;text-align:left;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-contacts ul{display:grid;gap:12px;list-style:none;padding:0;margin:0;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-contacts li{margin:0;padding:0;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-contacts li a{display:flex;align-items:flex-start;gap:10px;color:#000;font-size:16px;line-height:1.6;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-contacts li svg{flex:0 0 20px;margin-top:3px;color:var(--id-color);}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-channels{display:flex;gap:12px;margin-top:20px;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-channels a{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;font-size:14px;line-height:1.5;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-channels .application-kakao{background:#fee500;color:#191919;border:1px solid #fee500;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-channels .application-naver{background:#03c75a;color:#fff;border:1px solid #03c75a;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-application-channels a:focus-visible{outline:2px solid var(--id-color);outline-offset:4px;}

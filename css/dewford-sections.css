@@ -61,7 +61,7 @@
 .dewford-home .services-section-three .service-block-three .icon-box {background:var(--sub-color);color:var(--id-color-dark);}
 .dewford-home .services-section-three .service-block-three .inner-box:hover .icon-box {background:#ffffff;color:var(--id-color);}
 .dewford-home .services-section-three .service-block-three .icon-box .dewford-program-icon path {fill:none;stroke:currentColor;}
-.dewford-home .services-section-three .service-block-three .theme-btn {border-color:var(--sub-color);}
+.dewford-home .services-section-three .service-block-three .theme-btn {border-color:var(--button-surface,var(--id-color));}
 .dewford-home .services-section-three .service-block-three .theme-btn:hover,
 .dewford-home .services-section-three .service-block-three .theme-btn:hover :is(.btn-title,.icon) {color:var(--id-color-dark);}
 .dewford-home .services-section-three .service-block-three .theme-btn::before {background:var(--sub-color);}
@@ -98,7 +98,7 @@
 .dewford-home .services-section .service-block .icon-box {color:var(--sub-color);}
 .dewford-home .services-section .service-block .icon-box svg path {fill:none;stroke:currentColor;}
 .dewford-home .services-section .service-block .inner-box:hover .icon-box {color:#ffffff;}
-.dewford-home .services-section .service-block .theme-btn {border-color:var(--sub-color);}
+.dewford-home .services-section .service-block .theme-btn {border-color:var(--button-surface,var(--id-color));}
 .dewford-home .services-section .service-block .theme-btn::before {background:var(--sub-color);}
 .dewford-home .services-section .service-block .theme-btn:hover,
 .dewford-home .services-section .service-block .theme-btn:hover :is(.btn-title,.icon) {color:var(--id-color-dark);}

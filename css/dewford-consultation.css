@@ -12,3 +12,11 @@ html body #main-content #dewford-inquiry-form .theme-btn{width:100%;}
 html body #main-content #dewford-inquiry-form .dewford-form-status{font-size:14px;margin:12px 0 0;}
 html body #main-content .dewford-about-form-panel{padding:0;}
 @media(max-width:767px){html body #main-content #dewford-inquiry-form .dewford-about-fields{gap:4vw;}}
+/* Contact's brand-filled submit control supplies the shared border surface. */
+html body.dewford-subpage #main-content.dewford-contact-page #dewford-inquiry-form .theme-btn{--button-surface:var(--id-color);}
+/* Home consultation: brand default with white labels; gray hover with black labels. */
+html body.dewford-home #main-content #dewford-inquiry-form .theme-btn{--button-surface:var(--id-color);background:var(--id-color)!important;border-color:var(--id-color)!important;color:#fff!important;}
+html body.dewford-home #main-content #dewford-inquiry-form .theme-btn:is(:hover,:focus-visible){background:#eee!important;border-color:#eee!important;color:#000!important;}
+html body.dewford-home #main-content #dewford-inquiry-form .theme-btn::before{background:#eee!important;}
+html body.dewford-home #main-content #dewford-inquiry-form .theme-btn :is(.btn-title,.dewford-korean-text,.icon){color:#fff!important;}
+html body.dewford-home #main-content #dewford-inquiry-form .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.dewford-korean-text,.icon){color:#000!important;}

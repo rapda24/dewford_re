@@ -421,3 +421,6 @@ html body.dewford-subpage #main-content.dewford-philosophy-content .projects-sec
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.dewford-korean-text,.icon,i),
 html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .theme-btn.btn-style-two:is(:hover,:focus-visible),
 html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .theme-btn.btn-style-two:is(:hover,:focus-visible) :is(.btn-title,.dewford-korean-text,.icon,i) {color:#000!important;}
+
+/* Filled buttons use their base surface color instead of the secondary border. */
+html body:is(.dewford-home,.dewford-subpage) #main-content .theme-btn:not(:hover):not(:focus-visible) {border-color:var(--button-surface,transparent)!important;}
