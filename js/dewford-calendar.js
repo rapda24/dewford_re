@@ -9,11 +9,38 @@
  const grid=root.querySelector('.dewford-calendar-days'),heading=root.querySelector('[data-calendar-month]'),picker=root.querySelector('[data-calendar-picker]'),details=root.querySelector('[data-calendar-details]');
  const key=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
  const label=d=>new Intl.DateTimeFormat('ko-KR',{year:'numeric',month:'long',day:'numeric',weekday:'long'}).format(d);
+ const imageModal=document.createElement('dialog');imageModal.className='dewford-calendar-image-modal';imageModal.setAttribute('aria-label','일정 이미지 확대');
+ const enlarged=document.createElement('img'),closeImage=document.createElement('button');closeImage.type='button';closeImage.className='dewford-calendar-image-close';closeImage.textContent='×';closeImage.setAttribute('aria-label','이미지 닫기');imageModal.append(closeImage,enlarged);document.body.append(imageModal);
+ let imageOpener,previousOverflow;
+ function openImage(src,alt,opener){imageOpener=opener;enlarged.src=src;enlarged.alt=alt;previousOverflow=document.documentElement.style.overflow;imageModal.showModal();document.documentElement.style.overflow='hidden';}
+ closeImage.addEventListener('click',()=>imageModal.close());
+ imageModal.addEventListener('click',event=>{if(event.target===imageModal)imageModal.close();});
+ imageModal.addEventListener('close',()=>{document.documentElement.style.overflow=previousOverflow||'';enlarged.removeAttribute('src');if(imageOpener?.isConnected)imageOpener.focus({preventScroll:true});});
+ function safeImage(src){try{const url=new URL(src,location.href);return ['http:','https:'].includes(url.protocol)?url.href:'';}catch{return '';}}
  function showDetails(){
-  details.replaceChildren();const title=document.createElement('h3');title.textContent=label(selected);details.append(title);
+  details.replaceChildren();
   const matches=events.filter(e=>e.date===key(selected));
-  if(!matches.length){const p=document.createElement('p');p.textContent='등록된 일정이 없습니다. 확정된 학사 일정은 추후 안내합니다.';details.append(p);return;}
-  const list=document.createElement('ul');matches.forEach(event=>{const li=document.createElement('li'),strong=document.createElement('strong');strong.textContent=event.title;li.dataset.calendarId=event.id||'';li.append(strong);if(event.content?.ops&&window.DEWFORD_RICH_TEXT){const body=document.createElement('div');window.DEWFORD_RICH_TEXT.render(body,event.content);li.append(body);}else if(event.description){const p=document.createElement('p');p.textContent=event.description;li.append(p);}[event.image,...(event.gallery||[])].filter(Boolean).forEach(src=>{const img=document.createElement('img');const url=new URL(src,location.href);if(!['http:','https:'].includes(url.protocol))return;img.src=url.href;img.alt=event.alt||event.title;img.loading='lazy';img.style.cssText='display:block;max-width:100%;height:auto;margin:12px 0;border-radius:0';li.append(img);});list.append(li);});details.append(list);
+  if(!matches.length){const title=document.createElement('h3');title.textContent=label(selected);const p=document.createElement('p');p.textContent='등록된 일정이 없습니다. 확정된 학사 일정은 추후 안내합니다.';details.append(title,p);return;}
+  const list=document.createElement('ul');list.className='dewford-calendar-schedule-list';
+  matches.forEach(event=>{
+   const li=document.createElement('li');li.className='dewford-calendar-schedule';li.dataset.calendarId=event.id||'';
+   const media=document.createElement('div');media.className='dewford-calendar-schedule-media';
+   [event.image,...(Array.isArray(event.gallery)?event.gallery:[])].filter(Boolean).forEach(src=>{
+    const url=safeImage(src);if(!url)return;
+    const button=document.createElement('button');button.type='button';button.className='dewford-calendar-photo';button.setAttribute('aria-label',`${event.title} 이미지 확대`);
+    const img=document.createElement('img');img.src=url;img.alt=event.alt||event.title;img.loading='lazy';button.append(img);button.addEventListener('click',()=>openImage(url,img.alt,button));
+    img.addEventListener('error',()=>{button.remove();if(!media.childElementCount){media.remove();li.classList.remove('has-photo');}});media.append(button);
+   });
+   if(media.childElementCount){li.classList.add('has-photo');li.append(media);}
+   const copy=document.createElement('div');copy.className='dewford-calendar-schedule-copy';
+   const date=document.createElement('div');date.className='dewford-calendar-schedule-date';const time=document.createElement('time');time.dateTime=event.date;time.textContent=label(selected);
+   const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('aria-hidden','true');icon.innerHTML='<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v4m10-4v4M3 11h18M7 15h2m4 0h2m-8 3h2"/>';date.append(time,icon);
+   const title=document.createElement('strong');title.className='dewford-calendar-schedule-title';title.textContent=event.title;copy.append(date,title);
+   const body=document.createElement('div');body.className='dewford-calendar-schedule-body';
+   if(event.content?.ops&&window.DEWFORD_RICH_TEXT)window.DEWFORD_RICH_TEXT.render(body,event.content);
+   else if(event.description){const p=document.createElement('p');p.textContent=event.description;body.append(p);}
+   copy.append(body);li.append(copy);list.append(li);
+  });details.append(list);
  }
  function render(focus=false){
   heading.textContent=`${displayed.getFullYear()}년 ${displayed.getMonth()+1}월`;

@@ -4,6 +4,12 @@
 #dewford-home-popup .dewford-popup-image{background:#f5f5f5;}
 #dewford-home-popup .dewford-popup-image img{display:block;width:100%;height:auto;max-height:calc(100dvh - 112px);object-fit:contain;}
 #dewford-home-popup .dewford-popup-image>a{display:block;}
+#dewford-home-popup .dewford-popup-slider-controls{display:flex;align-items:center;justify-content:space-between;padding:4px 16px;background:var(--id-color,#52196d);}
+#dewford-home-popup .dewford-popup-dots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
+html body.dewford-home #dewford-home-popup .dewford-popup-slider-controls>button{font-size:24px!important;min-width:28px;justify-content:center;}
+html body.dewford-home #dewford-home-popup .dewford-popup-dots button{font-size:9px!important;opacity:.4;padding:5px 3px;}
+html body.dewford-home #dewford-home-popup .dewford-popup-dots button[aria-current="true"]{opacity:1;}
+#dewford-home-popup.has-slides .dewford-popup-image img{max-height:calc(100dvh - 152px);}
 #dewford-home-popup .dewford-popup-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 16px;border-top:0;background:var(--id-color,#52196d);color:#fff;}
 #dewford-home-popup label{display:flex;align-items:center;gap:9px;margin:0;font:400 12px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif);color:#fff;cursor:pointer;}
 #dewford-home-popup input{width:16px;height:16px;margin:0;accent-color:#fff;}
