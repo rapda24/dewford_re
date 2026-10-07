@@ -167,14 +167,32 @@ export async function adminRoute(request, env) {
     if (!result.meta.changes) fail('CONTENT_CHANGED', 409);
     return {data};
   }
-  if (path === '/api/admin/inquiries' && request.method === 'GET') {
+  if (path === '/api/admin/inquiries' && ['GET', 'POST'].includes(request.method)) {
     const params = new URL(request.url).searchParams;
-    const query = (params.get('q') || '').trim();
+    const body = request.method === 'POST' ? await input(request) : null;
+    const query = (body ? body.q || '' : params.get('q') || '');
+    if (typeof query !== 'string' || query.length > 100) fail('INVALID_INPUT');
+    const search = "(instr(name, ?) > 0 OR instr(phone, ?) > 0 OR instr(email, ?) > 0 OR instr(program, ?) > 0 OR instr(message, ?) > 0)";
+    const values = Array(5).fill(query.trim());
+    if (body) {
+      if (!['status', 'delete'].includes(body.action)) fail('INVALID_INPUT');
+      if (body.action === 'status' && !['received', 'contacting', 'scheduled', 'completed'].includes(body.status)) fail('INVALID_INPUT');
+      let where;
+      let bindings;
+      if (body.scope === 'all') { where = search; bindings = values; }
+      else {
+        if (body.scope !== 'selected' || !Array.isArray(body.ids) || !body.ids.length || body.ids.length > 100 || body.ids.some(id => typeof id !== 'string' || !id || id.length > 100)) fail('INVALID_INPUT');
+        where = 'id IN (' + body.ids.map(() => '?').join(',') + ')'; bindings = body.ids;
+      }
+      const sql = body.action === 'delete' ? 'DELETE FROM inquiries WHERE ' + where : 'UPDATE inquiries SET status = ? WHERE ' + where;
+      const result = await env.DB.prepare(sql).bind(...(body.action === 'status' ? [body.status, ...bindings] : bindings)).run();
+      return {data:{changed:result.meta.changes}};
+    }
     const page = Number(params.get('page') || 1);
-    if (query.length > 100 || !Number.isSafeInteger(page) || page < 1 || page > 1000000) fail('INVALID_INPUT');
-    const where = "WHERE instr(name, ?) > 0 OR instr(phone, ?) > 0 OR instr(email, ?) > 0 OR instr(program, ?) > 0 OR instr(message, ?) > 0";
-    const count = await env.DB.prepare('SELECT COUNT(*) AS total FROM inquiries ' + where).bind(query, query, query, query, query).first();
-    const rows = await env.DB.prepare('SELECT id, name, phone, email, program, message, consent, created_at FROM inquiries ' + where + ' ORDER BY created_at DESC, id DESC LIMIT 20 OFFSET ?').bind(query, query, query, query, query, (page - 1) * 20).all();
+    if (!Number.isSafeInteger(page) || page < 1 || page > 1000000) fail('INVALID_INPUT');
+    const count = await env.DB.prepare('SELECT COUNT(*) AS total FROM inquiries WHERE ' + search).bind(...values).first();
+    const exporting = params.get('export') === '1';
+    const rows = await env.DB.prepare('SELECT id, name, phone, email, program, message, consent, status, created_at FROM inquiries WHERE ' + search + ' ORDER BY created_at DESC, id DESC' + (exporting ? '' : ' LIMIT 20 OFFSET ?')).bind(...values, ...(exporting ? [] : [(page - 1) * 20])).all();
     return {data:{items:rows.results, total:count.total, page, pageSize:20}};
   }
   if (path === '/api/admin/content' && request.method === 'GET') return {data:await loadState(request, env)};

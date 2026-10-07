@@ -6,7 +6,7 @@ import { pbkdf2Sync } from 'node:crypto';
 import worker from '../server/worker.js';
 function environment() {
   const db = new DatabaseSync(':memory:');
-  for (const file of ['0001_public_content.sql','0002_inquiries.sql','0003_admin.sql','0004_admin_media.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
+  for (const file of ['0001_public_content.sql','0002_inquiries.sql','0003_admin.sql','0004_admin_media.sql','0005_inquiry_status.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
   const DB = {prepare(sql) {
     const statement = db.prepare(sql); let values=[];
     const wrapper={bind(...args){values=args.map(value=>value instanceof ArrayBuffer?new Uint8Array(value):value);return wrapper;},async first(){return statement.get(...values)||null;},async all(){return {results:statement.all(...values)};},async run(){const result=statement.run(...values);return {meta:{changes:Number(result.changes)}};}};
@@ -153,4 +153,24 @@ test('tuition settings require admin/CSRF, publish independently of popups, and 
   assert.equal((await call(env,'content/tuition')).data.image,'images/sub/communication.jpeg');
   assert.equal((await call(env,'admin/tuition',{image:item.image,revision:0},auth)).response.status,409);
   assert.equal((await call(env,'admin/tuition',null,auth)).data.image,'images/sub/communication.jpeg');
+});
+
+test('inquiry stages, selected deletion, filtered bulk actions and full export are private and validated',async()=>{
+  const {env,db,password}=environment();const auth=await login(env,password);
+  const insert=db.prepare('INSERT INTO inquiries (id,name,phone,program,consent) VALUES (?,?,?,?,1)');
+  for(let n=0;n<25;n++)insert.run('request-'+n,n<23?'검색대상':'다른상담','01012345678','유치부');
+  assert.equal((await call(env,'admin/inquiries',{action:'delete',scope:'all'},{})).response.status,401);
+  assert.equal((await call(env,'admin/inquiries',{action:'delete',scope:'all'},{cookie:auth.cookie})).response.status,403);
+  assert.equal((await call(env,'admin/inquiries',{action:'status',scope:'all',status:'bad'},auth)).response.status,400);
+  assert.equal((await call(env,'admin/inquiries',{action:'delete',scope:'selected',ids:[]},auth)).response.status,400);
+  assert.equal((await call(env,'admin/inquiries',null,auth)).data.items[0].status,'received');
+  let result=await call(env,'admin/inquiries',{action:'status',scope:'selected',ids:['request-0'],status:'scheduled'},auth);
+  assert.equal(result.data.changed,1);assert.equal(db.prepare('SELECT status FROM inquiries WHERE id=?').get('request-0').status,'scheduled');
+  result=await call(env,'admin/inquiries',{action:'status',scope:'all',q:'검색대상',status:'completed'},auth);assert.equal(result.data.changed,23);
+  assert.equal(db.prepare('SELECT status FROM inquiries WHERE id=?').get('request-24').status,'received');
+  result=await call(env,'admin/inquiries?export=1&q='+encodeURIComponent('검색대상'),null,auth);assert.equal(result.data.items.length,23);
+  assert.equal((await call(env,'admin/inquiries?export=1')).response.status,401);
+  result=await call(env,'admin/inquiries',{action:'delete',scope:'selected',ids:['request-0','request-1']},auth);assert.equal(result.data.changed,2);
+  result=await call(env,'admin/inquiries',{action:'delete',scope:'all',q:'검색대상'},auth);assert.equal(result.data.changed,21);
+  assert.equal((await call(env,'admin/inquiries',null,auth)).data.total,2);
 });

@@ -23,11 +23,16 @@
       <div class="admin-heading"><div><h1 id="admin-board-title">상담 접수</h1><p id="admin-board-description">홈페이지에서 접수된 상담 신청을 최신순으로 확인합니다.</p></div><button id="inquiry-refresh" class="admin-primary" type="button">새로고침</button></div>
       <section class="admin-content" aria-label="상담 접수 목록">
         <div class="admin-list-toolbar"><form id="inquiry-search-form" class="inquiry-search-form"><label class="admin-search-wrap">검색<input id="admin-search" type="search" maxlength="100" placeholder="성함, 연락처, 과정, 상담 내용"></label><button type="submit">검색</button></form><span id="admin-count"></span></div>
-        <p id="admin-status" role="status" aria-live="polite"></p>
+        <div class="inquiry-controls">
+<label class="inquiry-select-label"><input id="inquiry-select-all" type="checkbox"> 현재 페이지 전체 선택</label><span id="inquiry-selected">0건 선택</span>
+<label>변경할 상태 <select id="inquiry-bulk-status"></select></label>
+<button id="inquiry-selected-status" type="button" disabled>선택 상태 변경</button><button id="inquiry-selected-delete" type="button" disabled>선택 삭제</button>
+<button id="inquiry-all-status" type="button">검색 결과 전체 상태 변경</button><button id="inquiry-all-delete" type="button">검색 결과 전체 삭제</button><button id="inquiry-export" type="button">엑셀 다운로드</button>
+</div><p id="admin-status" role="status" aria-live="polite"></p>
         <div id="admin-list" class="admin-list"></div><div class="inquiry-pagination"><button id="inquiry-prev" type="button">이전</button><span id="inquiry-page"></span><button id="inquiry-next" type="button">다음</button></div>
       </section>
     </div>
   </main>
 </section>
-<dialog id="inquiry-detail" aria-labelledby="inquiry-detail-title"><div class="admin-dialog-heading"><h2 id="inquiry-detail-title">상담 신청 상세</h2><button id="inquiry-close" type="button" aria-label="닫기">×</button></div><dl id="inquiry-fields" class="inquiry-fields"></dl><div class="admin-dialog-actions"><button id="inquiry-done" type="button">닫기</button></div></dialog>
+<dialog id="inquiry-detail" aria-labelledby="inquiry-detail-title"><div class="admin-dialog-heading"><h2 id="inquiry-detail-title">상담 신청 상세</h2><button id="inquiry-close" type="button" aria-label="닫기">×</button></div><dl id="inquiry-fields" class="inquiry-fields"></dl><p id="inquiry-detail-status" role="status"></p><div class="admin-dialog-actions"><label>상담 단계 <select id="inquiry-detail-stage"></select></label><button id="inquiry-detail-save" type="button">상태 변경</button></div></dialog>
 <script src="js/dewford-admin-client.js"></script><script src="js/dewford-admin-inquiries.js"></script></body></html>
