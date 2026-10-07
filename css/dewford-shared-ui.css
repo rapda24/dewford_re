@@ -390,3 +390,26 @@ html body.dewford-subpage #main-content :is(.dewford-events-intro h2,.dewford-ed
 html body.dewford-subpage #main-content.dewford-refined-page .services-section .service-block :is(.title,.title a,.icon-box) {color:var(--id-color-dark)!important;}
 html body.dewford-subpage #main-content.dewford-refined-page .about-block-home-two .inner-block :is(.title,.title a,.count-box) {color:var(--id-color-dark);}
 html body.dewford-polished-page #main-content {--polish-ink:var(--id-color-dark);}
+
+/* Black is the default for subpage copy and content headings. */
+html body.dewford-subpage #main-content,
+html body.dewford-subpage #main-content :is(section,.dewford-news,.dewford-event-template,.dewford-contact-template) {
+ --headings-color:#000;
+ --text-color:#000;
+ --text-color-rgb:0,0,0;
+ --theme-light-background-text-color:#000;
+ --polish-ink:#000;
+ --polish-muted:#000;
+ color:#000;
+}
+html body.dewford-subpage #main-content :is(h2,h3,h4,h5,h6,.title,.title a,.sub-title,.section-title__title,.team-details__top-name,.team-details__top-title,.dewford-calendar-eyebrow,.dewford-story-category) {color:#000!important;}
+html body.dewford-subpage #main-content :is(p,.text,.list-info,.dewford-icon-copy-text,.dewford-why-card-description,.dewford-program-description,.dewford-contact-consent,label,.form-control) {color:#000;}
+html body.dewford-subpage #main-content #dewford-inquiry-form :is(label,input,select,textarea) {color:#000;}
+/* Preserve readable copy on purple cards, the photo hero and active cards. */
+html body.dewford-subpage #main-content .dewford-page-title :is(h1,p),
+html body.dewford-subpage #main-content .why-choose-us-four .feature-block:nth-child(even) .inner-block :is(.title,.title a,.text,p),
+html body.dewford-subpage #main-content.dewford-philosophy-content .about-block-home-two .inner-block :is(.title,.title a,.text,p),
+html body.dewford-subpage #main-content.dewford-philosophy-content .service-block .inner-box:is(:hover,.active) :is(.title,.title a,.text,p),
+html body.dewford-layout-elementary-international #main-content .service-section-two :is(h2,h3,h4,.title,.title a,.sub-title,.text,p) {color:#fff!important;}
+/* Project descriptions sit on a light canvas even inside the philosophy page. */
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two :is(.title,.title a,.sub-title,.text,.categories-list p,.dewford-program-description) {color:#000!important;}
