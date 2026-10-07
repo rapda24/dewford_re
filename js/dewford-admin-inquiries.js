@@ -35,9 +35,9 @@
       data.items.forEach(item=>{
         const row=node('article','','admin-item inquiry-item');
         const check=node('input','');check.type='checkbox';check.className='inquiry-row-check';check.setAttribute('aria-label',item.name+' 상담 선택');check.addEventListener('change',()=>{check.checked?selected.add(item.id):selected.delete(item.id);selection();});
-        const copy=node('div','','admin-item-copy');const title=node('button',item.name+' · '+item.program,'inquiry-open');title.type='button';title.addEventListener('click',()=>detail(item));copy.append(title,node('span',stages[item.status],'inquiry-stage'));
-        const meta=node('div','','admin-item-meta');meta.append(node('span',date(item.created_at)),node('span',item.phone));copy.append(meta);
-        const actions=node('div','','admin-item-actions');const button=node('button','상세 보기','admin-action-edit');button.type='button';button.setAttribute('aria-label',item.name+' 상담 상세 보기');button.addEventListener('click',()=>detail(item));const remove=node('button','삭제','inquiry-delete');remove.type='button';remove.addEventListener('click',()=>mutate('delete','selected',[item.id]));actions.append(button,remove);row.append(check,copy,actions);list.append(row);
+        const stage=node('span',stages[item.status],'inquiry-stage');
+        const title=node('button',item.name+' · '+item.program,'inquiry-open');title.type='button';title.setAttribute('aria-label',item.name+' · '+item.program+' 상담 상세 보기');title.addEventListener('click',()=>detail(item));
+        const remove=node('button','삭제','inquiry-delete');remove.type='button';remove.setAttribute('aria-label',item.name+' 상담 삭제');remove.addEventListener('click',()=>mutate('delete','selected',[item.id]));row.append(check,stage,title,remove);list.append(row);
       });
       $('#inquiry-page').textContent=`${page} / ${Math.max(1,Math.ceil(data.total/data.pageSize))} 페이지`;
       $('#inquiry-prev').disabled=page<=1;$('#inquiry-next').disabled=page*data.pageSize>=data.total;
