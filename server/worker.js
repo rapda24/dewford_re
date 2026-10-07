@@ -11,6 +11,11 @@ function json(body, status = 200, extraHeaders = {}) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/') {
+      const home = new URL(request.url);
+      home.pathname = '/index.html';
+      return env.ASSETS.fetch(new Request(home, request));
+    }
     if (url.pathname !== '/api' && !url.pathname.startsWith('/api/')) {
       return env.ASSETS.fetch(request);
     }

@@ -3,6 +3,20 @@ import assert from 'node:assert/strict';
 import worker from '../server/worker.js';
 const request = (path, options) => new Request('https://dewford.example' + path, options);
 
+test('root serves index.html without changing the query or HEAD method', async () => {
+  for (const method of ['GET', 'HEAD']) {
+    const response = await worker.fetch(request('/?source=home', {method}), {
+      ASSETS: {fetch: assetRequest => {
+        assert.equal(new URL(assetRequest.url).pathname, '/index.html');
+        assert.equal(new URL(assetRequest.url).search, '?source=home');
+        assert.equal(assetRequest.method, method);
+        return new Response(method === 'HEAD' ? null : 'home');
+      }}
+    });
+    assert.equal(response.status, 200);
+  }
+});
+
 test('static pages bypass the database', async () => {
   const response = await worker.fetch(request('/why-dewford.html'), { ASSETS: { fetch: () => new Response('page') } });
   assert.equal(await response.text(), 'page');
