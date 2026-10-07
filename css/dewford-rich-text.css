@@ -1,0 +1,7 @@
+html body .dewford-rich-content{font-family:var(--dewford-body-font-family,Pretendard,sans-serif)!important;font-size:16px;line-height:1.85;color:#333;overflow-wrap:anywhere;white-space:pre-wrap;}
+html body .dewford-rich-content p{font:inherit;line-height:inherit;margin:0 0 1em;}
+html body .dewford-rich-content :is(h1,h2,h3){font-family:var(--dewford-body-font-family,Pretendard,sans-serif)!important;line-height:1.45!important;letter-spacing:-.02em!important;margin:1em 0 .5em;font-weight:700!important;}
+html body .dewford-rich-content h1{font-size:2em!important;}html body .dewford-rich-content h2{font-size:1.6em!important;}html body .dewford-rich-content h3{font-size:1.3em!important;}
+html body .dewford-rich-content strong{font-weight:700;}html body .dewford-rich-content em{font-style:italic;}html body .dewford-rich-content u{text-decoration:underline;}html body .dewford-rich-content s{text-decoration:line-through;}
+html body .dewford-rich-content :is(ul,ol){padding-left:1.6em;margin:0 0 1em;white-space:normal;}html body .dewford-rich-content ul{list-style:disc;}html body .dewford-rich-content ol{list-style:decimal;}html body .dewford-rich-content li{display:list-item;white-space:pre-wrap;list-style:inherit;}
+html body .dewford-rich-content blockquote{border-left:3px solid var(--id-color,#52196d);padding:12px 20px;margin:1em 0;background:#f5f5f5;color:#514458;font-size:inherit;font-style:normal;}

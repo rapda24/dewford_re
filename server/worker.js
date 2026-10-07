@@ -1,5 +1,5 @@
 import { receiveInquiry } from './inquiries.js';
-import { adminRoute, managedPublic } from './admin.js';
+import { adminRoute, readMedia, managedPublic } from './admin.js';
 
 function json(body, status = 200, extraHeaders = {}) {
   return Response.json(body, {
@@ -42,10 +42,8 @@ export default {
     }
     const mediaMatch = /^\/api\/media\/([a-f0-9-]{36}\.(?:png|jpg|webp))$/.exec(url.pathname);
     if (mediaMatch && request.method === 'GET') {
-      if (!env.MEDIA) return json({error:{code:'MEDIA_NOT_CONFIGURED'}}, 503);
-      const object = await env.MEDIA.get(mediaMatch[1]);
-      if (!object) return json({error:{code:'NOT_FOUND'}}, 404);
-      return new Response(object.body, {headers:{'Content-Type':object.httpMetadata.contentType,'Cache-Control':'public, max-age=31536000, immutable','X-Content-Type-Options':'nosniff'}});
+      try { return await readMedia(env, mediaMatch[1]); }
+      catch { return json({error:{code:'DATABASE_UNAVAILABLE'}}, 503); }
     }
     if (request.method === 'POST' && url.pathname === '/api/inquiries') {
       try {

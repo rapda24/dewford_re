@@ -1,6 +1,6 @@
 /* Apply Korean tracking within mixed-language text, including dynamic event cards. */
 (() => {
-  const excluded = 'script,style,svg,textarea,select,option,code,pre,.dewford-korean-text,[contenteditable="true"],.char';
+  const excluded = 'script,style,svg,textarea,select,option,code,pre,.dewford-rich-content,.ql-editor,.dewford-korean-text,[contenteditable="true"],.char';
   const korean = /[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af]+(?:[\s·,.!?…“”‘’()–—\-]*[\u1100-\u11ff\u3130-\u318f\uac00-\ud7af]+)*/g;
   function apply(root) {
     if (root.nodeType === Node.ELEMENT_NODE && root.closest(excluded)) return;

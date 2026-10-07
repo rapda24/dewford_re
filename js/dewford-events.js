@@ -1,5 +1,5 @@
 /* Both the home preview and event.html read the same published events JSON. */
-(async () => {
+(() => {
   const list = document.querySelector('[data-event-list]');
   if (!list) return;
   const home = list.dataset.eventList === 'home';
@@ -17,6 +17,7 @@
     } catch { return ''; }
   };
   const showStatus = message => {
+    if (home) list.parentElement.swiper?.destroy(true, true);
     const box = element('div', 'dewford-events-status', message);
     if (home) {
       const link = element('a', '', '이벤트 게시판 보기 ↗');
@@ -24,6 +25,7 @@
     }
     list.replaceChildren(box);
   };
+  async function render(){
   try {
     let data;
     try { ({ data } = await DewfordAPI.content('events')); }
@@ -42,16 +44,18 @@
       if (!post) { showStatus('게시물을 찾을 수 없습니다.'); return; }
       list.hidden = true; list.style.display = 'none';
       const detail = document.querySelector('[data-event-detail]');
+      detail.replaceChildren();
       detail.hidden = false; detail.className = 'dewford-event-detail';
       const back = element('a', 'dewford-text-link', '← 전체 소식'); back.href = 'event.html';
       detail.append(back, element('h2', '', post.title), element(post.date ? 'time' : 'span', '', post.date || ''));
       const url = imageURL(post.image);
       if (url) { const image = element('img'); image.src = url; image.alt = post.title; detail.append(image); }
-      detail.append(element('div', 'dewford-event-body', post.body || post.excerpt || ''));
+      const body=element('div','dewford-event-body');window.DEWFORD_RICH_TEXT.render(body,post.content,post.body || post.excerpt || '');detail.append(body);
       document.title = post.title + ' | DEWFORD';
       return;
     }
     if (!posts.length) { showStatus('새로운 소식을 준비하고 있습니다.'); return; }
+    if(home)list.parentElement.swiper?.destroy(true,true);
     list.replaceChildren();
     if (home && list.dataset.eventLayout === 'team-two') {
       for (const post of posts) {
@@ -83,7 +87,8 @@
       });
       const heading = list.closest('.teams-section-two').querySelector('.sec-title-box');
       const reference = document.querySelector('.features-section-three .sec-right-box');
-      if (reference) {
+      if (reference && !heading.dataset.adminResizeBound) {
+        heading.dataset.adminResizeBound = '1';
         const alignHeading = () => {
           heading.style.setProperty('--intro-start', Math.max(0, reference.getBoundingClientRect().left - heading.getBoundingClientRect().left) + 'px');
         };
@@ -195,4 +200,6 @@
   } catch (error) {
     showStatus(error.status === 404 ? '새로운 소식을 준비하고 있습니다.' : '소식을 불러오지 못했습니다. 잠시 후 다시 확인해 주세요.');
   }
+  }
+  render();window.addEventListener('dewford:content-changed',event=>{if(event.detail?.board==='events')render();});
 })();

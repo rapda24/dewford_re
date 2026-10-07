@@ -1,5 +1,5 @@
 /* Template news grid/details backed by the shared Cloudflare events feed. */
-(async () => {
+(() => {
   const list = document.querySelector('[data-event-list="board"]');
   const detail = document.querySelector('[data-news-detail]');
   if (!list && !detail) return;
@@ -20,6 +20,7 @@
     } catch { return null; }
   };
   const link = (post, cls, text) => { const a = node('a', cls, text || post.title); a.href = href(post); return a; };
+  async function render(){
   try {
     let data;
     try { ({ data } = await DewfordAPI.content('events')); }
@@ -64,7 +65,11 @@
     if (!detail) return;
     const post = posts.find(p => p.id === id);
     const title = detail.querySelector('[data-detail-title]');
+    detail.querySelector('[data-detail-image]').querySelectorAll(':scope > img').forEach(el=>el.remove());
+    for(const target of ['[data-detail-meta]','[data-detail-body]','[data-detail-neighbors]','[data-detail-related]'])detail.querySelector(target).replaceChildren();
+    detail.querySelectorAll('.dewford-event-gallery').forEach(el=>el.remove());
     if (!post) { title.textContent = '게시물을 찾을 수 없습니다.'; detail.querySelector('.sidebar').hidden = true; return; }
+    detail.querySelector('.sidebar').hidden=false;
     title.textContent = post.title; document.title = post.title + ' | Dewford';
     const badge = detail.querySelector('[data-detail-date]');
     if (badge) {
@@ -77,7 +82,7 @@
     const img = photo(post); if (img) { img.loading = 'eager'; detail.querySelector('[data-detail-image]').prepend(img); }
     const meta = detail.querySelector('[data-detail-meta]');
     if (post.date) { const li = node('li'); const time = node('time','',post.date); li.append(time); meta.append(li); }
-    detail.querySelector('[data-detail-body]').textContent = post.body || post.excerpt || '';
+    window.DEWFORD_RICH_TEXT.render(detail.querySelector('[data-detail-body]'),post.content,post.body || post.excerpt || '');
     const gallery = node('div', 'dewford-event-gallery');
     for (const src of (post.gallery || [])) {
       const image = photo({image:src,title:post.title}); if (!image) continue;
@@ -100,4 +105,6 @@
     if (list) list.textContent = message;
     if (detail) detail.querySelector('[data-detail-title]').textContent = message;
   }
+  }
+  render();window.addEventListener('dewford:content-changed',event=>{if(event.detail?.board==='events')render();});
 })();

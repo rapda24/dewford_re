@@ -6,10 +6,10 @@ import { pbkdf2Sync } from 'node:crypto';
 import worker from '../server/worker.js';
 function environment() {
   const db = new DatabaseSync(':memory:');
-  for (const file of ['0001_public_content.sql','0003_admin.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
+  for (const file of ['0001_public_content.sql','0003_admin.sql','0004_admin_media.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
   const DB = {prepare(sql) {
     const statement = db.prepare(sql); let values=[];
-    const wrapper={bind(...args){values=args;return wrapper;},async first(){return statement.get(...values)||null;},async all(){return {results:statement.all(...values)};},async run(){const result=statement.run(...values);return {meta:{changes:Number(result.changes)}};}};
+    const wrapper={bind(...args){values=args.map(value=>value instanceof ArrayBuffer?new Uint8Array(value):value);return wrapper;},async first(){return statement.get(...values)||null;},async all(){return {results:statement.all(...values)};},async run(){const result=statement.run(...values);return {meta:{changes:Number(result.changes)}};}};
     return wrapper;
   }};
   const password='test-password-123'; const salt='test-salt';
@@ -71,12 +71,45 @@ test('login is rate-limited and legacy content survives the first save',async()=
   assert.equal((await call(env,'admin/login',{username:'admin',password})).response.status,429);
 });
 test('authenticated image upload and public media serving; executable formats are rejected',async()=>{
-  const {env,password}=environment();const auth=await login(env,password);const objects=new Map();
-  env.MEDIA={async put(key,bytes,options){objects.set(key,{bytes,options});},async get(key){const value=objects.get(key);return value?{body:value.bytes,httpMetadata:value.options.httpMetadata}:null;}};
+  const {env,password}=environment();const auth=await login(env,password);
   const upload=async bytes=>worker.fetch(new Request('https://dewford.example/api/admin/upload',{method:'POST',headers:{Origin:'https://dewford.example',Cookie:auth.cookie,'X-CSRF-Token':auth.csrf},body:bytes}),env);
   const png=new Uint8Array([137,80,78,71,13,10,26,10]);
   const response=await upload(png);assert.equal(response.status,200);const {data}=await response.json();
   const media=await worker.fetch(new Request('https://dewford.example'+data.url),env);assert.equal(media.status,200);assert.equal(media.headers.get('Content-Type'),'image/png');assert.deepEqual(new Uint8Array(await media.arrayBuffer()),png);
   assert.equal((await upload('<svg onload="alert(1)"></svg>')).status,415);
   assert.equal((await upload(new Uint8Array(5*1024*1024+1))).status,413);
+  const large = new Uint8Array(1000001);large.set(png);assert.equal((await upload(large)).status,413);
+});
+
+test('D1 image upload creates its table automatically and preserves popup references', async()=>{
+  const {env,db,password}=environment();db.exec('DROP TABLE admin_media');const auth=await login(env,password);
+  const png=new Uint8Array([137,80,78,71,13,10,26,10]);
+  const make=(headers={})=>new Request('https://dewford.example/api/admin/upload',{method:'POST',headers:{Origin:'https://dewford.example',...headers},body:png});
+  assert.equal((await worker.fetch(make(),env)).status,401);
+  assert.equal((await worker.fetch(make({Cookie:auth.cookie}),env)).status,403);
+  const uploaded=await worker.fetch(make({Cookie:auth.cookie,'X-CSRF-Token':auth.csrf}),env);assert.equal(uploaded.status,200);
+  const {data}=await uploaded.json();assert.equal(db.prepare('SELECT COUNT(*) AS count FROM admin_media').get().count,1);
+  await call(env,'admin/content',{action:'save',board:'popups',revision:0,item:{title:'파일 첨부 팝업',image:data.url,enabled:true,published:true}},auth);
+  assert.equal((await call(env,'content/popups')).data.popups[0].image,data.url);
+  const response=await worker.fetch(new Request('https://dewford.example'+data.url),env);assert.equal(response.status,200);assert.deepEqual(new Uint8Array(await response.arrayBuffer()),png);
+  const missing=await worker.fetch(new Request('https://dewford.example/api/media/00000000-0000-0000-0000-000000000000.png'),env);assert.equal(missing.status,404);
+});
+test('D1 media storage cap stops new uploads without losing existing images', async()=>{
+  const {env,db,password}=environment();const auth=await login(env,password);
+  const insert=db.prepare('INSERT INTO admin_media (key, content_type, data, byte_size) VALUES (?, ?, ?, ?)');
+  for(let i=0;i<350;i++)insert.run('reserved-'+i,'image/png',new Uint8Array([137,80,78,71]),1000000);
+  const response=await worker.fetch(new Request('https://dewford.example/api/admin/upload',{method:'POST',headers:{Origin:'https://dewford.example',Cookie:auth.cookie,'X-CSRF-Token':auth.csrf},body:new Uint8Array([137,80,78,71])}),env);
+  assert.equal(response.status,413);assert.equal((await response.json()).error.code,'MEDIA_STORAGE_FULL');
+  assert.equal(db.prepare('SELECT COUNT(*) AS count FROM admin_media').get().count,350);
+});
+test('rich content retains allowed formatting, derives plain text, and rejects unsafe embeds', async()=>{
+  const {env,password}=environment();const auth=await login(env,password);
+  const content={ops:[{insert:'Formatted',attributes:{bold:true,color:'#52196d',link:'javascript:alert(1)',onclick:'attack',background:'url(javascript:attack)'}},{insert:'\n',attributes:{header:2,align:'center'}},{insert:'First item'},{insert:'\n',attributes:{list:'bullet'}}]};
+  let result=await call(env,'admin/content',{action:'save',board:'events',revision:0,item:{...item,body:'ignored',content}},auth);
+  assert.equal(result.response.status,200);const saved=result.data.boards.events[0];assert.equal(saved.body,'Formatted\nFirst item');assert.deepEqual(saved.content.ops[0].attributes,{bold:true,color:'#52196d'});
+  const publicPost=(await call(env,'content/events')).data.posts[0];assert.deepEqual(publicPost.content,saved.content);
+  result=await call(env,'admin/content',{action:'move',board:'events',target:'preschool',revision:1,id:saved.id,date:'2026-10-08'},auth);assert.deepEqual(result.data.boards.preschool[0].content,saved.content);
+  const badContent=[{ops:[{insert:{image:'javascript:alert(1)'}}]},{ops:[{insert:'x'.repeat(30001)}]},{ops:[{delete:3}]}];
+  for(const content of badContent)assert.equal((await call(env,'admin/content',{action:'save',board:'events',revision:2,item:{...item,content}},auth)).response.status,400);
+  result=await call(env,'admin/content',{action:'save',board:'preschool',revision:2,id:saved.id,item:{...item,body:'Plain text'}},auth);assert.equal(result.data.boards.preschool[0].content,undefined);
 });

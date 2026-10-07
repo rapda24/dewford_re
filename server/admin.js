@@ -1,3 +1,4 @@
+import {normalizeRichContent, richPlainText} from './rich-text.js';
 const encoder = new TextEncoder();
 const boards = ['events', 'preschool', 'elementary', 'popups'];
 const fail = (code, status = 400) => { throw Object.assign(new Error(code), { status }); };
@@ -82,11 +83,12 @@ function itemInput(item, board, previous = {}) {
     if (record.startsAt && record.endsAt && Date.parse(record.startsAt) > Date.parse(record.endsAt)) fail('INVALID_DATE');
   } else {
     record.date = date(item.date, true);
-    record.body = text(item.body || '', 30000); record.description = record.body;
+    if (item.content !== undefined) {record.content = normalizeRichContent(item.content);record.body = richPlainText(record.content);}
+    else {record.body = text(item.body || '', 30000);if(record.body !== (previous.body || previous.description || ''))delete record.content;}
+    record.description = record.body;
     record.excerpt = text(item.excerpt || '', 1000);
     if (item.gallery && !Array.isArray(item.gallery)) fail('INVALID_INPUT');
     record.gallery = (item.gallery || []).map(src => safeURL(src, true)); if (record.gallery.length > 20) fail('INVALID_INPUT');
-    if (record.body !== (previous.body || previous.description || '')) delete record.content;
   }
   return record;
 }
@@ -154,7 +156,6 @@ export async function adminRoute(request, env) {
     return {data:{...state,revision:state.revision + 1}};
   }
   if (path === '/api/admin/upload' && request.method === 'POST') {
-    if (!env.MEDIA) fail('MEDIA_NOT_CONFIGURED', 503);
     const bytes = await readBody(request, 5 * 1024 * 1024);
     let type, extension;
     if (bytes[0] === 137 && bytes[1] === 80 && bytes[2] === 78 && bytes[3] === 71) {type='image/png';extension='png';}
@@ -162,8 +163,26 @@ export async function adminRoute(request, env) {
     else if (new TextDecoder().decode(bytes.slice(0,4)) === 'RIFF' && new TextDecoder().decode(bytes.slice(8,12)) === 'WEBP') {type='image/webp';extension='webp';}
     else fail('UNSUPPORTED_IMAGE', 415);
     const key = crypto.randomUUID() + '.' + extension;
-    await env.MEDIA.put(key, bytes, {httpMetadata:{contentType:type}});
+    if (bytes.length > 1000000) fail('IMAGE_TOO_LARGE', 413);
+    await env.DB.prepare(`CREATE TABLE IF NOT EXISTS admin_media (
+  key TEXT PRIMARY KEY,
+  content_type TEXT NOT NULL,
+  data BLOB NOT NULL,
+  byte_size INTEGER NOT NULL CHECK (byte_size > 0 AND byte_size <= 1000000),
+  created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))
+);`).run();
+    // Atomic cap leaves room for content within the Free plan's 500 MB database.
+    const result = await env.DB.prepare('INSERT INTO admin_media (key, content_type, data, byte_size) SELECT ?, ?, ?, ? WHERE (SELECT COALESCE(SUM(byte_size), 0) FROM admin_media) + ? <= 350000000').bind(key, type, bytes.buffer, bytes.length, bytes.length).run();
+    if (!result.meta.changes) fail('MEDIA_STORAGE_FULL', 413);
     return {data:{url:'/api/media/' + key}};
   }
   fail('NOT_FOUND', 404);
+}
+
+export async function readMedia(env, key) {
+  if (!env.DB) return new Response('Image storage unavailable', {status:503});
+  const row = await env.DB.prepare('SELECT content_type, data FROM admin_media WHERE key = ?').bind(key).first();
+  if (!row) return new Response('Image not found', {status:404});
+  const bytes = row.data instanceof ArrayBuffer ? new Uint8Array(row.data) : new Uint8Array(row.data);
+  return new Response(bytes, {headers:{'Content-Type':row.content_type,'Cache-Control':'public, max-age=31536000, immutable','X-Content-Type-Options':'nosniff'}});
 }
