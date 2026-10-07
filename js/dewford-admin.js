@@ -10,23 +10,32 @@
   const message = error => errors[error.message] || '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.';
   const node = (tag, text, cls) => {const el=document.createElement(tag);if(text)el.textContent=text;if(cls)el.className=cls;return el;};
   function imageURL(value) {if(typeof value!=='string'||!value.trim())return '';try {const u=new URL(value,location.href);return ['http:','https:'].includes(u.protocol)?u.href:'';}catch{return '';}}
-  function loginView() {$('#admin-workspace').hidden=true;$('#admin-logout').hidden=true;$('#admin-login-panel').hidden=false;}
+  function loginView() {location.replace('admin-login.html'+location.search);}
   async function refresh() {state=await api.content();render();}
   function render() {
-    $('#admin-login-panel').hidden=true;$('#admin-workspace').hidden=false;$('#admin-logout').hidden=false;
+    $('#admin-auth-loading').hidden=true;$('#admin-workspace').hidden=false;$('#admin-logout').hidden=false;
+    const descriptions={events:'아이들의 배움과 성장의 순간을 전합니다.',preschool:'유치부의 수업과 활동, 주요 일정을 관리합니다.',elementary:'초등 과정의 학습과 활동, 주요 일정을 관리합니다.',popups:'홈페이지에 표시할 안내 이미지와 노출 기간을 관리합니다.'};
+    $('#admin-board-title').textContent=names[board];$('#admin-board-description').textContent=descriptions[board];
+    const all=state.boards[board],published=all.filter(item=>item.published!==false).length;
+    $('#admin-total').textContent=all.length;$('#admin-published').textContent=published;$('#admin-drafts').textContent=all.length-published;
+    const publicLink=$('#admin-public-link');publicLink.href={events:'event.html',preschool:'preschool-calendar.html',elementary:'elementary-calendar.html',popups:'index.html'}[board];publicLink.textContent=board==='popups'?'홈페이지 보기 ↗':'게시판 보기 ↗';
     document.querySelectorAll('[data-board]').forEach(button=>{if(button.dataset.board===board)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
-    $('#admin-create').textContent=board==='popups'?'새 팝업 등록':'새 글 등록';
+    $('#admin-create').textContent=board==='popups'?'+ 팝업 등록':'+ 글쓰기';
     const query=$('#admin-search').value.trim().toLowerCase();const items=state.boards[board].filter(item=>item.title.toLowerCase().includes(query));
     $('#admin-count').textContent=`${items.length}개`;const list=$('#admin-list');list.replaceChildren();
     if(!items.length)list.append(node('p','등록된 항목이 없습니다.','admin-empty'));
     items.forEach(item=>{
       const row=node('article',null,'admin-item');
-      const photo=node('div');if(item.image&&imageURL(item.image)){const img=node('img');img.src=imageURL(item.image);img.alt='';img.loading='lazy';photo.append(img);}row.append(photo);
-      const copy=node('div');copy.append(node('h2',item.title));
-      copy.append(node('p',`${item.date||''} ${item.published===false?'비공개':'공개'}${board==='popups'?' · '+(item.enabled?'사용':'사용 안 함'):''}`));
-      if(board==='popups')copy.append(node('p',`${item.startsAt?new Date(item.startsAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}):'시작 제한 없음'} → ${item.endsAt?new Date(item.endsAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}):'종료 제한 없음'}`));
+      const photo=node('div',null,'admin-item-photo');if(item.image&&imageURL(item.image)){const img=node('img');img.src=imageURL(item.image);img.alt='';img.loading='lazy';photo.append(img);}else photo.append(node('span','—'));row.append(photo);
+      const copy=node('div',null,'admin-item-copy');copy.append(node('h2',item.title));
+      const meta=node('div',null,'admin-item-meta');
+      if(item.date)meta.append(node('span',item.date,'admin-item-date'));
+      meta.append(node('span',item.published===false?'비공개':'공개','admin-badge'+(item.published===false?' is-draft':'')));
+      if(board==='popups')meta.append(node('span',item.enabled?'사용 중':'사용 안 함','admin-badge'+(!item.enabled?' is-draft':'')));
+      copy.append(meta);
+      if(board==='popups')copy.append(node('p',`${item.startsAt?new Date(item.startsAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}):'시작 제한 없음'} → ${item.endsAt?new Date(item.endsAt).toLocaleString('ko-KR',{timeZone:'Asia/Seoul'}):'종료 제한 없음'}`,'admin-item-schedule'));
       row.append(copy);const actions=node('div',null,'admin-item-actions');
-      const add=(label,fn)=>{const b=node('button',label);b.type='button';b.disabled=busy;b.addEventListener('click',fn);actions.append(b);};
+      const add=(label,fn)=>{const b=node('button',label,label==='수정'?'admin-action-edit':label==='삭제'?'admin-action-delete':'');b.type='button';if(label==='↑'||label==='↓')b.setAttribute('aria-label',label==='↑'?'위로 이동':'아래로 이동');b.disabled=busy;b.addEventListener('click',fn);actions.append(b);};
       add('수정',()=>edit(item));
       if(board!=='popups')add('이동',()=>move(item));
       add('↑',()=>mutation({action:'reorder',id:item.id,direction:-1}));add('↓',()=>mutation({action:'reorder',id:item.id,direction:1}));
@@ -43,7 +52,7 @@
   const localTime=value=>value?new Date(Date.parse(value)+9*3600000).toISOString().slice(0,16):'';
   function edit(item={}) {
     form.reset();$('#admin-editor-status').textContent='';
-    const popup=board==='popups';document.querySelector('[data-post-fields]').hidden=popup;document.querySelector('[data-popup-fields]').hidden=!popup;
+    const popup=board==='popups';editor.classList.toggle('admin-popup-editor',popup);document.querySelector('[data-post-fields]').hidden=popup;document.querySelector('[data-popup-fields]').hidden=!popup;
     form.elements.date.required=!popup;form.elements.image.required=popup;
     $('#admin-editor-title').textContent=`${names[board]} ${item.id?'수정':'등록'}`;
     for(const key of ['id','title','image','excerpt','link'])form.elements[key].value=item[key]||'';
@@ -71,8 +80,7 @@
   $('#admin-move-form').addEventListener('submit',async event=>{event.preventDefault();const fields=Object.fromEntries(new FormData(event.target));if(await mutation({action:'move',id:movingId,...fields}))$('#admin-move').close();else $('#admin-move-status').textContent=$('#admin-status').textContent;});
   $('#admin-create').addEventListener('click',()=>edit());$('#admin-search').addEventListener('input',render);
   document.querySelectorAll('[data-board]').forEach(button=>button.addEventListener('click',()=>{if(busy)return;board=button.dataset.board;$('#admin-search').value='';history.replaceState(null,'','admin.html?board='+board);render();}));
-  $('#admin-login-form').addEventListener('submit',async event=>{event.preventDefault();const button=event.target.querySelector('button');button.disabled=true;try{await api.login(Object.fromEntries(new FormData(event.target)));event.target.reset();$('#admin-status').textContent='';await refresh();openRequested();}catch(error){$('#admin-status').textContent=message(error);}finally{button.disabled=false;}});
   $('#admin-logout').addEventListener('click',async()=>{try{await api.logout();state=null;loginView();$('#admin-status').textContent='로그아웃했습니다.';}catch(error){$('#admin-status').textContent=message(error);}});
   function openRequested(){const moveId=params.get('move');if(moveId){const item=state.boards[board].find(i=>i.id===moveId);if(item&&board!=='popups')move(item);return;}const id=params.get('edit');if(id){const item=state.boards[board].find(i=>i.id===id);if(item)edit(item);}else if(params.get('new')==='1'){edit();if(params.get('date'))form.elements.date.value=params.get('date');}}
-  (async()=>{try{const auth=await api.session();if(auth.authenticated){await refresh();openRequested();}else loginView();}catch(error){loginView();$('#admin-status').textContent=message(error);}})();
+  (async()=>{try{const auth=await api.session();if(auth.authenticated){await refresh();openRequested();}else loginView();}catch(error){$('#admin-auth-loading').textContent=message(error);}})();
 })();

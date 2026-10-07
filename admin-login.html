@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>DEWFORD 관리자 로그인</title><link rel="icon" href="images/common/symbol_3.png"><link rel="stylesheet" href="css/dewford-shared-ui.css"><link rel="stylesheet" href="css/dewford-admin.css"></head>
+<body class="dewford-admin-page admin-login-page">
+<main class="admin-login-layout">
+  <section class="admin-login-story">
+    <a class="admin-brand" href="index.html"><img src="images/dewford/logo-sharp-white.svg" width="316" height="75" alt="DEWFORD INTERNATIONAL COLLEGE"></a>
+    <div><p class="admin-eyebrow">DEWFORD ADMIN</p><h1>배움의 순간을<br>함께 기록하는 곳.</h1><p>학사 일정과 이벤트, 홈페이지 팝업을<br>한 곳에서 관리하세요.</p></div>
+    <small>Every little discovery matters.</small>
+  </section>
+  <section class="admin-login-panel" aria-labelledby="admin-login-title">
+    <div class="admin-login-box"><p class="admin-eyebrow">WELCOME BACK</p><h2 id="admin-login-title">관리자 로그인</h2><p class="admin-muted">관리자 계정으로 로그인해 주세요.</p>
+      <form id="admin-login-form"><label>아이디<input name="username" autocomplete="username" required maxlength="100" placeholder="관리자 아이디"></label><label>비밀번호<span class="admin-password"><input id="admin-password" name="password" type="password" autocomplete="current-password" required maxlength="500" placeholder="비밀번호"><button type="button" id="admin-password-toggle" aria-pressed="false" aria-controls="admin-password">표시</button></span></label><p id="admin-login-status" role="status" aria-live="polite"></p><button type="submit" class="admin-primary admin-login-submit">로그인 <span aria-hidden="true">→</span></button></form>
+      <a class="admin-back" href="index.html">← 홈페이지로 돌아가기</a>
+    </div>
+  </section>
+</main>
+<script src="js/dewford-admin-client.js"></script><script src="js/dewford-admin-login.js"></script>
+</body></html>

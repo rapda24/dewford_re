@@ -1,13 +1,18 @@
-/* Replace the image in index.html; adjust the desktop width here. */
-#dewford-home-popup {width:min(480px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 32px);margin:auto;padding:0;border:0;border-radius:0;background:#fff;color:#292929;box-shadow:0 20px 80px rgb(0 0 0 / 24%);overflow:auto;}
-#dewford-home-popup::backdrop {background:rgb(0 0 0 / 55%);}
-#dewford-home-popup .dewford-popup-image {background:#fff;}
-#dewford-home-popup img {display:block;width:100%;height:auto;max-height:calc(100dvh - 100px);object-fit:contain;}
-#dewford-home-popup .dewford-popup-actions {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px;border-top:1px solid #e5e5e5;}
-#dewford-home-popup label {display:flex;align-items:center;gap:8px;margin:0;font:400 13px/1.5 var(--dewford-body-font-family);cursor:pointer;}
-#dewford-home-popup input {width:16px;height:16px;margin:0;accent-color:var(--id-color);}
-html body.dewford-home #dewford-home-popup button {display:flex;align-items:center;gap:8px;padding:4px 0;border:0;background:transparent!important;color:#292929!important;font:600 14px/1.5 var(--dewford-body-font-family);cursor:pointer;}
-html body.dewford-home #dewford-home-popup button::before {display:none!important;}
-html body.dewford-home #dewford-home-popup button:hover {color:var(--id-color)!important;}
-#dewford-home-popup button span {font-size:23px;line-height:1;}
-#dewford-home-popup :is(button,input):focus-visible {outline:2px solid var(--id-color);outline-offset:4px;}
+/* Branded frame around the managed image; keep the original image ratio. */
+#dewford-home-popup{width:min(480px,calc(100vw - 32px));max-width:none;max-height:calc(100dvh - 32px);margin:auto;padding:0;border:0;border-top:4px solid var(--id-color,#52196d);border-radius:0;background:#fff;color:#292929;box-shadow:0 24px 100px rgb(25 12 33 / 32%);overflow:auto;font-family:var(--dewford-body-font-family,Pretendard,sans-serif);}
+#dewford-home-popup::backdrop{background:rgb(26 16 32 / 64%);backdrop-filter:blur(4px);}
+#dewford-home-popup .dewford-popup-image{background:#f5f5f5;}
+#dewford-home-popup .dewford-popup-image img{display:block;width:100%;height:auto;max-height:calc(100dvh - 112px);object-fit:contain;}
+#dewford-home-popup .dewford-popup-image>a{display:block;}
+#dewford-home-popup .dewford-popup-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;border-top:0;background:var(--id-color,#52196d);color:#fff;}
+#dewford-home-popup label{display:flex;align-items:center;gap:9px;margin:0;font:400 12px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif);color:#fff;cursor:pointer;}
+#dewford-home-popup input{width:16px;height:16px;margin:0;accent-color:#fff;}
+html body.dewford-home #dewford-home-popup button{display:flex;align-items:center;gap:10px;padding:6px 0;border:0!important;border-radius:0;background:transparent!important;color:#fff!important;font:500 12px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif)!important;cursor:pointer;transition:none!important;box-shadow:none!important;transform:none!important;}
+html body.dewford-home #dewford-home-popup button:is(:hover,:focus,:active){background:transparent!important;color:#fff!important;border:0!important;box-shadow:none!important;transform:none!important;}
+html body.dewford-home #dewford-home-popup button::before,html body.dewford-home #dewford-home-popup button::after{display:none!important;}
+#dewford-home-popup .dewford-popup-actions :is(label,button) span{color:#fff!important;font-size:12px!important;line-height:1.5!important;}
+#dewford-home-popup button span[aria-hidden]{font-size:20px!important;line-height:1!important;}
+#dewford-home-popup :is(button,input,a):focus-visible{outline:2px solid var(--id-color,#52196d);outline-offset:4px;}
+#dewford-home-popup .dewford-popup-actions :is(button,input):focus-visible{outline-color:#fff;}
+@media(max-width:480px){#dewford-home-popup .dewford-popup-actions{padding:8px 12px;gap:10px;}#dewford-home-popup label{font-size:11px;}html body.dewford-home #dewford-home-popup button{padding:3px 0;gap:10px;}}
+@media(prefers-reduced-motion:reduce){html body.dewford-home #dewford-home-popup button{transition:none;}}

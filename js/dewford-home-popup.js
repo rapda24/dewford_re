@@ -18,7 +18,7 @@
     const src=safeURL(current.image);if(!src){next();return;}
     popup.querySelector('input').checked=false;
     popup.setAttribute('aria-label',current.title||'DEWFORD 안내');popup.style.width=`min(${Math.min(1000,Math.max(240,Number(current.width)||480))}px, calc(100vw - 32px))`;
-    const image=popup.querySelector('img');image.src=src;image.alt=current.title||'DEWFORD 안내';
+    const image=popup.querySelector('.dewford-popup-image img');image.src=src;image.alt=current.title||'DEWFORD 안내';
     const imageBox=popup.querySelector('.dewford-popup-image');imageBox.replaceChildren();
     const href=current.link&&safeURL(current.link);
     if(href){const link=document.createElement('a');link.href=href;link.append(image);imageBox.append(link);}else imageBox.append(image);
