@@ -51,7 +51,7 @@
     const calendar=document.querySelector('[data-dewford-calendar]');
     if(calendar){const board=calendar.dataset.dewfordCalendar;const selected=calendar.querySelector('[data-date][aria-pressed="true"]')?.dataset.date;toolbar(calendar,board,selected);calendar.querySelectorAll('[data-calendar-id]').forEach(row=>{let id=row.dataset.calendarId;if(!id){const matches=state.boards[board].filter(item=>item.title===row.querySelector('strong')?.textContent&&item.date===selected);if(matches.length===1)id=matches[0].id;}buttons(row,board,id);});}
     const list=document.querySelector('[data-event-list]');
-    if(list){toolbar(list.closest('section')||list.parentElement,'events');list.querySelectorAll('a[href*="detail.html?id="]').forEach(link=>{const id=new URL(link.href).searchParams.get('id');const card=link.closest('.news-block-four,.team-block-two,.service-block-three,.dr-news-card,.dewford-board-card,.service-block-two');if(card)buttons(card,'events',id);});}
+    if(list){toolbar(list.closest('.auto-container')||list.closest('section')||list.parentElement,'events');list.querySelectorAll('a[href*="detail.html?id="]').forEach(link=>{const id=new URL(link.href).searchParams.get('id');const card=link.closest('.news-block-four,.team-block-two,.service-block-three,.dr-news-card,.dewford-board-card,.service-block-two');if(card)buttons(card,'events',id);});}
     const detail=document.querySelector('[data-detail-title]');
     if(detail){toolbar(document.querySelector('#main-content'),'events');buttons(detail.parentElement,'events',new URLSearchParams(location.search).get('id'));}
   }
