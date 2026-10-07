@@ -20,6 +20,7 @@
     } catch { return null; }
   };
   const link = (post, cls, text) => { const a = node('a', cls, text || post.title); a.href = href(post); return a; };
+  let observer, sentinel, pendingFrame, visibleCount=0;
   async function render(){
   try {
     let data;
@@ -31,9 +32,10 @@
     if (list) {
       const query = new URLSearchParams(location.search).get('q')?.trim().toLowerCase();
       if (query) posts = posts.filter(post => [post.title,post.excerpt].join(' ').toLowerCase().includes(query));
+      observer?.disconnect();if(pendingFrame)cancelAnimationFrame(pendingFrame);sentinel?.remove();
       list.replaceChildren();
       if (!posts.length) list.textContent = '새로운 소식을 준비하고 있습니다.';
-      posts.forEach(post => {
+      const makeCard = post => {
         const card = node('div', 'news-block-four col-lg-4 col-md-6');
         const block = node('div', 'inner-block');
         const imageBox = node('div', 'image-box'); const imageInner = node('div', 'inner-box');
@@ -58,8 +60,19 @@
         const more = link(post,'read-more','자세히 보기 '); const arrow = node('i','icon fa fa-solid fa-arrow-right'); arrow.setAttribute('aria-hidden','true'); more.append(arrow);
         more.setAttribute('aria-label', post.title + ' 자세히 보기');
         content.append(more);
-        block.append(imageBox,content); card.append(block); list.append(card);
-      });
+        block.append(imageBox,content); card.append(block); return card;
+      };
+      let shown=0;
+      const columns=()=>Math.max(1,getComputedStyle(list).gridTemplateColumns.split(' ').length);
+      const append=count=>{const end=Math.min(posts.length,shown+count);for(;shown<end;shown++)list.append(makeCard(posts[shown]));visibleCount=shown;if(sentinel)sentinel.hidden=shown>=posts.length;};
+      append(Math.max(9,visibleCount));
+      if(shown<posts.length){
+        sentinel=node('div','dewford-event-load-more');const more=node('button','','더 보기');more.type='button';sentinel.append(more);list.after(sentinel);
+        const target=sentinel;
+        const nextRow=()=>{if(target!==sentinel||shown>=posts.length)return;append(columns());if(shown>=posts.length){observer?.disconnect();return;}pendingFrame=requestAnimationFrame(()=>{const r=target.getBoundingClientRect();if(r.top<innerHeight+200&&r.bottom>0)nextRow();});};
+        more.addEventListener('click',nextRow);
+        if('IntersectionObserver' in window){observer=new IntersectionObserver(entries=>{if(entries.some(entry=>entry.isIntersecting))nextRow();},{rootMargin:'200px 0px'});observer.observe(target);}
+      }
       return;
     }
     if (!detail) return;

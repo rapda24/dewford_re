@@ -4,3 +4,5 @@ html body .dewford-admin-tools .dewford-admin-delete{color:#a44536!important;}ht
 html body dialog.dewford-admin-composer{width:min(980px,calc(100vw - 40px));height:min(900px,calc(100dvh - 40px));max-width:none;max-height:none;margin:auto;padding:0;border:0;border-radius:12px;background:#fff;overflow:hidden;box-shadow:0 24px 100px #21112f50;}
 html body .dewford-admin-composer::backdrop{background:rgba(32,16,43,.65);backdrop-filter:blur(3px);}html body .dewford-admin-composer iframe{display:block;width:100%;height:100%;border:0;background:#fff;}
 @media(max-width:700px){html body dialog.dewford-admin-composer{width:100vw;height:100dvh;border-radius:0;}}
+/* Leave breathing room between event administration actions and the next row. */
+html body.dewford-layout-event .news-block-four>.dewford-admin-tools{margin-top:12px;margin-bottom:24px;}

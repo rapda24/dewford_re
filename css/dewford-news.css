@@ -75,3 +75,7 @@ html body #main-content .dewford-event-template .news-block-four .content-box .i
 .dewford-detail-page .sidebar__category-list .dewford-category-icon {display:inline-block;width:20px;margin-right:10px;text-align:center;color:inherit;}
 
 #main-content.dewford-detail-page .blog-details__title {margin-bottom:40px;}
+html body .dewford-event-load-more{display:flex;justify-content:center;margin-top:36px;}
+html body .dewford-event-load-more[hidden]{display:none;}
+html body .dewford-event-load-more button{padding:12px 32px;border:1px solid #52196d;border-radius:0;background:#fff;color:#52196d;font:500 14px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif);cursor:pointer;}
+html body .dewford-event-load-more button:hover{background:#52196d;color:#fff;}
