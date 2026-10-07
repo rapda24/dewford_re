@@ -2,11 +2,12 @@
 #dewford-image-viewer{position:fixed;inset:0;margin:auto;padding:0;border:0;width:max-content;max-width:calc(100vw - 32px);height:max-content;max-height:calc(100dvh - 32px);overflow:hidden;background:transparent;box-shadow:none;color:#fff;}
 #dewford-image-viewer::backdrop{background:rgb(0 0 0 / 80%);}
 #dewford-image-viewer .dewford-viewer-stage{position:relative;display:grid;place-items:center;}
-#dewford-image-viewer .dewford-viewer-photo{display:block;max-width:calc(100vw - 32px);max-height:calc(100dvh - 32px);object-fit:contain;margin:0;border:0;}
+#dewford-image-viewer .dewford-viewer-photo{display:block;max-width:calc(100vw - 32px);max-height:calc(100dvh - 78px);object-fit:contain;margin:0;border:0;}
 #dewford-image-viewer [hidden]{display:none!important;}
 #dewford-image-viewer button{display:grid;place-items:center;padding:0;border:0;border-radius:0;background:rgb(0 0 0 / 65%)!important;color:#fff!important;box-shadow:none!important;text-shadow:none;font:400 30px/1 Arial,sans-serif!important;cursor:pointer;transition:none;}
 #dewford-image-viewer button::before,#dewford-image-viewer button::after{display:none!important;}
-#dewford-image-viewer .dewford-viewer-close{position:absolute;top:10px;left:10px;width:36px;height:36px;z-index:3;}
+#dewford-image-viewer .dewford-viewer-toolbar{display:flex;justify-content:flex-end;height:36px;margin-bottom:10px;}
+#dewford-image-viewer .dewford-viewer-close{position:static;width:36px;height:36px;background:transparent!important;}
 #dewford-image-viewer :is(.dewford-viewer-prev,.dewford-viewer-next){position:absolute;top:50%;transform:translateY(-50%);width:40px;height:48px;z-index:2;}
 #dewford-image-viewer .dewford-viewer-prev{left:10px;}#dewford-image-viewer .dewford-viewer-next{right:10px;}
 #dewford-image-viewer .dewford-viewer-thumbnails{display:flex;gap:8px;height:10dvh;margin-top:12px;max-width:100%;overflow-x:auto;overflow-y:hidden;}
@@ -15,7 +16,16 @@
 #dewford-image-viewer .dewford-viewer-thumbnail img{display:block;max-width:156px;max-height:100%;width:auto;height:100%;object-fit:contain;}
 #dewford-image-viewer button:focus-visible{outline:2px solid #fff;outline-offset:-4px;}
 #dewford-image-viewer .dewford-viewer-status{width:min(320px,calc(100vw - 32px));min-height:120px;padding:48px 20px;margin:0;background:#222;text-align:center;color:#fff;font:15px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif);}
-html body .dewford-footer .dewford-footer-registration [data-dewford-tuition]{display:inline;padding:0;margin:0 0 0 10px;border:0;background:transparent!important;color:#fff!important;box-shadow:none;font:inherit!important;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
+html body .dewford-footer .dewford-footer-registration [data-dewford-tuition]{display:inline;padding:0;margin:0 0 0 10px;border:0;background:transparent!important;color:#fff!important;box-shadow:none;font:inherit!important;text-decoration:none;cursor:pointer;transition:none!important;transform:none!important;}
 html body .dewford-footer .dewford-footer-registration [data-dewford-tuition]::before,html body .dewford-footer .dewford-footer-registration [data-dewford-tuition]::after{display:none!important;}
 [data-dewford-article-image]{cursor:zoom-in;}
 [data-dewford-article-image]:focus-visible{outline:2px solid var(--id-color,#52196d);outline-offset:4px;}
+
+html body .dewford-footer .dewford-footer-registration [data-dewford-tuition]:is(:hover,:focus,:active){background:transparent!important;color:#fff!important;text-decoration:none!important;box-shadow:none!important;transform:none!important;}
+
+/* Tuition reads as part of the registration line, while remaining clickable. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-registration a[data-dewford-tuition],
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-registration a[data-dewford-tuition]:is(:hover,:focus,:active){display:inline;font:inherit!important;letter-spacing:inherit;line-height:inherit!important;color:inherit!important;background:none!important;border:0;padding:0;margin-left:8px;text-decoration:none!important;vertical-align:baseline;box-shadow:none!important;transition:none!important;transform:none!important;}
+/* Close control shows only the X icon, outside the image. */
+#dewford-image-viewer .dewford-viewer-close,
+#dewford-image-viewer .dewford-viewer-close:is(:hover,:focus,:focus-visible,:active){background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;}

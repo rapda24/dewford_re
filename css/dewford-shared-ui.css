@@ -424,3 +424,6 @@ html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .th
 
 /* Filled buttons use their base surface color instead of the secondary border. */
 html body:is(.dewford-home,.dewford-subpage) #main-content .theme-btn:not(:hover):not(:focus-visible) {border-color:var(--button-surface,transparent)!important;}
+
+/* Clickable links and enabled controls consistently use the pointer cursor. */
+html body a[href],html body button:not(:disabled),html body [role=button]:not([aria-disabled=true]),html body input:is([type=submit],[type=button],[type=reset]):not(:disabled){cursor:pointer!important;}

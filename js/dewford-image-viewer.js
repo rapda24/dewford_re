@@ -8,13 +8,14 @@
   const close=button('이미지 팝업 닫기','×','dewford-viewer-close');
   const prev=button('이전 이미지','‹','dewford-viewer-prev'),next=button('다음 이미지','›','dewford-viewer-next');
   const thumbs=document.createElement('div');thumbs.className='dewford-viewer-thumbnails';thumbs.setAttribute('aria-label','이미지 미리보기');
-  stage.append(photo,status,close,prev,next);dialog.append(stage,thumbs);document.body.append(dialog);
+  const toolbar=document.createElement('div');toolbar.className='dewford-viewer-toolbar';toolbar.append(close);
+  stage.append(photo,status,prev,next);dialog.append(toolbar,stage,thumbs);document.body.append(dialog);
   let items=[],index=0,opener,previousOverflow,version=0;
   function safeURL(value){if(typeof value!=='string'||!value.trim())return '';try{const u=new URL(value,location.href);return ['http:','https:'].includes(u.protocol)?u.href:'';}catch{return '';}}
   function fit(){
     if(!dialog.open||!photo.naturalWidth||photo.hidden)return;
     const width=document.documentElement.clientWidth,height=window.visualViewport?.height||window.innerHeight;
-    const availableWidth=Math.max(1,width-32),availableHeight=Math.max(1,height-32-(items.length>1?height*.1+12:0));
+    const availableWidth=Math.max(1,width-32),availableHeight=Math.max(1,height-32-46-(items.length>1?height*.1+12:0));
     const scale=Math.min(1,availableWidth/photo.naturalWidth,availableHeight/photo.naturalHeight);
     dialog.style.width=photo.naturalWidth*scale+'px';photo.style.width=photo.naturalWidth*scale+'px';photo.style.height=photo.naturalHeight*scale+'px';
   }
@@ -48,7 +49,7 @@
   function openArticle(img){const images=[...img.closest('[data-news-detail]').querySelectorAll('[data-dewford-article-image]')];open(images.map(el=>({src:el.currentSrc||el.src,alt:el.alt})),images.indexOf(img),img);}
   document.addEventListener('click',async event=>{
     const img=articleImage(event.target);if(img){event.preventDefault();openArticle(img);return;}
-    const fee=event.target.closest('[data-dewford-tuition]');if(!fee||fee.disabled)return;
+    const fee=event.target.closest('[data-dewford-tuition]');if(!fee)return;event.preventDefault();if(fee.disabled)return;
     fee.disabled=true;
     try{
       const result=await window.DewfordAPI.content('tuition');
