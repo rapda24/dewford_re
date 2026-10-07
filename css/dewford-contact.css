@@ -34,3 +34,17 @@
 #main-content.dewford-contact-page > :is(.contact-details,.map-section) {background:#fff;}
 #main-content.dewford-contact-page .map-section {margin-bottom:0;padding-bottom:0;line-height:0;}
 #main-content.dewford-contact-page .map-section iframe {display:block;pointer-events:none;border:0;margin:0;}
+
+/* Static contact icons and matching square messenger controls. */
+html body #main-content.dewford-contact-page{--dewford-contact-icon-size:80px;}
+html body #main-content.dewford-contact-page .contact-details__info li .icon,
+html body #main-content.dewford-contact-page .contact-details__info li:hover .icon{width:var(--dewford-contact-icon-size);height:var(--dewford-contact-icon-size);background:var(--id-color);border-radius:0;transition:none;}
+html body #main-content.dewford-contact-page .contact-details__info li .icon span,
+html body #main-content.dewford-contact-page .contact-details__info li:hover .icon span{color:#fff;transition:none;}
+html body #main-content.dewford-contact-page .contact-details__info li .text :is(a,span),
+html body #main-content.dewford-contact-page .contact-details__info li:hover .text :is(a,span){color:#000;transition:none;}
+html body #main-content.dewford-contact-page .dewford-contact-channels{display:flex;gap:16px;margin-top:24px;}
+html body #main-content.dewford-contact-page .dewford-contact-channels a{display:flex;align-items:center;justify-content:center;flex:0 0 var(--dewford-contact-icon-size);width:var(--dewford-contact-icon-size);height:var(--dewford-contact-icon-size);padding:0;border:0;border-radius:0!important;}
+html body #main-content.dewford-contact-page .dewford-contact-channels .contact-kakao{background:#fee500;}
+html body #main-content.dewford-contact-page .dewford-contact-channels .contact-naver{background:#03c75a;}
+html body #main-content.dewford-contact-page .dewford-contact-channels img{display:block;max-width:none;filter:none;}
