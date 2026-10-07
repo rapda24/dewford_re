@@ -6,7 +6,7 @@ import { pbkdf2Sync } from 'node:crypto';
 import worker from '../server/worker.js';
 function environment() {
   const db = new DatabaseSync(':memory:');
-  for (const file of ['0001_public_content.sql','0003_admin.sql','0004_admin_media.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
+  for (const file of ['0001_public_content.sql','0002_inquiries.sql','0003_admin.sql','0004_admin_media.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
   const DB = {prepare(sql) {
     const statement = db.prepare(sql); let values=[];
     const wrapper={bind(...args){values=args.map(value=>value instanceof ArrayBuffer?new Uint8Array(value):value);return wrapper;},async first(){return statement.get(...values)||null;},async all(){return {results:statement.all(...values)};},async run(){const result=statement.run(...values);return {meta:{changes:Number(result.changes)}};}};
@@ -112,4 +112,27 @@ test('rich content retains allowed formatting, derives plain text, and rejects u
   const badContent=[{ops:[{insert:{image:'javascript:alert(1)'}}]},{ops:[{insert:'x'.repeat(30001)}]},{ops:[{delete:3}]}];
   for(const content of badContent)assert.equal((await call(env,'admin/content',{action:'save',board:'events',revision:2,item:{...item,content}},auth)).response.status,400);
   result=await call(env,'admin/content',{action:'save',board:'preschool',revision:2,id:saved.id,item:{...item,body:'Plain text'}},auth);assert.equal(result.data.boards.preschool[0].content,undefined);
+});
+
+test('consultation inbox is private, searchable and paginated with newest requests first', async()=>{
+  const {env,db,password}=environment();
+  assert.equal((await call(env,'admin/inquiries')).response.status,401);
+  const submitted=await call(env,'inquiries',{name:'학부모',phone:'010-1234-5678',email:'parent@example.com',program:'국제 유치부',message:'상담 문의 <script>',consent:true});
+  assert.equal(submitted.response.status,201);
+  const auth=await login(env,password);
+  let result=await call(env,'admin/inquiries',null,auth);
+  assert.equal(result.response.headers.get('Cache-Control'),'no-store');
+  assert.equal(result.data.items[0].id,submitted.data.id);
+  assert.equal(result.data.items[0].message,'상담 문의 <script>');
+  assert.equal((await call(env,'admin/inquiries?q='+encodeURIComponent('010-1234'),null,auth)).data.total,1);
+  assert.equal((await call(env,'admin/inquiries?q='+encodeURIComponent("' OR 1=1 --"),null,auth)).data.total,0);
+  assert.equal((await call(env,'admin/inquiries?page=-1',null,auth)).response.status,400);
+  const insert=db.prepare('INSERT INTO inquiries (id,name,phone,program,consent,created_at) VALUES (?,?,?,?,1,?)');
+  for(let i=0;i<21;i++)insert.run('extra-'+String(i).padStart(2,'0'),'추가 상담','010-1111-2222','기타 상담','2099-01-01T00:00:00.000Z');
+  result=await call(env,'admin/inquiries',null,auth);
+  assert.equal(result.data.total,22);assert.equal(result.data.items.length,20);assert.equal(result.data.items[0].id,'extra-20');
+  result=await call(env,'admin/inquiries?page=2',null,auth);assert.equal(result.data.items.length,2);
+  assert.equal((await call(env,'inquiries')).response.status,404);
+  await call(env,'admin/logout',{},auth);
+  assert.equal((await call(env,'admin/inquiries',null,auth)).response.status,401);
 });

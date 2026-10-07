@@ -15,6 +15,6 @@
   }
   window.DewfordAdmin = Object.freeze({
     session:() => request('session'), login:data => request('login', data), logout:() => request('logout', {}),
-    content:() => request('content'), mutate:data => request('content', data), upload:file => request('upload', null, file)
+    inquiries:params => request('inquiries?' + new URLSearchParams(params)), content:() => request('content'), mutate:data => request('content', data), upload:file => request('upload', null, file)
   });
 })();

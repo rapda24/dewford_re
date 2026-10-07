@@ -146,6 +146,16 @@ export async function adminRoute(request, env) {
     await env.DB.prepare('DELETE FROM admin_sessions WHERE token_hash = ?').bind(auth.tokenHash).run();
     return {data:{authenticated:false}, headers:{'Set-Cookie':cookie(request, '', 0)}};
   }
+  if (path === '/api/admin/inquiries' && request.method === 'GET') {
+    const params = new URL(request.url).searchParams;
+    const query = (params.get('q') || '').trim();
+    const page = Number(params.get('page') || 1);
+    if (query.length > 100 || !Number.isSafeInteger(page) || page < 1 || page > 1000000) fail('INVALID_INPUT');
+    const where = "WHERE instr(name, ?) > 0 OR instr(phone, ?) > 0 OR instr(email, ?) > 0 OR instr(program, ?) > 0 OR instr(message, ?) > 0";
+    const count = await env.DB.prepare('SELECT COUNT(*) AS total FROM inquiries ' + where).bind(query, query, query, query, query).first();
+    const rows = await env.DB.prepare('SELECT id, name, phone, email, program, message, consent, created_at FROM inquiries ' + where + ' ORDER BY created_at DESC, id DESC LIMIT 20 OFFSET ?').bind(query, query, query, query, query, (page - 1) * 20).all();
+    return {data:{items:rows.results, total:count.total, page, pageSize:20}};
+  }
   if (path === '/api/admin/content' && request.method === 'GET') return {data:await loadState(request, env)};
   if (path === '/api/admin/content' && request.method === 'POST') {
     const body = await input(request); if (!body || typeof body !== 'object') fail('INVALID_INPUT'); const state = await loadState(request, env);

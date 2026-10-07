@@ -14,3 +14,5 @@ html body .dewford-admin-tools.dewford-admin-toolbar>button{background:#52196d!i
 html body .dewford-admin-tools.dewford-admin-toolbar>button:hover{background:#3e1253!important;border-color:#3e1253;}
 html body .dewford-admin-toolbar :is(a,button):focus-visible{outline:2px solid #52196d;outline-offset:3px;}
 @media(max-width:600px){html body .dewford-admin-tools.dewford-admin-toolbar{width:calc(100% - 24px);padding:16px 14px;gap:10px;margin-bottom:24px;}html body .dewford-admin-tools.dewford-admin-toolbar :is(a,button){flex:1;min-width:0;padding:11px 14px;font-size:14px!important;white-space:nowrap;}}
+/* Match the event grid edges while retaining the toolbar's inner padding. */
+html body.dewford-layout-event #main-content .dewford-admin-toolbar{width:100%;max-width:none;margin-inline:0;}
