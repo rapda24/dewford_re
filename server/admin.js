@@ -45,7 +45,15 @@ export async function loadState(request, env) {
   const normalize = (items, board) => (items || []).map((item, i) => ({...item, id:item.id || `legacy-${board}-${i}`, published:item.published !== false}));
   return {revision:0, boards:{events:normalize(events.posts, 'events'), preschool:normalize(calendar.preschool, 'preschool'), elementary:normalize(calendar.elementary, 'elementary'), popups:normalize(existing.popups?.popups || [{id:'home-2026', title:'DEWFORD 안내', image:'images/sub/pop2026_1.png', enabled:true, published:true, width:480}])}};
 }
+export async function loadTuition(request, env) {
+  const row = await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'tuition'").first();
+  if (row) return JSON.parse(row.payload);
+  const state = await loadState(request, env);
+  const popup = state.boards.popups.find(item => item.published !== false && item.enabled && item.image);
+  return {image:popup?.image || 'images/sub/pop2026_1.png', revision:0};
+}
 export async function managedPublic(request, env, slug) {
+  if (slug === 'tuition') return {image:(await loadTuition(request, env)).image};
   if (!['events','calendar','popups'].includes(slug)) return null;
   const row = await env.DB.prepare('SELECT revision, payload FROM admin_content WHERE id = 1').bind().first();
   if (!row) return null;
@@ -145,6 +153,19 @@ export async function adminRoute(request, env) {
   if (path === '/api/admin/logout' && request.method === 'POST') {
     await env.DB.prepare('DELETE FROM admin_sessions WHERE token_hash = ?').bind(auth.tokenHash).run();
     return {data:{authenticated:false}, headers:{'Set-Cookie':cookie(request, '', 0)}};
+  }
+  if (path === '/api/admin/tuition' && request.method === 'GET') return {data:await loadTuition(request, env)};
+  if (path === '/api/admin/tuition' && request.method === 'POST') {
+    const body = await input(request);
+    const previous = await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'tuition'").first();
+    const revision = previous ? JSON.parse(previous.payload).revision : 0;
+    if (!body || body.revision !== revision) fail('CONTENT_CHANGED', 409);
+    const image = safeURL(body.image, true);
+    if (!image || /\.html(?:[?#]|$)/i.test(image)) fail('INVALID_URL');
+    const data = {image, revision:revision + 1};
+    const result = await env.DB.prepare("INSERT INTO public_content (slug, payload, published) VALUES ('tuition', ?, 1) ON CONFLICT(slug) DO UPDATE SET payload = excluded.payload, published = 1, updated_at = strftime('%Y-%m-%dT%H:%M:%fZ', 'now') WHERE public_content.payload = ?").bind(JSON.stringify(data), previous?.payload || '').run();
+    if (!result.meta.changes) fail('CONTENT_CHANGED', 409);
+    return {data};
   }
   if (path === '/api/admin/inquiries' && request.method === 'GET') {
     const params = new URL(request.url).searchParams;

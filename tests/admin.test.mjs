@@ -136,3 +136,21 @@ test('consultation inbox is private, searchable and paginated with newest reques
   await call(env,'admin/logout',{},auth);
   assert.equal((await call(env,'admin/inquiries',null,auth)).response.status,401);
 });
+
+test('tuition settings require admin/CSRF, publish independently of popups, and reject stale saves',async()=>{
+  const {env,password}=environment();
+  assert.equal((await call(env,'admin/tuition')).response.status,401);
+  assert.equal((await call(env,'admin/tuition',{image:item.image,revision:0})).response.status,401);
+  const auth=await login(env,password);
+  const initial=(await call(env,'admin/tuition',null,auth)).data;
+  assert.equal(initial.revision,0);assert.equal(initial.image,'images/sub/pop2026_1.png');
+  assert.equal((await call(env,'admin/tuition',{image:item.image,revision:0},{cookie:auth.cookie})).response.status,403);
+  for(const image of ['javascript:alert(1)','admin.html',''])assert.equal((await call(env,'admin/tuition',{image,revision:0},auth)).response.status,400);
+  const saved=await call(env,'admin/tuition',{image:'images/sub/communication.jpeg',revision:0},auth);
+  assert.equal(saved.response.status,200);assert.equal(saved.data.revision,1);
+  assert.equal((await call(env,'content/tuition')).data.image,'images/sub/communication.jpeg');
+  await call(env,'admin/content',{action:'save',board:'popups',revision:0,item:{title:'다른 팝업',image:item.image,enabled:true}},auth);
+  assert.equal((await call(env,'content/tuition')).data.image,'images/sub/communication.jpeg');
+  assert.equal((await call(env,'admin/tuition',{image:item.image,revision:0},auth)).response.status,409);
+  assert.equal((await call(env,'admin/tuition',null,auth)).data.image,'images/sub/communication.jpeg');
+});

@@ -1,6 +1,5 @@
 (() => {
-  const form = document.querySelector('#dewford-inquiry-form');
-  if (!form) return;
+  document.querySelectorAll('.dewford-about-form').forEach(form => {
   const button = form.querySelector('[type="submit"]');
   const status = form.querySelector('[role="status"]');
   form.addEventListener('submit', async event => {
@@ -17,5 +16,6 @@
     } catch {
       status.textContent = '신청이 접수되지 않았습니다. 잠시 후 다시 시도하거나 02-6401-1012로 연락해 주세요.';
     } finally { button.disabled = false; }
+  });
   });
 })();

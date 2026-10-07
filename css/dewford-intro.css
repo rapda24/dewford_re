@@ -14,7 +14,9 @@ html.dewford-intro-active .dewford-intro {
   mask-repeat: no-repeat;
 }
 .dewford-intro-logo {
-  position: relative; display: block; width: clamp(150px, 19vw, 250px);
+  position: relative; display: grid; width: clamp(150px, 19vw, 250px);
   height: auto; object-fit: contain; animation: none; transition: none;
   transform: none; opacity: 1;
 }
+
+.dewford-intro-logo img {display:block;width:100%;max-width:100%;height:auto;min-width:0;filter:brightness(0) invert(1);}

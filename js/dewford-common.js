@@ -5,6 +5,34 @@
 (() => {
   'use strict';
   const components = {
+    inquiry: `<form id="dewford-inquiry-form" class="dewford-about-form">
+                    <h3>입학·교육 상담 신청</h3>
+                    <div class="dewford-about-fields">
+                      <label>학부모 성함 <span aria-hidden="true">*</span><input name="name" autocomplete="name" maxlength="80" required></label>
+                      <label>연락처 <span aria-hidden="true">*</span><input name="phone" type="tel" autocomplete="tel" maxlength="30" required placeholder="010-0000-0000"></label>
+                      <label>이메일<input name="email" type="email" autocomplete="email" maxlength="254"></label>
+                      <label>관심 과정 <span aria-hidden="true">*</span><select name="program" required>
+                          <option value="">선택해 주세요</option>
+                          <option>국제 유치부</option>
+                          <option>유치 방과후</option>
+                          <option>초등 방과후</option>
+                          <option>기타 상담</option>
+                        </select></label>
+                      <label class="form-wide">상담 내용<textarea name="message" rows="3" maxlength="3000" placeholder="아이의 연령과 궁금하신 내용을 남겨주세요."></textarea></label>
+                    </div>
+                    <div hidden aria-hidden="true">
+                      <label>Website<input name="website" tabindex="-1" autocomplete="off"></label>
+                    </div>
+                    <label class="form-consent">
+                      <input name="consent" type="checkbox" required>
+                      <span>상담 답변을 위한 성함, 연락처, 이메일 및 상담 내용의 수집·이용에 동의합니다. 정보는 상담 목적으로 저장되며 ADMIN@DEWFORD.COM으로 삭제를 요청할 수 있습니다.</span>
+                    </label>
+                    <button class="theme-btn btn-style-two" type="submit">
+                      <span class="btn-title">상담 신청하기</span>
+                      <i class="icon fa-light fa-arrow-right" aria-hidden="true"></i>
+                    </button>
+                    <p class="dewford-form-status" role="status" aria-live="polite"></p>
+                  </form>`,
     header: `<header class="dewford-header">
 <a class="dewford-brand dewford-logo" href="index.html" aria-label="DEWFORD INTERNATIONAL COLLEGE 홈"><img class="dewford-logo-symbol" src="images/common/symbol_2.png" width="311" height="311" alt=""><img class="dewford-logo-text" src="images/common/logo-text.svg" width="224" height="51" alt=""></a>
 <nav class="dewford-desktop-nav" aria-label="주 메뉴"><ul id="dewford-menu" class="dewford-navigation">
@@ -103,7 +131,7 @@
     <a class="dewford-footer-contact-value" href="contact.html"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="dewford-contact-desktop-label">ADDRESS</span><span class="dewford-contact-value-text">(04392) 서울시 용산구 장문로27, <br>청화아파트 상가 1층 #101호</span></a>
    </div></div>
   </div></div>
- </div><div class="footer-bottom"><div class="copyright">© 2026 DEWFORD INTERNATIONAL COLLEGE. All rights reserved.</div><div class="dewford-footer-registration"><span>듀포드인터내셔널컬리지어학원</span><span>학원등록번호 제3355호</span></div></div></div></div>
+ </div><div class="footer-bottom"><div class="copyright">© 2026 DEWFORD INTERNATIONAL COLLEGE. All rights reserved.</div><div class="dewford-footer-registration"><span>듀포드인터내셔널컬리지어학원</span><span>학원등록번호 제3355호<button type="button" data-dewford-tuition aria-haspopup="dialog">교습비</button></span></div></div></div></div>
 </footer>`,
     floating: `  <nav class="dewford-floating-links" aria-label="빠른 안내">
     <ul>

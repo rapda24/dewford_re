@@ -4,7 +4,8 @@
 
 - `js/dewford-common.js`: `header`, `footer`, `floating` HTML 수정
 - `js/dewford-ui.js`: 스크롤 헤더 및 전체 메뉴 동작
-- `css/dewford-brand.css`: 공통 스타일과 ID / 서브 컬러
+- `css/dewford-brand.css`, `css/dewford-navigation.css`, `css/dewford-shared-ui.css`: 공통 구조와 기본 스타일
+- `css/dewford-common-chrome.css`: 메인 기준 header / footer / floating 최종 스타일. 모든 공개 페이지에서 마지막 CSS로 로드하며, 서브페이지 색상·전환 효과가 공통 영역을 덮어쓰지 않도록 관리
 - 각 서브 HTML의 `<main id="main-content">`: 향후 본문 작업 위치
 
 공통 파일을 저장하고 페이지를 새로 고침하면 모두 반영됩니다. 별도 빌드나 서버 없이 로컬 HTML 열기 및 정적 호스팅에서 사용할 수 있습니다. JavaScript가 활성화되어 있어야 합니다.
@@ -39,3 +40,17 @@
 ## 헤더·전체 메뉴
 
 `css/dewford-navigation.css`에서 원본 기준 헤더와 전체 화면 다이얼로그 스타일을 관리합니다. 전체 메뉴 사진은 `images/common/menu-learning.webp`를 사용합니다. `LET’S TALK`는 로컬 `admissions-inquiry.html`로 연결됩니다.
+
+## 공통 이미지 팝업
+
+- `js/dewford-image-viewer.js`, `css/dewford-image-viewer.css`: 원본 크기를 유지하고 화면을 넘을 때만 축소하는 공통 레이어 팝업
+- 푸터 `교습비`: `admin-tuition.html`에서 별도 등록한 이미지 사용. 최초 저장 전에는 기존 팝업 이미지를 기본값으로 제공
+- `detail.html`: 대표 이미지 및 추가 사진을 클릭한 위치부터 열고, 버튼·키보드 방향키·10dvh 미리보기로 수동 이동
+- 재사용: `DewfordImageViewer.open([{src:'이미지 경로',alt:'설명'}], 시작인덱스)`
+
+## 상담폼·교습비 관리
+
+- 공통 상담폼: `js/dewford-common.js`의 `inquiry` 컴포넌트, `css/dewford-consultation.css`
+- Home / Contact / Apply Now는 같은 입력 항목과 `POST /api/inquiries`를 사용하며, 접수 후 `admin-inquiries.html`에서 확인합니다.
+- 교습비: `admin-tuition.html`에서 업로드 후 저장. `GET/POST /api/admin/tuition`은 관리자 세션과 CSRF로 보호되며, 공개 푸터는 `GET /api/content/tuition`으로 이미지를 조회합니다.
+- 기존 `public_content` 및 이미지 저장소를 사용하므로 추가 DB 마이그레이션은 필요하지 않습니다.

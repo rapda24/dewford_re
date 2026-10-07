@@ -224,11 +224,14 @@ html body.dewford-subpage #main-content.dewford-philosophy-content .projects-sec
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn :is(.btn-title,.icon,i) {color:#fff!important;}
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn::before {background-color:#3d1252!important;}
 
-html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) {background-color:#fff!important;color:var(--id-color)!important;}
-html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,i) {color:var(--id-color)!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) {background-color:#fff!important;color:#000!important;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.icon,i,.dewford-korean-text) {color:#000!important;}
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn::before {background-color:#fff!important;}
 
 /* Align the second desktop photograph with the bottom of Vision. */
 @media(min-width:1440px){
  #main-content.dewford-philosophy-content .dewford-philosophy-vision-image {align-self:end;}
 }
+
+/* Learning journey photos retain their original colors without a tint. */
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .project-block-two .image::before {display:none;background:none;}

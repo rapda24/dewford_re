@@ -385,7 +385,6 @@ html body.dewford-subpage #main-content .dewford-why-clients .inner-container::b
 html body.dewford-subpage #main-content .service-section-two .outer-box {--theme-color-dark:var(--id-color);}
 html body.dewford-subpage #main-content .contact-details__info li .icon {background:var(--id-color);}
 html body.dewford-subpage #main-content .theme-btn.btn-style-one {--button-surface:var(--id-color);}
-html body.dewford-subpage .dewford-scroll-top {background:var(--id-color)!important;--button-surface:var(--id-color);}
 html body.dewford-subpage #main-content :is(.dewford-events-intro h2,.dewford-editorial-heading h2,.team-details__top-name) {color:var(--id-color-dark);}
 html body.dewford-subpage #main-content.dewford-refined-page .services-section .service-block :is(.title,.title a,.icon-box) {color:var(--id-color-dark)!important;}
 html body.dewford-subpage #main-content.dewford-refined-page .about-block-home-two .inner-block :is(.title,.title a,.count-box) {color:var(--id-color-dark);}
@@ -413,3 +412,12 @@ html body.dewford-subpage #main-content.dewford-philosophy-content .service-bloc
 html body.dewford-layout-elementary-international #main-content .service-section-two :is(h2,h3,h4,.title,.title a,.sub-title,.text,p) {color:#fff!important;}
 /* Project descriptions sit on a light canvas even inside the philosophy page. */
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two :is(.title,.title a,.sub-title,.text,.categories-list p,.dewford-program-description) {color:#000!important;}
+
+/* White section headings over the clients photo backdrop. */
+html body.dewford-subpage #main-content .clients-section :is(.sub-title,h2.title) {color:#fff!important;}
+
+/* White hover surfaces use black text, including nested button labels. */
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible),
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .theme-btn:is(:hover,:focus-visible) :is(.btn-title,.dewford-korean-text,.icon,i),
+html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .theme-btn.btn-style-two:is(:hover,:focus-visible),
+html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .theme-btn.btn-style-two:is(:hover,:focus-visible) :is(.btn-title,.dewford-korean-text,.icon,i) {color:#000!important;}

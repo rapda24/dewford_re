@@ -14,6 +14,9 @@
 <link href="css/dewford-page-title.css" rel="stylesheet">
 <link href="css/dewford-gray.css" rel="stylesheet">
   <link href="css/dewford-shared-ui.css" rel="stylesheet">
+  <link href="css/dewford-common-chrome.css" rel="stylesheet">
+  <link href="css/dewford-image-viewer.css" rel="stylesheet">
+  <link href="css/dewford-consultation.css" rel="stylesheet">
 </head>
 <body class="dewford-subpage">
   <div class="page-wrapper">
@@ -23,44 +26,8 @@
     <div class="container pt-110 pb-70">
       <div class="row">
         <div class="col-xl-7 col-lg-6">
-          <div class="sec-title">
-            <h2>입학·교육 상담 신청</h2>
-          </div>
           <!-- Contact Form -->
-          <form id="contact_form" name="contact_form" action="includes/sendmail.php" method="post">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <input name="form_name" class="form-control" type="text" placeholder="학부모 성함" aria-label="학부모 성함">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <input name="form_email" class="form-control required email" type="email" placeholder="이메일 주소" aria-label="이메일 주소">
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <input name="form_subject" class="form-control required" type="text" placeholder="상담 제목 또는 관심 교육 과정" aria-label="상담 제목 또는 관심 교육 과정">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="mb-3">
-                  <input name="form_phone" class="form-control" type="text" placeholder="연락처" aria-label="연락처">
-                </div>
-              </div>
-            </div>
-            <div class="mb-3">
-              <textarea name="form_message" class="form-control required" rows="7" placeholder="아이의 연령, 현재 영어 학습 경험과 궁금하신 내용을 남겨주세요." aria-label="상담 내용"></textarea>
-            </div>
-            <div class="mb-5">
-              <input name="form_botcheck" class="form-control" type="hidden" value="" />
-              <button type="submit" class="theme-btn btn-style-one" data-loading-text="접수 중입니다..."><span class="btn-title">상담 신청하기</span></button>
-              <button type="reset" class="theme-btn btn-style-one"><span class="btn-title">다시 작성</span></button>
-            </div>
-          </form>
+          <div data-dewford-component="inquiry"></div>
           <!-- Contact Form Validation-->
         </div>
         <div class="col-xl-5 col-lg-6">
@@ -133,8 +100,10 @@
   <script src="js/dewford-config.js"></script>
 <script src="js/dewford-api.js"></script>
 <script src="js/dewford-common.js"></script>
+<script src="js/dewford-image-viewer.js"></script>
 <script src="js/dewford-page-title.js"></script>
 <script src="js/dewford-typography.js"></script>
   <script src="js/dewford-ui.js"></script>
+<script src="js/dewford-consultation.js"></script>
 </body>
 </html>

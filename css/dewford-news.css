@@ -79,3 +79,9 @@ html body .dewford-event-load-more{display:flex;justify-content:center;margin-to
 html body .dewford-event-load-more[hidden]{display:none;}
 html body .dewford-event-load-more button{padding:12px 32px;border:1px solid #52196d;border-radius:0;background:#fff;color:#52196d;font:500 14px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif);cursor:pointer;}
 html body .dewford-event-load-more button:hover{background:#52196d;color:#fff;}
+
+/* Separate article copy from the previous/next article navigation. */
+#main-content.dewford-detail-page .blog-details__content + .nav-links {margin-top:64px;}
+@media(max-width:767px){
+ #main-content.dewford-detail-page .blog-details__content + .nav-links {margin-top:40px;}
+}

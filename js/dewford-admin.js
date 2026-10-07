@@ -3,7 +3,7 @@
   const api = window.DewfordAdmin;
   const names = {events:'이벤트 게시판',preschool:'유치부 캘린더',elementary:'초등부 캘린더',popups:'팝업 관리'};
   const params = new URLSearchParams(location.search);
-  if(params.get('board')==='inquiries'){location.replace('admin-inquiries.html');return;}
+  if(['inquiries','tuition'].includes(params.get('board'))){location.replace('admin-'+params.get('board')+'.html');return;}
   const embedded=params.get('embedded')==='1';if(embedded)document.body.classList.add('admin-embedded');
   const notifyParent=(type,extra={})=>{if(embedded&&parent!==window)parent.postMessage({source:'dewford-editor',type,...extra},location.origin);};
   let board = names[params.get('board')] ? params.get('board') : 'events';

@@ -7,8 +7,8 @@
 #dewford-home-popup .dewford-popup-slider-controls{display:flex;align-items:center;justify-content:space-between;padding:4px 16px;background:var(--id-color,#52196d);}
 #dewford-home-popup .dewford-popup-dots{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;}
 html body.dewford-home #dewford-home-popup .dewford-popup-slider-controls>button{font-size:24px!important;min-width:28px;justify-content:center;}
-html body.dewford-home #dewford-home-popup .dewford-popup-dots button{font-size:9px!important;opacity:.4;padding:5px 3px;}
-html body.dewford-home #dewford-home-popup .dewford-popup-dots button[aria-current="true"]{opacity:1;}
+html body.dewford-home #dewford-home-popup .dewford-popup-dots button{font-size:9px!important;opacity:.5;padding:5px 3px;}
+html body.dewford-home #dewford-home-popup .dewford-popup-dots button[aria-current="true"]{opacity:0;}
 #dewford-home-popup.has-slides .dewford-popup-image img{max-height:calc(100dvh - 152px);}
 #dewford-home-popup .dewford-popup-actions{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 16px;border-top:0;background:var(--id-color,#52196d);color:#fff;}
 #dewford-home-popup label{display:flex;align-items:center;gap:9px;margin:0;font:400 12px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif);color:#fff;cursor:pointer;}
@@ -30,7 +30,11 @@ html body.dewford-home #dewford-home-popup button::before,html body.dewford-home
 #dewford-home-popup .dewford-popup-slide>a{display:block;}
 #dewford-home-popup.has-slides .dewford-popup-image img{max-height:calc(100dvh - 112px);}
 #dewford-home-popup .dewford-popup-slider-controls{position:absolute;inset:auto 0 12px;z-index:2;padding:4px 16px;background:transparent;pointer-events:none;}
-#dewford-home-popup .dewford-popup-slider-controls button{pointer-events:auto;text-shadow:0 1px 4px #000,0 0 2px #000;}
-html body.dewford-home #dewford-home-popup .dewford-popup-dots button{opacity:.65;min-width:24px;min-height:32px;justify-content:center;}
-html body.dewford-home #dewford-home-popup .dewford-popup-dots button[aria-current="true"]{opacity:1;}
+#dewford-home-popup .dewford-popup-slider-controls button{pointer-events:auto;text-shadow:none;}
+html body.dewford-home #dewford-home-popup .dewford-popup-dots button{opacity:.5;min-width:24px;min-height:32px;justify-content:center;}
+html body.dewford-home #dewford-home-popup .dewford-popup-dots button[aria-current="true"]{opacity:0;}
 @media(prefers-reduced-motion:reduce){#dewford-home-popup .dewford-popup-track.is-animating{transition:none;}}
+
+/* Brand-colored pagination without shadows, including hover/focus states. */
+html body.dewford-home #dewford-home-popup .dewford-popup-slider-controls button,
+html body.dewford-home #dewford-home-popup .dewford-popup-slider-controls button:is(:hover,:focus,:active) {color:var(--id-color,#52196d)!important;box-shadow:none!important;text-shadow:none;}

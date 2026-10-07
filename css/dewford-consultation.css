@@ -1,0 +1,14 @@
+/* The same consultation form on Home, Contact and Apply Now. */
+html body #main-content #dewford-inquiry-form{padding:clamp(20px,2.3vw,36px);background:#f3f3f3;border:0;border-radius:0;}
+html body #main-content #dewford-inquiry-form h3{font-size:24px;margin:0 0 24px;color:#000;}
+html body #main-content #dewford-inquiry-form .dewford-about-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;}
+html body #main-content #dewford-inquiry-form label{display:block;margin:0;font-size:14px;line-height:1.5!important;color:#000;}
+html body #main-content #dewford-inquiry-form .dewford-about-fields :is(input,select,textarea){display:block;width:100%;min-width:0;margin-top:6px;padding:10px 12px;min-height:0;background:#fff;border:1px solid #d3d3d3;border-radius:0;color:#000;font:16px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif);}
+html body #main-content #dewford-inquiry-form .form-wide{grid-column:1/-1;}
+html body #main-content #dewford-inquiry-form textarea{resize:vertical;min-height:92px;}
+html body #main-content #dewford-inquiry-form .form-consent{display:flex;align-items:flex-start;gap:9px;margin:18px 0;font-size:14px;line-height:1.55!important;}
+html body #main-content #dewford-inquiry-form .form-consent input{flex:0 0 16px;width:16px;height:16px;margin:3px 0 0;accent-color:var(--id-color);}
+html body #main-content #dewford-inquiry-form .theme-btn{width:100%;}
+html body #main-content #dewford-inquiry-form .dewford-form-status{font-size:14px;margin:12px 0 0;}
+html body #main-content .dewford-about-form-panel{padding:0;}
+@media(max-width:767px){html body #main-content #dewford-inquiry-form .dewford-about-fields{gap:4vw;}}

@@ -92,7 +92,7 @@
       badge.querySelector('.month').textContent = date ? Number(date[2]) + '월' : '미등록';
       badge.setAttribute('aria-label', date ? `${date[1]}년 ${Number(date[2])}월 ${Number(date[3])}일` : '날짜 미등록');
     }
-    const img = photo(post); if (img) { img.loading = 'eager'; detail.querySelector('[data-detail-image]').prepend(img); }
+    const img = photo(post); if (img) { img.loading = 'eager'; imageTrigger(img); detail.querySelector('[data-detail-image]').prepend(img); }
     const meta = detail.querySelector('[data-detail-meta]');
     if (post.date) { const li = node('li'); const time = node('time','',post.date); li.append(time); meta.append(li); }
     window.DEWFORD_RICH_TEXT.render(detail.querySelector('[data-detail-body]'),post.content,post.body || post.excerpt || '');
@@ -100,7 +100,7 @@
     for (const src of (post.gallery || [])) {
       const image = photo({image:src,title:post.title}); if (!image) continue;
       image.style.cssText = 'display:block;max-width:100%;height:auto;margin:24px 0;';
-      gallery.append(image);
+      imageTrigger(image); gallery.append(image);
     }
     if (gallery.childElementCount) detail.querySelector('[data-detail-body]').after(gallery);
     const index = posts.indexOf(post); const neighbors = detail.querySelector('[data-detail-neighbors]');
@@ -119,5 +119,6 @@
     if (detail) detail.querySelector('[data-detail-title]').textContent = message;
   }
   }
+  function imageTrigger(img){img.dataset.dewfordArticleImage='';img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-haspopup','dialog');img.setAttribute('aria-label',(img.alt||'게시글 이미지')+' 크게 보기');}
   render();window.addEventListener('dewford:content-changed',event=>{if(event.detail?.board==='events')render();});
 })();

@@ -23,11 +23,14 @@
   <link href="css/dewford-shared-ui.css" rel="stylesheet">
   <link href="css/dewford-home-popup.css" rel="stylesheet">
   <link rel="stylesheet" href="css/dewford-rich-text.css">
+  <link href="css/dewford-common-chrome.css" rel="stylesheet">
+  <link href="css/dewford-image-viewer.css" rel="stylesheet">
+  <link href="css/dewford-consultation.css" rel="stylesheet">
 </head>
 
 <body class="dewford-home">
   <div id="dewford-intro" class="dewford-intro" aria-hidden="true">
-    <img class="dewford-intro-logo" src="images/dewford/logo-sharp-white.svg" alt="" fetchpriority="high">
+    <div class="dewford-intro-logo dewford-logo"><img class="dewford-logo-symbol" src="images/common/symbol_2.png" width="311" height="311" alt="" fetchpriority="high"><img class="dewford-logo-text" src="images/common/logo-text.svg" width="224" height="51" alt="" fetchpriority="high"></div>
   </div>
   <script src="js/dewford-intro.js"></script>
 
@@ -396,34 +399,7 @@
             <div class="image-column col-xl-5 col-lg-6 offset-xl-1">
               <div class="inner-column">
                 <div class="dewford-about-form-panel">
-                  <form id="dewford-inquiry-form" class="dewford-about-form">
-                    <h3>입학·교육 상담 신청</h3>
-                    <div class="dewford-about-fields">
-                      <label>학부모 성함 <span aria-hidden="true">*</span><input name="name" autocomplete="name" maxlength="80" required></label>
-                      <label>연락처 <span aria-hidden="true">*</span><input name="phone" type="tel" autocomplete="tel" maxlength="30" required placeholder="010-0000-0000"></label>
-                      <label>이메일<input name="email" type="email" autocomplete="email" maxlength="254"></label>
-                      <label>관심 과정 <span aria-hidden="true">*</span><select name="program" required>
-                          <option value="">선택해 주세요</option>
-                          <option>국제 유치부</option>
-                          <option>유치 방과후</option>
-                          <option>초등 방과후</option>
-                          <option>기타 상담</option>
-                        </select></label>
-                      <label class="form-wide">상담 내용<textarea name="message" rows="3" maxlength="3000" placeholder="아이의 연령과 궁금하신 내용을 남겨주세요."></textarea></label>
-                    </div>
-                    <div hidden aria-hidden="true">
-                      <label>Website<input name="website" tabindex="-1" autocomplete="off"></label>
-                    </div>
-                    <label class="form-consent">
-                      <input name="consent" type="checkbox" required>
-                      <span>상담 답변을 위한 성함, 연락처, 이메일 및 상담 내용의 수집·이용에 동의합니다. 정보는 상담 목적으로 저장되며 ADMIN@DEWFORD.COM으로 삭제를 요청할 수 있습니다.</span>
-                    </label>
-                    <button class="theme-btn btn-style-two" type="submit">
-                      <span class="btn-title">상담 신청하기</span>
-                      <i class="icon fa-light fa-arrow-right" aria-hidden="true"></i>
-                    </button>
-                    <p class="dewford-form-status" role="status" aria-live="polite"></p>
-                  </form>
+                  <div data-dewford-component="inquiry"></div>
                 </div>
                 <div class="text">입학 일정과 상담 방법이 궁금하신가요?<br>입학 안내에서 준비 사항을 확인하고, 아이에게 필요한 배움의 첫걸음을 함께 시작하세요.</div>
                 <a href="rolling-enrollment.html" class="theme-btn btn-style-one">
@@ -695,6 +671,7 @@
   <script src="js/dewford-rich-text.js"></script>
 <script src="js/dewford-api.js"></script>
   <script src="js/dewford-common.js"></script>
+<script src="js/dewford-image-viewer.js"></script>
   <script src="js/dewford-typography.js"></script>
 
   <script src="js/dewford-ui.js"></script>
