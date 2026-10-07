@@ -5,4 +5,5 @@ html body dialog.dewford-admin-composer{width:min(980px,calc(100vw - 40px));heig
 html body .dewford-admin-composer::backdrop{background:rgba(32,16,43,.65);backdrop-filter:blur(3px);}html body .dewford-admin-composer iframe{display:block;width:100%;height:100%;border:0;background:#fff;}
 @media(max-width:700px){html body dialog.dewford-admin-composer{width:100vw;height:100dvh;border-radius:0;}}
 /* Leave breathing room between event administration actions and the next row. */
-html body.dewford-layout-event .news-block-four>.dewford-admin-tools{margin-top:12px;margin-bottom:24px;}
+html body.dewford-layout-event #main-content .news-block-four>.dewford-admin-tools{margin-top:12px;margin-bottom:48px;}
+html body.dewford-layout-event #main-content .news-block-four:has(>.dewford-admin-tools)>.inner-block{height:auto;}
