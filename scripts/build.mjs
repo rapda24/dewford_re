@@ -17,6 +17,11 @@ await rm(dist, { recursive: true, force: true });
 await mkdir(dist, { recursive: true });
 // Explicit public assets only: server code, database migrations and secrets stay private.
 for (const dir of ['css', 'js', 'images', 'fonts', 'plugins', 'video']) {
+  // Unused template asset directories may be removed during project cleanup.
+  try { await stat(path.join(root, dir)); } catch (error) {
+    if (error.code === 'ENOENT') continue;
+    throw error;
+  }
   await cp(path.join(root, dir), path.join(dist, dir), {
     recursive: true,
     filter: async source => {
