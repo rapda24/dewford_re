@@ -37,3 +37,8 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-reg
 #dewford-image-viewer .dewford-viewer-stage,#dewford-image-viewer .dewford-viewer-toolbar{margin-inline:auto;max-width:100%;}
 
 #dewford-image-viewer .dewford-viewer-thumbnails{height:calc(10dvh + 12px);align-items:flex-start;padding-bottom:12px;box-sizing:border-box;}
+
+/* Center previews when they fit; preserve access to both ends when scrolling. */
+#dewford-image-viewer .dewford-viewer-thumbnails{justify-content:flex-start;}
+#dewford-image-viewer .dewford-viewer-thumbnail:first-child{margin-left:auto;}
+#dewford-image-viewer .dewford-viewer-thumbnail:last-child{margin-right:auto;}
