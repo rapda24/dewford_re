@@ -53,7 +53,7 @@
     const list=document.querySelector('[data-event-list]');
     if(list){toolbar(list.closest('.auto-container')||list.closest('section')||list.parentElement,'events');list.querySelectorAll('a[href*="detail.html?id="]').forEach(link=>{const id=new URL(link.href).searchParams.get('id');const card=link.closest('.news-block-four,.team-block-two,.service-block-three,.dr-news-card,.dewford-board-card,.service-block-two');if(card)buttons(card,'events',id);});}
     const detail=document.querySelector('[data-detail-title]');
-    if(detail){toolbar(document.querySelector('#main-content'),'events');buttons(detail.parentElement,'events',new URLSearchParams(location.search).get('id'));}
+    if(detail){const controls=document.querySelector('[data-detail-admin-controls]');if(controls){toolbar(controls,'events');const actions=document.createElement('div');actions.className='dewford-detail-admin-actions';if(!controls.querySelector('.dewford-detail-admin-actions'))controls.append(actions);buttons(controls.querySelector('.dewford-detail-admin-actions'),'events',new URLSearchParams(location.search).get('id'));}}
   }
   sync();let scheduled=false;
   const main=document.querySelector('#main-content');if(main)new MutationObserver(()=>{if(scheduled)return;scheduled=true;requestAnimationFrame(()=>{scheduled=false;sync();});}).observe(main,{childList:true,subtree:true});

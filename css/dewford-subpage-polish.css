@@ -1,5 +1,5 @@
 /* Admissions, Programs and Calendar: shared editorial rhythm. */
-html body.dewford-polished-page #main-content {--polish-ink:#261c2c;--polish-muted:#665e6b;--polish-line:#e8e1eb;--polish-tint:#f7f4f8;color:var(--polish-ink);}
+html body.dewford-polished-page #main-content {--polish-ink:#261c2c;--polish-muted:#665e6b;--polish-line:#e8e1eb;--polish-tint:#f7f7f7;color:var(--polish-ink);}
 html body.dewford-polished-page #main-content > section {padding-block:96px;background:#fff;}
 html body.dewford-polished-page #main-content :is(.auto-container,.container) {max-width:1200px;padding-inline:28px;}
 html body.dewford-polished-page #main-content :is(h2,h3,h4,h5,p,.text) {word-break:keep-all;overflow-wrap:break-word;}

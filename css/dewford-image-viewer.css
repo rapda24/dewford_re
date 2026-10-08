@@ -29,3 +29,5 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-reg
 /* Close control shows only the X icon, outside the image. */
 #dewford-image-viewer .dewford-viewer-close,
 #dewford-image-viewer .dewford-viewer-close:is(:hover,:focus,:focus-visible,:active){background:transparent!important;border:0!important;box-shadow:none!important;outline:none!important;}
+
+.dewford-article-image-trigger{display:block;position:relative;width:fit-content;max-width:100%;cursor:zoom-in;}.dewford-article-image-trigger::after{content:"";position:absolute;right:12px;bottom:12px;width:22px;height:22px;pointer-events:none;z-index:3;filter:drop-shadow(0 1px 2px #0008);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='10' cy='10' r='6.5'/%3E%3Cpath d='m15 15 6 6'/%3E%3C/svg%3E");background-size:contain;background-repeat:no-repeat;}

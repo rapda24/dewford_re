@@ -1,6 +1,6 @@
 /* Original news template palette and layout, isolated from home brand overrides. */
 .dewford-news {
- --theme-color1:#f4f4f4;--theme-color2:#d8d8d8;--theme-color3:#e4e4e4;
+ --theme-color1:#f7f7f7;--theme-color2:#d8d8d8;--theme-color3:#e4e4e4;
  --theme-color1-rgb:244,244,244;--theme-color2-rgb:216,216,216;--theme-color3-rgb:228,228,228;
  --theme-color-dark:var(--id-color);--theme-color-black:var(--id-color);--theme-black:var(--id-color);
  --theme-color-black-rgb:var(--dewford-subpage-brand-rgb,82,25,109);--theme-color-white:#ffffff;
@@ -31,7 +31,7 @@
 
 /* Match news-grid.html colors without changing the shared page chrome. */
 #main-content .dewford-event-template {
- --theme-color1:#f4f4f4;--theme-color2:#D7D9CF;--theme-color3:#E3E5DD;
+ --theme-color1:#f7f7f7;--theme-color2:#D7D9CF;--theme-color3:#E3E5DD;
  --theme-color1-rgb:244,244,244;--theme-color2-rgb:215,217,207;--theme-color3-rgb:227,229,221;
  --theme-color-dark:var(--id-color);--theme-color-black:var(--id-color);--theme-color-white:#fff;
  --headings-color:var(--id-color-dark);--text-color:#525252;
@@ -85,3 +85,11 @@ html body .dewford-event-load-more button:hover{background:#52196d;color:#fff;}
 @media(max-width:767px){
  #main-content.dewford-detail-page .blog-details__content + .nav-links {margin-top:40px;}
 }
+
+html body:has(.dewford-detail-page) .page-wrapper{overflow:clip;}
+#main-content.dewford-detail-page .sidebar{position:sticky;top:120px;max-height:calc(100dvh - 140px);overflow:auto;}
+#main-content.dewford-detail-page .dewford-detail-navigation{display:flex;gap:8px;margin-top:24px;}
+#main-content.dewford-detail-page .dewford-detail-nav-button{display:flex;align-items:center;justify-content:center;gap:6px;flex:1;min-width:0;padding:12px 8px;border:1px solid var(--id-color);color:var(--id-color);font-size:14px;white-space:nowrap;}
+#main-content.dewford-detail-page a.dewford-detail-nav-button:hover{background:var(--id-color);color:#fff;}
+#main-content.dewford-detail-page .dewford-detail-nav-button[aria-disabled=true]{opacity:.4;}
+@media(max-width:991px){#main-content.dewford-detail-page .sidebar{position:static;max-height:none;overflow:visible;}}

@@ -427,3 +427,13 @@ html body:is(.dewford-home,.dewford-subpage) #main-content .theme-btn:not(:hover
 
 /* Clickable links and enabled controls consistently use the pointer cursor. */
 html body a[href],html body button:not(:disabled),html body [role=button]:not([aria-disabled=true]),html body input:is([type=submit],[type=button],[type=reset]):not(:disabled){cursor:pointer!important;}
+
+/* Stack FAQ columns at every viewport width. */
+html body #main-content .row > :has(> .accordion-box){width:100%;max-width:100%;flex:0 0 100%;margin-bottom:0!important;}
+html body #main-content .accordion-box{width:100%;display:block;}
+
+/* Light surface for the Why DEWFORD card that previously used the brand fill. */
+html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-block:nth-child(even) .inner-block{background:#fff;color:#000;}
+html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-block:nth-child(even) .inner-block :is(.title,.title a,.text,p){color:#000!important;}
+html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-block:nth-child(even) .inner-block .number{background:var(--id-color);color:#fff;}
+html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-block:nth-child(even) .inner-block .number i{color:inherit;}

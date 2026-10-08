@@ -52,12 +52,12 @@ html body.dewford-layout-elementary-international #main-content .project-details
 html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:last-child > .col-md-6:first-child {width:58%;}
 html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:last-child > .col-md-6:last-child {width:42%;}
 html body.dewford-layout-elementary-international #main-content .project-details__img {height:360px;}
-html body.dewford-layout-elementary-international #main-content .service-section-two {background:#281532;}
-html body.dewford-layout-elementary-international #main-content .service-section-two :is(h2.title,.sub-title) {color:#fff!important;}
-html body.dewford-layout-elementary-international #main-content .service-block-two .inner-box {border:0;border-top:1px solid #806e87;border-radius:0;background:none;}
-html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content {background:none;color:#fff;padding:32px 12px 0 0;}
-html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content :is(.title,.title a,.text) {color:#fff;}
-html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content:before {color:#c4b6ca;}
+html body.dewford-layout-elementary-international #main-content .service-section-two {background:#f7f7f7;}
+html body.dewford-layout-elementary-international #main-content .service-section-two :is(h2.title,.sub-title) {color:#000!important;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .inner-box {border:0;border-top:1px solid #dedede;border-radius:0;background:none;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content {background:none;color:#000;padding:32px 12px 0 0;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content :is(.title,.title a,.text) {color:#000;}
+html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content:before {color:var(--id-color);}
 @media(max-width:767px){
  html body.dewford-layout-elementary-international #main-content .dewford-why-copy-rows {grid-template-columns:1fr;gap:8px;}
  html body.dewford-layout-elementary-international #main-content .project-details .dewford-why-copy-rows .dewford-icon-copy-row + .dewford-icon-copy-row {border-top:1px solid #ddd3e2;padding-top:24px;}
@@ -253,3 +253,31 @@ html body.dewford-layout-admissions-inquiry #main-content .dewford-application-c
 html body.dewford-layout-admissions-inquiry #main-content .dewford-application-channels a:focus-visible{outline:2px solid var(--id-color);outline-offset:4px;}
 
 html body.dewford-layout-admissions-inquiry #main-content .dewford-application-channels img{display:block;max-width:none;filter:none;}
+
+/* Program videos remain visible on both desktop and mobile. */
+html body #main-content .dewford-program-video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:contain;background:#000;}
+html body.dewford-layout-elementary-esl #main-content .about-section .image-column .image{display:block;visibility:visible;}
+
+html body.dewford-layout-elementary-esl #main-content .dewford-program-video-portrait{aspect-ratio:9 / 16;object-fit:contain;}
+
+/* Campus information precedes the campus image. */
+html body.dewford-layout-admissions-inquiry #main-content .team-details__top-right{margin-top:0;}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__top-left{margin-top:64px;}
+@media(max-width:991px){html body.dewford-layout-admissions-inquiry #main-content .team-details__top-left{margin-top:40px;}}
+
+/* Match the primary program approach section to other light content sections. */
+html body.dewford-layout-elementary-international #main-content .service-section-two :is(h2,h3,h4,.title,.title a,.sub-title,.text,p){color:#000!important;}
+html body.dewford-layout-elementary-international #main-content .service-section-two .outer-box{background:none!important;}
+html body.dewford-layout-elementary-international #main-content .service-section-two .icon-box{background:#fff!important;color:var(--id-color)!important;}
+html body.dewford-layout-elementary-international #main-content .service-section-two .icon-box i{color:var(--id-color)!important;}
+
+/* Keep ESL copy alongside the portrait video while scrolling on desktop. */
+@media(min-width:992px){
+ html body.dewford-layout-elementary-esl .page-wrapper{overflow:clip;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .row{align-items:stretch;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .content-column{align-self:stretch;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .content-column>.inner-column{position:sticky;top:120px;}
+}
+@media(max-width:991px){html body.dewford-layout-elementary-esl #main-content .about-section .content-column>.inner-column{position:static;}}
+
+html body.dewford-layout-elementary-international #main-content .project-details{background-color:#fff;}

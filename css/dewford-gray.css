@@ -56,7 +56,7 @@ body:is(.dewford-home,.dewford-subpage) {background:var(--dewford-paper);color:v
   --notech-black:var(--dewford-ink);--notech-base:var(--dewford-muted);
 }
 .dewford-contact-template .form-control {color:var(--dewford-ink);}
-.dewford-news {--theme-color1:#f4f4f4;--theme-color2:#d9d9d9;--theme-color3:#e5e5e5;--theme-light-background:var(--dewford-paper);}
+.dewford-news {--theme-color1:#f7f7f7;--theme-color2:#d9d9d9;--theme-color3:#e5e5e5;--theme-light-background:var(--dewford-paper);}
 html body .dewford-calendar,
 html body .dewford-calendar :is(h2,h3),
 html body .dewford-calendar-toolbar,

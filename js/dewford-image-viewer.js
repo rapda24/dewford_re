@@ -45,7 +45,7 @@
   photo.addEventListener('load',fit);
   window.addEventListener('resize',fit);window.visualViewport?.addEventListener('resize',fit);
   window.DewfordImageViewer=Object.freeze({open});
-  function articleImage(target){return target.closest('[data-dewford-article-image]');}
+  function articleImage(target){return target.closest('[data-dewford-article-image]')||target.closest('.dewford-article-image-trigger')?.querySelector('[data-dewford-article-image]');}
   function openArticle(img){const images=[...img.closest('[data-news-detail]').querySelectorAll('[data-dewford-article-image]')];open(images.map(el=>({src:el.currentSrc||el.src,alt:el.alt})),images.indexOf(img),img);}
   document.addEventListener('click',async event=>{
     const img=articleImage(event.target);if(img){event.preventDefault();openArticle(img);return;}

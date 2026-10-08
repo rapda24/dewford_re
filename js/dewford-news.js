@@ -78,7 +78,7 @@
     if (!detail) return;
     const post = posts.find(p => p.id === id);
     const title = detail.querySelector('[data-detail-title]');
-    detail.querySelector('[data-detail-image]').querySelectorAll(':scope > img').forEach(el=>el.remove());
+    detail.querySelector('[data-detail-image]').querySelectorAll(':scope > img, :scope > .dewford-article-image-trigger').forEach(el=>el.remove());
     for(const target of ['[data-detail-meta]','[data-detail-body]','[data-detail-neighbors]','[data-detail-related]'])detail.querySelector(target).replaceChildren();
     detail.querySelectorAll('.dewford-event-gallery').forEach(el=>el.remove());
     if (!post) { title.textContent = '게시물을 찾을 수 없습니다.'; detail.querySelector('.sidebar').hidden = true; return; }
@@ -92,20 +92,23 @@
       badge.querySelector('.month').textContent = date ? Number(date[2]) + '월' : '미등록';
       badge.setAttribute('aria-label', date ? `${date[1]}년 ${Number(date[2])}월 ${Number(date[3])}일` : '날짜 미등록');
     }
-    const img = photo(post); if (img) { img.loading = 'eager'; imageTrigger(img); detail.querySelector('[data-detail-image]').prepend(img); }
+    const img = photo(post); if (img) { img.loading = 'eager'; detail.querySelector('[data-detail-image]').prepend(imageTrigger(img)); }
     const meta = detail.querySelector('[data-detail-meta]');
     if (post.date) { const li = node('li'); const time = node('time','',post.date); li.append(time); meta.append(li); }
     window.DEWFORD_RICH_TEXT.render(detail.querySelector('[data-detail-body]'),post.content,post.body || post.excerpt || '');
     const gallery = node('div', 'dewford-event-gallery');
     for (const src of (post.gallery || [])) {
       const image = photo({image:src,title:post.title}); if (!image) continue;
-      image.style.cssText = 'display:block;max-width:100%;height:auto;margin:24px 0;';
-      imageTrigger(image); gallery.append(image);
+      image.style.cssText = 'display:block;max-width:100%;height:auto;margin:0;';
+      const trigger=imageTrigger(image);trigger.style.margin='24px 0';gallery.append(trigger);
     }
     if (gallery.childElementCount) detail.querySelector('[data-detail-body]').after(gallery);
     const index = posts.indexOf(post); const neighbors = detail.querySelector('[data-detail-neighbors]');
-    [[posts[index-1],'prev','이전 소식'],[posts[index+1],'next','다음 소식']].forEach(([item,cls,label]) => {
-      if (!item) return; const div = node('div',cls); const a = link(item); a.prepend(node('span','dewford-neighbor-label',label)); div.append(a); neighbors.append(div);
+    const navigation=[{item:posts[index-1],label:'이전 글',icon:'fa-chevron-left'},{href:'event.html',label:'목록',icon:'fa-list'},{item:posts[index+1],label:'다음 글',icon:'fa-chevron-right'}];
+    navigation.forEach(({item,href,label,icon})=>{
+      const button=node(item||href?'a':'span','dewford-detail-nav-button');
+      if(item)button.href='detail.html?id='+encodeURIComponent(item.id);else if(href)button.href=href;else button.setAttribute('aria-disabled','true');
+      const symbol=node('i','fas '+icon);symbol.setAttribute('aria-hidden','true');button.append(symbol,node('span','',label));neighbors.append(button);
     });
     const related = detail.querySelector('[data-detail-related]');
     posts.filter(p => p.id !== id).slice(0,3).forEach(item => {
@@ -119,6 +122,6 @@
     if (detail) detail.querySelector('[data-detail-title]').textContent = message;
   }
   }
-  function imageTrigger(img){img.dataset.dewfordArticleImage='';img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-haspopup','dialog');img.setAttribute('aria-label',(img.alt||'게시글 이미지')+' 크게 보기');}
+  function imageTrigger(img){const wrapper=node('span','dewford-article-image-trigger');wrapper.append(img);img.dataset.dewfordArticleImage='';img.tabIndex=0;img.setAttribute('role','button');img.setAttribute('aria-haspopup','dialog');img.setAttribute('aria-label',(img.alt||'게시글 이미지')+' 크게 보기');return wrapper;}
   render();window.addEventListener('dewford:content-changed',event=>{if(event.detail?.board==='events')render();});
 })();

@@ -662,6 +662,9 @@ var THEMEMASCOT = {};
 			}
 
 			if ($(this).next('.acc-content').is(':visible')) {
+				$(this).removeClass('active');
+				target.removeClass('active-block');
+				$(this).next('.acc-content').stop(true, true).slideUp(300);
 				return false;
 			} else {
 				$(this).addClass('active');

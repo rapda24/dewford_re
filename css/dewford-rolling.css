@@ -1,6 +1,6 @@
 /* Scope the imported templates to Rolling Admissions. */
 .dewford-rolling-content > :is(.about-section,.service-section-two,.faq-section-home-two) {
-  --theme-color1: #f4f4f4;
+  --theme-color1: #f7f7f7;
   --theme-color2: #D7D9CF;
   --theme-color3: #E3E5DD;
   --theme-color1-rgb: 244,244,244;

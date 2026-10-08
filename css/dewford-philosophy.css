@@ -1,6 +1,6 @@
 /* Template palette scoped to the Vision & Mission body sections. */
 .dewford-philosophy-content > :is(.about-section-home-two,.services-section,.projects-section-two) {
-  --theme-color1: #f4f4f4;
+  --theme-color1: #f7f7f7;
   --theme-color2: #D7D9CF;
   --theme-color3: #E3E5DD;
   --theme-color1-rgb: 244,244,244;
@@ -215,7 +215,7 @@ html body.dewford-subpage #main-content.dewford-philosophy-content #communicatio
 html body.dewford-subpage #main-content.dewford-philosophy-content .services-section .service-block .inner-box::before {background-color:var(--id-color);}
 
 /* Neutral learning journey surface with a brand-colored consultation button. */
-html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two {background-color:#f4f4f4;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two {background-color:#f7f7f7;}
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two :is(.title,.title a,.sub-title,.text,.year-info,.categories-list,.categories-list p,.dewford-program-description) {color:var(--headings-color, #292929)!important;}
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .year-info {background-color:#e4e4e4;}
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .sec-title-style-three .text {border-color:#d6d6d6;}
@@ -235,3 +235,5 @@ html body.dewford-subpage #main-content.dewford-philosophy-content .projects-sec
 
 /* Learning journey photos retain their original colors without a tint. */
 html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .project-block-two .image::before {display:none;background:none;}
+
+html body.dewford-subpage #main-content.dewford-philosophy-content .projects-section-two .project-block-two .image-box{width:70%;margin-inline:auto;}

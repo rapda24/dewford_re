@@ -1,6 +1,6 @@
 /* Retain the source templates’ palette only inside the imported Why sections. */
 .dewford-subpage-content[data-page-intro="false"] > :is(.project-details,.service-section-two,.features-section-three,.dewford-why-clients,.why-choose-us-four) {
-  --theme-color1: #f4f4f4;
+  --theme-color1: #f7f7f7;
   --theme-color2: #D7D9CF;
   --theme-color3: #E3E5DD;
   --theme-color1-rgb: 244,244,244;
@@ -100,7 +100,7 @@ html body.dewford-subpage #main-content > :is(.project-details,.dewford-why-clie
 body.dewford-subpage #main-content > .clients-section.dewford-why-clients {padding-bottom:0!important;}
 
 /* Alternating Learning Journey cards, scoped to Why Dewford. */
-#main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block {background:#f4f4f4;color:#525252;}
+#main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block {background:#f7f7f7;color:#525252;}
 #main-content .why-choose-us-four .feature-block:nth-child(even) .inner-block {background:var(--id-color);color:#fff;}
 #main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block .title,
 #main-content .why-choose-us-four .feature-block:nth-child(odd) .inner-block .title a {color:var(--id-color-dark);}
