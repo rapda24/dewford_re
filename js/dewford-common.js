@@ -171,23 +171,45 @@
   document.querySelectorAll('.dewford-navigation a').forEach(link => {
     if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
   });
+  // Bind before typography splits Korean text into separate spans.
+  // These elements keep a stable field identity regardless of their current value.
+  const addressPattern=/(?:\(04392\)\s*)?서울(?:시|특별시) 용산구 장문로\s*27[,]?\s*청화아파트 상가 1층 #101호/;
+  const addressNodes=[...document.querySelectorAll('span,a,address')].filter(el=>addressPattern.test(el.textContent));
+  addressNodes.filter(el=>!addressNodes.some(child=>child!==el&&el.contains(child))).forEach(el=>{
+    // Contact icons and labels are outside the address text in these containers.
+    el.dataset.dewfordInfo='address';
+  });
+  const fieldPattern=/듀포드인터내셔널컬리지어학원|02-6401-1012|ADMIN@DEWFORD\.COM|제3355호/gi;
+  const fields={'듀포드인터내셔널컬리지어학원':'academyName','02-6401-1012':'phone','admin@dewford.com':'email','제3355호':'registration'};
+  const fieldWalker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+  const fieldNodes=[];
+  while(fieldWalker.nextNode()){
+    const node=fieldWalker.currentNode;
+    if(node.parentElement&&!node.parentElement.closest('script,style,[data-dewford-info]'))fieldNodes.push(node);
+  }
+  fieldNodes.forEach(node=>{
+    const text=node.nodeValue;const matches=[...text.matchAll(fieldPattern)];if(!matches.length)return;
+    const fragment=document.createDocumentFragment();let offset=0;
+    for(const match of matches){
+      fragment.append(text.slice(offset,match.index));
+      const span=document.createElement('span');span.dataset.dewfordInfo=fields[match[0].toLowerCase()];span.textContent=match[0];fragment.append(span);offset=match.index+match[0].length;
+    }
+    fragment.append(text.slice(offset));node.replaceWith(fragment);
+  });
+  document.querySelectorAll('a[href^="tel:"]').forEach(link=>{if(link.getAttribute('href').replace(/[^0-9]/g,'')==='0264011012')link.dataset.dewfordInfoLink='phone';});
+  document.querySelectorAll('a[href^="mailto:"]').forEach(link=>{if(/admin@dewford\.com/i.test(link.getAttribute('href')))link.dataset.dewfordInfoLink='email';});
+  let infoRequest;
   async function applySiteInfo(){
-    try{
+    if(infoRequest)return infoRequest;
+    infoRequest=(async()=>{try{
       const {data:info}=await window.DewfordAPI.content('site-info');
       window.DewfordSiteInfo=Object.freeze(info);
-      const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
-      const nodes=[];while(walker.nextNode())if(!walker.currentNode.parentElement.closest('script,style'))nodes.push(walker.currentNode);
-      nodes.forEach(node=>{
-        let text=node.nodeValue;
-        text=text.replace(/듀포드인터내셔널컬리지어학원/g,()=>info.academyName)
-          .replace(/02-6401-1012/g,()=>info.phone).replace(/ADMIN@DEWFORD\.COM/gi,()=>info.email)
-          .replace(/제3355호/g,()=>info.registration);
-        if(/서울(?:시|특별시) 용산구 장문로\s*27/.test(text))text=text.replace(/(?:\(04392\)\s*)?서울(?:시|특별시) 용산구 장문로\s*27[,]?\s*(?:청화아파트 상가 1층 #101호)?/,()=>info.address);
-        else if(/청화아파트 상가 1층 #101호/.test(text))text=text.replace(/청화아파트 상가 1층 #101호/,'');
-        node.nodeValue=text;
+      document.querySelectorAll('[data-dewford-info]').forEach(el=>{
+        const value=info[el.dataset.dewfordInfo];
+        if(typeof value==='string')el.textContent=value;
       });
-      document.querySelectorAll('a[href^="tel:"]').forEach(link=>{if(link.getAttribute('href').replace(/[^0-9]/g,'')==='0264011012')link.href='tel:'+info.phone.replace(/[^+0-9]/g,'');});
-      document.querySelectorAll('a[href^="mailto:"]').forEach(link=>{if(/admin@dewford\.com/i.test(link.getAttribute('href')))link.href='mailto:'+info.email;});
+      document.querySelectorAll('a[href^="tel:"]').forEach(link=>{if(link.dataset.dewfordInfoLink==='phone')link.href='tel:'+info.phone.replace(/[^+0-9]/g,'');});
+      document.querySelectorAll('a[href^="mailto:"]').forEach(link=>{if(link.dataset.dewfordInfoLink==='email')link.href='mailto:'+info.email;});
       document.querySelectorAll('a[href*="map.kakao.com"]').forEach(link=>link.href='https://map.kakao.com/?q='+encodeURIComponent(info.address));
       document.querySelectorAll('iframe[src*="maps.google.com/maps"]').forEach(frame=>{const url=new URL(frame.src);url.searchParams.set('q',info.address);frame.src=url.href;});
       for(const [name,domain] of [['kakao','kakao.com'],['naver','naver.com']]){
@@ -195,7 +217,11 @@
         if(!['http:','https:'].includes(url.protocol)||url.username||url.password||!(url.hostname===domain||url.hostname.endsWith('.'+domain)))continue;
         document.querySelectorAll(name==='kakao'?'a[href*="pf.kakao.com"],a[href*="open.kakao.com"]':'a[href*="talk.naver.com"]').forEach(link=>link.href=url.href);
       }
-    }catch{/* Keep existing information if the public settings are unavailable. */}
+    }catch(error){console.warn('공통 정보를 불러오지 못했습니다.',error);}
+    finally{infoRequest=null;}})();
+    return infoRequest;
   }
   applySiteInfo();
+  window.addEventListener('pageshow',event=>{if(event.persisted)applySiteInfo();});
+  window.addEventListener('focus',applySiteInfo);
 })();
