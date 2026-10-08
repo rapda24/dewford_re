@@ -48,3 +48,9 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top {background:#00
  html body:is(.dewford-home,.dewford-subpage) .dewford-dialog-submenu {padding:0 20px 14px 0;}
  html body:is(.dewford-home,.dewford-subpage) .page-wrapper .dewford-footer .dewford-footer-contact-row .info .dewford-footer-contact-value {font-weight:500!important;}
 }
+
+/* Keep the floating contact controls clear of footer registration and tuition links. */
+html body:is(.dewford-home,.dewford-subpage){--dewford-floating-bottom:max(120px,calc(env(safe-area-inset-bottom) + 96px));}
+html body:is(.dewford-home,.dewford-subpage) .dewford-naver-floating{bottom:var(--dewford-floating-bottom)!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating{bottom:calc(var(--dewford-floating-bottom) + 58px)!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top{bottom:calc(var(--dewford-floating-bottom) + 116px)!important;}

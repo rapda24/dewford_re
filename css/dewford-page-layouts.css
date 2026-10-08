@@ -75,7 +75,7 @@ html body.dewford-layout-elementary-esl #main-content .service-block-two .overla
 html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content:before {position:static;font-size:32px;line-height:1;color:#a698ad;}
 html body.dewford-layout-elementary-esl #main-content .service-block-two .icon-box {display:none;}
 html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content .title {margin:0!important;}
-html body.dewford-layout-elementary-esl #main-content .swiper-slide:nth-child(even) .overlay-content {background:#f8f5fa;}
+html body.dewford-layout-elementary-esl #main-content .swiper-slide:nth-child(even) .overlay-content {background:#f7f7f7;}
 html body.dewford-layout-elementary-esl #main-content .faq-section-home-two {background:#faf9f7;}
 @media(max-width:991px){
  html body.dewford-layout-elementary-esl #main-content .about-section .image-column {width:100%;padding-inline:12px;}
@@ -228,7 +228,7 @@ html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-
 
 /* Three clearly numbered consultation steps. */
 html body.dewford-layout-admissions-inquiry #main-content .team-details__progress {counter-reset:consultation-step;gap:24px;align-items:stretch;}
-html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single {counter-increment:consultation-step;margin:0;padding:28px 24px;background:#f6f5f7;border:0;border-top:2px solid var(--id-color);}
+html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single {counter-increment:consultation-step;margin:0;padding:28px 24px;background:#f7f7f7;border:0;border-top:2px solid var(--id-color);}
 html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single::before {content:"0" counter(consultation-step);position:static;display:block;width:auto;height:auto;margin:0 0 20px;background:none;color:var(--id-color);font-family:var(--dewford-body-font-family);font-size:28px;font-weight:700;line-height:1;}
 html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-title {font-family:var(--dewford-body-font-family)!important;font-size:20px;line-height:1.5!important;font-weight:700;margin:0 0 12px;word-break:keep-all;}
 html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single p {margin:0;font-size:16px;line-height:1.8!important;color:#625b68;word-break:keep-all;overflow-wrap:anywhere;}

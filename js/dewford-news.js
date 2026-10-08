@@ -108,7 +108,7 @@
     navigation.forEach(({item,href,label,icon})=>{
       const button=node(item||href?'a':'span','dewford-detail-nav-button');
       if(item)button.href='detail.html?id='+encodeURIComponent(item.id);else if(href)button.href=href;else button.setAttribute('aria-disabled','true');
-      const symbol=node('i','fas '+icon);symbol.setAttribute('aria-hidden','true');button.append(symbol,node('span','',label));neighbors.append(button);
+      const symbol=node('i','fas '+icon);symbol.setAttribute('aria-hidden','true');const text=node('span','',label);button.append(...(label==='다음 글'?[text,symbol]:[symbol,text]));neighbors.append(button);
     });
     const related = detail.querySelector('[data-detail-related]');
     posts.filter(p => p.id !== id).slice(0,3).forEach(item => {

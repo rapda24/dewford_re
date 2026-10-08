@@ -33,7 +33,11 @@
     const tools=document.createElement('div');tools.className='dewford-admin-tools dewford-admin-toolbar';
     const create=document.createElement('button');create.type='button';create.textContent='글쓰기';create.dataset.date=date||'';
     create.addEventListener('click',()=>{const date=container.querySelector('[data-date][aria-pressed="true"]')?.dataset.date||create.dataset.date;openEditor(board,'new',date?{date}:{});});
-    const manage=document.createElement('a');manage.href='admin.html?board='+board;manage.textContent='게시판 관리';tools.append(create,manage);container.prepend(tools);
+    const manage=document.createElement('a');manage.href='admin.html?board='+board;manage.textContent='게시판 관리';
+    if(container.hasAttribute('data-detail-admin-controls')){
+      for(const [button,icon] of [[create,'fa-pen'],[manage,'fa-list-check']]){const symbol=document.createElement('i');symbol.className='fas '+icon;symbol.setAttribute('aria-hidden','true');button.prepend(symbol);}
+    }
+    tools.append(create,manage);container.prepend(tools);
   }
   function buttons(container,board,id){
     if(!id||container.querySelector(':scope > .dewford-admin-tools'))return;

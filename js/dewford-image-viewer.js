@@ -15,12 +15,18 @@
   function fit(){
     if(!dialog.open||!photo.naturalWidth||photo.hidden)return;
     const width=document.documentElement.clientWidth,height=window.visualViewport?.height||window.innerHeight;
-    const availableWidth=Math.max(1,width-32),availableHeight=Math.max(1,height-32-46-(items.length>1?height*.1+12:0));
+    const availableWidth=Math.max(1,width-32),availableHeight=Math.max(1,height-32-46-(items.length>1?height*.1+24:0));
     const scale=Math.min(1,availableWidth/photo.naturalWidth,availableHeight/photo.naturalHeight);
-    dialog.style.width=photo.naturalWidth*scale+'px';photo.style.width=photo.naturalWidth*scale+'px';photo.style.height=photo.naturalHeight*scale+'px';
+    const imageWidth=photo.naturalWidth*scale;
+    const previewWidth=Math.min(width*.9,availableWidth);
+    dialog.style.width=Math.max(imageWidth,items.length>1?previewWidth:0)+'px';
+    stage.style.width=toolbar.style.width=imageWidth+'px';
+    photo.style.width=imageWidth+'px';photo.style.height=photo.naturalHeight*scale+'px';
   }
   function render(){
     const current=++version,item=items[index];photo.hidden=true;photo.removeAttribute('src');photo.style.width='';photo.style.height='';
+    stage.style.width=toolbar.style.width='';
+    dialog.style.width=items.length>1?'min(90vw, calc(100vw - 32px))':'min(320px, calc(100vw - 32px))';
     status.hidden=false;status.textContent='이미지를 불러오고 있습니다.';
     prev.hidden=next.hidden=thumbs.hidden=items.length<2;
     for(const [i,b] of [...thumbs.children].entries())b.setAttribute('aria-current',String(i===index));
@@ -58,7 +64,7 @@
     }catch{
       if(!dialog.open&&previousOverflow!==undefined)cleanup();
       version++;items=[];opener=fee;photo.hidden=true;photo.removeAttribute('src');thumbs.replaceChildren();thumbs.hidden=prev.hidden=next.hidden=true;
-      dialog.style.width='320px';status.hidden=false;status.textContent='교습비 안내 이미지를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
+      stage.style.width=toolbar.style.width='';dialog.style.width='320px';status.hidden=false;status.textContent='교습비 안내 이미지를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.';
       if(!dialog.open){previousOverflow=document.documentElement.style.overflow;document.documentElement.style.overflow='hidden';dialog.showModal();}
       close.focus({preventScroll:true});
     }finally{fee.disabled=false;}

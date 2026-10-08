@@ -16,3 +16,7 @@ html body .dewford-admin-toolbar :is(a,button):focus-visible{outline:2px solid #
 @media(max-width:600px){html body .dewford-admin-tools.dewford-admin-toolbar{width:calc(100% - 24px);padding:16px 14px;gap:10px;margin-bottom:24px;}html body .dewford-admin-tools.dewford-admin-toolbar :is(a,button){flex:1;min-width:0;padding:11px 14px;font-size:14px!important;white-space:nowrap;}}
 /* Match the event grid edges while retaining the toolbar's inner padding. */
 html body.dewford-layout-event #main-content .dewford-admin-toolbar{width:100%;max-width:none;margin-inline:0;}
+
+/* Detail management controls share the navigation layout, retaining their own palette. */
+html body #main-content.dewford-detail-page [data-detail-admin-controls]>.dewford-admin-toolbar{display:flex;flex-wrap:nowrap;gap:8px;width:100%;max-width:none;margin:10px 0 0;padding:0;border:0;background:none;box-shadow:none;}
+html body #main-content.dewford-detail-page [data-detail-admin-controls]>.dewford-admin-toolbar :is(button,a){display:flex;align-items:center;justify-content:center;gap:6px;flex:1;min-width:0;min-height:0;padding:12px 8px;font:600 14px/1.5 var(--dewford-body-font-family,Pretendard,sans-serif)!important;white-space:nowrap;}
