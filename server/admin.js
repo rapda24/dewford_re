@@ -52,7 +52,19 @@ export async function loadTuition(request, env) {
   const popup = state.boards.popups.find(item => item.published !== false && item.enabled && item.image);
   return {image:popup?.image || 'images/sub/pop2026_1.png', revision:0};
 }
+const defaultChannels={kakao:'http://pf.kakao.com/_vHKlxj/chat',naver:'https://talk.naver.com/profile/wqvj07x',revision:0};
+export async function loadChannels(env){
+  const row=await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'channels'").first();
+  return row?JSON.parse(row.payload):{...defaultChannels};
+}
+function channelURL(value,domain){
+  if(typeof value!=='string'||value.length>1000)fail('INVALID_CHANNEL_URL');
+  let url;try{url=new URL(value.trim());}catch{fail('INVALID_CHANNEL_URL');}
+  if(!['http:','https:'].includes(url.protocol)||url.username||url.password||!(url.hostname===domain||url.hostname.endsWith('.'+domain)))fail('INVALID_CHANNEL_URL');
+  return url.href;
+}
 export async function managedPublic(request, env, slug) {
+  if (slug === 'channels') {const {kakao,naver}=await loadChannels(env);return {kakao,naver};}
   if (slug === 'tuition') return {image:(await loadTuition(request, env)).image};
   if (!['events','calendar','popups'].includes(slug)) return null;
   const row = await env.DB.prepare('SELECT revision, payload FROM admin_content WHERE id = 1').bind().first();
@@ -153,6 +165,17 @@ export async function adminRoute(request, env) {
   if (path === '/api/admin/logout' && request.method === 'POST') {
     await env.DB.prepare('DELETE FROM admin_sessions WHERE token_hash = ?').bind(auth.tokenHash).run();
     return {data:{authenticated:false}, headers:{'Set-Cookie':cookie(request, '', 0)}};
+  }
+  if(path==='/api/admin/channels'&&request.method==='GET')return {data:await loadChannels(env)};
+  if(path==='/api/admin/channels'&&request.method==='POST'){
+    const body=await input(request);
+    const previous=await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'channels'").first();
+    const revision=previous?JSON.parse(previous.payload).revision:0;
+    if(!body||body.revision!==revision)fail('CONTENT_CHANGED',409);
+    const data={kakao:channelURL(body.kakao,'kakao.com'),naver:channelURL(body.naver,'naver.com'),revision:revision+1};
+    const result=await env.DB.prepare("INSERT INTO public_content (slug,payload,published) VALUES ('channels',?,1) ON CONFLICT(slug) DO UPDATE SET payload=excluded.payload,published=1,updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE public_content.payload=?").bind(JSON.stringify(data),previous?.payload||'').run();
+    if(!result.meta.changes)fail('CONTENT_CHANGED',409);
+    return {data};
   }
   if (path === '/api/admin/tuition' && request.method === 'GET') return {data:await loadTuition(request, env)};
   if (path === '/api/admin/tuition' && request.method === 'POST') {

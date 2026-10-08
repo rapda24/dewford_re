@@ -174,3 +174,16 @@ test('inquiry stages, selected deletion, filtered bulk actions and full export a
   result=await call(env,'admin/inquiries',{action:'delete',scope:'all',q:'검색대상'},auth);assert.equal(result.data.changed,21);
   assert.equal((await call(env,'admin/inquiries',null,auth)).data.total,2);
 });
+
+test('consultation channel settings are protected, validated and published independently',async()=>{
+ const {env,password}=environment();const auth=await login(env,password);
+ assert.equal((await call(env,'admin/channels')).response.status,401);
+ const initial=await call(env,'admin/channels',null,auth);assert.equal(initial.data.revision,0);
+ const settings={kakao:'https://pf.kakao.com/new-channel/chat',naver:'https://talk.naver.com/profile/new-profile',revision:0};
+ assert.equal((await call(env,'admin/channels',settings,{cookie:auth.cookie})).response.status,403);
+ for(const bad of ['javascript:alert(1)','https://kakao.com.evil.example/chat','https://user:password@pf.kakao.com/chat'])assert.equal((await call(env,'admin/channels',{...settings,kakao:bad},auth)).response.status,400);
+ assert.equal((await call(env,'admin/channels',settings,auth)).response.status,200);
+ assert.equal((await call(env,'admin/channels',settings,auth)).response.status,409);
+ const published=await call(env,'content/channels');assert.deepEqual(published.data,{kakao:settings.kakao,naver:settings.naver});
+ const saved=await call(env,'admin/channels',null,auth);assert.equal(saved.data.revision,1);assert.equal(saved.data.kakao,settings.kakao);
+});

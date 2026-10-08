@@ -14,7 +14,7 @@
     return result.data;
   }
   window.DewfordAdmin = Object.freeze({
-    session:() => request('session'), login:data => request('login', data), logout:() => request('logout', {}),
+    channels:() => request('channels'), saveChannels:data => request('channels',data), session:() => request('session'), login:data => request('login', data), logout:() => request('logout', {}),
     updateInquiries:data => request('inquiries', data), inquiries:params => request('inquiries?' + new URLSearchParams(params)), tuition:() => request('tuition'), saveTuition:data => request('tuition', data), content:() => request('content'), mutate:data => request('content', data), upload:file => request('upload', null, file)
   });
 })();

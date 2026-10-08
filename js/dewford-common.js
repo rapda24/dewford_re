@@ -171,4 +171,15 @@
   document.querySelectorAll('.dewford-navigation a').forEach(link => {
     if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
   });
+  async function applyChannelLinks(){
+    try{
+      const result=await window.DewfordAPI.content('channels');
+      for(const [name,domain] of [['kakao','kakao.com'],['naver','naver.com']]){
+        const url=new URL(result.data[name]);
+        if(!['http:','https:'].includes(url.protocol)||url.username||url.password||!(url.hostname===domain||url.hostname.endsWith('.'+domain)))continue;
+        document.querySelectorAll(name==='kakao'?'a[href*="pf.kakao.com"],a[href*="open.kakao.com"]':'a[href*="talk.naver.com"]').forEach(link=>link.href=url.href);
+      }
+    }catch{/* Retain current consultation links if settings cannot be loaded. */}
+  }
+  applyChannelLinks();
 })();
