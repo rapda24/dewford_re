@@ -54,3 +54,8 @@ html body:is(.dewford-home,.dewford-subpage){--dewford-floating-bottom:max(120px
 html body:is(.dewford-home,.dewford-subpage) .dewford-naver-floating{bottom:var(--dewford-floating-bottom)!important;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-kakao-floating{bottom:calc(var(--dewford-floating-bottom) + 58px)!important;}
 html body:is(.dewford-home,.dewford-subpage) .dewford-scroll-top{bottom:calc(var(--dewford-floating-bottom) + 116px)!important;}
+
+/* Administrator access beside the shared footer copyright. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .copyright{display:flex;align-items:center;gap:10px;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer a.dewford-footer-login{display:inline-flex;align-items:center;justify-content:center;flex:0 0 28px;width:28px;height:28px;color:inherit;cursor:pointer;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer a.dewford-footer-login:focus-visible{outline:2px solid currentColor;outline-offset:3px;}
