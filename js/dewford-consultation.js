@@ -14,7 +14,7 @@
       form.reset();
       status.textContent = '상담 신청이 접수되었습니다. 남겨주신 연락처로 안내드리겠습니다.';
     } catch {
-      status.textContent = '신청이 접수되지 않았습니다. 잠시 후 다시 시도하거나 02-6401-1012로 연락해 주세요.';
+      status.textContent = `신청이 접수되지 않았습니다. 잠시 후 다시 시도하거나 ${window.DewfordSiteInfo?.phone||'02-6401-1012'}로 연락해 주세요.`;
     } finally { button.disabled = false; }
   });
   });

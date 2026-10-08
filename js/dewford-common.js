@@ -171,15 +171,31 @@
   document.querySelectorAll('.dewford-navigation a').forEach(link => {
     if (link.getAttribute('href') === currentPage) link.setAttribute('aria-current', 'page');
   });
-  async function applyChannelLinks(){
+  async function applySiteInfo(){
     try{
-      const result=await window.DewfordAPI.content('channels');
+      const {data:info}=await window.DewfordAPI.content('site-info');
+      window.DewfordSiteInfo=Object.freeze(info);
+      const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);
+      const nodes=[];while(walker.nextNode())if(!walker.currentNode.parentElement.closest('script,style'))nodes.push(walker.currentNode);
+      nodes.forEach(node=>{
+        let text=node.nodeValue;
+        text=text.replace(/듀포드인터내셔널컬리지어학원/g,()=>info.academyName)
+          .replace(/02-6401-1012/g,()=>info.phone).replace(/ADMIN@DEWFORD\.COM/gi,()=>info.email)
+          .replace(/제3355호/g,()=>info.registration);
+        if(/서울(?:시|특별시) 용산구 장문로\s*27/.test(text))text=text.replace(/(?:\(04392\)\s*)?서울(?:시|특별시) 용산구 장문로\s*27[,]?\s*(?:청화아파트 상가 1층 #101호)?/,()=>info.address);
+        else if(/청화아파트 상가 1층 #101호/.test(text))text=text.replace(/청화아파트 상가 1층 #101호/,'');
+        node.nodeValue=text;
+      });
+      document.querySelectorAll('a[href^="tel:"]').forEach(link=>{if(link.getAttribute('href').replace(/[^0-9]/g,'')==='0264011012')link.href='tel:'+info.phone.replace(/[^+0-9]/g,'');});
+      document.querySelectorAll('a[href^="mailto:"]').forEach(link=>{if(/admin@dewford\.com/i.test(link.getAttribute('href')))link.href='mailto:'+info.email;});
+      document.querySelectorAll('a[href*="map.kakao.com"]').forEach(link=>link.href='https://map.kakao.com/?q='+encodeURIComponent(info.address));
+      document.querySelectorAll('iframe[src*="maps.google.com/maps"]').forEach(frame=>{const url=new URL(frame.src);url.searchParams.set('q',info.address);frame.src=url.href;});
       for(const [name,domain] of [['kakao','kakao.com'],['naver','naver.com']]){
-        const url=new URL(result.data[name]);
+        const url=new URL(info[name]);
         if(!['http:','https:'].includes(url.protocol)||url.username||url.password||!(url.hostname===domain||url.hostname.endsWith('.'+domain)))continue;
         document.querySelectorAll(name==='kakao'?'a[href*="pf.kakao.com"],a[href*="open.kakao.com"]':'a[href*="talk.naver.com"]').forEach(link=>link.href=url.href);
       }
-    }catch{/* Retain current consultation links if settings cannot be loaded. */}
+    }catch{/* Keep existing information if the public settings are unavailable. */}
   }
-  applyChannelLinks();
+  applySiteInfo();
 })();

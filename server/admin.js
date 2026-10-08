@@ -52,10 +52,10 @@ export async function loadTuition(request, env) {
   const popup = state.boards.popups.find(item => item.published !== false && item.enabled && item.image);
   return {image:popup?.image || 'images/sub/pop2026_1.png', revision:0};
 }
-const defaultChannels={kakao:'http://pf.kakao.com/_vHKlxj/chat',naver:'https://talk.naver.com/profile/wqvj07x',revision:0};
+const defaultChannels={academyName:'듀포드인터내셔널컬리지어학원',phone:'02-6401-1012',email:'ADMIN@DEWFORD.COM',address:'(04392) 서울시 용산구 장문로27 청화아파트 상가 1층 #101호',registration:'제3355호',kakao:'http://pf.kakao.com/_vHKlxj/chat',naver:'https://talk.naver.com/profile/wqvj07x',revision:0};
 export async function loadChannels(env){
   const row=await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'channels'").first();
-  return row?JSON.parse(row.payload):{...defaultChannels};
+  return {...defaultChannels,...(row?JSON.parse(row.payload):{})};
 }
 function channelURL(value,domain){
   if(typeof value!=='string'||value.length>1000)fail('INVALID_CHANNEL_URL');
@@ -64,6 +64,7 @@ function channelURL(value,domain){
   return url.href;
 }
 export async function managedPublic(request, env, slug) {
+  if (slug === 'site-info') {const {revision,...info}=await loadChannels(env);return info;}
   if (slug === 'channels') {const {kakao,naver}=await loadChannels(env);return {kakao,naver};}
   if (slug === 'tuition') return {image:(await loadTuition(request, env)).image};
   if (!['events','calendar','popups'].includes(slug)) return null;
@@ -166,13 +167,20 @@ export async function adminRoute(request, env) {
     await env.DB.prepare('DELETE FROM admin_sessions WHERE token_hash = ?').bind(auth.tokenHash).run();
     return {data:{authenticated:false}, headers:{'Set-Cookie':cookie(request, '', 0)}};
   }
-  if(path==='/api/admin/channels'&&request.method==='GET')return {data:await loadChannels(env)};
-  if(path==='/api/admin/channels'&&request.method==='POST'){
+  if(['/api/admin/channels','/api/admin/site-info'].includes(path)&&request.method==='GET')return {data:await loadChannels(env)};
+  if(['/api/admin/channels','/api/admin/site-info'].includes(path)&&request.method==='POST'){
     const body=await input(request);
     const previous=await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'channels'").first();
     const revision=previous?JSON.parse(previous.payload).revision:0;
     if(!body||body.revision!==revision)fail('CONTENT_CHANGED',409);
-    const data={kakao:channelURL(body.kakao,'kakao.com'),naver:channelURL(body.naver,'naver.com'),revision:revision+1};
+    const data={...defaultChannels,...(previous?JSON.parse(previous.payload):{}),kakao:channelURL(body.kakao,'kakao.com'),naver:channelURL(body.naver,'naver.com'),revision:revision+1};
+    if(path==='/api/admin/site-info'){
+      for(const [field,max] of [['academyName',150],['phone',40],['email',254],['address',500],['registration',100]]){
+        if(typeof body[field]!=='string'||!body[field].trim()||body[field].length>max||/[\u0000-\u001f]/.test(body[field]))fail('INVALID_SITE_INFO');
+        data[field]=body[field].trim();
+      }
+      if(!/^[+()0-9\s-]{5,40}$/.test(data.phone)||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))fail('INVALID_SITE_INFO');
+    }
     const result=await env.DB.prepare("INSERT INTO public_content (slug,payload,published) VALUES ('channels',?,1) ON CONFLICT(slug) DO UPDATE SET payload=excluded.payload,published=1,updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE public_content.payload=?").bind(JSON.stringify(data),previous?.payload||'').run();
     if(!result.meta.changes)fail('CONTENT_CHANGED',409);
     return {data};

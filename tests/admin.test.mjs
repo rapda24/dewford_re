@@ -187,3 +187,20 @@ test('consultation channel settings are protected, validated and published indep
  const published=await call(env,'content/channels');assert.deepEqual(published.data,{kakao:settings.kakao,naver:settings.naver});
  const saved=await call(env,'admin/channels',null,auth);assert.equal(saved.data.revision,1);assert.equal(saved.data.kakao,settings.kakao);
 });
+
+test('shared site information saves with SNS links and legacy channel writes preserve basic info',async()=>{
+ const {env,password}=environment();const auth=await login(env,password);
+ const previous=await call(env,'admin/site-info',null,auth);
+ assert.equal(previous.data.academyName,'듀포드인터내셔널컬리지어학원');
+ const settings={...previous.data,academyName:'새 학원',phone:'02-1234-5678',email:'office@example.com',address:'서울시 용산구 새주소 12',registration:'제999호'};
+ assert.equal((await call(env,'admin/site-info',settings)).response.status,401);
+ assert.equal((await call(env,'admin/site-info',settings,{cookie:auth.cookie})).response.status,403);
+ assert.equal((await call(env,'admin/site-info',{...settings,email:'invalid'},auth)).response.status,400);
+ assert.equal((await call(env,'admin/site-info',{...settings,academyName:''},auth)).response.status,400);
+ assert.equal((await call(env,'admin/site-info',settings,auth)).response.status,200);
+ assert.equal((await call(env,'admin/site-info',settings,auth)).response.status,409);
+ const publicInfo=(await call(env,'content/site-info')).data;
+ assert.equal(publicInfo.phone,settings.phone);assert.equal(publicInfo.address,settings.address);assert.equal(publicInfo.registration,settings.registration);assert.equal(publicInfo.revision,undefined);
+ assert.equal((await call(env,'admin/channels',{revision:1,kakao:'https://pf.kakao.com/another/chat',naver:settings.naver},auth)).response.status,200);
+ assert.equal((await call(env,'content/site-info')).data.academyName,'새 학원');
+});
