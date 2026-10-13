@@ -258,7 +258,7 @@ html body.dewford-layout-admissions-inquiry #main-content .dewford-application-c
 html body #main-content .dewford-program-video{display:block;width:100%;height:auto;aspect-ratio:16 / 9;object-fit:contain;background:#000;}
 html body.dewford-layout-elementary-esl #main-content .about-section .image-column .image{display:block;visibility:visible;}
 
-html body.dewford-layout-elementary-esl #main-content .dewford-program-video-portrait{aspect-ratio:9 / 16;object-fit:contain;}
+
 
 /* Campus information precedes the campus image. */
 html body.dewford-layout-admissions-inquiry #main-content .team-details__top-right{margin-top:0;}
@@ -271,13 +271,30 @@ html body.dewford-layout-elementary-international #main-content .service-section
 html body.dewford-layout-elementary-international #main-content .service-section-two .icon-box{background:#fff!important;color:var(--id-color)!important;}
 html body.dewford-layout-elementary-international #main-content .service-section-two .icon-box i{color:var(--id-color)!important;}
 
-/* Keep ESL copy alongside the portrait video while scrolling on desktop. */
-@media(min-width:992px){
+/* Keep the landscape ESL video visible beside the scrolling syllabus. */
+@media(min-width:1550.01px){
  html body.dewford-layout-elementary-esl .page-wrapper{overflow:clip;}
  html body.dewford-layout-elementary-esl #main-content .about-section .row{align-items:stretch;}
- html body.dewford-layout-elementary-esl #main-content .about-section .content-column{align-self:stretch;}
- html body.dewford-layout-elementary-esl #main-content .about-section .content-column>.inner-column{position:sticky;top:120px;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .image-column{align-self:stretch;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .image-column>.inner-column{position:sticky;top:120px;}
 }
-@media(max-width:991px){html body.dewford-layout-elementary-esl #main-content .about-section .content-column>.inner-column{position:static;}}
+@media(max-width:1550px){html body.dewford-layout-elementary-esl #main-content .about-section .content-column>.inner-column{position:static;}}
 
 html body.dewford-layout-elementary-international #main-content .project-details{background-color:#fff;}
+
+html body.dewford-layout-elementary-esl #main-content .about-section .content-column>.inner-column{position:static;}
+@media(min-width:1550.01px){
+ html body.dewford-layout-elementary-esl #main-content .about-section .content-column{width:44%;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .image-column{width:56%;}
+}
+/* At 1550px and below, video follows the full-width text content. */
+@media(max-width:1550px){
+ html body.dewford-layout-elementary-esl #main-content .about-section :is(.content-column,.image-column){width:100%;margin-inline:0;padding-inline:12px;}
+ html body.dewford-layout-elementary-esl #main-content .about-section .image-column>.inner-column{position:static;}
+}
+
+/* Balance the preschool photo series without changing the original subjects. */
+html body.dewford-layout-international-preschool #main-content .service-section-two .dewford-stage-photo{filter:brightness(var(--stage-photo-brightness,1.03)) contrast(var(--stage-photo-contrast,.96)) saturate(var(--stage-photo-saturation,.82)) sepia(var(--stage-photo-sepia,.035));}
+html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(2) .dewford-stage-photo{--stage-photo-brightness:1;}
+html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(3) .dewford-stage-photo{--stage-photo-brightness:1.23;--stage-photo-contrast:1.1;--stage-photo-saturation:.98;--stage-photo-sepia:.015;}
+html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(5) .dewford-stage-photo{--stage-photo-brightness:1;object-position:center 65%;}

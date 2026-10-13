@@ -29,18 +29,18 @@
     'contact.html': ['용산 이태원에서,\n아이의 새로운 배움을 만납니다', '교육 과정과 입학에 대한 궁금한 점을 남겨주세요. 방문에 필요한 위치와 연락처를 확인하고 DEWFORD와 첫 만남을 준비해 보세요.']
   };
   const pageImages = {
-    'why-dewford.html':[['15','50% 42%'],['19','50% 40%'],['26','50% 40%']],
+    'why-dewford.html':[['15-uniform','50% 42%',1536],['19-uniform','50% 40%',1536],['26-uniform-backpack','50% 40%',1536]],
     'educational-philosophy.html':[['14-philosophy-uniform','62% 40%',1536],['21-philosophy-uniform','50% 38%',1536],['30-philosophy-uniform','50% 40%',1536]],
-    'rolling-enrollment.html':[['20-enrollment-uniform-no-logo','50% 38%',1536],['07-enrollment-uniform','50% 40%',1536],['23-enrollment-uniform','62% 35%',1536]],
-    'admissions-inquiry.html':[['02','60% 40%'],['05','62% 38%'],['15','50% 42%']],
-    'international-preschool.html':[['06','55% 38%'],['17','50% 42%'],['14','62% 40%']],
-    'elementary-international.html':[['18','50% 38%'],['22','50% 38%'],['27','35% 38%']],
-    'elementary-esl.html':[['12','65% 38%'],['28','42% 38%'],['18','50% 38%']],
-    'preschool-calendar.html':[['16','50% 45%'],['06','55% 38%'],['08','50% 40%']],
-    'elementary-calendar.html':[['24','50% 40%'],['29','50% 40%'],['31','50% 38%']],
-    'event.html':[['08','50% 40%'],['21','50% 38%'],['32','50% 40%']],
-    'detail.html':[['30','50% 40%'],['26','50% 40%'],['35','50% 42%']],
-    'contact.html':[['01','55% 43%'],['20','50% 38%'],['23','62% 35%']]
+    'rolling-enrollment.html':[['20-enrollment-uniform-no-logo-backpack','50% 38%',1536],['07-enrollment-uniform','50% 40%',1536],['23-enrollment-uniform-backpack','62% 35%',1536]],
+    'admissions-inquiry.html':[['02-uniform','60% 40%',1536],['05-uniform','62% 38%',1536],['15-uniform','50% 42%',1536]],
+    'international-preschool.html':[['06-uniform','55% 38%',1536],['17-uniform','50% 42%',1536],['14-philosophy-uniform','62% 40%',1536]],
+    'elementary-international.html':[['18-uniform','50% 38%',1536],['22-uniform','50% 38%',1536],['27-uniform','35% 38%',1536]],
+    'elementary-esl.html':[['12-uniform','65% 38%',1536],['28-uniform','42% 38%',1536],['18-uniform','50% 38%',1536]],
+    'preschool-calendar.html':[['16-uniform','50% 45%',1536],['06-uniform','55% 38%',1536],['08-uniform','50% 40%',1536]],
+    'elementary-calendar.html':[['24-uniform-backpack','50% 40%',1536],['29-uniform','50% 40%',1536],['31-uniform-backpack','50% 38%',1536]],
+    'event.html':[['08-uniform','50% 40%',1536],['21-philosophy-uniform','50% 38%',1536],['32-uniform-backpack','50% 40%',1536]],
+    'detail.html':[['30-philosophy-uniform','50% 40%',1536],['26-uniform-backpack','50% 40%',1536],['35-uniform-backpack','50% 42%',1536]],
+    'contact.html':[['01-uniform','55% 43%',1536],['20-enrollment-uniform-backpack','50% 38%',1536],['23-enrollment-uniform-backpack','62% 35%',1536]]
   };
   const filename = location.pathname.split('/').pop();
   const page = pages[filename];

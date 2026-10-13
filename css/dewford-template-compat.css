@@ -235,23 +235,16 @@ html body.dewford-home #main-content.dewford-template-content .sub-title {font-w
 .dewford-home .dewford-footer {--sub-color:#f5a100;}
 html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visible),
 html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visible) :is(span,.text,.dewford-korean-text) {color:var(--sub-color)!important;}
-/* Fixed, centered learning-journey photo replaces the inline template image. */
-#main-content .services-section-three .dewford-journey-background {
- background-image:url('../images/photo/mjourney.jpg');
- background-position:center center;background-size:cover;
- background-repeat:no-repeat;background-attachment:fixed;
+/* Keep the journey photograph below the cards so the scene remains visible. */
+#main-content .services-section-three{display:flex;flex-direction:column;padding-bottom:0;}
+#main-content .services-section-three .outer-box{order:0;max-width:none;width:100%;padding-bottom:130px;}
+#main-content .services-section-three .dewford-journey-background{
+ order:1;position:relative;inset:auto;display:block;flex:none;width:100%;max-width:1200px;height:auto;aspect-ratio:4 / 3;margin:0 auto;
+ background-image:url('../images/photo/photo-28.jpg');background-position:center;background-size:contain;background-repeat:no-repeat;background-attachment:scroll;
 }
-#main-content .services-section-three .dewford-journey-background::before {background:rgba(0,0,0,.25);}
-@media(max-width:1199.98px){
- #main-content .services-section-three .dewford-journey-background {display:block;background-size:contain;background-color:#211b17;}
-}
-/* Match index-2: the photo sits behind the lower half of the content cards. */
-#main-content .services-section-three {padding-bottom:0;}
-#main-content .services-section-three .dewford-journey-background {height:414px;bottom:0;}
-#main-content .services-section-three .outer-box {max-width:none;width:100%;padding-bottom:130px;}
+#main-content .services-section-three .dewford-journey-background::before{display:none;}
 @media(max-width:991.98px){
- #main-content .services-section-three .outer-box {padding-bottom:51px;}
- #main-content .services-section-three .dewford-journey-background {height:50%;background-size:cover;}
+ #main-content .services-section-three .outer-box{padding-bottom:51px;}
 }
 /* Keep the learning icons outlined in both normal and hover states. */
 #main-content .services-section-three .service-block-three .icon-box svg,
@@ -374,10 +367,10 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford
  #main-content .service-section-home-3 .dewford-education-mobile-break {display:block;}
  #main-content .service-section-home-3 .dewford-education-desktop-space {display:none;}
 }
-/* Lightweight mobile backgrounds and motion. Desktop retains the fixed effect. */
+/* Lightweight mobile backgrounds and motion. */
 @media(max-width:767.98px){
- #main-content .services-section-three .dewford-journey-background {background-image:url('../images/photo/mjourney.jpg');background-attachment:scroll;}
- #main-content #events .outer-box {background-image:url('../images/optimized/main_01-768.webp')!important;}
+ #main-content .services-section-three .dewford-journey-background {background-image:url('../images/photo/photo-28.jpg');background-attachment:scroll;}
+ #main-content #events .outer-box {background-image:url('../images/optimized/main_01-uniform-backpack-768.webp')!important;}
 
  #main-content .banner-section-three .bg-image {transform:none!important;transition:none;}
  #main-content .reveal {visibility:visible;opacity:1;}
@@ -466,13 +459,13 @@ html body.dewford-home .dewford-header .dewford-header-talk > span {background:#
 
 #main-content .dewford-event-preview .sec-right-box .theme-btn {--button-surface:#fff;}
 
-/* Mirror only the location photo, leaving the contact panel readable. */
+/* Location photo is already oriented for the contact panel; bag lettering stays readable. */
 #main-content .service-section-home-3 {isolation:isolate;background-image:none;}
-#main-content .service-section-home-3::before {content:"";position:absolute;inset:0;z-index:-1;background:url('../images/optimized/main_19-uniform-1600.webp') center / cover no-repeat;transform:scaleX(-1);}
+#main-content .service-section-home-3::before {content:"";position:absolute;inset:0;z-index:-1;background:url('../images/optimized/main_19-uniform-backpack-1600.webp') center / cover no-repeat;transform:none;}
 #main-content .service-section-home-3 .dewford-location-label {display:block;font-size:14px;letter-spacing:.1em;margin-top:18px;margin-bottom:4px;}
 #main-content .service-section-home-3 .dewford-location-label:first-child {margin-top:0;}
 #main-content .service-section-home-3 .info-box a {color:inherit;}
-@media(max-width:767.98px){#main-content .service-section-home-3::before {background-image:url('../images/optimized/main_19-uniform-768.webp');}}
+@media(max-width:767.98px){#main-content .service-section-home-3::before {background-image:url('../images/optimized/main_19-uniform-backpack-768.webp');}}
 
 #main-content .service-section-home-3 .info-box .dewford-location-row {display:flex;align-items:flex-start;gap:12px;margin-top:16px;}
 #main-content .service-section-home-3 .info-box .dewford-location-row:first-child {margin-top:0;}
@@ -599,3 +592,25 @@ body.dewford-home #main-content.dewford-template-content > .why-choose-us-four .
 body.dewford-home #main-content.dewford-template-content > .services-section-three .service-block-three .inner-box {background-color:#f7f7f7;}
 body.dewford-home #main-content.dewford-template-content > .services-section-three .service-block-three .inner-box .icon-box {background-color:#fff;}
 body.dewford-home #main-content.dewford-template-content > .services-section-three .theme-btn.btn-style-two {--button-surface:#fff;}
+
+/* Stationary brand symbol with a clockwise rotating text ring. */
+#main-content .banner-section-three .dewford-banner-emblem{position:relative;width:180px;aspect-ratio:1;margin:0 auto 20px;line-height:1;}
+#main-content .banner-section-three .dewford-banner-emblem .dewford-brand-ring{display:block;width:100%;height:100%;fill:var(--id-color,#52196d);font-family:Arial,sans-serif;font-size:15px;font-weight:700;animation:dewford-brand-ring-spin 24s linear infinite;}
+#main-content .banner-section-three .dewford-banner-emblem .dewford-banner-symbol{display:block;position:absolute;width:52%;height:52%;object-fit:contain;left:24%;top:24%;}
+@keyframes dewford-brand-ring-spin{to{transform:rotate(360deg);}}
+@media(max-width:767.98px){
+ #main-content .banner-section-three .dewford-banner-emblem{width:clamp(110px,30vw,150px);margin-bottom:12px;}
+ /* Place the full journey photo after the cards in the mobile document flow. */
+ #main-content .services-section-three{display:flex;flex-direction:column;}
+ #main-content .services-section-three .outer-box{order:0;padding-bottom:0;}
+ #main-content .services-section-three .dewford-journey-background{order:1;position:relative;inset:auto;display:block;flex:none;width:100%;height:auto;aspect-ratio:4 / 3;background-size:contain;background-position:center;background-attachment:scroll;}
+ #main-content .services-section-three .dewford-journey-background::before{display:none;}
+}
+@media(prefers-reduced-motion:reduce){#main-content .banner-section-three .dewford-banner-emblem .dewford-brand-ring{animation:none;}}
+
+/* Desktop retains the overlapping card/background composition. */
+@media(min-width:768px){
+ #main-content .services-section-three{display:block;isolation:isolate;}
+ #main-content .services-section-three .dewford-journey-background{position:absolute;inset:auto 0 0;max-width:none;width:100%;height:clamp(480px,45vw,680px);aspect-ratio:auto;margin:0;background-size:cover;background-position:center 55%;z-index:0;}
+ body.dewford-home #main-content.dewford-template-content > .services-section-three .outer-box{position:relative;z-index:1;background-color:transparent;padding-bottom:clamp(200px,22vw,320px);}
+}

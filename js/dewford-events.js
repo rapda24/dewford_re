@@ -67,7 +67,7 @@
         const imageLink = element('a'); imageLink.href = href;
         imageLink.className = 'dewford-event-image';
         imageLink.setAttribute('aria-label', post.title);
-        imageLink.style.backgroundImage = 'url(' + JSON.stringify(imageURL(post.image) || 'images/optimized/main_38-768.webp') + ')';
+        imageLink.style.backgroundImage = 'url(' + JSON.stringify(imageURL(post.image) || 'images/optimized/main_38-uniform-backpack-768.webp') + ')';
         figure.append(imageLink); imageBox.append(figure);
         const content = element('div', 'content-box');
         const info = element('div', 'info-box');

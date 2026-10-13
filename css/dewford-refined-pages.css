@@ -47,7 +47,7 @@
 #main-content.dewford-refined-page .projects-section-two h2.title {font-size:44px!important;line-height:1.35!important;}
 #main-content.dewford-refined-page .team-contact-form {background:#fff;}
 #main-content.dewford-refined-page .team-contact-form > .container {padding-block:0;}
-#main-content.dewford-refined-page .service-section-two .outer-box {background-image:url('../images/sub/sub_15.jpg');background-size:cover;background-position:center;}
+#main-content.dewford-refined-page .service-section-two .outer-box {background-image:url('../images/sub/sub_15-uniform.jpg');background-size:cover;background-position:center;}
 #main-content.dewford-refined-page:not(.dewford-philosophy-content) .reveal,
 #main-content.dewford-refined-page:not(.dewford-philosophy-content) .reveal img {transform:none!important;opacity:1!important;visibility:visible!important;}
 /* Match the spacing and typography established on Why Dewford. */
@@ -79,7 +79,7 @@ html body.dewford-subpage #main-content.dewford-refined-page .section-title__tit
 #main-content.dewford-refined-page .team-details__progress-single {padding-bottom:24px;border-bottom:1px solid #ddd;}
 #main-content.dewford-refined-page .service-block-two .overlay-content {min-height:340px;}
 #main-content.dewford-refined-page .service-block-two .overlay-content .title {min-height:3em;}
-#main-content.dewford-refined-page .service-section-two .outer-box {background-image:url('../images/sub/sub_15.jpg')!important;}
+#main-content.dewford-refined-page .service-section-two .outer-box {background-image:url('../images/sub/sub_15-uniform.jpg')!important;}
 #main-content.dewford-refined-page .accordion-box .acc-btn {font-size:21px;font-weight:700;}
 @media(max-width:767.98px){
  html body.dewford-subpage #main-content.dewford-refined-page h2.title,
