@@ -1,0 +1,155 @@
+{
+  "headers": {
+    "why-dewford.html": [
+      "main-1.jpg",
+      "photo-2.jpg",
+      "photo-48.jpg"
+    ],
+    "educational-philosophy.html": [
+      "photo-6.jpg",
+      "photo-37.jpg",
+      "photo-56.jpeg"
+    ],
+    "rolling-enrollment.html": [
+      "photo-11.jpg",
+      "photo-40.jpg",
+      "photo-34.jpg"
+    ],
+    "admissions-inquiry.html": [
+      "photo-18.JPG",
+      "photo-51.jpeg",
+      "photo-52.jpeg"
+    ],
+    "international-preschool.html": [
+      "photo-17.JPEG",
+      "photo-55.jpeg",
+      "photo-57.jpeg"
+    ],
+    "elementary-international.html": [
+      "photo-58.jpeg",
+      "photo-59.jpeg",
+      "photo-61.jpeg"
+    ],
+    "elementary-esl.html": [
+      "photo-27.jpg",
+      "photo-66.jpeg",
+      "photo-45.jpg"
+    ],
+    "preschool-calendar.html": [
+      "photo-1.jpg",
+      "photo-26.jpg",
+      "photo-32.jpg"
+    ],
+    "elementary-calendar.html": [
+      "main-4.jpg",
+      "photo-3.jpg",
+      "photo-12.JPEG"
+    ],
+    "event.html": [
+      "main-5.JPEG",
+      "photo-47.jpeg",
+      "photo-50.jpg"
+    ],
+    "detail.html": [
+      "photo-41.jpg",
+      "photo-43.jpg",
+      "photo-44.jpg"
+    ],
+    "contact.html": [
+      "photo-14.JPEG",
+      "photo-23.jpg",
+      "photo-54.jpeg"
+    ]
+  },
+  "body": {
+    "why-difference": "photo-4.jpg",
+    "philosophy-approach": "photo-46.jpg",
+    "rolling-introduction": "photo-35.jpg"
+  },
+  "expand": [
+    "photo-6.jpg",
+    "photo-56.jpeg",
+    "photo-11.jpg",
+    "photo-40.jpg",
+    "photo-34.jpg",
+    "photo-18.JPG",
+    "photo-51.jpeg",
+    "photo-52.jpeg",
+    "photo-55.jpeg",
+    "photo-57.jpeg",
+    "photo-58.jpeg",
+    "photo-59.jpeg",
+    "photo-61.jpeg",
+    "photo-27.jpg",
+    "photo-66.jpeg",
+    "photo-45.jpg",
+    "photo-1.jpg",
+    "photo-26.jpg",
+    "photo-3.jpg",
+    "photo-12.JPEG",
+    "photo-41.jpg",
+    "photo-43.jpg",
+    "photo-44.jpg",
+    "photo-23.jpg",
+    "photo-54.jpeg",
+    "photo-46.jpg",
+    "photo-35.jpg"
+  ],
+  "unused_sources": [
+    "main-1.jpg",
+    "photo-2.jpg",
+    "photo-48.jpg",
+    "photo-6.jpg",
+    "photo-37.jpg",
+    "photo-56.jpeg",
+    "photo-11.jpg",
+    "photo-40.jpg",
+    "photo-34.jpg",
+    "photo-18.JPG",
+    "photo-51.jpeg",
+    "photo-52.jpeg",
+    "photo-17.JPEG",
+    "photo-55.jpeg",
+    "photo-57.jpeg",
+    "photo-58.jpeg",
+    "photo-59.jpeg",
+    "photo-61.jpeg",
+    "photo-27.jpg",
+    "photo-66.jpeg",
+    "photo-45.jpg",
+    "photo-1.jpg",
+    "photo-26.jpg",
+    "photo-32.jpg",
+    "main-4.jpg",
+    "photo-3.jpg",
+    "photo-12.JPEG",
+    "main-5.JPEG",
+    "photo-47.jpeg",
+    "photo-50.jpg",
+    "photo-41.jpg",
+    "photo-43.jpg",
+    "photo-44.jpg",
+    "photo-14.JPEG",
+    "photo-23.jpg",
+    "photo-54.jpeg",
+    "photo-4.jpg",
+    "photo-46.jpg",
+    "photo-38.jpg",
+    "photo-13.JPG",
+    "photo-39.jpg",
+    "photo-10.jpg",
+    "photo-35.jpg",
+    "photo-22.jpg"
+  ],
+  "preparation": {
+    "tool": "OpenAI image generation",
+    "prompt": "원본 인물과 장면을 유지하고 주변 환경만 자연스럽게 확장해 3:2 가로 사진으로 제작",
+    "directory": "images/photo/prepared",
+    "originals_preserved": true
+  },
+  "layout": "Original layout, markup, animations and floating controls preserved; image paths only replaced.",
+  "preserved_sections": [
+    "educational-philosophy.html: projects-section-two — confidence.jpeg, curiosity.jpeg, communication.jpeg, independence.jpeg",
+    "admissions-inquiry.html: original designated body image images/sub/contact.png"
+  ]
+}

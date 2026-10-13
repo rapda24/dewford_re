@@ -29,18 +29,18 @@
     'contact.html': ['용산 이태원에서,\n아이의 새로운 배움을 만납니다', '교육 과정과 입학에 대한 궁금한 점을 남겨주세요. 방문에 필요한 위치와 연락처를 확인하고 DEWFORD와 첫 만남을 준비해 보세요.']
   };
   const pageImages = {
-    'why-dewford.html':[['15-uniform','50% 42%',1536],['19-uniform','50% 40%',1536],['26-uniform-backpack','50% 40%',1536]],
-    'educational-philosophy.html':[['14-philosophy-uniform','62% 40%',1536],['21-philosophy-uniform','50% 38%',1536],['30-philosophy-uniform','50% 40%',1536]],
-    'rolling-enrollment.html':[['20-enrollment-uniform-no-logo-backpack','50% 38%',1536],['07-enrollment-uniform','50% 40%',1536],['23-enrollment-uniform-backpack','62% 35%',1536]],
-    'admissions-inquiry.html':[['02-uniform','60% 40%',1536],['05-uniform','62% 38%',1536],['15-uniform','50% 42%',1536]],
-    'international-preschool.html':[['06-uniform','55% 38%',1536],['17-uniform','50% 42%',1536],['14-philosophy-uniform','62% 40%',1536]],
-    'elementary-international.html':[['18-uniform','50% 38%',1536],['22-uniform','50% 38%',1536],['27-uniform','35% 38%',1536]],
-    'elementary-esl.html':[['12-uniform','65% 38%',1536],['28-uniform','42% 38%',1536],['18-uniform','50% 38%',1536]],
-    'preschool-calendar.html':[['16-uniform','50% 45%',1536],['06-uniform','55% 38%',1536],['08-uniform','50% 40%',1536]],
-    'elementary-calendar.html':[['24-uniform-backpack','50% 40%',1536],['29-uniform','50% 40%',1536],['31-uniform-backpack','50% 38%',1536]],
-    'event.html':[['08-uniform','50% 40%',1536],['21-philosophy-uniform','50% 38%',1536],['32-uniform-backpack','50% 40%',1536]],
-    'detail.html':[['30-philosophy-uniform','50% 40%',1536],['26-uniform-backpack','50% 40%',1536],['35-uniform-backpack','50% 42%',1536]],
-    'contact.html':[['01-uniform','55% 43%',1536],['20-enrollment-uniform-backpack','50% 38%',1536],['23-enrollment-uniform-backpack','62% 35%',1536]]
+    'why-dewford.html':[["main-1","50% 50%",1600],["photo-2","50% 50%",1600],["photo-48","50% 50%",1600]],
+    'educational-philosophy.html':[["photo-6","50% 50%",1600],["photo-37","50% 50%",1600],["photo-56","50% 50%",1600]],
+    'rolling-enrollment.html':[["photo-11","50% 50%",1600],["photo-40","50% 50%",1600],["photo-34","50% 50%",1600]],
+    'admissions-inquiry.html':[["photo-18","50% 50%",1600],["photo-51","50% 50%",1600],["photo-52","50% 50%",1600]],
+    'international-preschool.html':[["photo-17","50% 50%",1600],["photo-55","50% 50%",1600],["photo-57","50% 50%",1600]],
+    'elementary-international.html':[["photo-58","50% 50%",1600],["photo-59","50% 50%",1600],["photo-61","50% 50%",1600]],
+    'elementary-esl.html':[["photo-27","50% 50%",1600],["photo-66","50% 50%",1600],["photo-45","50% 50%",1600]],
+    'preschool-calendar.html':[["photo-1","50% 0%",1600],["photo-26","50% 50%",1600],["photo-32","50% 50%",1600]],
+    'elementary-calendar.html':[["main-4","50% 50%",1600],["photo-3","50% 50%",1600],["photo-12","50% 50%",1600]],
+    'event.html':[["main-5","50% 50%",1600],["photo-47","50% 50%",1600],["photo-50","50% 50%",1600]],
+    'detail.html':[["photo-41","50% 50%",1600],["photo-43","50% 50%",1600],["photo-44","50% 50%",1600]],
+    'contact.html':[["photo-14","50% 50%",1600],["photo-23","50% 50%",1600],["photo-54","50% 50%",1600]],
   };
   const filename = location.pathname.split('/').pop();
   const page = pages[filename];
@@ -60,8 +60,8 @@
   pageImages[filename].forEach(([id,focus,width=1800],i) => {
     const slide=document.createElement('div');slide.className='dewford-page-title-slide'+(i===0?' is-active':'');
     const img=document.createElement('img');img.alt='';img.decoding='async';img.sizes='100vw';
-    img.srcset=`images/sub/title/sub-${id}-768.jpg 768w, images/sub/title/sub-${id}-${width}.jpg ${width}w`;
-    img.src=`images/sub/title/sub-${id}-${width}.jpg`;img.style.objectPosition=focus;
+    img.srcset=`images/photo/prepared/${id}-768.webp 768w, images/photo/prepared/${id}-${width}.webp ${width}w`;
+    img.src=`images/photo/prepared/${id}-${width}.webp`;img.style.objectPosition=focus;
     if(i===0)img.fetchPriority='high';
     slide.append(img);photos.append(slide);
   });
