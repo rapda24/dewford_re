@@ -1,6 +1,12 @@
 import {normalizeRichContent, richPlainText} from './rich-text.js';
 const encoder = new TextEncoder();
 const boards = ['events', 'preschool', 'elementary', 'popups'];
+const calendarBoards = ['preschool', 'elementary'];
+const defaultCategories = ['행사', '방학', 'no class'];
+function calendarCategories(content) {
+  if (Array.isArray(content.calendarCategories)) return content.calendarCategories;
+  return [...new Set([...defaultCategories, ...calendarBoards.flatMap(board => (content[board] || []).map(item => item.category).filter(value => typeof value === 'string' && value.trim()))])];
+}
 const fail = (code, status = 400) => { throw Object.assign(new Error(code), { status }); };
 const digest = async value => Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', encoder.encode(value))), b => b.toString(16).padStart(2, '0')).join('');
 const equal = (a, b) => { let diff = a.length ^ b.length; for (let i = 0; i < Math.max(a.length, b.length); i++) diff |= (a.charCodeAt(i) || 0) ^ (b.charCodeAt(i) || 0); return diff === 0; };
@@ -37,13 +43,15 @@ async function staticJSON(request, env, path, fallback) {
 }
 export async function loadState(request, env) {
   const row = await env.DB.prepare('SELECT revision, payload FROM admin_content WHERE id = 1').bind().first();
-  if (row) return {revision:row.revision, boards:JSON.parse(row.payload)};
+  if (row) {const content=JSON.parse(row.payload);content.calendarCategories=calendarCategories(content);return {revision:row.revision, boards:content};}
   const rows = await env.DB.prepare("SELECT slug, payload FROM public_content WHERE slug IN ('events', 'calendar', 'popups') AND published = 1").all();
   const existing = Object.fromEntries(rows.results.map(r => [r.slug, JSON.parse(r.payload)]));
   const events = existing.events || await staticJSON(request, env, '/js/data/dewford-events.json', {posts:[]});
   const calendar = existing.calendar || await staticJSON(request, env, '/js/data/dewford-calendar.json', {});
   const normalize = (items, board) => (items || []).map((item, i) => ({...item, id:item.id || `legacy-${board}-${i}`, published:item.published !== false}));
-  return {revision:0, boards:{events:normalize(events.posts, 'events'), preschool:normalize(calendar.preschool, 'preschool'), elementary:normalize(calendar.elementary, 'elementary'), popups:normalize(existing.popups?.popups || [{id:'home-2026', title:'DEWFORD 안내', image:'images/sub/pop2026_1.png', enabled:true, published:true, width:480}])}};
+  const content={events:normalize(events.posts, 'events'), preschool:normalize(calendar.preschool, 'preschool'), elementary:normalize(calendar.elementary, 'elementary'), popups:normalize(existing.popups?.popups || [{id:'home-2026', title:'DEWFORD 안내', image:'images/sub/pop2026_1.png', enabled:true, published:true, width:480}])};
+  content.calendarCategories=calendarCategories(content);
+  return {revision:0, boards:content};
 }
 export async function loadTuition(request, env) {
   const row = await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'tuition'").first();
@@ -73,7 +81,7 @@ export async function managedPublic(request, env, slug) {
   const state = JSON.parse(row.payload);
   const visible = items => items.filter(item => item.published !== false);
   if (slug === 'events') return {posts:visible(state.events), ordered:true};
-  if (slug === 'calendar') return {preschool:visible(state.preschool), elementary:visible(state.elementary)};
+  if (slug === 'calendar') return {preschool:visible(state.preschool), elementary:visible(state.elementary), categories:calendarCategories(state)};
   const now = Date.now();
   return {popups:visible(state.popups).filter(p => p.enabled && (!p.startsAt || Date.parse(p.startsAt) <= now) && (!p.endsAt || Date.parse(p.endsAt) >= now))};
 }
@@ -116,10 +124,43 @@ function itemInput(item, board, previous = {}) {
 export function mutateState(state, body) {
   if (!body || typeof body !== 'object') fail('INVALID_INPUT');
   if (!boards.includes(body.board)) fail('INVALID_BOARD');
+  const categories=calendarCategories(state.boards);
   const list = state.boards[body.board]; const index = list.findIndex(item => item.id === body.id);
+  if (['category-save','category-delete'].includes(body.action)) {
+    if (!calendarBoards.includes(body.board)) fail('INVALID_BOARD');
+    const previous=body.category===undefined?'':text(body.category,50,true);
+    const categoryIndex=categories.indexOf(previous);
+    if (previous && categoryIndex<0) fail('CATEGORY_NOT_FOUND',404);
+    if (body.action==='category-save') {
+      const name=text(body.name,50,true);
+      if (categories.some(category=>category.toLowerCase()===name.toLowerCase() && category!==previous)) fail('DUPLICATE_CATEGORY',409);
+      if (!previous && categories.length>=50) fail('INVALID_INPUT');
+      if (previous) categories[categoryIndex]=name; else categories.push(name);
+      if (previous) for (const board of calendarBoards) for (const item of state.boards[board]) if(item.category===previous)item.category=name;
+    } else {
+      if (!previous) fail('INVALID_INPUT');
+      categories.splice(categoryIndex,1);
+      for (const board of calendarBoards) for (const item of state.boards[board]) if(item.category===previous)delete item.category;
+    }
+    state.boards.calendarCategories=categories;
+    return state;
+  }
+  if (body.action==='delete-selected') {
+    if (!Array.isArray(body.ids) || !body.ids.length || body.ids.length>1000 || body.ids.some(id=>typeof id!=='string'||!id||id.length>100)) fail('INVALID_INPUT');
+    const ids=new Set(body.ids);
+    if (ids.size!==body.ids.length) fail('INVALID_INPUT');
+    if (body.ids.some(id=>!list.some(item=>item.id===id))) fail('ITEM_NOT_FOUND',404);
+    state.boards[body.board]=list.filter(item=>!ids.has(item.id));
+    return state;
+  }
   if (body.action === 'save') {
     if (body.id && index < 0) fail('ITEM_NOT_FOUND', 404);
     const item = itemInput(body.item, body.board, index >= 0 ? list[index] : {});
+    if (calendarBoards.includes(body.board)) {
+      const category=text(body.item.category ?? (index>=0?list[index].category||'':''),50);
+      if (category && !categories.includes(category)) fail('CATEGORY_NOT_FOUND',400);
+      if (category) item.category=category;
+    }
     item.id = index >= 0 ? list[index].id : crypto.randomUUID(); item.updatedAt = new Date().toISOString();
     if (index >= 0) list[index] = item; else list.unshift(item);
   } else {
@@ -133,6 +174,7 @@ export function mutateState(state, body) {
       if (!boards.includes(body.target) || body.target === body.board || [body.target,body.board].includes('popups')) fail('INVALID_BOARD');
       if (state.boards[body.target].some(item => item.id === body.id)) fail('DUPLICATE_ITEM', 409);
       const item = list[index]; item.date = date(body.date || item.date, true);
+      if (body.target==='events') delete item.category;
       item.description = item.body || item.description || ''; item.body = item.body || item.description;
       list.splice(index,1); state.boards[body.target].unshift(item);
     } else fail('INVALID_ACTION');

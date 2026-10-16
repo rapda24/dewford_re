@@ -23,6 +23,51 @@ async function call(env,path,payload,auth={}) {
 }
 async function login(env,password){const result=await call(env,'admin/login',{username:'admin',password});assert.equal(result.response.status,200);assert.match(result.response.headers.get('Set-Cookie'),/HttpOnly; SameSite=Strict/);return {cookie:result.response.headers.get('Set-Cookie').split(';')[0],csrf:result.data.csrf};}
 const item={title:'새 소식',date:'2026-10-06',body:'내용',image:'images/sub/pop2026_1.png',published:true};
+test('calendar categories persist, rename across both calendars, and delete without deleting schedules',async()=>{
+  const {env,password}=environment();const auth=await login(env,password);
+  let state=(await call(env,'admin/content',null,auth)).data;
+  assert.deepEqual(state.boards.calendarCategories,['행사','방학','no class']);
+  const mutate=async payload=>{const result=await call(env,'admin/content',{board:'preschool',revision:state.revision,...payload},auth);if(result.response.ok)state=result.data;return result;};
+  assert.equal((await mutate({action:'category-save',name:'체험학습'})).response.status,200);
+  assert.equal((await mutate({action:'category-save',name:'체험학습'})).response.status,409);
+  assert.equal((await mutate({action:'category-save',name:'  '})).response.status,400);
+  assert.equal((await mutate({action:'save',item:{...item,category:'없는 분류'}})).response.status,400);
+  await mutate({action:'save',item:{...item,category:'체험학습'}});
+  await mutate({action:'save',board:'elementary',item:{...item,category:'체험학습'}});
+  await mutate({action:'category-save',category:'체험학습',name:'현장학습'});
+  assert.equal(state.boards.preschool[0].category,'현장학습');assert.equal(state.boards.elementary[0].category,'현장학습');
+  let feed=(await call(env,'content/calendar')).data;
+  assert.equal(feed.preschool[0].category,'현장학습');assert.ok(feed.categories.includes('현장학습'));
+  assert.equal((await call(env,'admin/content',{board:'preschool',revision:state.revision-1,action:'category-delete',category:'현장학습'},auth)).response.status,409);
+  await mutate({action:'category-delete',category:'현장학습'});
+  feed=(await call(env,'content/calendar')).data;
+  assert.equal(feed.preschool.length,1);assert.equal(feed.elementary.length,1);
+  assert.equal(feed.preschool[0].category,undefined);assert.equal(feed.elementary[0].category,undefined);
+  await mutate({action:'category-delete',category:'행사'});
+  assert.equal((await call(env,'admin/content',null,auth)).data.boards.calendarCategories.includes('행사'),false);
+  assert.equal((await mutate({board:'events',action:'category-save',name:'차단'})).response.status,400);
+});
+test('selected deletion is atomic, scoped to its board, and protected by the content revision',async()=>{
+  const {env,password}=environment();const auth=await login(env,password);
+  let state=(await call(env,'admin/content',null,auth)).data;
+  const mutate=async payload=>{const result=await call(env,'admin/content',{board:'events',revision:state.revision,...payload},auth);if(result.response.ok)state=result.data;return result;};
+  for(const title of ['보존','삭제 1','삭제 2'])await mutate({action:'save',item:{...item,title}});
+  await mutate({board:'preschool',action:'save',item});
+  const ids=state.boards.events.slice(0,2).map(item=>item.id),foreign=state.boards.preschool[0].id;
+  for(const invalid of [[],[ids[0],ids[0]],[ids[0],'missing'],[ids[0],foreign]]){
+    assert.ok((await mutate({action:'delete-selected',ids:invalid})).response.status>=400);
+    assert.equal((await call(env,'admin/content',null,auth)).data.boards.events.length,3);
+  }
+  assert.equal((await call(env,'admin/content',{board:'events',action:'delete-selected',ids,revision:state.revision-1},auth)).response.status,409);
+  await mutate({action:'delete-selected',ids});
+  assert.deepEqual(state.boards.events.map(item=>item.title),['보존']);assert.equal(state.boards.preschool.length,1);
+  assert.equal((await call(env,'content/events')).data.posts.length,1);
+  for(const board of ['preschool','elementary','popups']){
+    if(!state.boards[board].length)await mutate({board,action:'save',item});
+    await mutate({board,action:'delete-selected',ids:state.boards[board].map(item=>item.id)});
+    assert.equal(state.boards[board].length,0);
+  }
+});
 test('admin rejects unauthenticated writes, bad credentials, CSRF and cross-origin requests',async()=>{
   const {env,password}=environment();
   assert.equal((await call(env,'admin/content',{action:'save',board:'events',revision:0,item})).response.status,401);

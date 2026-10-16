@@ -240,7 +240,7 @@ html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visibl
 #main-content .services-section-three .outer-box{order:0;max-width:none;width:100%;padding-bottom:130px;}
 #main-content .services-section-three .dewford-journey-background{
  order:1;position:relative;inset:auto;display:block;flex:none;width:100%;max-width:1200px;height:auto;aspect-ratio:4 / 3;margin:0 auto;
- background-image:url('../images/photo/photo-28.jpg');background-position:center;background-size:contain;background-repeat:no-repeat;background-attachment:scroll;
+ background-image:url('../images/photo/prepared/photo-80-wide-1600.webp');background-position:center;background-size:contain;background-repeat:no-repeat;background-attachment:scroll;
 }
 #main-content .services-section-three .dewford-journey-background::before{display:none;}
 @media(max-width:991.98px){
@@ -369,8 +369,8 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford
 }
 /* Lightweight mobile backgrounds and motion. */
 @media(max-width:767.98px){
- #main-content .services-section-three .dewford-journey-background {background-image:url('../images/photo/photo-28.jpg');background-attachment:scroll;}
- #main-content #events .outer-box {background-image:url('../images/optimized/main_01-uniform-backpack-768.webp')!important;}
+ #main-content .services-section-three .dewford-journey-background {background-image:url('../images/photo/prepared/photo-80-wide-1600.webp');background-attachment:scroll;}
+ #main-content #events .outer-box {background-image:url('../images/photo/prepared/photo-76-wide-768.webp')!important;}
 
  #main-content .banner-section-three .bg-image {transform:none!important;transition:none;}
  #main-content .reveal {visibility:visible;opacity:1;}

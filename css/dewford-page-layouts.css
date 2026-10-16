@@ -165,9 +165,9 @@ html body.dewford-layout-event #main-content .dewford-event-template > .auto-con
 /* Square photo cards with a light outline and comfortable spacing. */
 html body.dewford-layout-event #main-content [data-event-list] {gap:44px 28px;}
 html body.dewford-layout-event #main-content .news-block-four .inner-block {border:1px solid var(--polish-line, #e8e1eb);border-radius:0;background:#fff;box-shadow:none;overflow:hidden;}
-html body.dewford-layout-event #main-content .news-block-four .image-box .image {border-radius:0;isolation:isolate;}
+html body.dewford-layout-event #main-content .news-block-four .image-box .image {aspect-ratio:1/1;border-radius:0;isolation:isolate;}
 html body.dewford-layout-event #main-content .news-block-four .image-box .image a {display:block;overflow:hidden;}
-html body.dewford-layout-event #main-content .news-block-four .image-box .image img:first-child {position:relative;inset:auto;aspect-ratio:4/3;height:auto;object-fit:cover;opacity:1;filter:none;transform:none;transition:transform 350ms ease;}
+html body.dewford-layout-event #main-content .news-block-four .image-box .image img:first-child {position:relative;inset:auto;aspect-ratio:1/1;height:auto;object-fit:cover;opacity:1;filter:none;transform:none;transition:transform 350ms ease;}
 html body.dewford-layout-event #main-content .news-block-four .inner-block:hover .image-box .image img:first-child {opacity:1;filter:none;transform:scale(1.025);}
 html body.dewford-layout-event #main-content .news-block-four .content-box {padding:20px;}
 html body.dewford-layout-event #main-content .news-block-four .content-box .inner-box .title {min-height:0;margin:0;font-size:20px;font-weight:600!important;line-height:1.55!important;word-break:keep-all;overflow-wrap:anywhere;}

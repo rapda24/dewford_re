@@ -35,7 +35,7 @@
    const copy=document.createElement('div');copy.className='dewford-calendar-schedule-copy';
    const date=document.createElement('div');date.className='dewford-calendar-schedule-date';const time=document.createElement('time');time.dateTime=event.date;time.textContent=label(selected);
    const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 24 24');icon.setAttribute('aria-hidden','true');icon.innerHTML='<rect x="3" y="5" width="18" height="16" rx="1"/><path d="M7 3v4m10-4v4M3 11h18M7 15h2m4 0h2m-8 3h2"/>';date.append(time,icon);
-   const title=document.createElement('strong');title.className='dewford-calendar-schedule-title';title.textContent=event.title;copy.append(date,title);
+   const title=document.createElement('strong');title.className='dewford-calendar-schedule-title';title.textContent=event.title;copy.append(date);if(event.category){const category=document.createElement('span');category.className='dewford-calendar-category';category.textContent=event.category;copy.append(category);}copy.append(title);
    const body=document.createElement('div');body.className='dewford-calendar-schedule-body';
    if(event.content?.ops&&window.DEWFORD_RICH_TEXT)window.DEWFORD_RICH_TEXT.render(body,event.content);
    else if(event.description){const p=document.createElement('p');p.textContent=event.description;body.append(p);}
@@ -55,7 +55,7 @@
    if(key(date)===key(selected))button.classList.add('is-selected');
    const number=document.createElement('span');number.className='dewford-calendar-number';number.textContent=date.getDate();button.append(number);
    const matches=events.filter(e=>e.date===key(date));
-   if(matches.length){button.classList.add('has-events');button.setAttribute('aria-label',label(date)+`, 일정 ${matches.length}개`);const count=document.createElement('span');count.className='dewford-calendar-event';count.textContent=matches.length===1?matches[0].title:`일정 ${matches.length}개`;button.append(count);}
+   if(matches.length){button.classList.add('has-events');button.setAttribute('aria-label',label(date)+`, 일정 ${matches.length}개`);const count=document.createElement('span');count.className='dewford-calendar-event';count.textContent=matches.length===1?`${matches[0].category?'['+matches[0].category+'] ':''}${matches[0].title}`:`일정 ${matches.length}개`;button.append(count);}
    button.addEventListener('click',()=>{selected=date;displayed=new Date(date.getFullYear(),date.getMonth(),1);render(true);});
    button.addEventListener('keydown',event=>{const offsets={ArrowLeft:-1,ArrowRight:1,ArrowUp:-7,ArrowDown:7};if(!(event.key in offsets))return;event.preventDefault();selected=new Date(date);selected.setDate(selected.getDate()+offsets[event.key]);displayed=new Date(selected.getFullYear(),selected.getMonth(),1);render(true);});
    grid.append(button);

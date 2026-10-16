@@ -29,17 +29,17 @@
     'contact.html': ['용산 이태원에서,\n아이의 새로운 배움을 만납니다', '교육 과정과 입학에 대한 궁금한 점을 남겨주세요. 방문에 필요한 위치와 연락처를 확인하고 DEWFORD와 첫 만남을 준비해 보세요.']
   };
   const pageImages = {
-    'why-dewford.html':[["main-1","50% 50%",1600],["photo-2","50% 50%",1600],["photo-48","50% 50%",1600]],
+    'why-dewford.html':[["main-1","50% 50%",1600],["photo-2","50% 50%",1600],["photo-82-wide","50% 50%",1600]],
     'educational-philosophy.html':[["photo-6","50% 50%",1600],["photo-37","50% 50%",1600],["photo-56","50% 50%",1600]],
-    'rolling-enrollment.html':[["photo-11","50% 50%",1600],["photo-40","50% 50%",1600],["photo-34","50% 50%",1600]],
+    'rolling-enrollment.html':[["photo-77-wide","50% 50%",1600],["photo-40","50% 50%",1600],["photo-34","50% 50%",1600]],
     'admissions-inquiry.html':[["photo-18","50% 50%",1600],["photo-51","50% 50%",1600],["photo-52","50% 50%",1600]],
-    'international-preschool.html':[["photo-17","50% 50%",1600],["photo-55","50% 50%",1600],["photo-57","50% 50%",1600]],
+    'international-preschool.html':[["photo-70-wide","50% 50%",1600],["photo-55","50% 50%",1600],["photo-57","50% 50%",1600]],
     'elementary-international.html':[["photo-58","50% 50%",1600],["photo-59","50% 50%",1600],["photo-61","50% 50%",1600]],
-    'elementary-esl.html':[["photo-27","50% 50%",1600],["photo-66","50% 50%",1600],["photo-45","50% 50%",1600]],
-    'preschool-calendar.html':[["photo-1","50% 0%",1600],["photo-26","50% 50%",1600],["photo-32","50% 50%",1600]],
+    'elementary-esl.html':[["photo-81-wide","50% 50%",1600],["photo-66","50% 50%",1600],["photo-45","50% 50%",1600]],
+    'preschool-calendar.html':[["photo-74-wide","50% 50%",1600],["photo-73-wide","50% 50%",1600],["photo-32","50% 50%",1600]],
     'elementary-calendar.html':[["main-4","50% 50%",1600],["photo-3","50% 50%",1600],["photo-12","50% 50%",1600]],
-    'event.html':[["main-5","50% 50%",1600],["photo-47","50% 50%",1600],["photo-50","50% 50%",1600]],
-    'detail.html':[["photo-41","50% 50%",1600],["photo-43","50% 50%",1600],["photo-44","50% 50%",1600]],
+    'event.html':[["photo-72-wide","50% 50%",1600],["photo-75-wide","50% 50%",1600],["photo-78-wide","50% 50%",1600]],
+    'detail.html':[["photo-72-wide","50% 50%",1600],["photo-75-wide","50% 50%",1600],["photo-78-wide","50% 50%",1600]],
     'contact.html':[["photo-14","50% 50%",1600],["photo-23","50% 50%",1600],["photo-54","50% 50%",1600]],
   };
   const filename = location.pathname.split('/').pop();

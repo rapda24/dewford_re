@@ -7,13 +7,16 @@
   const embedded=params.get('embedded')==='1';if(embedded)document.body.classList.add('admin-embedded');
   const notifyParent=(type,extra={})=>{if(embedded&&parent!==window)parent.postMessage({source:'dewford-editor',type,...extra},location.origin);};
   let board = names[params.get('board')] ? params.get('board') : 'events';
+  const selectedIds=new Set();
+  const isCalendar=()=>['preschool','elementary'].includes(board);
+  const categories=()=>state.boards.calendarCategories||[];
   let state, movingId, busy = false, uploading = false, editorVersion = 0;
   const editor = $('#admin-editor'), form = $('#admin-edit-form');
   const richEditor=new Quill('#admin-rich-editor',{theme:'snow',formats:['header','size','bold','italic','underline','strike','color','background','list','blockquote','align'],modules:{toolbar:[[{header:[2,3,false]},{size:['small',false,'large','huge']}],['bold','italic','underline','strike'],[{color:['#111111','#52196d','#f5a100','#b33939','#277a50','#315fc4','#756b7a']},{background:['#ffffff','#fff1ad','#e8ddf0']}],[{list:'ordered'},{list:'bullet'},'blockquote',{align:[]}],['clean']]}});
   richEditor.root.setAttribute('aria-labelledby','admin-body-label');richEditor.root.setAttribute('role','textbox');richEditor.root.setAttribute('aria-multiline','true');
   const toolbar=richEditor.getModule('toolbar').container;const labels={bold:'굵게',italic:'기울임',underline:'밑줄',strike:'취소선',blockquote:'인용문',clean:'서식 지우기',list:'목록',header:'제목 스타일',size:'글자 크기',color:'글자 색',background:'강조 색',align:'정렬'};
   toolbar.querySelectorAll('button,select').forEach(el=>{const format=Array.from(el.classList).find(name=>name.startsWith('ql-'))?.slice(3);if(labels[format]){el.setAttribute('aria-label',labels[format]);el.title=labels[format];}if(el.tagName==='BUTTON')el.type='button';});
-  const errors = {ADMIN_NOT_CONFIGURED:'관리자 계정이 아직 설정되지 않았습니다. 관리자 설정 안내를 확인해 주세요.',DATABASE_NOT_CONFIGURED:'데이터베이스 연결이 필요합니다.',DATABASE_UNAVAILABLE:'저장 서버에 연결할 수 없습니다. 데이터베이스 설정과 마이그레이션을 확인해 주세요.',API_NOT_CONNECTED:'Cloudflare 개발 서버 또는 배포된 사이트에서 이용해 주세요.',INVALID_CREDENTIALS:'아이디 또는 비밀번호가 일치하지 않습니다.',TOO_MANY_ATTEMPTS:'로그인 시도가 많습니다. 잠시 후 다시 시도해 주세요.',CONTENT_CHANGED:'다른 화면에서 내용이 변경되었습니다. 목록을 새로 불러왔습니다. 다시 확인해 주세요.',UNAUTHORIZED:'로그인이 만료되었습니다. 다시 로그인해 주세요.',MEDIA_NOT_CONFIGURED:'이미지 저장소에 연결할 수 없습니다.',IMAGE_TOO_LARGE:'이미지 용량을 줄이지 못했습니다. 더 작은 이미지로 다시 첨부해 주세요.',IMAGE_PROCESSING_FAILED:'이미지 파일을 읽지 못했습니다. 다른 PNG, JPEG, WebP 파일을 선택해 주세요.',MEDIA_STORAGE_FULL:'이미지 저장 공간이 가득 찼습니다. 사이트 관리자에게 저장 공간 정리를 요청해 주세요.',UNSUPPORTED_IMAGE:'PNG, JPEG, WebP 파일만 사용할 수 있습니다.',PAYLOAD_TOO_LARGE:'이미지 용량을 줄이지 못했습니다. 더 작은 파일로 다시 첨부해 주세요.',INVALID_DATE:'날짜 또는 노출 기간을 확인해 주세요.',INVALID_URL:'이미지 또는 링크 주소를 확인해 주세요.',INVALID_INPUT:'입력한 내용을 확인해 주세요.',CSRF_INVALID:'세션을 새로 확인하려면 페이지를 새로고침해 주세요.'};
+  const errors = {ADMIN_NOT_CONFIGURED:'관리자 계정이 아직 설정되지 않았습니다. 관리자 설정 안내를 확인해 주세요.',DATABASE_NOT_CONFIGURED:'데이터베이스 연결이 필요합니다.',DATABASE_UNAVAILABLE:'저장 서버에 연결할 수 없습니다. 데이터베이스 설정과 마이그레이션을 확인해 주세요.',API_NOT_CONNECTED:'Cloudflare 개발 서버 또는 배포된 사이트에서 이용해 주세요.',INVALID_CREDENTIALS:'아이디 또는 비밀번호가 일치하지 않습니다.',TOO_MANY_ATTEMPTS:'로그인 시도가 많습니다. 잠시 후 다시 시도해 주세요.',CONTENT_CHANGED:'다른 화면에서 내용이 변경되었습니다. 목록을 새로 불러왔습니다. 다시 확인해 주세요.',UNAUTHORIZED:'로그인이 만료되었습니다. 다시 로그인해 주세요.',MEDIA_NOT_CONFIGURED:'이미지 저장소에 연결할 수 없습니다.',IMAGE_TOO_LARGE:'이미지 용량을 줄이지 못했습니다. 더 작은 이미지로 다시 첨부해 주세요.',IMAGE_PROCESSING_FAILED:'이미지 파일을 읽지 못했습니다. 다른 PNG, JPEG, WebP 파일을 선택해 주세요.',MEDIA_STORAGE_FULL:'이미지 저장 공간이 가득 찼습니다. 사이트 관리자에게 저장 공간 정리를 요청해 주세요.',UNSUPPORTED_IMAGE:'PNG, JPEG, WebP 파일만 사용할 수 있습니다.',PAYLOAD_TOO_LARGE:'이미지 용량을 줄이지 못했습니다. 더 작은 파일로 다시 첨부해 주세요.',INVALID_DATE:'날짜 또는 노출 기간을 확인해 주세요.',INVALID_URL:'이미지 또는 링크 주소를 확인해 주세요.',INVALID_INPUT:'입력한 내용을 확인해 주세요.',CATEGORY_NOT_FOUND:'카테고리가 변경되었습니다. 목록을 확인한 뒤 다시 선택해 주세요.',DUPLICATE_CATEGORY:'같은 이름의 카테고리가 이미 있습니다.',CSRF_INVALID:'세션을 새로 확인하려면 페이지를 새로고침해 주세요.'};
   const message = error => errors[error.message] || '요청을 처리하지 못했습니다. 잠시 후 다시 시도해 주세요.';
   const node = (tag, text, cls) => {const el=document.createElement(tag);if(text)el.textContent=text;if(cls)el.className=cls;return el;};
   function imageURL(value) {if(typeof value!=='string'||!value.trim())return '';try {const u=new URL(value,location.href);return ['http:','https:'].includes(u.protocol)?u.href:'';}catch{return '';}}
@@ -28,14 +31,20 @@
     const publicLink=$('#admin-public-link');publicLink.href={events:'event.html',preschool:'preschool-calendar.html',elementary:'elementary-calendar.html',popups:'index.html'}[board];publicLink.textContent=board==='popups'?'홈페이지 보기 ↗':'게시판 보기 ↗';
     document.querySelectorAll('[data-board]').forEach(button=>{if(button.dataset.board===board)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
     $('#admin-create').textContent=board==='popups'?'+ 팝업 등록':'+ 글쓰기';
-    const query=$('#admin-search').value.trim().toLowerCase();const items=state.boards[board].filter(item=>item.title.toLowerCase().includes(query));
+    renderCategories();
+    const query=$('#admin-search').value.trim().toLowerCase(),category=$('#admin-category-filter').value;
+    const items=state.boards[board].filter(item=>item.title.toLowerCase().includes(query)&&(!isCalendar()||!category||(category==='__uncategorized'? !item.category:item.category===category.slice(9))));
+    const visibleIds=new Set(items.map(item=>item.id));for(const id of selectedIds)if(!visibleIds.has(id))selectedIds.delete(id);
     $('#admin-count').textContent=`${items.length}개`;const list=$('#admin-list');list.replaceChildren();
     if(!items.length)list.append(node('p','등록된 항목이 없습니다.','admin-empty'));
     items.forEach(item=>{
-      const row=node('article',null,'admin-item');
+      const row=node('article',null,'admin-item admin-selectable-item');
+      const check=node('input');check.type='checkbox';check.className='admin-row-select';check.value=item.id;check.checked=selectedIds.has(item.id);check.disabled=busy;check.setAttribute('aria-label',`${item.title} 선택`);
+      check.addEventListener('change',()=>{if(check.checked)selectedIds.add(item.id);else selectedIds.delete(item.id);selectionControls();});row.append(check);
       const photo=node('div',null,'admin-item-photo');if(item.image&&imageURL(item.image)){const img=node('img');img.src=imageURL(item.image);img.alt='';img.loading='lazy';photo.append(img);}else photo.append(node('span','—'));row.append(photo);
       const copy=node('div',null,'admin-item-copy');copy.append(node('h2',item.title));
       const meta=node('div',null,'admin-item-meta');
+      if(isCalendar())meta.append(node('span',item.category||'미분류','admin-badge'));
       if(item.date)meta.append(node('span',item.date,'admin-item-date'));
       meta.append(node('span',item.published===false?'비공개':'공개','admin-badge'+(item.published===false?' is-draft':'')));
       if(board==='popups')meta.append(node('span',item.enabled?'사용 중':'사용 안 함','admin-badge'+(!item.enabled?' is-draft':'')));
@@ -49,6 +58,29 @@
       add('삭제',()=>{if(confirm(`“${item.title}” 항목을 삭제할까요?`))mutation({action:'delete',id:item.id});});
       row.append(actions);list.append(row);
     });
+    selectionControls();
+  }
+  function selectionControls(){
+    const checks=[...document.querySelectorAll('.admin-row-select')],all=$('#admin-select-all');
+    all.checked=checks.length>0&&selectedIds.size===checks.length;all.indeterminate=selectedIds.size>0&&selectedIds.size<checks.length;all.disabled=busy||!checks.length;
+    $('#admin-selected-count').textContent=`${selectedIds.size}개 선택`;
+    $('#admin-delete-selected').disabled=busy||!selectedIds.size;
+  }
+  function renderCategories(){
+    $('#admin-categories').hidden=!isCalendar();$('#admin-category-filter-wrap').hidden=!isCalendar();
+    const filter=$('#admin-category-filter'),value=filter.value;filter.replaceChildren();
+    for(const [value,label] of [['','전체'],['__uncategorized','미분류'],...categories().map(name=>['category:'+name,name])]){const option=node('option',label);option.value=value;filter.append(option);}
+    filter.value=[...filter.options].some(option=>option.value===value)?value:'';filter.disabled=busy;
+    const list=$('#admin-category-list');list.replaceChildren();
+    categories().forEach(name=>{
+      const row=node('form',null,'admin-category-row'),label=node('label','카테고리 이름'),input=node('input');input.value=name;input.required=true;input.maxLength=50;input.disabled=busy;label.append(input);
+      const save=node('button','수정');save.type='submit';save.disabled=busy;
+      row.addEventListener('submit',async event=>{event.preventDefault();await mutation({action:'category-save',category:name,name:input.value});});
+      const remove=node('button','삭제','admin-action-delete');remove.type='button';remove.disabled=busy;remove.setAttribute('aria-label',`${name} 카테고리 삭제`);
+      remove.addEventListener('click',()=>{if(confirm(`“${name}” 카테고리를 삭제할까요? 이 카테고리를 사용하는 유치부·초등부 일정은 삭제되지 않고 미분류로 변경됩니다.`))mutation({action:'category-delete',category:name});});
+      row.append(label,save,remove);list.append(row);
+    });
+    $('#admin-category-add').querySelectorAll('input,button').forEach(control=>control.disabled=busy);
   }
   async function mutation(payload) {
     if(busy)return false;busy=true;render();$('#admin-status').textContent='저장 중입니다…';
@@ -60,6 +92,8 @@
   function edit(item={}) {
     editorVersion++;form.reset();$('#admin-editor-status').textContent='';setUploading(false);
     const popup=board==='popups';editor.classList.toggle('admin-popup-editor',popup);document.querySelector('[data-post-fields]').hidden=popup;document.querySelector('[data-popup-fields]').hidden=!popup;
+    $('#admin-category-field').hidden=!isCalendar();form.elements.category.disabled=!isCalendar();form.elements.category.replaceChildren();
+    for(const name of ['',...categories()]){const option=node('option',name||'미분류');option.value=name;form.elements.category.append(option);}form.elements.category.value=item.category||'';
     form.elements.date.required=!popup;$('#admin-image-upload').required=popup&&!item.image;
     $('#admin-editor-title').textContent=`${names[board]} ${item.id?'수정':'등록'}`;
     for(const key of ['id','title','image','excerpt','link'])form.elements[key].value=item[key]||'';
@@ -149,8 +183,12 @@
   $('#admin-move').addEventListener('close',()=>notifyParent('close'));
   $('#admin-move-cancel').addEventListener('click',()=>$('#admin-move').close());
   $('#admin-move-form').addEventListener('submit',async event=>{event.preventDefault();const fields=Object.fromEntries(new FormData(event.target));if(await mutation({action:'move',id:movingId,...fields}))$('#admin-move').close();else $('#admin-move-status').textContent=$('#admin-status').textContent;});
-  $('#admin-create').addEventListener('click',()=>edit());$('#admin-search').addEventListener('input',render);
-  document.querySelectorAll('[data-board]').forEach(button=>button.addEventListener('click',()=>{if(busy)return;board=button.dataset.board;$('#admin-search').value='';history.replaceState(null,'','admin.html?board='+board);render();}));
+  $('#admin-category-add').addEventListener('submit',async event=>{event.preventDefault();const input=event.target.elements.name;if(await mutation({action:'category-save',name:input.value}))input.value='';});
+  $('#admin-category-filter').addEventListener('change',()=>{selectedIds.clear();render();});
+  $('#admin-select-all').addEventListener('change',event=>{const checked=event.target.checked;document.querySelectorAll('.admin-row-select').forEach(input=>{input.checked=checked;if(checked)selectedIds.add(input.value);else selectedIds.delete(input.value);});selectionControls();});
+  $('#admin-delete-selected').addEventListener('click',()=>{if(busy||!selectedIds.size)return;if(selectedIds.size>1000){$('#admin-status').textContent='한 번에 최대 1,000개까지 삭제할 수 있습니다. 검색으로 목록을 좁혀 주세요.';return;}if(confirm(`선택한 항목 ${selectedIds.size}개를 삭제할까요? 삭제 후에는 복구할 수 없습니다.`))mutation({action:'delete-selected',ids:[...selectedIds]});});
+  $('#admin-create').addEventListener('click',()=>edit());$('#admin-search').addEventListener('input',()=>{selectedIds.clear();render();});
+  document.querySelectorAll('[data-board]').forEach(button=>button.addEventListener('click',()=>{if(busy)return;board=button.dataset.board;selectedIds.clear();$('#admin-category-filter').value='';$('#admin-search').value='';history.replaceState(null,'','admin.html?board='+board);render();}));
   $('#admin-logout').addEventListener('click',async()=>{try{await api.logout();state=null;loginView();$('#admin-status').textContent='로그아웃했습니다.';}catch(error){$('#admin-status').textContent=message(error);}});
   function openRequested(){const moveId=params.get('move');if(moveId){const item=state.boards[board].find(i=>i.id===moveId);if(item&&board!=='popups')move(item);return;}const id=params.get('edit');if(id){const item=state.boards[board].find(i=>i.id===id);if(item)edit(item);}else if(params.get('new')==='1'){edit();if(params.get('date'))form.elements.date.value=params.get('date');}}
   (async()=>{try{const auth=await api.session();if(auth.authenticated){await refresh();openRequested();}else loginView();}catch(error){$('#admin-auth-loading').textContent=message(error);notifyParent('error',{message:message(error)});}})();
