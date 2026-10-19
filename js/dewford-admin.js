@@ -45,7 +45,7 @@
       const copy=node('div',null,'admin-item-copy');copy.append(node('h2',item.title));
       const meta=node('div',null,'admin-item-meta');
       if(isCalendar())meta.append(node('span',item.category||'미분류','admin-badge'));
-      if(item.date)meta.append(node('span',item.date,'admin-item-date'));
+      if(item.date)meta.append(node('span',item.endDate&&item.endDate!==item.date?`${item.date} ~ ${item.endDate}`:item.date,'admin-item-date'));
       meta.append(node('span',item.published===false?'비공개':'공개','admin-badge'+(item.published===false?' is-draft':'')));
       if(board==='popups')meta.append(node('span',item.enabled?'사용 중':'사용 안 함','admin-badge'+(!item.enabled?' is-draft':'')));
       copy.append(meta);
@@ -94,10 +94,11 @@
     const popup=board==='popups';editor.classList.toggle('admin-popup-editor',popup);document.querySelector('[data-post-fields]').hidden=popup;document.querySelector('[data-popup-fields]').hidden=!popup;
     $('#admin-category-field').hidden=!isCalendar();form.elements.category.disabled=!isCalendar();form.elements.category.replaceChildren();
     for(const name of ['',...categories()]){const option=node('option',name||'미분류');option.value=name;form.elements.category.append(option);}form.elements.category.value=item.category||'';
+    $('#admin-date-label').textContent=isCalendar()?'시작일':'날짜';$('#admin-end-date-field').hidden=!isCalendar();form.elements.endDate.disabled=!isCalendar();form.elements.endDate.required=isCalendar();
     form.elements.date.required=!popup;$('#admin-image-upload').required=popup&&!item.image;
     $('#admin-editor-title').textContent=`${names[board]} ${item.id?'수정':'등록'}`;
     for(const key of ['id','title','image','excerpt','link'])form.elements[key].value=item[key]||'';
-    form.elements.date.value=item.date||new Date().toLocaleDateString('en-CA');form.elements.body.value=item.body||item.description||'';
+    form.elements.date.value=item.startDate||item.date||new Date().toLocaleDateString('en-CA');form.elements.endDate.value=item.endDate||form.elements.date.value;form.elements.endDate.min=form.elements.date.value;form.elements.body.value=item.body||item.description||'';
     if(item.content?.ops)richEditor.setContents(item.content);else richEditor.setText(form.elements.body.value);richEditor.history.clear();
     form.elements.gallery.value=(item.gallery||[]).join('\n');form.elements.width.value=item.width||480;
     form.elements.startsAt.value=localTime(item.startsAt);form.elements.endsAt.value=localTime(item.endsAt);
@@ -174,8 +175,10 @@
   $('#admin-image-remove').addEventListener('click',()=>{form.elements.image.value='';$('#admin-image-upload').value='';preview();});
   editor.addEventListener('close',()=>{editorVersion++;setUploading(false);notifyParent('close');});
   document.querySelectorAll('[data-close-editor]').forEach(button=>button.addEventListener('click',()=>editor.close()));
+  form.elements.date.addEventListener('change',()=>{if(!isCalendar())return;form.elements.endDate.min=form.elements.date.value;if(form.elements.endDate.value<form.elements.date.value)form.elements.endDate.value=form.elements.date.value;});
   form.addEventListener('submit',async event=>{
     event.preventDefault();if(uploading||busy)return;if(board==='popups'&&!form.elements.image.value){$('#admin-editor-status').textContent='팝업에 사용할 이미지를 파일로 첨부해 주세요.';$('#admin-image-upload').focus();return;}form.elements.body.value=richEditor.getText().trim();const data=Object.fromEntries(new FormData(form));const item={...data,published:form.elements.published.checked,enabled:form.elements.enabled.checked,gallery:data.gallery.split('\n').map(v=>v.trim()).filter(Boolean),...(board!=='popups'?{content:richEditor.getContents()}: {})};
+    if(isCalendar()){item.startDate=data.date;item.endDate=data.endDate||data.date;}else delete item.endDate;
     item.startsAt=data.startsAt?data.startsAt+':00+09:00':'';item.endsAt=data.endsAt?data.endsAt+':00+09:00':'';
     const saved=await mutation({action:'save',id:data.id||undefined,item});if(saved)editor.close();else $('#admin-editor-status').textContent=$('#admin-status').textContent;
   });
@@ -190,6 +193,6 @@
   $('#admin-create').addEventListener('click',()=>edit());$('#admin-search').addEventListener('input',()=>{selectedIds.clear();render();});
   document.querySelectorAll('[data-board]').forEach(button=>button.addEventListener('click',()=>{if(busy)return;board=button.dataset.board;selectedIds.clear();$('#admin-category-filter').value='';$('#admin-search').value='';history.replaceState(null,'','admin.html?board='+board);render();}));
   $('#admin-logout').addEventListener('click',async()=>{try{await api.logout();state=null;loginView();$('#admin-status').textContent='로그아웃했습니다.';}catch(error){$('#admin-status').textContent=message(error);}});
-  function openRequested(){const moveId=params.get('move');if(moveId){const item=state.boards[board].find(i=>i.id===moveId);if(item&&board!=='popups')move(item);return;}const id=params.get('edit');if(id){const item=state.boards[board].find(i=>i.id===id);if(item)edit(item);}else if(params.get('new')==='1'){edit();if(params.get('date'))form.elements.date.value=params.get('date');}}
+  function openRequested(){const moveId=params.get('move');if(moveId){const item=state.boards[board].find(i=>i.id===moveId);if(item&&board!=='popups')move(item);return;}const id=params.get('edit');if(id){const item=state.boards[board].find(i=>i.id===id);if(item)edit(item);}else if(params.get('new')==='1'){edit();if(params.get('date')){form.elements.date.value=params.get('date');form.elements.endDate.value=params.get('date');form.elements.endDate.min=params.get('date');}}}
   (async()=>{try{const auth=await api.session();if(auth.authenticated){await refresh();openRequested();}else loginView();}catch(error){$('#admin-auth-loading').textContent=message(error);notifyParent('error',{message:message(error)});}})();
 })();

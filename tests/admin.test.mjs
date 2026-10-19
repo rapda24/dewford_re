@@ -267,3 +267,18 @@ test('social URLs are validated, published and preserved by legacy channel saves
  const preserved=(await call(env,'content/site-info')).data;
  assert.equal(preserved.instagram,settings.instagram);assert.equal(preserved.facebook,settings.facebook);
 });
+
+test('calendar date ranges validate, publish, edit and move with duration preserved',async()=>{
+ const {env,password}=environment();const auth=await login(env,password);
+ for(const endDate of ['2026-10-01','2026-02-30','invalid']){
+  assert.equal((await call(env,'admin/content',{action:'save',board:'preschool',revision:0,item:{...item,startDate:'2026-10-06',endDate}},auth)).response.status,400);
+ }
+ let result=await call(env,'admin/content',{action:'save',board:'preschool',revision:0,item:{...item,startDate:'2026-10-06',endDate:'2026-10-15'}},auth);
+ assert.equal(result.response.status,200);
+ const saved=result.data.boards.preschool[0];assert.equal(saved.date,'2026-10-06');assert.equal(saved.endDate,'2026-10-15');
+ const published=(await call(env,'content/calendar')).data.preschool[0];assert.equal(published.startDate,'2026-10-06');assert.equal(published.endDate,'2026-10-15');
+ result=await call(env,'admin/content',{action:'move',board:'preschool',target:'elementary',revision:1,id:saved.id,date:'2026-11-01'},auth);
+ assert.equal(result.response.status,200);assert.equal(result.data.boards.elementary[0].startDate,'2026-11-01');assert.equal(result.data.boards.elementary[0].endDate,'2026-11-10');
+ result=await call(env,'admin/content',{action:'save',board:'elementary',revision:2,id:saved.id,item:{...item,date:'2026-11-04'}},auth);
+ assert.equal(result.response.status,200);assert.equal(result.data.boards.elementary[0].startDate,'2026-11-04');assert.equal(result.data.boards.elementary[0].endDate,'2026-11-04');
+});

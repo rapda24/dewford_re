@@ -111,7 +111,12 @@ function itemInput(item, board, previous = {}) {
     for (const field of ['startsAt','endsAt']) { record[field] = text(item[field] || '', 40); if (record[field] && !Number.isFinite(Date.parse(record[field]))) fail('INVALID_DATE'); }
     if (record.startsAt && record.endsAt && Date.parse(record.startsAt) > Date.parse(record.endsAt)) fail('INVALID_DATE');
   } else {
-    record.date = date(item.date, true);
+    record.date = date(calendarBoards.includes(board) ? item.startDate || item.date : item.date, true);
+    if (calendarBoards.includes(board)) {
+      record.startDate = record.date;
+      record.endDate = date(item.endDate || record.startDate, true);
+      if(record.endDate < record.startDate)fail('INVALID_DATE');
+    } else {delete record.startDate;delete record.endDate;}
     if (item.content !== undefined) {record.content = normalizeRichContent(item.content);record.body = richPlainText(record.content);}
     else {record.body = text(item.body || '', 30000);if(record.body !== (previous.body || previous.description || ''))delete record.content;}
     record.description = record.body;
@@ -173,8 +178,13 @@ export function mutateState(state, body) {
     } else if (body.action === 'move') {
       if (!boards.includes(body.target) || body.target === body.board || [body.target,body.board].includes('popups')) fail('INVALID_BOARD');
       if (state.boards[body.target].some(item => item.id === body.id)) fail('DUPLICATE_ITEM', 409);
-      const item = list[index]; item.date = date(body.date || item.date, true);
-      if (body.target==='events') delete item.category;
+      const item = list[index]; const originalDate=item.startDate||item.date; item.date = date(body.date || item.date, true);
+      if (body.target==='events') {delete item.category;delete item.startDate;delete item.endDate;}
+      else {
+        const duration=calendarBoards.includes(body.board)?Math.max(0,Date.parse(item.endDate||originalDate)-Date.parse(originalDate)):0;
+        item.startDate=item.date;
+        item.endDate=new Date(Date.parse(item.date)+duration).toISOString().slice(0,10);
+      }
       item.description = item.body || item.description || ''; item.body = item.body || item.description;
       list.splice(index,1); state.boards[body.target].unshift(item);
     } else fail('INVALID_ACTION');

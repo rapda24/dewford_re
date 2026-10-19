@@ -26,3 +26,10 @@ Landscape edits: “Use case: identity-preserve. Edit the supplied photograph in
 Portrait: “Use case: identity-preserve. Edit supplied John Dewey portrait into an elegant vertical 2:3 portrait photograph for an educational philosophy website. Keep the exact historical face, glasses, hair, sepia coloration and suit from input, no identity changes. Recompose his bust centered in the lower 62% of a portrait canvas, with clean warm ivory background occupying top 38% as empty space for a quotation to be typeset later in HTML. Smooth continuous ivory background, understated editorial style. No text or lettering. No border.”
 
 Drawing: “Use case: precise-object-edit. Crop this exact photograph tightly to focus on the child's drawing on the paper in the bottom foreground: blue ink fingerprints/dots and drawn outlines on the white paper, child's marker and hand at the upper edge. Retain original real drawing exactly; do not redraw, invent or replace any marks. Exclude the child's face, shelves, tablet and most classroom background. Output a clean close-up of the paper and drawing, portrait 4:5 framing, preserving actual photo texture and perspective. Crop only; no added objects, no added text.”
+
+
+## ip_sst-01 uniform edit
+- Tool: built-in image_gen (identity-preserve).
+- Target: `../ip_sst-01.jpeg`; reference: `photo-72-wide-1600.webp`.
+- Output: `../ip_sst-01-uniform.png`; original retained.
+- Prompt: Replace both boys’ casual shirts with DEWFORD purple short-sleeve polo uniforms, collars and gold left-chest school crests matching the reference. Keep faces, expressions, hair, skin, hands, fist-bump pose, proportions, trousers, classroom, lighting and framing unchanged. Preserve the 4:3 composition.
