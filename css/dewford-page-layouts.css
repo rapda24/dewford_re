@@ -298,3 +298,22 @@ html body.dewford-layout-international-preschool #main-content .service-section-
 html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(2) .dewford-stage-photo{--stage-photo-brightness:1;}
 html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(3) .dewford-stage-photo{--stage-photo-brightness:1.23;--stage-photo-contrast:1.1;--stage-photo-saturation:.98;--stage-photo-sepia:.015;}
 html body.dewford-layout-international-preschool #main-content .swiper-slide:nth-child(5) .dewford-stage-photo{--stage-photo-brightness:1;object-position:center 65%;}
+
+/* Visit consultation heading and matching telephone channel icon. */
+html body.dewford-layout-admissions-inquiry #main-content .dewford-visit-title {font-size:22px;margin:28px 0 12px;line-height:1.4;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-phone,
+html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-phone:hover {background:var(--id-color)!important;color:#fff!important;}
+
+/* Channel labels remain text links beside the square icons. */
+html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-channel a.dewford-consultation-channel-label {width:auto;height:auto;padding:0;background:transparent;color:inherit;border:0;border-radius:0;line-height:inherit;font-size:14px;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-channel a.dewford-consultation-channel-label:hover {background:transparent;color:var(--id-color);text-decoration:underline;}
+
+html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-instagram {background:#b63486!important;color:#fff!important;}
+html body.dewford-layout-admissions-inquiry #main-content .dewford-consultation-facebook {background:#1877f2!important;color:#fff!important;}
+
+/* Stage photographs fill the entire column, including taller tablet copy. */
+html body.dewford-layout-international-preschool #main-content .service-section-two .service-block-two .inner-box {align-items:stretch;}
+html body.dewford-layout-international-preschool #main-content .service-section-two .dewford-stage-photo {align-self:stretch;width:100%;height:auto;min-height:310px;background-size:cover;background-position:center;background-repeat:no-repeat;}
+@media(max-width:767px){
+ html body.dewford-layout-international-preschool #main-content .service-section-two .dewford-stage-photo {height:230px;min-height:230px;flex:none;}
+}

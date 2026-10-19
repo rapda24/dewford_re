@@ -244,3 +244,11 @@ html body.dewford-subpage #main-content.dewford-philosophy-content .projects-sec
 #main-content.dewford-philosophy-content .dewford-dewey-quote {position:relative;z-index:1;padding:9% 9% 0;color:#493b35;text-align:left;}
 #main-content.dewford-philosophy-content .dewford-dewey-quote blockquote {margin:0;padding:0;border:0;background:none;color:inherit;font-family:Georgia,serif;font-size:clamp(17px,1.5vw,24px);font-weight:400;line-height:1.4;}
 #main-content.dewford-philosophy-content .dewford-dewey-quote cite {display:block;margin-top:12px;font-size:12px;font-style:normal;letter-spacing:.04em;}
+
+/* Crop 20% from each side and the top, retaining the lower drawing crop. */
+#main-content.dewford-philosophy-content .dewford-philosophy-layout .dewford-philosophy-vision-image .dewford-philosophy-teacher-photo {position:relative;overflow:hidden;height:auto;min-height:0;aspect-ratio:648 / 720;}
+#main-content.dewford-philosophy-content .dewford-philosophy-layout .dewford-philosophy-vision-image .dewford-philosophy-teacher-photo img {position:absolute;inset:auto;top:-40%;left:-33.333333%;display:block;width:166.666667%;max-width:none;height:auto;object-fit:initial;transform:none;}
+
+/* Keep service descriptions above the animated hover background. */
+#main-content.dewford-philosophy-content .services-section .service-block .inner-box .content-box {position:relative;z-index:1;}
+html body.dewford-subpage #main-content.dewford-philosophy-content .services-section .service-block .inner-box:is(:hover,:focus-within,.active) .content-box p {color:#fff!important;}

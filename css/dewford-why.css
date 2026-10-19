@@ -53,10 +53,10 @@ color:var(--text-color);
  #main-content .dewford-why-pagination .swiper-pagination-bullet-active {background:var(--id-color);}
 }
 
-/* Full-width client backdrop with four service cards. */
+/* Full-width client backdrop with promise cards arranged in two rows. */
 #main-content .dewford-why-clients > .large-container {width:100%;max-width:none;padding-inline:0;}
 #main-content .dewford-why-clients .inner-container {background-size:cover;background-position:center;}
-#main-content .dewford-why-clients .claint-outer {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;gap:24px;max-width:1440px;}
+#main-content .dewford-why-clients .claint-outer {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:24px;max-width:1440px;}
 #main-content .dewford-why-clients .service-block {min-width:0;}
 #main-content .dewford-why-clients .service-block .inner-box {display:flex;flex-direction:column;height:100%;margin-bottom:0;padding:36px 24px;}
 #main-content .dewford-why-clients .service-block .btn-box {margin-top:auto;}
@@ -157,3 +157,7 @@ html body.dewford-subpage #main-content .sub-title {font-size:16px!important;}
  #main-content .dewford-why-clients .swiper-pagination-bullet {background:#fff;}
  #main-content .dewford-why-clients .swiper-pagination-bullet-active {background:var(--sub-color,#f5a100);}
 }
+
+/* The sixth promise-grid card fills its frame with an activity photo. */
+#main-content .dewford-why-clients .dewford-why-image-card .inner-box {position:relative;overflow:hidden;padding:0;min-height:320px;}
+#main-content .dewford-why-clients .dewford-why-image-card img {position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}

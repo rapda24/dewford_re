@@ -249,3 +249,21 @@ test('shared site information saves with SNS links and legacy channel writes pre
  assert.equal((await call(env,'admin/channels',{revision:1,kakao:'https://pf.kakao.com/another/chat',naver:settings.naver},auth)).response.status,200);
  assert.equal((await call(env,'content/site-info')).data.academyName,'새 학원');
 });
+
+
+test('social URLs are validated, published and preserved by legacy channel saves',async()=>{
+ const {env,password}=environment();const auth=await login(env,password);
+ const initial=(await call(env,'admin/site-info',null,auth)).data;
+ assert.equal(initial.instagram,'https://www.instagram.com/dewfordcoltd/');
+ assert.equal(initial.facebook,'https://www.facebook.com/profile.php?id=61595122751751');
+ const settings={...initial,instagram:'https://www.instagram.com/new_dewford/',facebook:'https://www.facebook.com/new.dewford'};
+ for(const [field,value] of [['instagram','https://instagram.com.evil.example/profile'],['facebook','javascript:alert(1)'],['facebook','https://instagram.com/profile']]){
+  assert.equal((await call(env,'admin/site-info',{...settings,[field]:value},auth)).response.status,400);
+ }
+ assert.equal((await call(env,'admin/site-info',settings,auth)).response.status,200);
+ const published=(await call(env,'content/site-info')).data;
+ assert.equal(published.instagram,settings.instagram);assert.equal(published.facebook,settings.facebook);
+ assert.equal((await call(env,'admin/channels',{revision:1,kakao:settings.kakao,naver:settings.naver},auth)).response.status,200);
+ const preserved=(await call(env,'content/site-info')).data;
+ assert.equal(preserved.instagram,settings.instagram);assert.equal(preserved.facebook,settings.facebook);
+});

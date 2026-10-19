@@ -22,7 +22,7 @@
 - `elementary-international.html`: International Primary Program
 - `elementary-esl.html`: Primary ESL Program
 - `preschool-calendar.html`: International Early Learning Calendar
-- `elementary-calendar.html`: Primary Calendar
+- `elementary-calendar.html`: Primary Learning Calander
 - `event.html`: Events
 - `contact.html`: Contact
 

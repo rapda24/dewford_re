@@ -319,7 +319,7 @@ html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .d
 
 /* Keep the blog lettering inside its speech bubble and show active channels only. */
 html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-social-blog svg text {font-family:Arial,sans-serif!important;font-size:9px!important;font-weight:700!important;letter-spacing:0!important;}
-html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-social:is(.dewford-social-instagram,.dewford-social-facebook,.dewford-social-youtube) {display:none!important;}
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer .dewford-footer-social.dewford-social-youtube {display:none!important;}
 
 /* Preserve the white outline on the footer admission CTA in every state. */
 html body:is(.dewford-home,.dewford-subpage) :is(#main-content,.page-wrapper) .dewford-footer .about-widget .theme-btn,
@@ -437,3 +437,9 @@ html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-bloc
 html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-block:nth-child(even) .inner-block :is(.title,.title a,.text,p){color:#000!important;}
 html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-block:nth-child(even) .inner-block .number{background:var(--id-color);color:#fff;}
 html body.dewford-subpage #main-content .dewford-why-feature-cards .feature-block:nth-child(even) .inner-block .number i{color:inherit;}
+
+/* Keep five footer channels on one line, with a deliberate 3 + 2 fallback. */
+html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-socials {display:grid;grid-template-columns:repeat(5,44px);gap:8px;flex:0 0 auto;width:max-content;max-width:100%;justify-content:start;}
+@media(min-width:768px) and (max-width:1199.98px), (max-width:359.98px){
+ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-socials {grid-template-columns:repeat(3,44px);}
+}

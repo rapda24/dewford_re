@@ -7,10 +7,10 @@
     'rolling-enrollment.html':['Rolling Admissions','아이의 발달 단계와 영어 경험을 살피며, 알맞은 배움의 시작을 함께 준비합니다.'],
     'admissions-inquiry.html':['Apply Now','아이에게 맞는 교육 과정과 입학에 대해 편하게 문의해 주세요.'],
     'international-preschool.html':['International Early Learning Program','놀이와 탐구를 통해 영어로 세상을 이해하고, 스스로 읽는 힘을 기릅니다.'],
-    'elementary-international.html':['International Primary Program','읽기와 쓰기, 탐구를 연결하며 영어로 생각하고 표현하는 힘을 넓혀갑니다.'],
-    'elementary-esl.html':['Primary ESL Program','아이의 영어 수준에 맞춰 문장부터 글까지, 표현의 기초를 차근차근 다집니다.'],
+    'elementary-international.html':['International Primary Program','DEWFORD 초등 국제반: 영어로 배우고, 생각하고, 자신의 글을 완성합니다.'],
+    'elementary-esl.html':['Primary ESL Program','DEWFORD 초등 어학반: 영어의 기본기를 탄탄하게, 다음 단계의 학습으로'],
     'preschool-calendar.html':['Early Learning Calendar','아이들의 배움과 다양한 경험으로 채워지는 유치부 일정을 확인하세요.'],
-    'elementary-calendar.html':['Primary Calendar','초등 과정의 학습과 활동 일정을 확인하세요.'],
+    'elementary-calendar.html':['Primary Learning Calander','초등 과정의 학습과 활동 일정을 확인하세요.'],
     'event.html':['DEWFORD EVENTS','듀포드의 특별한 순간'],
     'detail.html':['DEWFORD EVENTS','듀포드의 특별한 순간'],
     'contact.html':['Contact','용산 이태원에서 시작하는 아이의 더 넓은 세상, DEWFORD를 만나보세요.']

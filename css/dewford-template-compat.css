@@ -240,7 +240,7 @@ html body.dewford-home .dewford-footer a:not(.theme-btn):is(:hover,:focus-visibl
 #main-content .services-section-three .outer-box{order:0;max-width:none;width:100%;padding-bottom:130px;}
 #main-content .services-section-three .dewford-journey-background{
  order:1;position:relative;inset:auto;display:block;flex:none;width:100%;max-width:1200px;height:auto;aspect-ratio:4 / 3;margin:0 auto;
- background-image:url('../images/photo/prepared/photo-80-wide-1600.webp');background-position:center;background-size:contain;background-repeat:no-repeat;background-attachment:scroll;
+ background-image:url('../images/photo/prepared/photo-72-wide-1600.webp');background-position:center;background-size:contain;background-repeat:no-repeat;background-attachment:scroll;
 }
 #main-content .services-section-three .dewford-journey-background::before{display:none;}
 @media(max-width:991.98px){
@@ -369,7 +369,7 @@ html body.dewford-home :is(#main-content,.page-wrapper) .dewford-drawer .dewford
 }
 /* Lightweight mobile backgrounds and motion. */
 @media(max-width:767.98px){
- #main-content .services-section-three .dewford-journey-background {background-image:url('../images/photo/prepared/photo-80-wide-1600.webp');background-attachment:scroll;}
+ #main-content .services-section-three .dewford-journey-background {background-image:url('../images/photo/prepared/photo-72-wide-1600.webp');background-attachment:scroll;}
  #main-content #events .outer-box {background-image:url('../images/photo/prepared/photo-76-wide-768.webp')!important;}
 
  #main-content .banner-section-three .bg-image {transform:none!important;transition:none;}
@@ -594,12 +594,12 @@ body.dewford-home #main-content.dewford-template-content > .services-section-thr
 body.dewford-home #main-content.dewford-template-content > .services-section-three .theme-btn.btn-style-two {--button-surface:#fff;}
 
 /* Stationary brand symbol with a clockwise rotating text ring. */
-#main-content .banner-section-three .dewford-banner-emblem{position:relative;width:180px;aspect-ratio:1;margin:0 auto 20px;line-height:1;}
+#main-content .banner-section-three .dewford-banner-emblem{position:relative;width:225px;aspect-ratio:1;margin:0 auto 20px;line-height:1;}
 #main-content .banner-section-three .dewford-banner-emblem .dewford-brand-ring{display:block;width:100%;height:100%;fill:var(--id-color,#52196d);font-family:Arial,sans-serif;font-size:15px;font-weight:700;animation:dewford-brand-ring-spin 24s linear infinite;}
 #main-content .banner-section-three .dewford-banner-emblem .dewford-banner-symbol{display:block;position:absolute;width:52%;height:52%;object-fit:contain;left:24%;top:24%;}
 @keyframes dewford-brand-ring-spin{to{transform:rotate(360deg);}}
 @media(max-width:767.98px){
- #main-content .banner-section-three .dewford-banner-emblem{width:clamp(110px,30vw,150px);margin-bottom:12px;}
+ #main-content .banner-section-three .dewford-banner-emblem{width:clamp(137.5px,37.5vw,187.5px);margin-bottom:12px;}
  /* Place the full journey photo after the cards in the mobile document flow. */
  #main-content .services-section-three{display:flex;flex-direction:column;}
  #main-content .services-section-three .outer-box{order:0;padding-bottom:0;}
@@ -613,4 +613,44 @@ body.dewford-home #main-content.dewford-template-content > .services-section-thr
  #main-content .services-section-three{display:block;isolation:isolate;}
  #main-content .services-section-three .dewford-journey-background{position:absolute;inset:auto 0 0;max-width:none;width:100%;height:clamp(480px,45vw,680px);aspect-ratio:auto;margin:0;background-size:cover;background-position:center 55%;z-index:0;}
  body.dewford-home #main-content.dewford-template-content > .services-section-three .outer-box{position:relative;z-index:1;background-color:transparent;padding-bottom:clamp(200px,22vw,320px);}
+}
+
+/* Tighten the white panel around the enlarged banner emblem. */
+#main-content .banner-section-three .banner-count-anchor .inner-box {width:265px;max-width:265px;padding:20px;}
+#main-content .banner-section-three .dewford-banner-emblem {margin-bottom:10px;}
+#main-content .banner-section-three .banner-count-caption {margin-top:8px;}
+@media(max-width:767.98px){
+ #main-content .banner-section-three .banner-count-anchor .inner-box {width:86vw;max-width:86vw;padding:2dvh 4vw;column-gap:3vw;}
+ #main-content .banner-section-three .dewford-banner-emblem {margin-bottom:6px;}
+}
+
+/* Photo-led college statement, matching the supplied tower composition. */
+html body.dewford-home #main-content .service-section-home-3.dewford-tower-section {position:relative;isolation:isolate;display:flex;flex-direction:column;justify-content:flex-start;min-height:0;aspect-ratio:16 / 9;overflow:hidden;background:none;padding:0!important;color:#fff;}
+html body.dewford-home #main-content .service-section-home-3.dewford-tower-section::before {content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(rgb(20 28 41 / 35%),rgb(20 28 41 / 35%)),url('../images/main/tower.jpeg') center 40% / cover no-repeat;}
+html body.dewford-home #main-content .dewford-tower-content {padding:5.6% 5.6% 0;}
+html body.dewford-home #main-content .dewford-tower-symbol {display:block;width:12.4%;height:auto;filter:none;}
+html body.dewford-home #main-content .dewford-tower-eyebrow {margin:1.4vw 0 2.4vw;color:#fff!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(16px,1.55vw,32px)!important;line-height:1.3!important;letter-spacing:0;}
+html body.dewford-home #main-content h2.dewford-tower-title {margin:0;color:#fff!important;font-family:Arial,Helvetica,sans-serif!important;font-size:clamp(40px,7.5vw,160px)!important;font-weight:400!important;line-height:1!important;letter-spacing:-.025em;text-transform:none;}
+html body.dewford-home #main-content .dewford-tower-message {width:93.4%;margin-top:auto;padding:.65vw 5.6%;background:var(--id-color);}
+html body.dewford-home #main-content .dewford-tower-message p {margin:0;color:#fff!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(18px,2.05vw,44px)!important;font-weight:400;line-height:1.45!important;letter-spacing:0;}
+html body.dewford-home #main-content .dewford-tower-since {margin:1.5vw 6.6% 3.9vw 0;text-align:right;color:#fff!important;font-family:Georgia,'Times New Roman',serif!important;font-size:clamp(14px,1.3vw,28px)!important;line-height:1.3!important;}
+@media(max-width:767.98px){
+ html body.dewford-home #main-content .service-section-home-3.dewford-tower-section {aspect-ratio:auto;min-height:620px;}
+ html body.dewford-home #main-content .service-section-home-3.dewford-tower-section::before {background-position:60% center;}
+ html body.dewford-home #main-content .dewford-tower-content {padding:36px 6% 40px;}
+ html body.dewford-home #main-content .dewford-tower-symbol {width:112px;}
+ html body.dewford-home #main-content .dewford-tower-eyebrow {margin:20px 0 30px;}
+ html body.dewford-home #main-content h2.dewford-tower-title {font-size:clamp(36px,8.1vw,62px)!important;line-height:1.12!important;}
+ html body.dewford-home #main-content .dewford-tower-message {width:94%;padding:16px 6%;}
+ html body.dewford-home #main-content .dewford-tower-message-break {display:none;}
+ html body.dewford-home #main-content .dewford-tower-since {margin:22px 6% 32px 0;}
+}
+
+/* Keep the group faces below the journey cards and the craft portrait beside the copy. */
+@media(min-width:768px){
+ #main-content .services-section-three .dewford-journey-background {background-position:center top;}
+}
+@media(min-width:992px){
+ #main-content .features-section-three .inner-container .bg-image {right:100px;width:calc((100% - 200px) / 4);}
+ #main-content .features-section-three .inner-container .bg-image img {object-position:48% center;}
 }

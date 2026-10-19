@@ -60,7 +60,7 @@ export async function loadTuition(request, env) {
   const popup = state.boards.popups.find(item => item.published !== false && item.enabled && item.image);
   return {image:popup?.image || 'images/sub/pop2026_1.png', revision:0};
 }
-const defaultChannels={academyName:'듀포드인터내셔널컬리지어학원',phone:'02-6401-1012',email:'ADMIN@DEWFORD.COM',address:'(04392) 서울시 용산구 장문로27 청화아파트 상가 1층 #101호',registration:'제3355호',kakao:'http://pf.kakao.com/_vHKlxj/chat',naver:'https://talk.naver.com/profile/wqvj07x',revision:0};
+const defaultChannels={instagram:'https://www.instagram.com/dewfordcoltd/',facebook:'https://www.facebook.com/profile.php?id=61595122751751',academyName:'듀포드인터내셔널컬리지어학원',phone:'02-6401-1012',email:'ADMIN@DEWFORD.COM',address:'(04392) 서울시 용산구 장문로27 청화아파트 상가 1층 #101호',registration:'제3355호',kakao:'http://pf.kakao.com/_vHKlxj/chat',naver:'https://talk.naver.com/profile/wqvj07x',revision:0};
 export async function loadChannels(env){
   const row=await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'channels'").first();
   return {...defaultChannels,...(row?JSON.parse(row.payload):{})};
@@ -216,6 +216,9 @@ export async function adminRoute(request, env) {
     const revision=previous?JSON.parse(previous.payload).revision:0;
     if(!body||body.revision!==revision)fail('CONTENT_CHANGED',409);
     const data={...defaultChannels,...(previous?JSON.parse(previous.payload):{}),kakao:channelURL(body.kakao,'kakao.com'),naver:channelURL(body.naver,'naver.com'),revision:revision+1};
+    for(const [name,domain] of [['instagram','instagram.com'],['facebook','facebook.com']]){
+      if(body[name]!==undefined)data[name]=channelURL(body[name],domain);
+    }
     if(path==='/api/admin/site-info'){
       for(const [field,max] of [['academyName',150],['phone',40],['email',254],['address',500],['registration',100]]){
         if(typeof body[field]!=='string'||!body[field].trim()||body[field].length>max||/[\u0000-\u001f]/.test(body[field]))fail('INVALID_SITE_INFO');
