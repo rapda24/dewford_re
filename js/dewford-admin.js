@@ -89,6 +89,15 @@
     finally{busy=false;if(state&& !$('#admin-workspace').hidden)render();}
   }
   const localTime=value=>value?new Date(Date.parse(value)+9*3600000).toISOString().slice(0,16):'';
+  function updateCalendarColor(){
+    const color=form.elements.backgroundColor.value;
+    $('#admin-calendar-color-field').style.setProperty('--calendar-preview-color',color);
+    const rgb=[1,3,5].map(offset=>parseInt(color.slice(offset,offset+2),16)/255).map(value=>value<=.04045?value/12.92:((value+.055)/1.055)**2.4);
+    $('#admin-calendar-color-field').style.setProperty('--calendar-preview-text',.2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2]>.179?'#1a1a1a':'#fff');
+    document.querySelectorAll('[data-calendar-color]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.calendarColor===color)));
+  }
+  form.elements.backgroundColor.addEventListener('input',updateCalendarColor);
+  document.querySelectorAll('[data-calendar-color]').forEach(button=>button.addEventListener('click',()=>{form.elements.backgroundColor.value=button.dataset.calendarColor;updateCalendarColor();}));
   function edit(item={}) {
     editorVersion++;form.reset();$('#admin-editor-status').textContent='';setUploading(false);
     const popup=board==='popups';editor.classList.toggle('admin-popup-editor',popup);document.querySelector('[data-post-fields]').hidden=popup;document.querySelector('[data-popup-fields]').hidden=!popup;
@@ -96,6 +105,7 @@
     for(const name of ['',...categories()]){const option=node('option',name||'미분류');option.value=name;form.elements.category.append(option);}form.elements.category.value=item.category||'';
     $('#admin-date-label').textContent=isCalendar()?'시작일':'날짜';$('#admin-end-date-field').hidden=!isCalendar();form.elements.endDate.disabled=!isCalendar();form.elements.endDate.required=isCalendar();
     $('#admin-calendar-color-field').hidden=!isCalendar();form.elements.backgroundColor.disabled=!isCalendar();form.elements.backgroundColor.value=item.backgroundColor||['#fff1a3','#e4d3f5','#cdebdc','#ffd9c5'][Math.max(0,state.boards[board].findIndex(entry=>entry.id===item.id))%4];
+    updateCalendarColor();
     form.elements.date.required=!popup;$('#admin-image-upload').required=popup&&!item.image;
     $('#admin-editor-title').textContent=`${names[board]} ${item.id?'수정':'등록'}`;
     for(const key of ['id','title','image','excerpt','link'])form.elements[key].value=item[key]||'';
