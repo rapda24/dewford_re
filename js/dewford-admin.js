@@ -95,6 +95,7 @@
     $('#admin-category-field').hidden=!isCalendar();form.elements.category.disabled=!isCalendar();form.elements.category.replaceChildren();
     for(const name of ['',...categories()]){const option=node('option',name||'미분류');option.value=name;form.elements.category.append(option);}form.elements.category.value=item.category||'';
     $('#admin-date-label').textContent=isCalendar()?'시작일':'날짜';$('#admin-end-date-field').hidden=!isCalendar();form.elements.endDate.disabled=!isCalendar();form.elements.endDate.required=isCalendar();
+    $('#admin-calendar-color-field').hidden=!isCalendar();form.elements.backgroundColor.disabled=!isCalendar();form.elements.backgroundColor.value=item.backgroundColor||['#fff1a3','#e4d3f5','#cdebdc','#ffd9c5'][Math.max(0,state.boards[board].findIndex(entry=>entry.id===item.id))%4];
     form.elements.date.required=!popup;$('#admin-image-upload').required=popup&&!item.image;
     $('#admin-editor-title').textContent=`${names[board]} ${item.id?'수정':'등록'}`;
     for(const key of ['id','title','image','excerpt','link'])form.elements[key].value=item[key]||'';
@@ -175,7 +176,7 @@
   $('#admin-image-remove').addEventListener('click',()=>{form.elements.image.value='';$('#admin-image-upload').value='';preview();});
   editor.addEventListener('close',()=>{editorVersion++;setUploading(false);notifyParent('close');});
   document.querySelectorAll('[data-close-editor]').forEach(button=>button.addEventListener('click',()=>editor.close()));
-  form.elements.date.addEventListener('change',()=>{if(!isCalendar())return;form.elements.endDate.min=form.elements.date.value;if(form.elements.endDate.value<form.elements.date.value)form.elements.endDate.value=form.elements.date.value;});
+  form.elements.date.addEventListener('change',()=>{if(!isCalendar())return;form.elements.endDate.min=form.elements.date.value;form.elements.endDate.value=form.elements.date.value;});
   form.addEventListener('submit',async event=>{
     event.preventDefault();if(uploading||busy)return;if(board==='popups'&&!form.elements.image.value){$('#admin-editor-status').textContent='팝업에 사용할 이미지를 파일로 첨부해 주세요.';$('#admin-image-upload').focus();return;}form.elements.body.value=richEditor.getText().trim();const data=Object.fromEntries(new FormData(form));const item={...data,published:form.elements.published.checked,enabled:form.elements.enabled.checked,gallery:data.gallery.split('\n').map(v=>v.trim()).filter(Boolean),...(board!=='popups'?{content:richEditor.getContents()}: {})};
     if(isCalendar()){item.startDate=data.date;item.endDate=data.endDate||data.date;}else delete item.endDate;

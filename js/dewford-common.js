@@ -68,8 +68,7 @@
                               <ul class="sub-menu">
                                 <li class="menu-item"><a href="preschool-calendar.html"><span>International Early
                                       Learning Calendar</span></a></li>
-                                <li class="menu-item"><a href="elementary-calendar.html"><span>Primary
-                                      Calendar</span></a></li>
+                                <li class="menu-item"><a href="elementary-calendar.html"><span>Primary Learning Calander</span></a></li>
                                 <li class="menu-item"><a href="event.html"><span>Events</span></a></li>
                               </ul>
                             </li>

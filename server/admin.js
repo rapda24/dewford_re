@@ -116,7 +116,9 @@ function itemInput(item, board, previous = {}) {
       record.startDate = record.date;
       record.endDate = date(item.endDate || record.startDate, true);
       if(record.endDate < record.startDate)fail('INVALID_DATE');
-    } else {delete record.startDate;delete record.endDate;}
+      record.backgroundColor=item.backgroundColor??previous.backgroundColor??'#fff1a3';
+      if(typeof record.backgroundColor!=='string'||!/^#[0-9a-f]{6}$/i.test(record.backgroundColor))fail('INVALID_INPUT');
+    } else {delete record.startDate;delete record.endDate;delete record.backgroundColor;}
     if (item.content !== undefined) {record.content = normalizeRichContent(item.content);record.body = richPlainText(record.content);}
     else {record.body = text(item.body || '', 30000);if(record.body !== (previous.body || previous.description || ''))delete record.content;}
     record.description = record.body;
@@ -179,7 +181,7 @@ export function mutateState(state, body) {
       if (!boards.includes(body.target) || body.target === body.board || [body.target,body.board].includes('popups')) fail('INVALID_BOARD');
       if (state.boards[body.target].some(item => item.id === body.id)) fail('DUPLICATE_ITEM', 409);
       const item = list[index]; const originalDate=item.startDate||item.date; item.date = date(body.date || item.date, true);
-      if (body.target==='events') {delete item.category;delete item.startDate;delete item.endDate;}
+      if (body.target==='events') {delete item.category;delete item.startDate;delete item.endDate;delete item.backgroundColor;}
       else {
         const duration=calendarBoards.includes(body.board)?Math.max(0,Date.parse(item.endDate||originalDate)-Date.parse(originalDate)):0;
         item.startDate=item.date;

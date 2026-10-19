@@ -282,3 +282,16 @@ test('calendar date ranges validate, publish, edit and move with duration preser
  result=await call(env,'admin/content',{action:'save',board:'elementary',revision:2,id:saved.id,item:{...item,date:'2026-11-04'}},auth);
  assert.equal(result.response.status,200);assert.equal(result.data.boards.elementary[0].startDate,'2026-11-04');assert.equal(result.data.boards.elementary[0].endDate,'2026-11-04');
 });
+
+
+test('calendar marker color validates, persists through edits and publishes',async()=>{
+ const {env,password}=environment();const auth=await login(env,password);
+ for(const backgroundColor of ['red','#fff','url(evil)',123])assert.equal((await call(env,'admin/content',{action:'save',board:'elementary',revision:0,item:{...item,backgroundColor}},auth)).response.status,400);
+ let result=await call(env,'admin/content',{action:'save',board:'elementary',revision:0,item:{...item,backgroundColor:'#52196d'}},auth);
+ assert.equal(result.response.status,200);const saved=result.data.boards.elementary[0];
+ assert.equal((await call(env,'content/calendar')).data.elementary[0].backgroundColor,'#52196d');
+ result=await call(env,'admin/content',{action:'save',board:'elementary',revision:1,id:saved.id,item:{...item,title:'수정'}},auth);
+ assert.equal(result.response.status,200);assert.equal(result.data.boards.elementary[0].backgroundColor,'#52196d');
+ result=await call(env,'admin/content',{action:'save',board:'elementary',revision:2,id:saved.id,item:{...item,backgroundColor:'#cdebdc'}},auth);
+ assert.equal(result.response.status,200);assert.equal((await call(env,'content/calendar')).data.elementary[0].backgroundColor,'#cdebdc');
+});

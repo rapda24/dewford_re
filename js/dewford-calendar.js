@@ -72,7 +72,11 @@ import {startOf,endOf,occursOn,weekSegments} from './dewford-calendar-ranges.js'
     const bar=document.createElement('button');bar.type='button';bar.className='dewford-calendar-range';
     if(segment.continuesBefore)bar.classList.add('continues-before');if(segment.continuesAfter)bar.classList.add('continues-after');
     bar.style.gridColumn=`${segment.start+1} / ${segment.end+2}`;bar.style.gridRow=String(segment.lane+2);
-    bar.style.setProperty('--calendar-marker', ['#fff1a3','#e4d3f5','#cdebdc','#ffd9c5'][segment.index%4]);
+    const marker=/^#[0-9a-f]{6}$/i.test(segment.event.backgroundColor||'')?segment.event.backgroundColor:['#fff1a3','#e4d3f5','#cdebdc','#ffd9c5'][segment.index%4];
+    bar.style.setProperty('--calendar-marker',marker);
+    const rgb=[1,3,5].map(offset=>parseInt(marker.slice(offset,offset+2),16)/255).map(value=>value<=.04045?value/12.92:((value+.055)/1.055)**2.4);
+    const luminance=.2126*rgb[0]+.7152*rgb[1]+.0722*rgb[2];
+    bar.style.setProperty('--calendar-marker-text',luminance>.179?'#1a1a1a':'#ffffff');
     bar.textContent=segment.event.title;bar.title=`${segment.event.title} (${startOf(segment.event)} ~ ${endOf(segment.event)})`;
     bar.setAttribute('aria-label',bar.title);
     bar.addEventListener('click',()=>{selected=new Date(days[segment.start]+'T00:00:00');displayed=new Date(selected.getFullYear(),selected.getMonth(),1);render(true);});
