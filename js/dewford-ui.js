@@ -212,7 +212,7 @@
 
 // Keep sentence breaks consistent in mobile copy, including loaded event text.
 (() => {
-  const excluded = 'script,style,noscript,textarea,input,select,option,svg,canvas,pre,code,[contenteditable="true"],a[href^="mailto:"],a[href^="tel:"]';
+  const excluded = 'script,style,noscript,textarea,input,select,option,svg,canvas,pre,code,[contenteditable="true"],a[href^="mailto:"],a[href^="tel:"],.dewford-calendar-range,.dewford-calendar-event';
   const applyBreaks = root => {
     if (root.nodeType === Node.ELEMENT_NODE && root.closest(excluded)) return;
     const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT);

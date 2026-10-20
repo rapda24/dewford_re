@@ -118,6 +118,8 @@ html body .dewford-calendar-week button.dewford-calendar-range {position:relativ
 html body .dewford-calendar-week button.dewford-calendar-range.continues-before {margin-left:0;}
 html body .dewford-calendar-week button.dewford-calendar-range.continues-after {margin-right:0;}
 html body .dewford-calendar-week button.dewford-calendar-range:hover {filter:brightness(.96);}
+html body #main-content .dewford-calendar :is(.dewford-calendar-range,.dewford-calendar-event) {display:block;min-width:0;max-width:100%;white-space:nowrap!important;overflow:hidden;text-overflow:ellipsis;overflow-wrap:normal;}
+html body #main-content .dewford-calendar :is(.dewford-calendar-range,.dewford-calendar-event) br {display:none!important;}
 @media(max-width:767px){
  html body .dewford-calendar-week,html body .dewford-calendar-week button.dewford-calendar-day {min-height:82px;}
  html body .dewford-calendar-week button.dewford-calendar-day {padding:6px 4px;}
