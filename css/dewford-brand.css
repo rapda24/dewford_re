@@ -825,3 +825,6 @@ html.dewford-intro-active .dewford-naver-floating,html.dewford-menu-open .dewfor
 @media(prefers-reduced-motion:reduce){
  html body .dewford-naver-floating {transition:none;}
 }
+
+/* Keep words together throughout the site. */
+html body, html body * {word-break:keep-all!important;}
