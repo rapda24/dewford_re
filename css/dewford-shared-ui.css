@@ -443,3 +443,6 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-t
 @media(min-width:768px) and (max-width:1199.98px), (max-width:359.98px){
  html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-two .dewford-footer-socials {grid-template-columns:repeat(3,44px);}
 }
+
+/* Let accordion body copy fill its content container. */
+html body #main-content .accordion-box .acc-content .content .text {width:100%;max-width:none;box-sizing:border-box;}

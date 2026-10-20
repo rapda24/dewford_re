@@ -26,7 +26,7 @@
     observer.unobserve(target);
     target.animate([{opacity:0,transform:'translateY(24px)'},{opacity:1,transform:'translateY(0)'}], {duration:700,easing:'cubic-bezier(.2,.7,.2,1)'});
   }), {threshold:.08});
-  const discover = () => root.querySelectorAll('.dewford-stage-grid .swiper-slide,.news-block-four,.team-details__progress-single,.dewford-editorial-heading,.about-section .image-column,.dewford-section-heading').forEach(el => {
+  const discover = () => root.querySelectorAll('.dewford-stage-grid .swiper-slide,.dewford-learning-item,.news-block-four,.team-details__progress-single,.dewford-editorial-heading,.about-section .image-column,.dewford-section-heading').forEach(el => {
     if (seen.has(el)) return;
     seen.add(el); observer.observe(el);
   });

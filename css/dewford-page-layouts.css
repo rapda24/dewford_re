@@ -52,7 +52,21 @@ html body.dewford-layout-elementary-international #main-content .project-details
 html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:last-child > .col-md-6:first-child {width:58%;}
 html body.dewford-layout-elementary-international #main-content .project-details > .auto-container > .row:last-child > .col-md-6:last-child {width:42%;}
 html body.dewford-layout-elementary-international #main-content .project-details__img {height:360px;}
-html body.dewford-layout-elementary-international #main-content .service-section-two {background:#f7f7f7;}
+html body.dewford-layout-elementary-international #main-content .service-section-two {background:transparent;}
+html body.dewford-layout-elementary-international #main-content > section {padding-block:96px!important;}
+html body.dewford-layout-elementary-international #main-content > .service-section-two {padding-top:0!important;}
+@media(max-width:767px){
+ html body.dewford-layout-elementary-international #main-content > section {padding-block:56px!important;}
+}
+/* Static learning list on desktop and mobile. */
+html body.dewford-layout-elementary-international #main-content .service-section-two .dewford-learning-list {display:grid;grid-template-columns:minmax(0,1fr);gap:24px;}
+html body.dewford-layout-elementary-international #main-content .service-section-two .dewford-learning-item {min-width:0;}
+html body.dewford-layout-elementary-international #main-content .service-section-two .overlay-content:before {content:none;}
+html body.dewford-layout-elementary-international #main-content .dewford-learning-item .overlay-content {display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;gap:16px;}
+html body.dewford-layout-elementary-international #main-content .dewford-learning-item .overlay-content .icon-box {margin:0;}
+html body.dewford-layout-elementary-international #main-content .dewford-learning-item .overlay-content .title {margin:0;}
+html body.dewford-layout-elementary-international #main-content .dewford-learning-item .overlay-content .text {grid-column:1 / -1;font-weight:400!important;}
+html body.dewford-layout-elementary-international #main-content .dewford-learning-item .overlay-content .text b {font-weight:800!important;}
 html body.dewford-layout-elementary-international #main-content .service-section-two :is(h2.title,.sub-title) {color:#000!important;}
 html body.dewford-layout-elementary-international #main-content .service-block-two .inner-box {border:0;border-top:1px solid #dedede;border-radius:0;background:none;}
 html body.dewford-layout-elementary-international #main-content .service-block-two .overlay-content {background:none;color:#000;padding:32px 12px 0 0;}
@@ -65,6 +79,12 @@ html body.dewford-layout-elementary-international #main-content .service-block-t
  html body.dewford-layout-elementary-international #main-content .project-details__img {height:250px;}
 }
 /* Primary ESL: a syllabus-style level comparison, not a card grid. */
+html body.dewford-layout-elementary-esl #main-content .about-section .sec-title-style-three {padding-bottom:0;border-bottom:0;}
+html body.dewford-layout-elementary-esl #main-content .about-section .sec-title-style-three::before,
+html body.dewford-layout-elementary-esl #main-content .about-section .sec-title-style-three .text::before {content:none;}
+html body.dewford-layout-elementary-esl #main-content .about-section .sec-title-style-three .title {position:relative;padding-bottom:24px;border-bottom:1px solid rgba(82,25,109,.15);}
+html body.dewford-layout-elementary-esl #main-content .about-section .sec-title-style-three .title::before {position:absolute;content:"";background-color:var(--theme-color-dark);width:102px;height:3px;left:0;bottom:0;}
+html body.dewford-layout-elementary-esl #main-content .about-section .sec-title-style-three .text {padding-bottom:0;border:0;}
 html body.dewford-layout-elementary-esl #main-content .about-section .row {align-items:start;}
 html body.dewford-layout-elementary-esl #main-content .about-section .image-column {width:50%;margin:0;padding-left:40px;}
 html body.dewford-layout-elementary-esl #main-content .about-section .image img {aspect-ratio:1/1!important;}
@@ -316,4 +336,72 @@ html body.dewford-layout-international-preschool #main-content .service-section-
 html body.dewford-layout-international-preschool #main-content .service-section-two .dewford-stage-photo {align-self:stretch;width:100%;height:auto;min-height:310px;background-size:cover;background-position:center;background-repeat:no-repeat;}
 @media(max-width:767px){
  html body.dewford-layout-international-preschool #main-content .service-section-two .dewford-stage-photo {height:230px;min-height:230px;flex:none;}
+}
+
+/* Match ESL learning items to the static international program list. */
+html body.dewford-layout-elementary-esl #main-content .service-section-two .dewford-learning-list {display:grid;grid-template-columns:minmax(0,1fr);gap:24px;}
+html body.dewford-layout-elementary-esl #main-content .service-section-two .dewford-learning-item {min-width:0;}
+html body.dewford-layout-elementary-esl #main-content .service-section-two .overlay-content:before {content:none;}
+html body.dewford-layout-elementary-esl #main-content .dewford-learning-item .overlay-content {display:grid;grid-template-columns:52px minmax(0,1fr);align-items:center;gap:16px;}
+html body.dewford-layout-elementary-esl #main-content .dewford-learning-item .overlay-content .icon-box {margin:0;}
+html body.dewford-layout-elementary-esl #main-content .dewford-learning-item .overlay-content .title {margin:0;}
+html body.dewford-layout-elementary-esl #main-content .dewford-learning-item .overlay-content .text {grid-column:1 / -1;font-weight:400!important;}
+html body.dewford-layout-elementary-esl #main-content .dewford-learning-item .overlay-content .text b {font-weight:800!important;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .inner-box {border:0;border-top:1px solid #dedede;border-radius:0;background:none;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content {background:none;color:#000;padding:32px 12px 0 0;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content :is(.title,.title a,.text) {color:#000;}
+html body.dewford-layout-elementary-esl #main-content .service-block-two .overlay-content .icon-box {display:flex;align-items:center;justify-content:center;line-height:1;}
+html body.dewford-layout-elementary-esl #main-content .service-section-two .icon-box{background:#fff!important;color:var(--id-color)!important;}
+html body.dewford-layout-elementary-esl #main-content .service-section-two .icon-box i{color:var(--id-color)!important;}
+html body.dewford-layout-elementary-esl #main-content .service-section-two {background:transparent;border:0;padding-block:96px!important;}
+html body.dewford-layout-elementary-esl #main-content .dewford-learning-item .overlay-content .icon-box {display:grid;place-items:center;margin:0;}
+@media(max-width:767px){
+ html body.dewford-layout-elementary-esl #main-content .service-section-two {padding-block:56px!important;}
+}
+
+/* Larger, unfilled learning icons on both primary program pages. */
+html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content {grid-template-columns:64px minmax(0,1fr) minmax(0,2fr);align-items:start;}
+html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content .icon-box {width:64px;min-width:64px;height:64px;overflow:visible;line-height:1;background:transparent!important;border:0;border-radius:0;box-shadow:none;}
+html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content .icon-box i {display:block;width:auto;height:auto;overflow:visible;font-size:40px;line-height:1.25;position:static;transform:none;padding:0;margin:0;}
+html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content .text {grid-column:auto;}
+@media(max-width:767px){
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content {grid-template-columns:minmax(0,1fr);gap:16px;}
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content .icon-box {width:64px;height:64px;}
+}
+
+/* Separate the learning summary from its supporting body copy. */
+html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content .text b {display:block;font-size:20px;line-height:1.5;margin-bottom:12px;}
+html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content .text b + br {display:none;}
+@media(max-width:767px){
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content .text b {font-size:18px;}
+}
+
+/* Keep admissions and preschool copy in view beside their image columns. */
+html body:is(.dewford-layout-rolling-enrollment,.dewford-layout-international-preschool) #main-content .about-section .image-column > .inner-column {position:static;}
+@media(min-width:1440px){
+ html body:is(.dewford-layout-rolling-enrollment,.dewford-layout-international-preschool) .page-wrapper {overflow:clip;}
+ html body:is(.dewford-layout-rolling-enrollment,.dewford-layout-international-preschool) #main-content .about-section > .auto-container > .row {align-items:stretch;}
+ html body:is(.dewford-layout-rolling-enrollment,.dewford-layout-international-preschool) #main-content .about-section .content-column {align-self:stretch;}
+ html body:is(.dewford-layout-rolling-enrollment,.dewford-layout-international-preschool) #main-content .about-section .content-column > .inner-column {position:sticky;top:120px;}
+}
+@media(max-width:1439px){
+ html body:is(.dewford-layout-rolling-enrollment,.dewford-layout-international-preschool) #main-content .about-section .content-column > .inner-column {position:static;}
+}
+
+html body.dewford-layout-elementary-esl #main-content .about-section .image img.dewford-esl-class-photo {display:block;width:100%;height:auto;aspect-ratio:auto!important;object-fit:contain;}
+
+/* ESL introduction uses the same full-width composition as International Primary. */
+html body.dewford-layout-elementary-esl #main-content > .about-section[hidden] {display:none!important;}
+html body.dewford-layout-elementary-esl #main-content .dewford-esl-project-details .sec-title-style-three {max-width:820px;margin:0 auto 48px;text-align:center;}
+html body.dewford-layout-elementary-esl #main-content .dewford-esl-project-followup {margin-top:24px;}
+html body.dewford-layout-elementary-esl #main-content .dewford-esl-project-followup .info-block {display:flex;flex-wrap:wrap;gap:24px;margin-top:28px;}
+html body.dewford-layout-elementary-esl #main-content > .project-details {padding-block:96px!important;}
+@media(max-width:767px){
+ html body.dewford-layout-elementary-esl #main-content > .project-details {padding-block:56px!important;}
+}
+
+html body.dewford-layout-elementary-esl #main-content > .service-section-two {padding-top:0!important;}
+
+@media(min-width:768px){
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content :is(.icon-box,.title) {align-self:center;}
 }
