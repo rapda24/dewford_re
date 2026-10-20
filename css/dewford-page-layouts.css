@@ -402,6 +402,14 @@ html body.dewford-layout-elementary-esl #main-content > .project-details {paddin
 
 html body.dewford-layout-elementary-esl #main-content > .service-section-two {padding-top:0!important;}
 
+/* Keep both primary program introductions compact and consistent on mobile. */
+@media(max-width:767.98px){
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content > .project-details {padding-block:32px!important;}
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .project-details .sec-title-style-three {margin-bottom:24px!important;}
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .project-details .sec-title-style-three .title {margin-bottom:20px!important;}
+ html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .project-details .project-details__top.mt-5 {margin-top:0!important;}
+}
+
 @media(min-width:768px){
  html body:is(.dewford-layout-elementary-international,.dewford-layout-elementary-esl) #main-content .dewford-learning-item .overlay-content :is(.icon-box,.title) {align-self:center;}
 }

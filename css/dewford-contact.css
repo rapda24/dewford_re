@@ -50,3 +50,7 @@ html body #main-content.dewford-contact-page .dewford-contact-channels .contact-
 html body #main-content.dewford-contact-page .dewford-contact-channels img{display:block;max-width:none;filter:none;}
 
 html body #main-content.dewford-contact-page .dewford-contact-channels{display:none;}
+
+@media(max-width:767.98px){
+ html body #main-content.dewford-contact-page > .contact-details {padding-top:40px;}
+}
