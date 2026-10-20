@@ -49,3 +49,9 @@ html body .dewford-why-about-template .elementor-element.elementor-element-f6f63
 
 /* Shared title banner height across desktop and mobile subpages. */
 .dewford-subpage .dewford-page-title {height:70dvh;min-height:0;box-sizing:border-box;}
+
+/* Per-photo focal points for the cover crop, including narrow mobile titles. */
+.dewford-page-title-slide img {object-position:var(--title-photo-focus,50% 50%);transform-origin:var(--title-photo-focus,50% 50%);}
+@media(max-width:767.98px){
+ .dewford-page-title-slide img {object-position:var(--title-photo-focus-mobile,var(--title-photo-focus,50% 50%));transform-origin:var(--title-photo-focus-mobile,var(--title-photo-focus,50% 50%));}
+}

@@ -42,6 +42,40 @@
     'detail.html':[["photo-72-wide","50% 50%",1600],["photo-75-wide","50% 50%",1600],["photo-78-wide","50% 50%",1600]],
     'contact.html':[["photo-14","50% 50%",1600],["photo-23","50% 50%",1600],["photo-54","50% 50%",1600]],
   };
+  // Keep faces within the title crop at wide and narrow aspect ratios.
+  const photoFocus = {
+    'main-1':['50% 38%','48% 38%'],
+    'photo-2':['50% 32%','43% 32%'],
+    'photo-82-wide':['50% 28%','51% 28%'],
+    'photo-6':['50% 28%','53% 28%'],
+    'photo-37':['50% 38%','50% 38%'],
+    'photo-56':['50% 25%','57% 25%'],
+    'photo-77-wide':['50% 22%','50% 22%'],
+    'photo-40':['50% 35%','49% 35%'],
+    'photo-34':['50% 40%','42% 40%'],
+    'photo-18':['50% 35%','55% 35%'],
+    'photo-51':['50% 20%','50% 20%'],
+    'photo-52':['50% 20%','53% 20%'],
+    'photo-70-wide':['50% 38%','43% 38%'],
+    'photo-55':['50% 24%','47% 24%'],
+    'photo-57':['50% 22%','50% 22%'],
+    'photo-58':['50% 20%','46% 20%'],
+    'photo-59':['50% 20%','47% 20%'],
+    'photo-61':['50% 26%','53% 26%'],
+    'photo-81-wide':['50% 28%','52% 28%'],
+    'photo-66':['50% 30%','50% 30%'],
+    'photo-45':['50% 20%','51% 20%'],
+    'photo-74-wide':['50% 40%','52% 40%'],
+    'photo-73-wide':['50% 40%','55% 40%'],
+    'photo-32':['50% 24%','50% 24%'],
+    'main-4':['50% 35%','45% 35%'],
+    'photo-3':['50% 40%','51% 40%'],
+    'photo-12':['50% 30%','57% 30%'],
+    'photo-72-wide':['50% 35%','55% 35%'],
+    'photo-75-wide':['50% 12%','49% 12%'],
+    'photo-78-wide':['50% 8%','54% 8%'],
+    'photo-54':['50% 34%','43% 34%']
+  };
   const filename = location.pathname.split('/').pop();
   const page = pages[filename];
   const appendSentences = (element, text) => {
@@ -61,7 +95,9 @@
     const slide=document.createElement('div');slide.className='dewford-page-title-slide'+(i===0?' is-active':'');
     const img=document.createElement('img');img.alt='';img.decoding='async';img.sizes='100vw';
     img.srcset=`images/photo/prepared/${id}-768.webp 768w, images/photo/prepared/${id}-${width}.webp ${width}w`;
-    img.src=`images/photo/prepared/${id}-${width}.webp`;img.style.objectPosition=focus;
+    img.src=`images/photo/prepared/${id}-${width}.webp`;const [desktopFocus,mobileFocus] = photoFocus[id] || [focus,focus];
+    img.style.setProperty('--title-photo-focus',desktopFocus);
+    img.style.setProperty('--title-photo-focus-mobile',mobileFocus);
     if(i===0)img.fetchPriority='high';
     slide.append(img);photos.append(slide);
   });
