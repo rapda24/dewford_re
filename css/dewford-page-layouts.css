@@ -116,6 +116,11 @@ html body.dewford-layout-admissions-inquiry #main-content .team-details__progres
 html body.dewford-layout-admissions-inquiry #main-content .team-details__progress-single:before {top:14px;}
 html body.dewford-layout-admissions-inquiry #main-content .team-contact-form > .container {display:grid;grid-template-columns:1fr 1.8fr;gap:48px;align-items:start;}
 html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .sec-title {text-align:left!important;}
+@media(min-width:1440px){
+ /* Keep the consultation copy in view alongside the form. */
+ html body.dewford-layout-admissions-inquiry .page-wrapper {overflow:clip;}
+ html body.dewford-layout-admissions-inquiry #main-content .team-contact-form > .container > .sec-title {position:sticky;top:120px;}
+}
 html body.dewford-layout-admissions-inquiry #main-content .team-contact-form .col-lg-8 {width:100%;}
 html body.dewford-layout-admissions-inquiry #main-content #dewford-inquiry-form {padding:32px;}
 html body.dewford-layout-admissions-inquiry #main-content #dewford-inquiry-form .form-consent {line-height:1.75!important;}
