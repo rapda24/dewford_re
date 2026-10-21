@@ -125,7 +125,7 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-t
 
 .dewford-footer .dewford-footer-menu-grid {display:grid;grid-template-columns:max-content max-content max-content;justify-content:space-between;gap:36px;align-content:start;}
 .dewford-footer .dewford-footer-menu-grid > .footer-column {width:auto;margin-left:0;padding-left:0;padding-right:0;}
-.dewford-footer .user-links a[href="international-preschool.html"] {white-space:nowrap;}
+.dewford-footer .user-links a[href="international-preschool.html"] {white-space:normal;max-width:100%;overflow:visible;}
 @media(max-width:767.98px){
  .dewford-footer .dewford-footer-menu-grid {grid-template-columns:1fr;gap:32px;margin-top:24px;}
  .dewford-footer .dewford-footer-menu-grid > .footer-column {margin-bottom:0;}
@@ -446,3 +446,6 @@ html body:is(.dewford-home,.dewford-subpage) .dewford-footer.footer-style-home-t
 
 /* Let accordion body copy fill its content container. */
 html body #main-content .accordion-box .acc-content .content .text {width:100%;max-width:none;box-sizing:border-box;}
+
+/* Footer links must remain visible beyond the template list-item clipping. */
+html body .dewford-footer .user-links li {overflow:visible;}
