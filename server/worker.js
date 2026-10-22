@@ -9,7 +9,7 @@ function json(body, status = 200, extraHeaders = {}) {
 }
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (url.pathname === '/') {
       const home = new URL(request.url);
@@ -47,7 +47,7 @@ export default {
     }
     if (request.method === 'POST' && url.pathname === '/api/inquiries') {
       try {
-        const result = await receiveInquiry(request, env);
+        const result = await receiveInquiry(request, env, ctx);
         return json(result.error ? { error: { code: result.error } } : { data: result.data }, result.status, headers);
       } catch { return json({ error: { code: 'DATABASE_UNAVAILABLE' } }, 503, headers); }
     }

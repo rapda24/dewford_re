@@ -83,6 +83,24 @@ npm run dev
 
 ## 상담 게시판 관리
 
+### 상담 접수 메일 알림
+
+상담 신청은 DB에 저장된 후 `admin@dewford.com`으로 이름, 연락처, 이메일, 프로그램, 상담 내용과 관리자 링크를 발송합니다. 메일 발송 실패 시에도 상담은 정상 접수되며 관리자 페이지에서 확인할 수 있습니다. 실패 시 Worker 로그에 `INQUIRY_EMAIL_DELIVERY_FAILED`와 접수 번호가 남습니다. 자동 재발송은 하지 않습니다.
+
+실제 발송을 활성화하려면 [Resend](https://resend.com/docs/api-reference/emails/send-email)에서 발신 도메인을 인증하고 다음 Worker 설정을 등록한 뒤 배포하세요.
+
+```sh
+npx wrangler secret put RESEND_API_KEY
+npx wrangler secret put INQUIRY_EMAIL_FROM
+npm run deploy
+```
+
+`RESEND_API_KEY`에는 알림 도메인에 한정된 발송 전용 API 키를, `INQUIRY_EMAIL_FROM`에는 `DEWFORD <noreply@notifications.dewford.com>`을 입력합니다. 로컬 개발에서는 `.dev.vars`에 같은 이름으로 설정합니다. 키와 발신 주소가 없으면 메일은 발송하지 않으며 `INQUIRY_EMAIL_NOT_CONFIGURED` 로그를 남깁니다. 수신 주소는 `admin@dewford.com`으로 고정되어 있습니다. 배포 후 테스트 상담을 한 건 접수하고 관리자 목록과 실제 수신함을 함께 확인하세요.
+
+알림용 발신 도메인은 `notifications.dewford.com`입니다. Cloudflare DNS의 `resend._domainkey.notifications` TXT, `rsend.notifications` CNAME, `send.notifications` CNAME으로 인증하며, 기존 메일 수신용 MX 레코드는 변경하지 않습니다. API 키는 Worker의 암호화된 Secret으로만 저장하고 저장소에 기록하지 않습니다.
+
+2026-10-22 운영 설정 완료: 발신 도메인의 Verified 상태, 도메인 제한 Sending access 키, Worker의 `RESEND_API_KEY`·`INQUIRY_EMAIL_FROM` Secret과 운영 배포를 확인했습니다. 사용자 요청으로 테스트 메일은 보내지 않았으며 실제 수신 여부는 아직 검증하지 않았습니다.
+
 `admin-inquiries.html`에서 접수 / 진행중 / 완료 상태를 관리합니다. 기존 상담은 `0005_inquiry_status.sql` 적용 후 접수 상태로 표시됩니다. 배포 시 위의 D1 마이그레이션 적용 명령으로 새 마이그레이션을 먼저 적용합니다.
 
 상단에는 전체 선택 체크박스, 상태 선택 셀렉트 박스와 상태 일괄 변경 버튼, 일괄 삭제, 엑셀 다운로드 버튼이 있습니다. 현재 페이지의 체크박스로 선택한 상담만 상태 변경·삭제하며, 셀렉트 박스에서 접수·진행중·완료를 고른 뒤 상태 일괄 변경 버튼으로 적용합니다. 셀렉트 박스와 변경 버튼은 하나의 그룹으로 표시합니다. 기존 상담 예약 상태도 진행중으로 표시합니다. 삭제는 대상 건수를 확인한 뒤 실행합니다. 상세 팝업에서도 상태 변경을 저장할 수 있습니다. 엑셀 다운로드는 선택한 상담이 있으면 해당 내역만, 선택하지 않았으면 검색 조건과 관계없이 전체 내역을 Excel에서 열 수 있는 SpreadsheetML `.xml` 파일로 저장합니다. 연락처와 상담 내용은 문자열로 저장하여 앞자리 0을 유지하고 수식으로 해석하지 않습니다.
