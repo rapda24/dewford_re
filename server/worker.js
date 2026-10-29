@@ -1,3 +1,4 @@
+import { recordVisit } from './analytics.js';
 import { receiveInquiry } from './inquiries.js';
 import { adminRoute, readMedia, managedPublic } from './admin.js';
 
@@ -44,6 +45,10 @@ export default {
     if (mediaMatch && request.method === 'GET') {
       try { return await readMedia(env, mediaMatch[1]); }
       catch { return json({error:{code:'DATABASE_UNAVAILABLE'}}, 503); }
+    }
+    if (request.method === 'POST' && url.pathname === '/api/analytics/visit') {
+      try { await recordVisit(request, env); return json({data:{recorded:true}},200,headers); }
+      catch(error) { return json({error:{code:error.status ? error.message : 'DATABASE_UNAVAILABLE'}},error.status || 503,headers); }
     }
     if (request.method === 'POST' && url.pathname === '/api/inquiries') {
       try {

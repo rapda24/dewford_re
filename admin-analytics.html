@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>방문 통계 | DEWFORD 관리자</title><link rel="icon" href="images/common/symbol_3.png"><link rel="stylesheet" href="css/dewford-shared-ui.css"><link rel="stylesheet" href="css/vendor/quill.snow.css"><link rel="stylesheet" href="css/dewford-admin.css"></head>
+<body class="dewford-admin-page">
+<p id="admin-auth-loading" role="status">관리 화면을 불러오고 있습니다.</p>
+<section id="admin-workspace" class="admin-workspace" hidden>
+  <aside class="admin-sidebar">
+    <a class="admin-brand" href="admin.html"><img src="images/dewford/logo-sharp-white.svg" alt="DEWFORD INTERNATIONAL COLLEGE" width="316" height="75"></a>
+    <p class="admin-nav-label">WORKSPACE</p>
+    <nav class="admin-tabs" aria-label="관리할 게시판">
+      <a class="admin-inquiries-link" href="admin.html?board=events"><span>이벤트 게시판</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin.html?board=preschool"><span>유치부 캘린더</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin.html?board=elementary"><span>초등부 캘린더</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin.html?board=popups"><span>팝업 관리</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin-inquiries.html"><span>상담 접수</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin-tuition.html"><span>교습비 관리</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin-settings.html"><span>공통 정보 관리</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin-analytics.html" aria-current="page"><span>방문 통계</span><span aria-hidden="true">↗</span></a>
+      <a class="admin-inquiries-link" href="admin-guide.html" target="_blank" rel="noopener noreferrer"><span>운영 가이드</span><span aria-hidden="true">↗</span></a>
+    </nav>
+    <div class="admin-sidebar-bottom"><a href="index.html">홈페이지 보기 ↗</a><button id="admin-logout" type="button">로그아웃</button></div>
+  </aside>
+  <main class="admin-main">
+    <header class="admin-topbar"><span>DEWFORD / ADMIN</span><span>홈페이지 관리</span></header>
+    <div class="admin-page-content">
+      <p class="admin-eyebrow">MANAGE YOUR DEWFORD</p>
+      <div class="admin-heading"><div><h1>방문 통계</h1><p>한국 시간 기준 · 실제 사람 수가 아닌 브라우저별 추정치입니다.</p></div><label>조회 기간 <select id="analytics-days"><option value="7">최근 7일</option><option value="30" selected>최근 30일</option><option value="90">최근 90일</option></select></label><button id="analytics-refresh" type="button">새로고침</button></div>
+      <p>오늘 방문자는 같은 브라우저의 중복 접속을 제외합니다. 이번 달 방문자는 일별 방문자 합계입니다. 관리자 화면은 집계하지 않으며, 공개 홈페이지 열람은 포함됩니다. IP·연락처·검색어는 저장하지 않습니다. 수집 시작 이후 기록을 최대 400일 보관합니다.</p>
+      <p id="analytics-status" role="status" aria-live="polite"></p>
+      <section class="admin-summary" aria-label="방문 요약"><div><span>오늘 방문자</span><strong id="today-visitors">—</strong></div><div><span>오늘 조회수</span><strong id="today-views">—</strong></div><div><span>이번 달 방문자 (일별 합계)</span><strong id="month-visitors">—</strong></div><div><span>이번 달 조회수</span><strong id="month-views">—</strong></div></section>
+      <section class="admin-content analytics-panel"><h2>일별 방문 추이</h2><div id="analytics-daily"></div></section>
+      <section class="admin-content analytics-panel"><h2>페이지별 조회수</h2><div id="analytics-pages"></div></section>
+      <section class="admin-content analytics-panel"><h2>기기별 조회 비율</h2><div id="analytics-devices"></div><p>브라우저 설정이나 추적 차단에 따라 실제 이용량과 차이가 날 수 있습니다.</p></section>
+    </div>
+  </main>
+</section>
+<script src="js/dewford-admin-client.js"></script><script src="js/dewford-admin-analytics.js"></script></body></html>

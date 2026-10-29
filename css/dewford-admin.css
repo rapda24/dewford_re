@@ -64,3 +64,10 @@ body.admin-embedded{background:#fff;}.admin-embedded #admin-workspace{display:no
 .admin-calendar-color-preview {padding:10px 0;font:inherit;}
 .admin-calendar-color-preview span {display:block;padding:4px 8px;background:linear-gradient(transparent 18%,var(--calendar-preview-color,#fff1a3) 18%,var(--calendar-preview-color,#fff1a3) 92%,transparent 92%);color:var(--calendar-preview-text,#292929);}
 .admin-calendar-color-help {font-size:12px;color:var(--admin-muted);margin:0;line-height:1.6;}
+
+.analytics-panel{margin-top:24px;padding:24px;overflow-x:auto}
+.analytics-panel h2{font-size:20px;margin:0 0 20px}
+.analytics-panel table{width:100%;border-collapse:collapse;text-align:left}
+.analytics-panel th,.analytics-panel td{padding:12px 10px;border-bottom:1px solid #e7e9e5;overflow-wrap:anywhere}
+.analytics-panel th{color:#526057;font-size:13px}
+.analytics-panel td:not(:first-child),.analytics-panel th:not(:first-child){text-align:right;white-space:nowrap}

@@ -6,7 +6,7 @@ import { pbkdf2Sync } from 'node:crypto';
 import worker from '../server/worker.js';
 function environment() {
   const db = new DatabaseSync(':memory:');
-  for (const file of ['0001_public_content.sql','0002_inquiries.sql','0003_admin.sql','0004_admin_media.sql','0005_inquiry_status.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
+  for (const file of ['0001_public_content.sql','0002_inquiries.sql','0003_admin.sql','0004_admin_media.sql','0005_inquiry_status.sql','0006_analytics.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
   const DB = {prepare(sql) {
     const statement = db.prepare(sql); let values=[];
     const wrapper={bind(...args){values=args.map(value=>value instanceof ArrayBuffer?new Uint8Array(value):value);return wrapper;},async first(){return statement.get(...values)||null;},async all(){return {results:statement.all(...values)};},async run(){const result=statement.run(...values);return {meta:{changes:Number(result.changes)}};}};
@@ -294,4 +294,26 @@ test('calendar marker color validates, persists through edits and publishes',asy
  assert.equal(result.response.status,200);assert.equal(result.data.boards.elementary[0].backgroundColor,'#52196d');
  result=await call(env,'admin/content',{action:'save',board:'elementary',revision:2,id:saved.id,item:{...item,backgroundColor:'#cdebdc'}},auth);
  assert.equal(result.response.status,200);assert.equal((await call(env,'content/calendar')).data.elementary[0].backgroundColor,'#cdebdc');
+});
+
+test('visit analytics deduplicates daily browsers, counts views and requires admin authentication',async()=>{
+  const {env,password}=environment();
+  const visit={path:'/index.html',visitor:'a'.repeat(32),device:'desktop'};
+  assert.equal((await call(env,'analytics/visit',visit)).response.status,200);
+  await call(env,'analytics/visit',visit);
+  await call(env,'analytics/visit',{...visit,path:'/event.html'});
+  await call(env,'analytics/visit',{...visit,visitor:'b'.repeat(32),device:'mobile'});
+  assert.equal((await call(env,'admin/analytics')).response.status,401);
+  assert.equal((await call(env,'analytics/visit',{...visit,path:'/admin.html'})).response.status,400);
+  assert.equal((await call(env,'analytics/visit',visit,{headers:{Origin:'https://evil.example'}})).response.status,403);
+  assert.equal((await call(env,'analytics/visit',visit,{headers:{Origin:''}})).response.status,403);
+  await call(env,'analytics/visit',visit,{headers:{'User-Agent':'test crawler'}});
+  const auth=await login(env,password);
+  const result=await call(env,'admin/analytics?days=7',null,auth);
+  assert.equal(result.response.status,200);
+  assert.equal(result.data.summary.todayVisitors,2);
+  assert.equal(result.data.summary.todayViews,4);
+  assert.equal(result.data.daily[0].visitors,2);
+  assert.equal(result.data.pages[0].views,3);
+  assert.equal((await call(env,'admin/analytics?days=365',null,auth)).response.status,400);
 });

@@ -1,3 +1,4 @@
+import { visitStats } from './analytics.js';
 import {normalizeRichContent, richPlainText} from './rich-text.js';
 const encoder = new TextEncoder();
 const boards = ['events', 'preschool', 'elementary', 'popups'];
@@ -217,6 +218,7 @@ export async function adminRoute(request, env) {
   if (path === '/api/admin/session' && request.method === 'GET') return {data:auth ? {authenticated:true, csrf:auth.csrf} : {authenticated:false}};
   if (!auth) fail('UNAUTHORIZED', 401);
   if (request.method === 'POST' && !equal(request.headers.get('X-CSRF-Token') || '', auth.csrf)) fail('CSRF_INVALID', 403);
+  if (path === '/api/admin/analytics' && request.method === 'GET') return {data:await visitStats(env,new URL(request.url))};
   if (path === '/api/admin/logout' && request.method === 'POST') {
     await env.DB.prepare('DELETE FROM admin_sessions WHERE token_hash = ?').bind(auth.tokenHash).run();
     return {data:{authenticated:false}, headers:{'Set-Cookie':cookie(request, '', 0)}};

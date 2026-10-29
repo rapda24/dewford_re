@@ -224,3 +224,22 @@
   window.addEventListener('pageshow',event=>{if(event.persisted)applySiteInfo();});
   window.addEventListener('focus',applySiteInfo);
 })();
+
+(() => {
+  if (!/^https?:$/.test(location.protocol) || /\/admin[^/]*$/.test(location.pathname)) return;
+  const send = () => {
+    if (document.visibilityState !== 'visible') return;
+    document.removeEventListener('visibilitychange', send);
+    try {
+      const day=new Date(Date.now()+9*3600000).toISOString().slice(0,10);
+      let saved;try{saved=JSON.parse(localStorage.getItem('dewford-visit') || 'null');}catch{}
+      if (!saved || saved.day!==day || !/^[a-f0-9]{32}$/.test(saved.id)) {
+        saved={day,id:Array.from(crypto.getRandomValues(new Uint8Array(16)),b=>b.toString(16).padStart(2,'0')).join('')};
+        try{localStorage.setItem('dewford-visit',JSON.stringify(saved));}catch{}
+      }
+      fetch('/api/analytics/visit',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
+        body:JSON.stringify({path:location.pathname==='/'?'/index.html':location.pathname,visitor:saved.id,device:/Mobi|Android|iPhone|iPad/i.test(navigator.userAgent)?'mobile':'desktop'})}).catch(()=>{});
+    } catch {}
+  };
+  if(document.visibilityState==='visible')send();else document.addEventListener('visibilitychange',send);
+})();
