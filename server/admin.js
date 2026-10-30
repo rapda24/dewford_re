@@ -161,12 +161,13 @@ export function mutateState(state, body) {
     if (!Array.isArray(body.ids) || !body.ids.length || body.ids.length > 1000 || body.ids.some(id => typeof id !== 'string' || !id || id.length > 100) || new Set(body.ids).size !== body.ids.length) fail('INVALID_INPUT');
     if (body.ids.some(id => !list.some(item => item.id === id))) fail('ITEM_NOT_FOUND', 404);
     if (body.published !== undefined && typeof body.published !== 'boolean') fail('INVALID_INPUT');
-    if (!['keep','add','remove'].includes(body.display)) fail('INVALID_INPUT');
-    if (body.display !== 'keep' && (!Array.isArray(body.sites) || !body.sites.length || body.sites.length > 2 || new Set(body.sites).size !== body.sites.length || body.sites.some(site => !['ko','en'].includes(site)))) fail('INVALID_SITES');
+    if (!['keep','add','remove','set'].includes(body.display)) fail('INVALID_INPUT');
+    if (body.display !== 'keep' && (!Array.isArray(body.sites) || (!body.sites.length && body.display !== 'set') || body.sites.length > 2 || new Set(body.sites).size !== body.sites.length || body.sites.some(site => !['ko','en'].includes(site)))) fail('INVALID_SITES');
     if (body.display === 'keep' && body.published === undefined) fail('INVALID_INPUT');
     const ids = new Set(body.ids), now = new Date().toISOString();
     for (const item of list) if (ids.has(item.id)) {
       if (body.published !== undefined) item.published = body.published;
+      if (body.display === 'set') {item.sites = [...body.sites];item.published = body.sites.length > 0;}
       if (body.display === 'add') item.sites = [...new Set([...(item.sites || ['ko']), ...body.sites])];
       if (body.display === 'remove') item.sites = (item.sites || ['ko']).filter(site => !body.sites.includes(site));
       item.updatedAt = now;

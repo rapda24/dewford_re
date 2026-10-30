@@ -461,3 +461,22 @@ test('inquiry site filters scope pagination, search, export and bulk actions',as
  assert.equal((await call(env,'admin/inquiries',{action:'delete',scope:'all',site:'ko'},auth)).data.changed,2);
  assert.equal((await call(env,'admin/inquiries',null,auth)).data.total,21);
 });
+
+test('two site display choices replace targets and turn publication on or off',async()=>{
+ const {env,password}=environment(),auth=await login(env,password);
+ let state=(await call(env,'admin/content',null,auth)).data;
+ for(const board of ['events','preschool','elementary','popups']){
+  const mutate=async payload=>{const result=await call(env,'admin/content',{board,revision:state.revision,...payload},auth);if(result.response.ok)state=result.data;return result;};
+  await mutate({action:'save',item:{...item,published:false,enabled:true}});
+  const id=state.boards[board][0].id;
+  for(const sites of [['ko'],['en'],['ko','en'],[],['en']]){
+   assert.equal((await mutate({action:'display-selected',ids:[id],display:'set',sites})).response.status,200);
+   assert.deepEqual(state.boards[board][0].sites,sites);assert.equal(state.boards[board][0].published,sites.length>0);
+   for(const language of ['ko','en']){
+    const feed=(await call(env,'content/'+(board==='events'?'events':board==='popups'?'popups':'calendar')+'?lang='+language)).data[board==='events'?'posts':board];
+    assert.equal(feed.some(p=>p.id===id),sites.includes(language));
+   }
+  }
+  for(const sites of [['fr'],['ko','ko'],null])assert.equal((await mutate({action:'display-selected',ids:[id],display:'set',sites})).response.status,400);
+ }
+});

@@ -223,19 +223,28 @@
   $('#admin-display-selected').addEventListener('click',()=>{
     if(busy||!selectedIds.size)return;
     if(selectedIds.size>1000){$('#admin-status').textContent='한 번에 최대 1,000개까지 변경할 수 있습니다.';return;}
-    displayIds=[...selectedIds];displayForm.reset();syncPublicationButtons(displayForm);$('#admin-display-sites').disabled=true;
-    $('#admin-display-status').textContent='';$('#admin-display-count').textContent=`선택한 게시글 ${displayIds.length}개의 진열을 변경합니다.`;displayDialog.showModal();
+    displayIds=[...selectedIds];
+    const items=state.boards[board].filter(item=>selectedIds.has(item.id));
+    const targets=item=>item.published===false?[]:(item.sites||['ko']);
+    const selected=['ko','en'].filter(site=>items.every(item=>targets(item).includes(site)));
+    displayForm.querySelectorAll('[data-display-site]').forEach(button=>button.setAttribute('aria-pressed',String(selected.includes(button.dataset.displaySite))));
+    $('#admin-display-save').disabled=true;
+    const mixed=items.some(item=>['ko','en'].some(site=>targets(item).includes(site)!==selected.includes(site)));
+    $('#admin-display-status').textContent=mixed?'현재 진열 설정이 서로 다릅니다. 적용하면 선택한 모든 항목이 아래 버튼 설정으로 변경됩니다.':'';
+    $('#admin-display-count').textContent=`선택한 항목 ${displayIds.length}개의 진열을 변경합니다.`;displayDialog.showModal();
   });
-  displayForm.elements.display.addEventListener('change',()=>{$('#admin-display-sites').disabled=displayForm.elements.display.value==='keep';});
+  displayForm.querySelectorAll('[data-display-site]').forEach(button=>button.addEventListener('click',()=>{
+    if(busy)return;
+    button.setAttribute('aria-pressed',String(button.getAttribute('aria-pressed')!=='true'));
+    $('#admin-display-save').disabled=false;
+  }));
   $('#admin-display-cancel').addEventListener('click',()=>displayDialog.close());
   displayForm.addEventListener('submit',async event=>{
-    event.preventDefault();if(busy)return;
-    const data=new FormData(displayForm),display=data.get('display'),publication=data.get('publication'),sites=data.getAll('sites');
-    if(display==='keep'&&publication==='keep'){$('#admin-display-status').textContent='변경할 공개 상태 또는 사이트 진열을 선택해 주세요.';return;}
-    if(display!=='keep'&&!sites.length){$('#admin-display-status').textContent='변경할 사이트를 하나 이상 선택해 주세요.';return;}
+    event.preventDefault();if(busy||$('#admin-display-save').disabled)return;
+    const sites=[...displayForm.querySelectorAll('[data-display-site][aria-pressed="true"]')].map(button=>button.dataset.displaySite);
     $('#admin-display-save').disabled=true;$('#admin-display-cancel').disabled=true;
     try{
-      if(await mutation({action:'display-selected',ids:displayIds,display,sites,...(publication==='keep'?{}:{published:publication==='public'})}))displayDialog.close();
+      if(await mutation({action:'display-selected',ids:displayIds,display:'set',sites}))displayDialog.close();
       else $('#admin-display-status').textContent=$('#admin-status').textContent;
     }finally{$('#admin-display-save').disabled=false;$('#admin-display-cancel').disabled=false;}
   });
