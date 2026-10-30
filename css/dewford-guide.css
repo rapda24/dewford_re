@@ -9,3 +9,6 @@
 .guide-login-example{display:inline-flex;align-items:center;gap:8px;}
 
 .guide-brand{flex-shrink:0;}.guide-brand .guide-brand-logo{display:flex;align-items:center;gap:10px;margin-bottom:6px;}.guide-logo-symbol{display:block;width:48px;height:48px;}.guide-logo-text{display:block;width:190px;height:auto;}@media(max-width:700px){.guide-brand .guide-brand-logo{gap:7px;}.guide-logo-symbol{width:32px;height:32px;}.guide-logo-text{width:128px;}}
+
+/* Keep long addresses readable on small screens. */
+.guide-section p,.guide-section li,.guide-screen-notes span{overflow-wrap:anywhere;}
