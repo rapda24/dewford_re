@@ -45,8 +45,8 @@
     document.querySelectorAll('[data-board]').forEach(button=>{if(button.dataset.board===board)button.setAttribute('aria-current','page');else button.removeAttribute('aria-current');});
     $('#admin-create').textContent=board==='popups'?'+ 팝업 등록':'+ 글쓰기';
     renderCategories();
-    const query=$('#admin-search').value.trim().toLowerCase(),category=$('#admin-category-filter').value;
-    const items=state.boards[board].filter(item=>item.title.toLowerCase().includes(query)&&(!isCalendar()||!category||(category==='__uncategorized'? !item.category:item.category===category.slice(9))));
+    const site=$('#admin-site-filter').value,query=$('#admin-search').value.trim().toLowerCase(),category=$('#admin-category-filter').value;
+    const items=state.boards[board].filter(item=>(!site||(item.sites||['ko']).includes(site))&&item.title.toLowerCase().includes(query)&&(!isCalendar()||!category||(category==='__uncategorized'? !item.category:item.category===category.slice(9))));
     const visibleIds=new Set(items.map(item=>item.id));for(const id of selectedIds)if(!visibleIds.has(id))selectedIds.delete(id);
     $('#admin-count').textContent=`${items.length}개`;const list=$('#admin-list');list.replaceChildren();
     if(!items.length)list.append(node('p','등록된 항목이 없습니다.','admin-empty'));
@@ -67,11 +67,6 @@
       row.append(copy);const actions=node('div',null,'admin-item-actions');
       const add=(label,fn)=>{const b=node('button',label,label==='수정'?'admin-action-edit':label==='삭제'?'admin-action-delete':'');b.type='button';if(label==='↑'||label==='↓')b.setAttribute('aria-label',label==='↑'?'위로 이동':'아래로 이동');b.disabled=busy;b.addEventListener('click',fn);actions.append(b);return b;};
       add('수정',()=>edit(item));
-      for(const [label,published] of [['공개',true],['비공개',false]]){
-        const button=add(label,()=>{if((item.published!==false)!==published)mutation({action:'display-selected',ids:[item.id],display:'keep',published});});
-        button.classList.add('admin-publication-choice');button.setAttribute('aria-pressed',String((item.published!==false)===published));
-        button.setAttribute('aria-label',`${item.title} ${label}`);
-      }
       if(board!=='popups')add('이동',()=>move(item));
       add('↑',()=>mutation({action:'reorder',id:item.id,direction:-1}));add('↓',()=>mutation({action:'reorder',id:item.id,direction:1}));
       add('삭제',()=>{if(confirm(`“${item.title}” 항목을 삭제할까요?`))mutation({action:'delete',id:item.id});});
@@ -84,7 +79,7 @@
     all.checked=checks.length>0&&selectedIds.size===checks.length;all.indeterminate=selectedIds.size>0&&selectedIds.size<checks.length;all.disabled=busy||!checks.length;
     $('#admin-selected-count').textContent=`${selectedIds.size}개 선택`;
     $('#admin-delete-selected').disabled=busy||!selectedIds.size;
-    $('#admin-display-selected').hidden=board!=='events';
+    $('#admin-display-selected').hidden=false;
     $('#admin-display-selected').disabled=busy||!selectedIds.size;
   }
   function renderCategories(){
@@ -226,7 +221,7 @@
   const displayDialog=$('#admin-display'),displayForm=$('#admin-display-form');
   let displayIds=[];
   $('#admin-display-selected').addEventListener('click',()=>{
-    if(busy||board!=='events'||!selectedIds.size)return;
+    if(busy||!selectedIds.size)return;
     if(selectedIds.size>1000){$('#admin-status').textContent='한 번에 최대 1,000개까지 변경할 수 있습니다.';return;}
     displayIds=[...selectedIds];displayForm.reset();syncPublicationButtons(displayForm);$('#admin-display-sites').disabled=true;
     $('#admin-display-status').textContent='';$('#admin-display-count').textContent=`선택한 게시글 ${displayIds.length}개의 진열을 변경합니다.`;displayDialog.showModal();
@@ -244,6 +239,7 @@
       else $('#admin-display-status').textContent=$('#admin-status').textContent;
     }finally{$('#admin-display-save').disabled=false;$('#admin-display-cancel').disabled=false;}
   });
+  $('#admin-site-filter').addEventListener('change',()=>{selectedIds.clear();render();});
   $('#admin-create').addEventListener('click',()=>edit());$('#admin-search').addEventListener('input',()=>{selectedIds.clear();render();});
   document.querySelectorAll('[data-board]').forEach(button=>button.addEventListener('click',()=>{if(busy)return;board=button.dataset.board;selectedIds.clear();$('#admin-category-filter').value='';$('#admin-search').value='';history.replaceState(null,'','admin.html?board='+board);render();}));
   $('#admin-logout').addEventListener('click',async()=>{try{await api.logout();state=null;loginView();$('#admin-status').textContent='로그아웃했습니다.';}catch(error){$('#admin-status').textContent=message(error);}});

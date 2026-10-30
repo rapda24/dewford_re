@@ -158,7 +158,6 @@ export function mutateState(state, body) {
     return state;
   }
   if (body.action === 'display-selected') {
-    if (body.board !== 'events' && body.display !== 'keep') fail('INVALID_BOARD');
     if (!Array.isArray(body.ids) || !body.ids.length || body.ids.length > 1000 || body.ids.some(id => typeof id !== 'string' || !id || id.length > 100) || new Set(body.ids).size !== body.ids.length) fail('INVALID_INPUT');
     if (body.ids.some(id => !list.some(item => item.id === id))) fail('ITEM_NOT_FOUND', 404);
     if (body.published !== undefined && typeof body.published !== 'boolean') fail('INVALID_INPUT');
@@ -293,8 +292,11 @@ export async function adminRoute(request, env) {
     const body = request.method === 'POST' ? await input(request) : null;
     const query = (body ? body.q || '' : params.get('q') || '');
     if (typeof query !== 'string' || query.length > 100) fail('INVALID_INPUT');
-    const search = "(instr(name, ?) > 0 OR instr(phone, ?) > 0 OR instr(email, ?) > 0 OR instr(program, ?) > 0 OR instr(message, ?) > 0)";
+    const site = body ? body.site || '' : params.get('site') || '';
+    if (!['','ko','en'].includes(site)) fail('INVALID_INPUT');
+    const search = "(instr(name, ?) > 0 OR instr(phone, ?) > 0 OR instr(email, ?) > 0 OR instr(program, ?) > 0 OR instr(message, ?) > 0)" + (site ? " AND site = ?" : "");
     const values = Array(5).fill(query.trim());
+    if (site) values.push(site);
     if (body) {
       if (!['status', 'delete'].includes(body.action)) fail('INVALID_INPUT');
       if (body.action === 'status' && !['received', 'contacting', 'completed'].includes(body.status)) fail('INVALID_INPUT');

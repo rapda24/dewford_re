@@ -1,7 +1,7 @@
 (() => {
   const $ = selector => document.querySelector(selector);
   const api = window.DewfordAdmin;
-  let page = 1, query = '', busy = false, items = [], total = 0, current = null;
+  let page = 1, query = '', site = '', busy = false, items = [], total = 0, current = null;
   const selected = new Set();
   const stages = {received:'접수', contacting:'진행중', completed:'완료'};
   const node = (tag, text, className) => {const el=document.createElement(tag);el.textContent=text;if(className)el.className=className;return el;};
@@ -23,15 +23,15 @@
   }
   async function load() {
     if(busy)return;busy=true;
-    document.querySelectorAll('#inquiry-refresh,#inquiry-prev,#inquiry-next,#inquiry-search-form button').forEach(el=>el.disabled=true);
+    document.querySelectorAll('#inquiry-refresh,#inquiry-prev,#inquiry-next,#inquiry-search-form button,#inquiry-site-filter').forEach(el=>el.disabled=true);
     $('#admin-status').textContent='상담 접수 내역을 불러오고 있습니다.';
     try {
-      const data=await api.inquiries({page,q:query});
+      const data=await api.inquiries({page,q:query,site});
       items=data.items;total=data.total;selected.clear();
       if(page>1&&!items.length){page=Math.max(1,Math.ceil(total/data.pageSize));busy=false;return load();}
       const list=$('#admin-list');list.replaceChildren();
       $('#admin-count').textContent=`총 ${data.total}건`;
-      if(!data.items.length)list.append(node('p',query?'검색 결과가 없습니다.':'접수된 상담 신청이 없습니다.','admin-empty'));
+      if(!data.items.length)list.append(node('p',query||site?'검색 결과가 없습니다.':'접수된 상담 신청이 없습니다.','admin-empty'));
       data.items.forEach(item=>{
         const row=node('article','','admin-item inquiry-item');
         const check=node('input','');check.type='checkbox';check.className='inquiry-row-check';check.setAttribute('aria-label',item.name+' 상담 선택');check.addEventListener('change',()=>{check.checked?selected.add(item.id):selected.delete(item.id);selection();});
@@ -47,7 +47,7 @@
       $('#admin-list').replaceChildren();$('#admin-count').textContent='';$('#inquiry-page').textContent='';
       $('#admin-status').textContent=error.message==='API_NOT_CONNECTED'?'Cloudflare 개발 서버 또는 배포된 사이트에서 이용해 주세요.':'접수 내역을 불러오지 못했습니다. 데이터베이스 연결을 확인하고 새로고침해 주세요.';
     } finally {
-      busy=false;selection();$('#inquiry-refresh').disabled=false;$('#inquiry-search-form button').disabled=false;
+      busy=false;selection();$('#inquiry-refresh').disabled=false;$('#inquiry-search-form button,#inquiry-site-filter').disabled=false;
     }
   }
   async function mutate(action,scope,ids=[...selected],status=$('#inquiry-bulk-status').value) {
@@ -57,7 +57,7 @@
     if((action==='delete'||scope==='all')&&!confirm(`${scope==='all'?'검색 결과 전체':'선택한 상담'} ${count}건을 ${action==='delete'?'영구 삭제':stages[status]+' 상태로 변경'}하시겠습니까?`))return false;
     busy=true;selection();$('#inquiry-detail-save').disabled=true;
     try {
-      const result=await api.updateInquiries({action,scope,ids,status,q:query});
+      const result=await api.updateInquiries({action,scope,ids,status,q:query,site});
       if(current&&ids.includes(current.id)&&action==='status'){current.status=status;$('#inquiry-detail-stage').value=status;const fields=$('#inquiry-fields');fields.querySelector('dd').textContent=stages[status];}
       busy=false;await load();
       const message=`${result.changed}건 ${action==='delete'?'삭제':'상태 변경'} 완료`;
@@ -76,7 +76,7 @@
     if(busy)return;const button=$('#inquiry-export');button.disabled=true;
     try {
       const chosen=items.filter(item=>selected.has(item.id));
-      const data=chosen.length?{items:chosen}:await api.inquiries({export:1});
+      const data=chosen.length?{items:chosen}:await api.inquiries({export:1,q:query,site});
       const escape=value=>String(value??'').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
       const rows=[['접수일 (한국 시간)','접수 사이트','상담 상태','학부모 성함','연락처','이메일','관심 과정','상담 내용','개인정보 동의'],...data.items.map(item=>[date(item.created_at),item.site==='en'?'영문':'한국어',stages[item.status],item.name,item.phone,item.email,item.program,item.message,item.consent===1?'동의':'미동의'])];
       const xml='<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Worksheet ss:Name="상담 접수"><Table>'+rows.map(row=>'<Row>'+row.map(value=>'<Cell><Data ss:Type="String">'+escape(value)+'</Data></Cell>').join('')+'</Row>').join('')+'</Table></Worksheet></Workbook>';
@@ -84,6 +84,7 @@
       $('#admin-status').textContent=`${data.items.length}건의 엑셀 파일을 다운로드했습니다.`;
     }catch(error){if(error.status===401)login();else $('#admin-status').textContent='엑셀 파일을 다운로드하지 못했습니다. 다시 시도해 주세요.';}finally{button.disabled=false;}
   });
+  $('#inquiry-site-filter').addEventListener('change',()=>{if(busy)return;site=$('#inquiry-site-filter').value;page=1;load();});
   $('#inquiry-search-form').addEventListener('submit',event=>{event.preventDefault();if(busy)return;query=$('#admin-search').value.trim();page=1;load();});
   $('#inquiry-refresh').addEventListener('click',()=>load());
   $('#inquiry-prev').addEventListener('click',()=>{if(!busy){page--;load();}});

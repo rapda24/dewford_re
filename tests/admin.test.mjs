@@ -427,3 +427,37 @@ test('popup and calendar publication can be toggled without changing site target
   }
  }
 });
+
+test('calendar and popup bulk display adds and removes site targets',async()=>{
+ const {env,password}=environment(),auth=await login(env,password);
+ let state=(await call(env,'admin/content',null,auth)).data;
+ for(const board of ['preschool','elementary','popups']){
+  const mutate=async payload=>{const result=await call(env,'admin/content',{board,revision:state.revision,...payload},auth);assert.equal(result.response.status,200);state=result.data;};
+  await mutate({action:'save',item:{...item,sites:['ko'],enabled:true}});
+  const ids=[state.boards[board][0].id];
+  await mutate({action:'display-selected',ids,display:'add',sites:['en'],published:true});
+  let feed=(await call(env,'content/'+(board==='popups'?'popups':'calendar')+'?lang=en')).data[board];
+  assert.ok(feed.some(p=>p.id===ids[0]));
+  await mutate({action:'display-selected',ids,display:'remove',sites:['en']});
+  feed=(await call(env,'content/'+(board==='popups'?'popups':'calendar')+'?lang=en')).data[board];
+  assert.ok(!feed.some(p=>p.id===ids[0]));assert.deepEqual(state.boards[board][0].sites,['ko']);
+ }
+});
+
+test('inquiry site filters scope pagination, search, export and bulk actions',async()=>{
+ const {env,password}=environment(),auth=await login(env,password);
+ for(let i=0;i<23;i++){
+  const result=await call(env,'inquiries',{name:'Parent '+i,phone:'010-1234-5678',program:'기타 상담',consent:true,site:i<21?'en':'ko'});
+  assert.equal(result.response.status,201);
+ }
+ let result=await call(env,'admin/inquiries?site=en',null,auth);
+ assert.equal(result.data.total,21);assert.equal(result.data.items.length,20);assert.ok(result.data.items.every(p=>p.site==='en'));
+ result=await call(env,'admin/inquiries?site=en&page=2',null,auth);assert.equal(result.data.items.length,1);
+ result=await call(env,'admin/inquiries?site=en&export=1',null,auth);assert.equal(result.data.items.length,21);
+ result=await call(env,'admin/inquiries?site=ko&q=Parent+21',null,auth);assert.equal(result.data.total,1);
+ assert.equal((await call(env,'admin/inquiries?site=fr',null,auth)).response.status,400);
+ assert.equal((await call(env,'admin/inquiries',{action:'status',scope:'all',status:'completed',site:'en'},auth)).data.changed,21);
+ result=await call(env,'admin/inquiries?site=ko',null,auth);assert.ok(result.data.items.every(p=>p.status==='received'));
+ assert.equal((await call(env,'admin/inquiries',{action:'delete',scope:'all',site:'ko'},auth)).data.changed,2);
+ assert.equal((await call(env,'admin/inquiries',null,auth)).data.total,21);
+});
