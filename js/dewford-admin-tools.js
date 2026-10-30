@@ -10,7 +10,7 @@
   function openEditor(board,action,extra={}){
     opener=document.activeElement;const params=new URLSearchParams({embedded:'1',board,...extra});params.set(action,'1');
     if(action==='edit'||action==='move')params.set(action,extra.id);
-    frame.src='admin.html?'+params;previousOverflow=document.documentElement.style.overflow;composer.showModal();document.documentElement.style.overflow='hidden';
+    frame.src='/admin.html?'+params;previousOverflow=document.documentElement.style.overflow;composer.showModal();document.documentElement.style.overflow='hidden';
   }
   composer.addEventListener('close',()=>{frame.src='about:blank';document.documentElement.style.overflow=previousOverflow||'';if(opener?.isConnected)opener.focus({preventScroll:true});});
   composer.addEventListener('click',event=>{if(event.target!==composer)return;const r=composer.getBoundingClientRect();if(event.clientX<r.left||event.clientX>r.right||event.clientY<r.top||event.clientY>r.bottom)composer.close();});
@@ -33,7 +33,7 @@
     const tools=document.createElement('div');tools.className='dewford-admin-tools dewford-admin-toolbar';
     const create=document.createElement('button');create.type='button';create.textContent='글쓰기';create.dataset.date=date||'';
     create.addEventListener('click',()=>{const date=container.querySelector('[data-date][aria-pressed="true"]')?.dataset.date||create.dataset.date;openEditor(board,'new',date?{date}:{});});
-    const manage=document.createElement('a');manage.href='admin.html?board='+board;manage.textContent='게시판 관리';
+    const manage=document.createElement('a');manage.href='/admin.html?board='+board;manage.textContent='게시판 관리';
     if(container.hasAttribute('data-detail-admin-controls')){
       for(const [button,icon] of [[create,'fa-pen'],[manage,'fa-list-check']]){const symbol=document.createElement('i');symbol.className='fas '+icon;symbol.setAttribute('aria-hidden','true');button.prepend(symbol);}
     }

@@ -6,7 +6,7 @@ import { pbkdf2Sync } from 'node:crypto';
 import worker from '../server/worker.js';
 function environment() {
   const db = new DatabaseSync(':memory:');
-  for (const file of ['0001_public_content.sql','0002_inquiries.sql','0003_admin.sql','0004_admin_media.sql','0005_inquiry_status.sql','0006_analytics.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
+  for (const file of ['0001_public_content.sql','0002_inquiries.sql','0003_admin.sql','0004_admin_media.sql','0005_inquiry_status.sql','0006_analytics.sql','0007_inquiry_site.sql']) db.exec(readFileSync(new URL('../migrations/' + file, import.meta.url),'utf8'));
   const DB = {prepare(sql) {
     const statement = db.prepare(sql); let values=[];
     const wrapper={bind(...args){values=args.map(value=>value instanceof ArrayBuffer?new Uint8Array(value):value);return wrapper;},async first(){return statement.get(...values)||null;},async all(){return {results:statement.all(...values)};},async run(){const result=statement.run(...values);return {meta:{changes:Number(result.changes)}};}};
@@ -316,4 +316,67 @@ test('visit analytics deduplicates daily browsers, counts views and requires adm
   assert.equal(result.data.daily[0].visitors,2);
   assert.equal(result.data.pages[0].views,3);
   assert.equal((await call(env,'admin/analytics?days=365',null,auth)).response.status,400);
+});
+
+test('site targets control events, calendars and popups, including direct detail feeds', async () => {
+ const {env,password}=environment(),auth=await login(env,password);
+ let state=(await call(env,'admin/content',null,auth)).data;
+ const save=async (board,entry)=>{
+  const result=await call(env,'admin/content',{board,revision:state.revision,action:'save',item:entry},auth);
+  if(result.response.ok)state=result.data;
+  return result;
+ };
+ for(const board of ['events','preschool','elementary','popups']) {
+  for(const [title,sites] of [['한국어',['ko']],['English',['en']],['Both',['ko','en']]]) {
+   assert.equal((await save(board,{...item,title,sites,enabled:true,...(board==='popups'?{link:'/en/admissions-inquiry.html'}:{})})).response.status,200);
+  }
+  const before=state.revision;
+  for(const sites of [[],['fr'],['en','en'],'en']) {
+   assert.equal((await save(board,{...item,sites,enabled:true})).response.status,400);
+   assert.equal(state.revision,before);
+  }
+ }
+ for(const language of ['ko','en']) {
+  for(const [slug,key] of [['events','posts'],['calendar','preschool'],['calendar','elementary'],['popups','popups']]) {
+   const feed=(await call(env,'content/'+slug+'?lang='+language)).data[key];
+   assert.deepEqual(feed.filter(p=>p.id!=='home-2026').map(p=>p.title).sort(),[language==='en'?'English':'한국어','Both'].sort());
+  }
+ }
+ // An old record without site targets stays on the Korean site only.
+ {
+  const legacy={events:[{...item,id:'legacy'}],preschool:[],elementary:[],popups:[]};
+  const other=environment();
+  other.db.prepare('INSERT INTO admin_content(id,revision,payload) VALUES (1,1,?)').run(JSON.stringify(legacy));
+  assert.equal((await call(other.env,'content/events?lang=en')).data.posts.length,0);
+  assert.equal((await call(other.env,'content/events')).data.posts.length,1);
+ }
+});
+
+test('legacy public feeds are filtered before the first admin save', async () => {
+ const {env,db}=environment();
+ db.prepare('INSERT INTO public_content(slug,payload,published) VALUES (?,?,1)').run('events',JSON.stringify({posts:[{...item,id:'legacy'}]}));
+ assert.equal((await call(env,'content/events?lang=en')).data.posts.length,0);
+ assert.equal((await call(env,'content/events?lang=ko')).data.posts.length,1);
+});
+
+test('academy information is localized while social links remain shared', async () => {
+ const {env,password}=environment(),auth=await login(env,password);
+ const initial=(await call(env,'admin/site-info',null,auth)).data;
+ const settings={...initial,academyName:'한국어 학원',en:{academyName:'English Academy',phone:'+82-2-6401-1012',email:'english@dewford.com',address:'27 Jangmun-ro, Seoul',registration:'No. 3355'}};
+ assert.equal((await call(env,'admin/site-info',{...settings,en:{...settings.en,email:'bad'}},auth)).response.status,400);
+ assert.equal((await call(env,'admin/site-info',settings,auth)).response.status,200);
+ const ko=(await call(env,'content/site-info?lang=ko')).data,en=(await call(env,'content/site-info?lang=en')).data;
+ assert.equal(ko.academyName,'한국어 학원');assert.equal(en.academyName,'English Academy');assert.equal(en.address,settings.en.address);
+ for(const key of ['kakao','naver','instagram','facebook'])assert.equal(ko[key],en[key]);
+});
+
+test('both consultation sites arrive in the shared inbox and export with source labels', async () => {
+ const {env,password}=environment(),auth=await login(env,password);
+ for(const site of ['ko','en']) {
+  assert.equal((await call(env,'inquiries',{name:'Parent '+site,phone:'010-1234-5678',program:'기타 상담',message:'Question',consent:true,site})).response.status,201);
+ }
+ const inbox=(await call(env,'admin/inquiries',null,auth)).data;
+ assert.equal(inbox.total,2);assert.deepEqual(inbox.items.map(i=>i.site).sort(),['en','ko']);
+ assert.equal((await call(env,'admin/inquiries?export=1',null,auth)).data.items.length,2);
+ assert.equal((await call(env,'inquiries',{name:'Invalid',phone:'010-1234-5678',program:'기타 상담',consent:true,site:'fr'})).response.status,400);
 });

@@ -26,7 +26,7 @@
     let data;
     try { ({ data } = await DewfordAPI.content('events')); }
     catch (error) { if (!window.DEWFORD_EVENT_SAMPLES?.length) throw error; }
-    const source = Array.isArray(data?.posts) ? data.posts : window.DEWFORD_EVENT_SAMPLES || [];
+    const source = Array.isArray(data?.posts) ? data.posts : (window.DEWFORD_EVENT_SAMPLES || []).filter(post => (post.sites || ['ko']).includes(location.pathname.startsWith('/en/')?'en':'ko'));
     let posts = source.filter(p => p && typeof p.id === 'string' && typeof p.title === 'string')
       .sort((a,b) => data?.ordered ? 0 : String(b.date || '').localeCompare(String(a.date || '')));
     if (list) {

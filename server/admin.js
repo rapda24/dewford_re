@@ -64,7 +64,9 @@ export async function loadTuition(request, env) {
 const defaultChannels={instagram:'https://www.instagram.com/dewfordcoltd/',facebook:'https://www.facebook.com/profile.php?id=61595122751751',academyName:'듀포드인터내셔널컬리지어학원',phone:'02-6401-1012',email:'ADMIN@DEWFORD.COM',address:'(04392) 서울시 용산구 장문로27 청화아파트 상가 1층 #101호',registration:'제3355호',kakao:'http://pf.kakao.com/_vHKlxj/chat',naver:'https://talk.naver.com/profile/wqvj07x',revision:0};
 export async function loadChannels(env){
   const row=await env.DB.prepare("SELECT payload FROM public_content WHERE slug = 'channels'").first();
-  return {...defaultChannels,...(row?JSON.parse(row.payload):{})};
+  const info = {...defaultChannels,...(row?JSON.parse(row.payload):{})};
+  info.en = {academyName:'DEWFORD INTERNATIONAL COLLEGE',phone:info.phone,email:info.email,address:'Suite 101, 1F, Cheonghwa Apartment Shopping Center, 27 Jangmun-ro, Yongsan-gu, Seoul 04392',registration:'Academy Registration No. 3355',...info.en};
+  return info;
 }
 function channelURL(value,domain){
   if(typeof value!=='string'||value.length>1000)fail('INVALID_CHANNEL_URL');
@@ -73,14 +75,13 @@ function channelURL(value,domain){
   return url.href;
 }
 export async function managedPublic(request, env, slug) {
-  if (slug === 'site-info') {const {revision,...info}=await loadChannels(env);return info;}
+  if (slug === 'site-info') {const {revision,en,...info}=await loadChannels(env);return new URL(request.url).searchParams.get('lang') === 'en' ? {...info,...en} : info;}
   if (slug === 'channels') {const {kakao,naver}=await loadChannels(env);return {kakao,naver};}
   if (slug === 'tuition') return {image:(await loadTuition(request, env)).image};
   if (!['events','calendar','popups'].includes(slug)) return null;
-  const row = await env.DB.prepare('SELECT revision, payload FROM admin_content WHERE id = 1').bind().first();
-  if (!row) return null;
-  const state = JSON.parse(row.payload);
-  const visible = items => items.filter(item => item.published !== false);
+  const state = (await loadState(request, env)).boards;
+  const language = new URL(request.url).searchParams.get('lang') === 'en' ? 'en' : 'ko';
+  const visible = items => items.filter(item => item.published !== false && (item.sites || ['ko']).includes(language));
   if (slug === 'events') return {posts:visible(state.events), ordered:true};
   if (slug === 'calendar') return {preschool:visible(state.preschool), elementary:visible(state.elementary), categories:calendarCategories(state)};
   const now = Date.now();
@@ -93,7 +94,7 @@ function text(value, max, required = false) {
 function safeURL(value, required = false) {
   value = text(value || '', 2000, required); if (!value) return '';
   if (/^(images\/|\/api\/media\/)[a-zA-Z0-9_./%-]+$/.test(value) && !value.includes('..')) return value;
-  if (/^(?:\/)?[a-zA-Z0-9_-]+\.html(?:[?#][a-zA-Z0-9_=&%.-]*)?$/.test(value)) return value;
+  if (/^(?:\/)?(?:en\/)?[a-zA-Z0-9_-]+\.html(?:[?#][a-zA-Z0-9_=&%.-]*)?$/.test(value)) return value;
   try { const url = new URL(value); if (['http:','https:'].includes(url.protocol)) return url.href; } catch {}
   fail('INVALID_URL');
 }
@@ -105,6 +106,9 @@ function date(value, required = false) {
 function itemInput(item, board, previous = {}) {
   if (!item || typeof item !== 'object') fail('INVALID_INPUT');
   const record = {...previous, title:text(item.title, 200, true), image:safeURL(item.image, board === 'popups'), published:item.published !== false};
+  const sites = item.sites ?? previous.sites ?? ['ko'];
+  if (!Array.isArray(sites) || !sites.length || sites.length > 2 || new Set(sites).size !== sites.length || sites.some(site => !['ko','en'].includes(site))) fail('INVALID_SITES');
+  record.sites = [...sites];
   delete record.category;
   if (board === 'popups') {
     record.enabled = item.enabled === true; record.link = safeURL(item.link);
@@ -238,6 +242,16 @@ export async function adminRoute(request, env) {
         if(typeof body[field]!=='string'||!body[field].trim()||body[field].length>max||/[\u0000-\u001f]/.test(body[field]))fail('INVALID_SITE_INFO');
         data[field]=body[field].trim();
       }
+      if (body.en !== undefined) {
+        if (!body.en || typeof body.en !== 'object' || Array.isArray(body.en)) fail('INVALID_SITE_INFO');
+        data.en = {};
+        for (const [field,max] of [['academyName',150],['phone',40],['email',254],['address',500],['registration',100]]) {
+          const value = body.en[field];
+          if (typeof value !== 'string' || !value.trim() || value.length > max || /[\u0000-\u001f]/.test(value)) fail('INVALID_SITE_INFO');
+          data.en[field] = value.trim();
+        }
+        if (!/^[+()0-9\s-]{5,40}$/.test(data.en.phone) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.en.email)) fail('INVALID_SITE_INFO');
+      }
       if(!/^[+()0-9\s-]{5,40}$/.test(data.phone)||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))fail('INVALID_SITE_INFO');
     }
     const result=await env.DB.prepare("INSERT INTO public_content (slug,payload,published) VALUES ('channels',?,1) ON CONFLICT(slug) DO UPDATE SET payload=excluded.payload,published=1,updated_at=strftime('%Y-%m-%dT%H:%M:%fZ','now') WHERE public_content.payload=?").bind(JSON.stringify(data),previous?.payload||'').run();
@@ -282,7 +296,7 @@ export async function adminRoute(request, env) {
     if (!Number.isSafeInteger(page) || page < 1 || page > 1000000) fail('INVALID_INPUT');
     const count = await env.DB.prepare('SELECT COUNT(*) AS total FROM inquiries WHERE ' + search).bind(...values).first();
     const exporting = params.get('export') === '1';
-    const rows = await env.DB.prepare('SELECT id, name, phone, email, program, message, consent, status, created_at FROM inquiries WHERE ' + search + ' ORDER BY created_at DESC, id DESC' + (exporting ? '' : ' LIMIT 20 OFFSET ?')).bind(...values, ...(exporting ? [] : [(page - 1) * 20])).all();
+    const rows = await env.DB.prepare('SELECT id, name, phone, email, program, message, consent, status, site, created_at FROM inquiries WHERE ' + search + ' ORDER BY created_at DESC, id DESC' + (exporting ? '' : ' LIMIT 20 OFFSET ?')).bind(...values, ...(exporting ? [] : [(page - 1) * 20])).all();
     return {data:{items:rows.results.map(item => ({...item, status:item.status === 'scheduled' ? 'contacting' : item.status})), total:count.total, page, pageSize:20}};
   }
   if (path === '/api/admin/content' && request.method === 'GET') return {data:await loadState(request, env)};

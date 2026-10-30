@@ -29,10 +29,10 @@
   }
   window.DewfordAPI = Object.freeze({
     health: () => get('/health'),
-    inquire: payload => get('/inquiries', payload),
+    inquire: payload => get('/inquiries', {...payload, site:location.pathname.startsWith('/en/')?'en':'ko'}),
     content: slug => {
       if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug)) throw new Error('Invalid content slug');
-      return get('/content/' + encodeURIComponent(slug));
+      return get('/content/' + encodeURIComponent(slug) + '?lang=' + (location.pathname.startsWith('/en/')?'en':'ko'));
     }
   });
 })();

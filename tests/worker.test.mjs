@@ -39,7 +39,7 @@ test('content query binds slug and only returns published data', async () => {
 });
 test('missing content is 404; database failures hide internal details', async () => {
   let DB = { prepare: () => ({ bind: () => ({ first: async () => null }) }) };
-  assert.equal((await worker.fetch(request('/api/content/events'), { DB })).status, 404);
+  assert.equal((await worker.fetch(request('/api/content/why-dewford'), { DB })).status, 404);
   DB = { prepare: () => { throw new Error('private connection detail'); } };
   const response = await worker.fetch(request('/api/health'), { DB });
   assert.equal(response.status, 503);
@@ -51,4 +51,25 @@ test('writes are not exposed and cross-origin access uses an allowlist', async (
   const response = await worker.fetch(request('/api/health', { method: 'OPTIONS', headers: { Origin: 'https://rapda24.github.io' } }), { ALLOWED_ORIGINS: 'https://rapda24.github.io' });
   assert.equal(response.status, 204);
   assert.equal(response.headers.get('Access-Control-Allow-Origin'), 'https://rapda24.github.io');
+});
+
+
+test('English entry and asset aliases share the original assets', async () => {
+  for (const [source, target] of [
+    ['/en/?source=en', '/en/index.html'],
+    ['/en/js/data/dewford-calendar.json', '/js/data/dewford-calendar.json'],
+    ['/en/images/common/symbol_2.png', '/images/common/symbol_2.png'],
+    ['/en/css/style.css', '/css/style.css'],
+    ['/en/contact.html', '/en/contact.html']
+  ]) {
+    const response = await worker.fetch(request(source), {ASSETS: {fetch: asset => {
+      assert.equal(new URL(asset.url).pathname, target);
+      assert.equal(new URL(asset.url).search, new URL(request(source).url).search);
+      return new Response('shared');
+    }}});
+    assert.equal(await response.text(), 'shared');
+  }
+  const redirect = await worker.fetch(request('/en?source=en'), {});
+  assert.equal(redirect.status, 308);
+  assert.equal(redirect.headers.get('Location'), 'https://dewford.example/en/?source=en');
 });

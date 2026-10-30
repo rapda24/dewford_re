@@ -33,7 +33,7 @@
       if (!window.DEWFORD_EVENT_SAMPLES?.length) throw error;
     }
     if (!Array.isArray(data?.posts)) {
-      data = { posts: window.DEWFORD_EVENT_SAMPLES || [] };
+      data = { posts: (window.DEWFORD_EVENT_SAMPLES || []).filter(post => (post.sites || ['ko']).includes(location.pathname.startsWith('/en/')?'en':'ko')) };
     }
     const posts = (Array.isArray(data?.posts) ? data.posts : []).filter(post =>
       post && typeof post.id === 'string' && typeof post.title === 'string'

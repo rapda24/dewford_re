@@ -12,6 +12,19 @@ function json(body, status = 200, extraHeaders = {}) {
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
+    // English pages share the original public assets and the same /api backend.
+    // Resolve relative asset URLs from both HTML and dynamically generated content.
+    if (/^\/en\/(?:css|js|images|fonts|plugins|video)\//.test(url.pathname)) {
+      const asset = new URL(request.url);
+      asset.pathname = asset.pathname.slice(3);
+      return env.ASSETS.fetch(new Request(asset, request));
+    }
+    if (url.pathname === '/en' || url.pathname === '/en/') {
+      if (url.pathname === '/en') return Response.redirect(url.origin + '/en/' + url.search, 308);
+      const home = new URL(request.url);
+      home.pathname = '/en/index.html';
+      return env.ASSETS.fetch(new Request(home, request));
+    }
     if (url.pathname === '/') {
       const home = new URL(request.url);
       home.pathname = '/index.html';

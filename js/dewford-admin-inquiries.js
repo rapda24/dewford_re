@@ -16,7 +16,7 @@
   function detail(item) {
     current=item;$('#inquiry-detail-stage').value=item.status;$('#inquiry-detail-status').textContent='';
     const fields=$('#inquiry-fields');fields.replaceChildren();
-    for(const [label,value] of [['상담 상태',stages[item.status]],['접수일 (한국 시간)',date(item.created_at)],['학부모 성함',item.name],['연락처',item.phone],['이메일',item.email||'미입력'],['관심 과정',item.program],['상담 내용',item.message||'미입력'],['개인정보 수집·이용 동의',item.consent===1?'동의':'미동의']]) {
+    for(const [label,value] of [['상담 상태',stages[item.status]],['접수일 (한국 시간)',date(item.created_at)],['접수 사이트',item.site==='en'?'영문':'한국어'],['학부모 성함',item.name],['연락처',item.phone],['이메일',item.email||'미입력'],['관심 과정',item.program],['상담 내용',item.message||'미입력'],['개인정보 수집·이용 동의',item.consent===1?'동의':'미동의']]) {
       fields.append(node('dt',label),node('dd',value));
     }
     $('#inquiry-detail').showModal();
@@ -36,7 +36,7 @@
         const row=node('article','','admin-item inquiry-item');
         const check=node('input','');check.type='checkbox';check.className='inquiry-row-check';check.setAttribute('aria-label',item.name+' 상담 선택');check.addEventListener('change',()=>{check.checked?selected.add(item.id):selected.delete(item.id);selection();});
         const stage=node('span',stages[item.status],'inquiry-stage');
-        const title=node('button',item.name+' · '+item.program,'inquiry-open');title.type='button';title.setAttribute('aria-label',item.name+' · '+item.program+' 상담 상세 보기');title.addEventListener('click',()=>detail(item));
+        const title=node('button','['+(item.site==='en'?'영문':'한국어')+'] '+item.name+' · '+item.program,'inquiry-open');title.type='button';title.setAttribute('aria-label',item.name+' · '+item.program+' 상담 상세 보기');title.addEventListener('click',()=>detail(item));
         const remove=node('button','삭제','inquiry-delete');remove.type='button';remove.setAttribute('aria-label',item.name+' 상담 삭제');remove.addEventListener('click',()=>mutate('delete','selected',[item.id]));row.append(check,stage,title,remove);list.append(row);
       });
       $('#inquiry-page').textContent=`${page} / ${Math.max(1,Math.ceil(data.total/data.pageSize))} 페이지`;
@@ -78,7 +78,7 @@
       const chosen=items.filter(item=>selected.has(item.id));
       const data=chosen.length?{items:chosen}:await api.inquiries({export:1});
       const escape=value=>String(value??'').replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f]/g,'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
-      const rows=[['접수일 (한국 시간)','상담 상태','학부모 성함','연락처','이메일','관심 과정','상담 내용','개인정보 동의'],...data.items.map(item=>[date(item.created_at),stages[item.status],item.name,item.phone,item.email,item.program,item.message,item.consent===1?'동의':'미동의'])];
+      const rows=[['접수일 (한국 시간)','접수 사이트','상담 상태','학부모 성함','연락처','이메일','관심 과정','상담 내용','개인정보 동의'],...data.items.map(item=>[date(item.created_at),item.site==='en'?'영문':'한국어',stages[item.status],item.name,item.phone,item.email,item.program,item.message,item.consent===1?'동의':'미동의'])];
       const xml='<?xml version="1.0" encoding="UTF-8"?><?mso-application progid="Excel.Sheet"?><Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"><Worksheet ss:Name="상담 접수"><Table>'+rows.map(row=>'<Row>'+row.map(value=>'<Cell><Data ss:Type="String">'+escape(value)+'</Data></Cell>').join('')+'</Row>').join('')+'</Table></Worksheet></Workbook>';
       const url=URL.createObjectURL(new Blob([xml],{type:'application/vnd.ms-excel;charset=utf-8'}));const link=node('a','');link.href=url;link.download='상담접수-'+new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Seoul'})+'.xml';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
       $('#admin-status').textContent=`${data.items.length}건의 엑셀 파일을 다운로드했습니다.`;
