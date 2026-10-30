@@ -380,3 +380,50 @@ test('both consultation sites arrive in the shared inbox and export with source 
  assert.equal((await call(env,'admin/inquiries?export=1',null,auth)).data.items.length,2);
  assert.equal((await call(env,'inquiries',{name:'Invalid',phone:'010-1234-5678',program:'기타 상담',consent:true,site:'fr'})).response.status,400);
 });
+
+test('bulk display changes preserve other sites, content and order and validate atomically',async()=>{
+ const {env,password}=environment(),auth=await login(env,password);
+ let state=(await call(env,'admin/content',null,auth)).data;
+ const mutate=async payload=>{const result=await call(env,'admin/content',{board:'events',revision:state.revision,...payload},auth);if(result.response.ok)state=result.data;return result;};
+ for(const title of ['untouched','first','second'])await mutate({action:'save',item:{...item,title}});
+ const ids=state.boards.events.slice(0,2).map(p=>p.id),original=structuredClone(state.boards.events);
+ for(const payload of [
+  {ids:[]},{ids:[ids[0],ids[0]]},{ids:[ids[0],'missing']},{sites:[]},{sites:['fr']},{published:'true'},{display:'wrong'}
+ ]) {
+  const result=await mutate({action:'display-selected',ids,display:'add',sites:['en'],...payload});
+  assert.ok(result.response.status>=400);
+  assert.deepEqual((await call(env,'admin/content',null,auth)).data.boards.events,original);
+ }
+ assert.equal((await call(env,'admin/content',{board:'events',action:'display-selected',ids,display:'add',sites:['en'],revision:state.revision-1},auth)).response.status,409);
+ await mutate({action:'display-selected',ids,display:'add',sites:['en'],published:true});
+ assert.equal((await call(env,'content/events?lang=en')).data.posts.length,2);
+ assert.equal((await call(env,'content/events?lang=ko')).data.posts.length,3);
+ await mutate({action:'display-selected',ids,display:'remove',sites:['ko']});
+ assert.equal((await call(env,'content/events?lang=ko')).data.posts.length,1);
+ assert.equal((await call(env,'content/events?lang=en')).data.posts.length,2);
+ await mutate({action:'display-selected',ids,display:'keep',published:false});
+ assert.equal((await call(env,'content/events?lang=en')).data.posts.length,0);
+ await mutate({action:'display-selected',ids,display:'keep',published:true});
+ assert.equal((await call(env,'content/events?lang=en')).data.posts.length,2);
+ await mutate({action:'display-selected',ids,display:'remove',sites:['en']});
+ assert.equal((await call(env,'content/events?lang=en')).data.posts.length,0);
+ assert.deepEqual(state.boards.events.map(p=>p.id),original.map(p=>p.id));
+ assert.deepEqual(state.boards.events[2],original[2]);
+ for(let i=0;i<2;i++){assert.equal(state.boards.events[i].body,original[i].body);assert.deepEqual(state.boards.events[i].sites,[]);}
+});
+
+test('popup and calendar publication can be toggled without changing site targets',async()=>{
+ const {env,password}=environment(),auth=await login(env,password);
+ let state=(await call(env,'admin/content',null,auth)).data;
+ for(const board of ['popups','preschool','elementary']){
+  let result=await call(env,'admin/content',{board,revision:state.revision,action:'save',item:{...item,sites:['ko','en'],enabled:true}},auth);state=result.data;
+  const id=state.boards[board][0].id;
+  for(const published of [false,true]){
+   result=await call(env,'admin/content',{board,revision:state.revision,action:'display-selected',ids:[id],display:'keep',published},auth);
+   assert.equal(result.response.status,200);state=result.data;
+   assert.equal(state.boards[board][0].published,published);assert.deepEqual(state.boards[board][0].sites,['ko','en']);
+   const feed=(await call(env,'content/'+(board==='popups'?'popups':'calendar')+'?lang=en')).data[board];
+   assert.equal(feed.some(p=>p.id===id),published);
+  }
+ }
+});
