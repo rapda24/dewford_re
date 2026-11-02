@@ -1,7 +1,7 @@
-/* Shared subpage titles: edit page copy and photos here for every subpage. */
+/* Edit Korean and English subpage copy separately below. Photos are shared. */
 (() => {
   if (!document.body.classList.contains('dewford-subpage')) return;
-  const pages = {
+  const pagesKo = {
     'why-dewford.html':['Why DEWFORD','영어로 생각하고 표현하는 아이로, DEWFORD와 함께 배움의 가능성을 넓혀갑니다.'],
     'educational-philosophy.html':['Vision & Mission','스스로 질문하고 생각하며, 자신의 생각을 표현하는 배움을 지향합니다.'],
     'rolling-enrollment.html':['Rolling Admissions','아이의 발달 단계와 영어 경험을 살피며, 알맞은 배움의 시작을 함께 준비합니다.'],
@@ -15,7 +15,7 @@
     'detail.html':['DEWFORD EVENTS','듀포드의 특별한 순간'],
     'contact.html':['Contact','용산 이태원에서 시작하는 아이의 더 넓은 세상, DEWFORD를 만나보세요.']
   };
-  const introductions = {
+  const introductionsKo = {
     'why-dewford.html': ['영어를 넘어,\n생각하는 힘을 키우는 곳', 'DEWFORD는 읽고, 질문하고, 자신의 생각을 표현하는 경험을 연결합니다. 아이가 영어로 세상을 이해하고 배움의 주체로 성장하도록 돕습니다.'],
     'educational-philosophy.html': ['정답을 말하는 데서\n자신의 생각을 펼치는 배움으로', '스스로 읽는 힘, 생각을 글로 옮기는 힘, 새로운 것을 탐구하는 태도. DEWFORD는 이 세 가지를 아이의 일상 속 배움으로 이어갑니다.'],
     'rolling-enrollment.html': ['아이의 지금을 살피고,\n다음 배움을 함께 준비합니다', '아이마다 영어를 만난 경험과 성장의 속도는 다릅니다. 현재의 발달 단계와 영어 수준을 세심하게 살펴 적합한 과정과 입학을 안내합니다.'],
@@ -28,6 +28,38 @@
     'event.html': ['함께 배우고 자라는\nDewford의 순간들', '교실 안팎에서 발견하고, 도전하고, 함께 성장하는 아이들의 이야기를 만나보세요.'],
     'contact.html': ['용산 이태원에서,\n아이의 새로운 배움을 만납니다', '교육 과정과 입학에 대한 궁금한 점을 남겨주세요. 방문에 필요한 위치와 연락처를 확인하고 DEWFORD와 첫 만남을 준비해 보세요.']
   };
+  // English-site hero copy starts with the Korean original; edit independently of pagesKo.
+  const pagesEn = {
+    'why-dewford.html':['Why DEWFORD','영어로 생각하고 표현하는 아이로, DEWFORD와 함께 배움의 가능성을 넓혀갑니다.'],
+    'educational-philosophy.html':['Vision & Mission','Growing into Independent Thinkers and Lifelong Learners'],
+    'rolling-enrollment.html':['Rolling Admissions','We welcome new students throughout the year. Our admissions process is personalized to each child’s needs and readiness.'],
+    'admissions-inquiry.html':['Apply Now','Let’s talk about the right program and admissions options for your child.'],
+    'international-preschool.html':['International Early Learning Program','놀이와 탐구를 통해 영어로 세상을 이해하고, 스스로 읽는 힘을 기릅니다.'],
+    'elementary-international.html':['International Primary Program','DEWFORD 초등 국제반: 영어로 배우고, 생각하고, 자신의 글을 완성합니다.'],
+    'elementary-esl.html':['Primary ESL Program','DEWFORD 초등 어학반: 영어의 기본기를 탄탄하게, 다음 단계의 학습으로'],
+    'preschool-calendar.html':['Early Learning Calendar','아이들의 배움과 다양한 경험으로 채워지는 유치부 일정을 확인하세요.'],
+    'elementary-calendar.html':['Primary Learning Calander','초등 과정의 학습과 활동 일정을 확인하세요.'],
+    'event.html':['DEWFORD EVENTS','듀포드의 특별한 순간'],
+    'detail.html':['DEWFORD EVENTS','듀포드의 특별한 순간'],
+    'contact.html':['Contact','용산 이태원에서 시작하는 아이의 더 넓은 세상, DEWFORD를 만나보세요.']
+  };
+  // English-site introductions start with the Korean original; edit independently of introductionsKo.
+  const introductionsEn = {
+    'why-dewford.html': ['영어를 넘어,\n생각하는 힘을 키우는 곳', 'DEWFORD는 읽고, 질문하고, 자신의 생각을 표현하는 경험을 연결합니다. 아이가 영어로 세상을 이해하고 배움의 주체로 성장하도록 돕습니다.'],
+    'educational-philosophy.html': ['정답을 말하는 데서\n자신의 생각을 펼치는 배움으로', '스스로 읽는 힘, 생각을 글로 옮기는 힘, 새로운 것을 탐구하는 태도. DEWFORD는 이 세 가지를 아이의 일상 속 배움으로 이어갑니다.'],
+    'rolling-enrollment.html': ['아이의 지금을 살피고,\n다음 배움을 함께 준비합니다', '아이마다 영어를 만난 경험과 성장의 속도는 다릅니다. 현재의 발달 단계와 영어 수준을 세심하게 살펴 적합한 과정과 입학을 안내합니다.'],
+    'admissions-inquiry.html': ['우리 아이에게 맞는 시작,\n상담에서 함께 찾아갑니다', '아이의 연령과 영어 경험, 궁금하신 점을 알려주세요. 교육 과정과 입학에 대해 차근차근 안내해 드리겠습니다.'],
+    'international-preschool.html': ['놀며 발견하고,\n영어로 세상을 알아갑니다', '이야기와 놀이, 주제별 탐구를 통해 영어를 자연스럽게 사용합니다. 연령별 발달과 읽기 수준을 함께 살피며 스스로 읽고 표현하는 기초를 다집니다.'],
+    'elementary-international.html': ['읽고 탐구한 생각이\n나만의 글과 표현이 됩니다', '읽기와 쓰기를 중심으로 문법과 어휘를 연결합니다. 질문하고 토론하며 생각을 넓히고, 문장에서 문단과 에세이로 표현의 깊이를 더합니다.'],
+    'elementary-esl.html': ['기초를 단단하게,\n표현은 한 걸음 더 넓게', '아이의 현재 영어 수준에 맞춰 읽기·쓰기·문법·어휘를 함께 익힙니다. 이해한 내용을 자신의 문장으로 표현하며 다음 학습 단계로 나아갑니다.'],
+    'preschool-calendar.html': ['작은 발견으로 채워지는\n아이들의 배움 달력', '유치부의 수업과 활동, 주요 일정을 한눈에 확인하세요. 가정에서도 아이의 새로운 경험과 성장의 순간을 함께 준비할 수 있습니다.'],
+    'elementary-calendar.html': ['배움의 흐름을 살피고,\n다음 경험을 준비합니다', '초등 과정의 학습과 활동, 주요 일정을 안내합니다. 교실에서 이어지는 배움의 흐름을 확인하고 아이의 학교생활을 함께해 주세요.'],
+    'event.html': ['함께 배우고 자라는\nDewford의 순간들', '교실 안팎에서 발견하고, 도전하고, 함께 성장하는 아이들의 이야기를 만나보세요.'],
+    'contact.html': ['용산 이태원에서,\n아이의 새로운 배움을 만납니다', '교육 과정과 입학에 대한 궁금한 점을 남겨주세요. 방문에 필요한 위치와 연락처를 확인하고 DEWFORD와 첫 만남을 준비해 보세요.']
+  };
+  const isEnglish = location.pathname.startsWith('/en/');
+  const pages = isEnglish ? pagesEn : pagesKo;
+  const introductions = isEnglish ? introductionsEn : introductionsKo;
   const pageImages = {
     'why-dewford.html':[["main-1","50% 50%",1600],["photo-2","50% 50%",1600],["photo-82-wide","50% 50%",1600]],
     'educational-philosophy.html':[["photo-6","50% 50%",1600],["photo-37","50% 50%",1600],["photo-56","50% 50%",1600]],
