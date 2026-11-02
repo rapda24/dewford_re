@@ -8,17 +8,17 @@
     inquiry: `<form id="dewford-inquiry-form" class="dewford-about-form">
                     <h3>입학·교육 상담 신청</h3>
                     <div class="dewford-about-fields">
-                      <label>학부모 성함 <span aria-hidden="true">*</span><input name="name" autocomplete="name" maxlength="80" required></label>
-                      <label>연락처 <span aria-hidden="true">*</span><input name="phone" type="tel" autocomplete="tel" maxlength="30" required placeholder="010-0000-0000"></label>
-                      <label>이메일<input name="email" type="email" autocomplete="email" maxlength="254"></label>
-                      <label>관심 과정 <span aria-hidden="true">*</span><select name="program" required>
-                          <option value="">선택해 주세요</option>
-                          <option>국제 유치부</option>
-                          <option>유치 방과후</option>
-                          <option>초등 방과후</option>
-                          <option>기타 상담</option>
+                      <label>Parent/Guardian Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" maxlength="80" required></label>
+                      <label>Phone Number <span aria-hidden="true">*</span><input name="phone" type="tel" autocomplete="tel" maxlength="30" required placeholder="010-0000-0000"></label>
+                      <label>Email Address<input name="email" type="email" autocomplete="email" maxlength="254"></label>
+                      <label>Program of Interest <span aria-hidden="true">*</span><select name="program" required>
+                          <option value="">Select an option</option>
+                          <option>International Early Learning Program</option>
+                          <option>Early English Path Program</option>
+                          <option>International Primary Program</option>
+                          <option>Other Consultations</option>
                         </select></label>
-                      <label class="form-wide">상담 내용<textarea name="message" rows="3" maxlength="3000" placeholder="아이의 연령과 궁금하신 내용을 남겨주세요."></textarea></label>
+                      <label class="form-wide">Your Message<textarea name="message" rows="3" maxlength="3000" placeholder="아이의 연령과 궁금하신 내용을 남겨주세요."></textarea></label>
                     </div>
                     <div hidden aria-hidden="true">
                       <label>Website<input name="website" tabindex="-1" autocomplete="off"></label>
@@ -116,11 +116,11 @@
                                 <path class="dewford-youtube-play" fill="#f00" d="m10 8 6 4-6 4Z" />
                               </svg></a></div></div>
   <div class="footer-column col-xl-5"><div class="about-widget">
-   <h2 class="footer-title">영어로 <strong>생각하고 <br>표현하는 아이로</strong></h2>
-   <div class="footer-text">아이에게 맞는 배움의 시작,<br>DEWFORD와 함께 상담해 보세요.</div>
-   <a class="theme-btn btn-style-two" href="admissions-inquiry.html"><span class="btn-title">입학·교육 상담 신청</span><i class="icon fa-light fa-arrow-right" aria-hidden="true"></i></a>
+   <h2 class="footer-title">Think in English. Express with Confidence.</h2>
+   <div class="footer-text">Every child’s learning journey is unique. <br />Let’s find the right path for your child at Dewford.</div>
+   <a class="theme-btn btn-style-two" href="admissions-inquiry.html"><span class="btn-title">Admissions Inquiry</span><i class="icon fa-light fa-arrow-right" aria-hidden="true"></i></a>
   </div></div>
-  <div class="dewford-footer-menu-grid col-xl-7">  <nav class="footer-column " aria-label="ABOUT DEWFORD"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">ABOUT DEWFORD</span><a class="dewford-footer-mobile-link" href="why-dewford.html">ABOUT DEWFORD</a></h4><ul class="user-links"><li><a href="why-dewford.html">Why DEWFORD</a></li><li><a href="educational-philosophy.html">Vision &amp; Mission</a></li><li><a href="rolling-enrollment.html">Admissions</a></li></ul></div></nav><nav class="footer-column " aria-label="PROGRAMS"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">PROGRAMS</span><a class="dewford-footer-mobile-link" href="international-preschool.html">PROGRAMS</a></h4><ul class="user-links"><li><a href="international-preschool.html">International Early Learning</a></li><li><a href="elementary-international.html">International Primary</a></li><li><a href="elementary-esl.html">Primary ESL</a></li></ul></div></nav><nav class="footer-column " aria-label="QUICK LINKS"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">QUICK LINKS</span><a class="dewford-footer-mobile-link" href="contact.html">QUICK LINKS</a></h4><ul class="user-links"><li><a href="preschool-calendar.html">Calendar</a></li><li><a href="admissions-inquiry.html">Apply Now</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav></div>
+  <div class="dewford-footer-menu-grid col-xl-7">  <nav class="footer-column " aria-label="ABOUT DEWFORD"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">ABOUT DEWFORD</span><a class="dewford-footer-mobile-link" href="why-dewford.html">ABOUT DEWFORD</a></h4><ul class="user-links"><li><a href="why-dewford.html">Why DEWFORD</a></li><li><a href="educational-philosophy.html">Vision &amp; Mission</a></li><li><a href="rolling-enrollment.html">Admissions</a></li></ul></div></nav><nav class="footer-column " aria-label="PROGRAMS"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">PROGRAMS</span><a class="dewford-footer-mobile-link" href="international-preschool.html">PROGRAMS</a></h4><ul class="user-links"><li><a href="international-preschool.html">International Early Learning</a></li><li><a href="elementary-international.html">International Primary</a></li><li><a href="elementary-esl.html">Primary ESL</a></li></ul></div></nav><nav class="footer-column " aria-label="QUICK LINKS"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">QUICK LINKS</span><a class="dewford-footer-mobile-link" href="contact.html">QUICK LINKS</a></h4><ul class="user-links"><li><a href="preschool-calendar.html">Calendar</a></li><li><a href="admissions-inquiry.html">Admissions Inquiry</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav></div>
   <div class="footer-column col-xl-7 offset-xl-5 dewford-footer-contact-row"><div class="row clearfix">
    <div class="info-box col-md-5"><div class="info">
     <a class="dewford-footer-contact-value" href="tel:0264011012"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a15 15 0 0 1-7-7l2-2-2-5Z"/></svg><span class="dewford-contact-desktop-label">PHONE</span><span class="dewford-contact-value-text">02-6401-1012</span></a>
@@ -159,8 +159,82 @@
     <svg class="pxl-scroll-progress-circle" viewBox="-1 -1 102 102" aria-hidden="true"><path pathLength="100" d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"/></svg>
   </button>`,
   };
+  // English copy is independent; keep program values compatible with the API.
+   const inquiryEnglish = `<form id="dewford-inquiry-form" class="dewford-about-form" lang="en">
+    <h3>Admissions &amp; Education Inquiry</h3>
+    <div class="dewford-about-fields">
+      <label>Parent/Guardian Name <span aria-hidden="true">*</span><input name="name" autocomplete="name" maxlength="80" required></label>
+      <label>Phone Number <span aria-hidden="true">*</span><input name="phone" type="tel" autocomplete="tel" maxlength="30" required placeholder="010-0000-0000"></label>
+      <label>Email<input name="email" type="email" autocomplete="email" maxlength="254"></label>
+      <label>Program of Interest <span aria-hidden="true">*</span><select name="program" required>
+        <option value="">Please select</option>
+        <option value="국제 유치부">International Preschool</option>
+        <option value="유치 방과후">Preschool After-School Program</option>
+        <option value="초등 방과후">Elementary After-School Program</option>
+        <option value="기타 상담">Other Inquiries</option>
+      </select></label>
+      <label class="form-wide">Your Message<textarea name="message" rows="3" maxlength="3000" placeholder="Please tell us your child's age and any questions you have."></textarea></label>
+    </div>
+    <div hidden aria-hidden="true"><label>Website<input name="website" tabindex="-1" autocomplete="off"></label></div>
+    <label class="form-consent">
+      <input name="consent" type="checkbox" required>
+      <span>I agree to the collection and use of my name, phone number, email address, and message to respond to my inquiry. This information will be stored for consultation purposes. I may request its deletion by emailing ADMIN@DEWFORD.COM.</span>
+    </label>
+    <button class="theme-btn btn-style-two" type="submit"><span class="btn-title">Submit Inquiry</span><i class="icon fa-light fa-arrow-right" aria-hidden="true"></i></button>
+    <p class="dewford-form-status" role="status" aria-live="polite"></p>
+  </form>`;
+  // Edit English footer content here, independently of components.footer (Korean).
+  const footerEnglish = `<footer lang="en" class="main-footer footer-style-home-two dewford-footer">
+ <div class="widgets-section"><div class="auto-container"><div class="row">
+  <div class="upper-box col-lg-12"><div class="footer-logo"><a class="dewford-logo" href="index.html" aria-label="DEWFORD INTERNATIONAL COLLEGE home"><img class="dewford-logo-symbol" src="images/common/symbol_2.png" width="311" height="311" alt=""><img class="dewford-logo-text" src="images/common/logo-text.svg" width="224" height="51" alt=""></a></div><div class="text">Through English, children explore the world, ask their own questions,<span class="dewford-footer-intro-space"> </span><br class="dewford-footer-intro-break">and learn to express their ideas and reasoning.</div><div class="dewford-footer-socials" role="group" aria-label="DEWFORD social channels"><a class="dewford-footer-social dewford-social-kakao"
+                              href="http://pf.kakao.com/_vHKlxj/chat" target="_blank" rel="noopener noreferrer" aria-label="KakaoTalk chat (opens in a new tab)" title="KakaoTalk"><svg
+                                aria-hidden="true" width="28" height="28" viewBox="0 0 32 32">
+                                <path fill="currentColor"
+                                  d="M16 5C8.8 5 3 9.4 3 14.8c0 3.5 2.4 6.5 6 8.2l-1.5 5.2 6-3.7c.8.1 1.7.2 2.5.2 7.2 0 13-4.4 13-9.9S23.2 5 16 5Z" />
+                                <text x="16" y="18" text-anchor="middle" fill="#fee500" font-family="Arial,sans-serif"
+                                  font-size="7.5" font-weight="700">TALK</text>
+                              </svg></a><a class="dewford-footer-social dewford-social-naver" href="https://talk.naver.com/profile/wqvj07x" target="_blank" rel="noopener noreferrer" aria-label="Naver TalkTalk chat (opens in a new tab)" title="Naver TalkTalk chat"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24"><path fill="currentColor" d="M3 3h6l6 9V3h6v18h-6l-6-9v9H3z"/></svg></a><a class="dewford-footer-social dewford-social-blog" href="https://blog.naver.com/dewford_college" target="_blank" rel="noopener noreferrer" aria-label="Naver Blog (opens in a new tab)" title="Naver Blog"><svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" d="M7 5h18a3 3 0 0 1 3 3v13a3 3 0 0 1-3 3h-7l-5 4v-4H7a3 3 0 0 1-3-3V8a3 3 0 0 1 3-3Z"/><text x="16" y="16" text-anchor="middle" fill="currentColor" font-family="Arial,sans-serif" font-size="9" font-weight="700">blog</text></svg></a><a class="dewford-footer-social dewford-social-instagram" href="https://www.instagram.com/dewfordcoltd/" target="_blank" rel="noopener noreferrer"
+                              aria-label="Instagram" title="Instagram"><svg aria-hidden="true" width="22" height="22"
+                                viewBox="0 0 24 24">
+                                <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor"
+                                  stroke-width="1.8" />
+                                <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+                                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" />
+                              </svg></a><a class="dewford-footer-social dewford-social-facebook" href="https://www.facebook.com/profile.php?id=61595122751751" target="_blank" rel="noopener noreferrer"
+                              aria-label="Facebook" title="Facebook"><svg aria-hidden="true" width="22" height="22"
+                                viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                  d="M14 22v-9h3l.5-4H14V7c0-1.1.3-2 2-2h2V1.4A25 25 0 0 0 15 1c-3 0-5 1.8-5 5v3H7v4h3v9Z" />
+                              </svg></a><a class="dewford-footer-social dewford-social-youtube" href="#none"
+                              aria-label="YouTube" title="YouTube"><svg aria-hidden="true" width="22" height="22"
+                                viewBox="0 0 24 24">
+                                <path fill="currentColor"
+                                  d="M21.6 6.3a2.7 2.7 0 0 0-1.9-1.9C18 4 12 4 12 4s-6 0-7.7.4a2.7 2.7 0 0 0-1.9 1.9A28 28 0 0 0 2 12a28 28 0 0 0 .4 5.7 2.7 2.7 0 0 0 1.9 1.9C6 20 12 20 12 20s6 0 7.7-.4a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-5.7Z" />
+                                <path class="dewford-youtube-play" fill="#f00" d="m10 8 6 4-6 4Z" />
+                              </svg></a></div></div>
+  <div class="footer-column col-xl-5"><div class="about-widget">
+   <h2 class="footer-title">Learning to <strong>think and express<br>ideas in English</strong></h2>
+   <div class="footer-text">Find the right learning journey for your child.<br>Talk to DEWFORD today.</div>
+   <a class="theme-btn btn-style-two" href="admissions-inquiry.html"><span class="btn-title">Admissions &amp; Education Inquiry</span><i class="icon fa-light fa-arrow-right" aria-hidden="true"></i></a>
+  </div></div>
+  <div class="dewford-footer-menu-grid col-xl-7">  <nav class="footer-column " aria-label="ABOUT DEWFORD"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">ABOUT DEWFORD</span><a class="dewford-footer-mobile-link" href="why-dewford.html">ABOUT DEWFORD</a></h4><ul class="user-links"><li><a href="why-dewford.html">Why DEWFORD</a></li><li><a href="educational-philosophy.html">Vision &amp; Mission</a></li><li><a href="rolling-enrollment.html">Admissions</a></li></ul></div></nav><nav class="footer-column " aria-label="PROGRAMS"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">PROGRAMS</span><a class="dewford-footer-mobile-link" href="international-preschool.html">PROGRAMS</a></h4><ul class="user-links"><li><a href="international-preschool.html">International Early Learning</a></li><li><a href="elementary-international.html">International Primary</a></li><li><a href="elementary-esl.html">Primary ESL</a></li></ul></div></nav><nav class="footer-column " aria-label="QUICK LINKS"><div class="footer-widget"><h4 class="widget-title"><span class="dewford-footer-desktop-label">QUICK LINKS</span><a class="dewford-footer-mobile-link" href="contact.html">QUICK LINKS</a></h4><ul class="user-links"><li><a href="preschool-calendar.html">Calendar</a></li><li><a href="admissions-inquiry.html">Admissions Inquiry</a></li><li><a href="contact.html">Contact</a></li></ul></div></nav></div>
+  <div class="footer-column col-xl-7 offset-xl-5 dewford-footer-contact-row"><div class="row clearfix">
+   <div class="info-box col-md-5"><div class="info">
+    <a class="dewford-footer-contact-value" href="tel:0264011012"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3H4a1 1 0 0 0-1 1c0 9.4 7.6 17 17 17a1 1 0 0 0 1-1v-3l-5-2-2 2a15 15 0 0 1-7-7l2-2-2-5Z"/></svg><span class="dewford-contact-desktop-label">PHONE</span><span class="dewford-contact-value-text">02-6401-1012</span></a>
+    <a class="dewford-footer-contact-value" href="mailto:ADMIN@DEWFORD.COM"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></svg><span class="dewford-contact-desktop-label">EMAIL</span><span class="dewford-contact-value-text">ADMIN@DEWFORD.COM</span></a>
+   </div></div>
+   <div class="info-box col-md-7"><div class="info">
+    <a class="dewford-footer-contact-value" href="contact.html"><svg class="dewford-footer-info-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2.5"/></svg><span class="dewford-contact-desktop-label">ADDRESS</span><span class="dewford-contact-value-text" data-dewford-info="address">Suite 101, 1F, Cheonghwa Apartment Shopping Center,<br>27 Jangmun-ro, Yongsan-gu, Seoul 04392</span></a>
+   </div></div>
+  </div></div>
+ </div><div class="footer-bottom"><div class="copyright"><span>© 2026 DEWFORD INTERNATIONAL COLLEGE. All rights reserved.</span><a class="dewford-footer-login" href="/admin-login.html" aria-label="Admin login" title="Admin login"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1h-5M4 12h11m-4-4 4 4-4 4"/></svg></a></div><div class="dewford-footer-registration"><span data-dewford-info="academyName">DEWFORD INTERNATIONAL COLLEGE</span><span data-dewford-info="registration">Academy Registration No. 3355</span></div></div></div></div>
+</footer>`;
   document.querySelectorAll('[data-dewford-component]').forEach(placeholder => {
-    const markup = components[placeholder.dataset.dewfordComponent];
+    const component = placeholder.dataset.dewfordComponent;
+    const markup = component === 'inquiry' && location.pathname.startsWith('/en/')
+      ? inquiryEnglish
+      : component === 'footer' && location.pathname.startsWith('/en/')
+        ? footerEnglish : components[component];
     if (!markup) return;
     const template = document.createElement('template');
     template.innerHTML = markup;
